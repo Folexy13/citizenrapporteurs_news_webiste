@@ -1,0 +1,23 @@
+@mixin flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+@mixin center {
+	width: 60%;
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.container {
+	@include center();
+	.flex-container {
+		@include flex();
+		.flex-right {
+			width: 28%;
+		}
+		.flex-left {
+			width: 69%;
+		}
+	}
+}

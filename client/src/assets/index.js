@@ -1,0 +1,9 @@
+export { default as logo } from "./img/logo.png";
+export { default as NewImage } from "./img/new.webp";
+export { default as david } from "./img/david.webp";
+export { default as action } from "./img/action.webp";
+export { default as king } from "./img/king.webp";
+export { default as singer } from "./img/singer.webp";
+export { default as hand } from "./img/hand.webp";
+export { default as president } from "./img/president.webp";
+export { default as baba } from "./img/baba.webp";

@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+.card {
+	font-family: "Fira Sans", sans-serif;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	.img-container {
+		width: 100%;
+		height: 380px;
+		position: relative;
+		img {
+			width: 100%;
+			object-fit: cover;
+			object-position: center;
+			height: 100%;
+		}
+		h5 {
+			position: absolute;
+			color: #fff;
+			padding: 2px 6px;
+			font-size: 12px;
+			background-color: red;
+			bottom: 0;
+			margin: 0;
+			left: 3%;
+		}
+	}
+	.card-body {
+		padding: 10px 20px;
+		.item1 {
+			padding-bottom: 30px;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			.item-title {
+				text-decoration: none;
+				color: black;
+				&:hover {
+					color: rgba(250, 0, 0, 0.7);
+					transition: 0.4s;
+				}
+				h1 {
+					margin: 0;
+					font-size: 32px;
+					line-height: 40px;
+				}
+			}
+			.detail-flex {
+				margin-top: 10px;
+				color: grey;
+				display: flex;
+				gap: 8px;
+				font-size: 14px;
+				line-height: 22px;
+				font-weight: 600;
+				a {
+					text-decoration: none;
+					color: #ed1c15;
+				}
+				.svg-flex {
+					display: flex;
+					align-items: center;
+					gap: 5px;
+				}
+			}
+			p {
+				color: #403d39;
+				font-size: 14px;
+				line-height: 22px;
+			}
+			.read {
+				text-decoration: none;
+				color: #403d39;
+				font-size: 13px;
+				padding: 10px 18px;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+			}
+		}
+		.item-bottom {
+			margin-top: 5px;
+			padding-bottom: 10px;
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			.item-flex {
+				margin-top: 10px;
+				margin-bottom: 0;
+				display: flex;
+				gap: 10px;
+				width: 46%;
+				font-size: 14px;
+				line-height: 20px;
+				font-weight: 600;
+				a {
+					text-decoration: none;
+					color: black;
+					&:hover {
+						color: #ed1c15;
+						transition: 0.4s;
+					}
+				}
+			}
+		}
+	}
+}

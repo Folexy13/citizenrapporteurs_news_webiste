@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@mixin flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+@mixin center {
+	width: 60%;
+	margin: auto;
+}
+.navBar {
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+	.navTopCon {
+		padding: 10px;
+		background-color: red;
+		.navTop {
+			@include center();
+			.navTopContainer {
+				font-family: "Fira Sans", sans-serif;
+				// @include center();
+				width: 60%;
+				margin-left: auto;
+				@include flex();
+				color: #fff;
+				.time {
+					small {
+						font-size: 12px;
+						font-weight: 500;
+						font-style: normal;
+					}
+				}
+				.socialLink {
+					@include flex();
+					gap: 15px;
+				}
+			}
+		}
+	}
+	.secondNavContainer {
+		@include center();
+		.navMiddle {
+			width: 100%;
+			@include flex();
+			align-items: center;
+			.logo {
+				width: 90%;
+			}
+			.search {
+				width: 45%;
+				.row {
+					width: 100%;
+					display: flex;
+					input {
+						padding: 11px;
+						width: 85%;
+						border: 1px solid rgba(0, 0, 0, 0.1);
+					}
+					.danger {
+						width: 15%;
+						border-radius: 0;
+						border: none;
+						background-color: rgba(250, 0, 0, 0.9);
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+	.navLast {
+		@include center();
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		a {
+			position: relative;
+			text-decoration: none;
+			line-height: 7px;
+			color: black;
+
+			h5 {
+				margin-top: 10px;
+				font-weight: 700;
+				font-size: 14px;
+			}
+			&::after {
+				content: "";
+				width: 0;
+			}
+			&:hover {
+				&::after {
+					content: "";
+					width: 80%;
+					position: absolute;
+					height: 3px;
+					background-color: red;
+					bottom: 10px;
+					transition: 1s;
+				}
+			}
+		}
+		.active::after {
+			content: "";
+			width: 80%;
+			position: absolute;
+			height: 3px;
+			background-color: red;
+			bottom: 10px;
+		}
+	}
+}

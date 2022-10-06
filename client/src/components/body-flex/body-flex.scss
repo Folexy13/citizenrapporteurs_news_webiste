@@ -1,0 +1,43 @@
+.body-flex {
+	margin-top: 30px;
+	display: flex;
+	width: 100%;
+	align-items: start;
+	justify-content: space-between;
+	.img {
+		width: 38%;
+		height: 90px;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+	.item-body {
+		width: 60%;
+		a {
+			text-decoration: none;
+			color: black;
+			h2 {
+				font-size: 16px;
+				line-height: 20px;
+				padding-right: 5px;
+				margin: 0;
+			}
+			&:hover {
+				color: red;
+				transition: 0.8s;
+			}
+		}
+		.time-bottom {
+			margin-top: 10px;
+			.svg-flex {
+				display: flex;
+				align-items: center;
+				color: grey;
+				gap: 5px;
+			}
+		}
+	}
+}
