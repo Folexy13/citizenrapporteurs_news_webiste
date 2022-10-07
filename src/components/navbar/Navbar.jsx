@@ -2,8 +2,7 @@ import React from "react";
 import { logo } from "../../assets";
 import moment from "moment";
 import "./navbar.scss";
-// import { Link } from "react-router-dom";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { routes } from "../../routes";
 import { useState } from "react";
 const todayDate = (date) => {
@@ -15,6 +14,7 @@ function Navbar() {
   const handleHeaderChange = (slug) => {
     setSlug(slug);
   };
+  console.log(slug);
   return (
     <div className="navBar">
       <div className="navTopCon">
