@@ -45,7 +45,7 @@ const CreateNews = () => {
   const { value: video, valueChangedHandler: videoChangeHandler } =
     useForm(isNotEmpty);
   const [image, setImage] = useState(null);
-  setImage("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let payload = {
@@ -57,6 +57,7 @@ const CreateNews = () => {
       video,
       category,
     };
+    setImage("");
     if (
       !titleIsValid ||
       !authorIsValid ||
