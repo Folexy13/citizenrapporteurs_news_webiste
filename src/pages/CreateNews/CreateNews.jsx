@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../helpers/useForm";
@@ -45,7 +46,16 @@ const CreateNews = () => {
   const { value: video, valueChangedHandler: videoChangeHandler } =
     useForm(isNotEmpty);
   const [image, setImage] = useState(null);
-
+  const imageHandler = (img) => {
+    const data = new FormData();
+    data.append("file", img);
+    data.append("upload_preset", "zoahguuq");
+    axios
+      .post("https://api.cloudinary.com/v1_1/folajimidev/image/upload", data)
+      .then((res) => {
+        setImage(res.data.url);
+      });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     let payload = {
@@ -57,7 +67,7 @@ const CreateNews = () => {
       video,
       category,
     };
-    setImage("");
+
     if (
       !titleIsValid ||
       !authorIsValid ||
@@ -140,6 +150,7 @@ const CreateNews = () => {
               id="image"
               name="image"
               accept="image/png, image/jpeg"
+              onChange={(e) => imageHandler(e.target.files[0])}
             />
           </div>
           <div className="category">
