@@ -28,7 +28,9 @@
     font-size: 30px;
   }
   ul {
-    width: 400px;
+    @media (min-width: 500px) {
+      width: 400px;
+    }
     li {
       color: #fff;
       list-style: none;
