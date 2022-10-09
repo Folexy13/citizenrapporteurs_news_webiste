@@ -10,10 +10,9 @@ const app = express();
 //cors middleware
 app.use((req, res, next) => {
   const allowedOrigins = [
-    "https://pcgseduporch.com",
-    "https://www.pcgseduporch.com",
-    "https://training.toltem.tech",
-    "https://wwww.training.toltem.tech",
+    "https://citizenrapporteurs.com",
+    "https://www.citizenrapporteurs.com/",
+    "https://citizen-rapporteur.netlify.app",
   ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
