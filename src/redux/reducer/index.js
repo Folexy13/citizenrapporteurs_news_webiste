@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-
-const appReducer = combineReducers({});
+import { alert } from "./alertReducer";
+const appReducer = combineReducers({
+  alert,
+});
 
 const reducers = (state, action) => {
   return appReducer(state, action);

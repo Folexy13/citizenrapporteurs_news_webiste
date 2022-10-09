@@ -1,4 +1,4 @@
-export { default as logo } from "./img/logo.png";
+export { default as logo } from "./img/logo.jpeg";
 export { default as NewImage } from "./img/new.webp";
 export { default as david } from "./img/david.webp";
 export { default as action } from "./img/action.webp";

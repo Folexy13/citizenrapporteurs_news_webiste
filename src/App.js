@@ -2,12 +2,13 @@ import "./App.css";
 import { NewsPage, CreateNews } from "./pages";
 import { routes } from "./routes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navbar } from "./components";
 
 function App() {
   return (
     <div className="main-container">
       <Router>
-        {/* <Navbar /> */}
+        <Navbar />
         <Routes>
           {/* <Route
             name={routes.HOMEPAGE.name}

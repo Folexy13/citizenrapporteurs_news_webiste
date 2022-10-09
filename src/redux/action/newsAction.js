@@ -1,8 +1,8 @@
 //import
-import axios from "../../helpers/api";
 import { alertActions } from "./alertAction";
+import axios from "../../helpers/api";
 const BASE_API_URL = "https://citizen-rapporteur-api.herokuapp.com";
-export const newAction = {
+export const newsAction = {
   postNews,
   postComment,
 };

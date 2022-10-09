@@ -1,41 +1,61 @@
 @mixin center {
-	width: 60%;
-	margin: 30px auto;
+  width: 60%;
+  margin: 30px auto;
+}
+.error-text {
+  color: #f00;
+  font-style: italic;
+  font-size: 12px;
+  font-weight: 900;
 }
 .blog-form {
-	box-sizing: border-box;
-	@include center();
-	form {
-		div {
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-			margin-bottom: 15px;
-			input {
-				width: 100%;
-				padding: 10px;
-				box-sizing: border-box;
-				border: 2px solid #eee;
-				outline: none;
-			}
-			textarea {
-				width: 100%;
-				box-sizing: border-box;
-				padding: 10px;
-				border: 2px solid #eee;
-				outline: none;
-			}
-			label {
-				font-size: 14px;
-				color: #000;
-				font-weight: 600;
-			}
-			select {
-				width: 100%;
-				box-sizing: border-box;
-				padding: 10px;
-				border: 2px solid #eee;
-			}
-		}
-	}
+  box-sizing: border-box;
+  @include center();
+  form {
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+      input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 2px solid #eee;
+        outline: none;
+      }
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        border: 2px solid #eee;
+        outline: none;
+      }
+      label {
+        font-size: 14px;
+        color: #000;
+        font-weight: 600;
+      }
+      select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        border: 2px solid #eee;
+      }
+    }
+    .submit {
+      width: 300px;
+      float: right;
+      margin: 20px 0;
+      button {
+        background: #000;
+        color: #fff;
+        border: none;
+        outline: none;
+        padding: 10px 0;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    }
+  }
 }

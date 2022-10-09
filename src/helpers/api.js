@@ -1,8 +1,7 @@
 import axios from "axios";
-import { API_BASE_URL } from "../stories/Constant";
-
+const BASE_API_URL = "https://citizen-rapporteur-api.herokuapp.com";
 const AxiosInstance = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: BASE_API_URL,
 });
 
 AxiosInstance.interceptors.request.use(function (config) {
