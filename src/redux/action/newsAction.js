@@ -7,10 +7,10 @@ export const newsAction = {
   postComment,
 };
 
-function postNews() {
+function postNews(payload) {
   return (dispatch) => {
     axios
-      .post(`${BASE_API_URL}/create-news`)
+      .post(`${BASE_API_URL}/create-news`, payload)
       .then((res) => {
         if (res.data.status) {
           dispatch(alertActions.success(res.data.message));
