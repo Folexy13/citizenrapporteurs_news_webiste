@@ -82,6 +82,12 @@ const CreateNews = () => {
       return;
     }
     dispatch(newsAction.postNews(payload));
+    titleChangeHandler("");
+    dateChangeHandler("");
+    categoryChangeHandler("");
+    setImage(null);
+    videoChangeHandler("");
+    authorChangeHandler("");
   };
 
   return (
