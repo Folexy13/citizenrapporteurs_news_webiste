@@ -25,6 +25,10 @@ const CreateNews = () => {
 						<label htmlFor="title">Author</label>
 						<input type="text" placeholder="Author" />
 					</div>
+					<div className="date">
+						<label htmlFor="date">Date of News</label>
+						<input type="date" id="birthday" name="birthday" />
+					</div>
 					<div className="videolink">
 						<label htmlFor="title">VideoLink</label>
 						<input type="text" placeholder="https://youtube.leyu12" />
@@ -37,6 +41,15 @@ const CreateNews = () => {
 							name="image"
 							accept="image/png, image/jpeg"
 						/>
+					</div>
+					<div className="category">
+						<label htmlFor="category">Category</label>
+						<select name="news" id="news">
+							<option value="volvo">Politics</option>
+							<option value="saab">Entertainment</option>
+							<option value="mercedes">Business</option>
+							<option value="audi">Sport</option>
+						</select>
 					</div>
 					<div className="desc">
 						<label htmlFor="desc">Description</label>

@@ -30,6 +30,12 @@
 				color: #000;
 				font-weight: 600;
 			}
+			select {
+				width: 100%;
+				box-sizing: border-box;
+				padding: 10px;
+				border: 2px solid #eee;
+			}
 		}
 	}
 }
