@@ -1,6 +1,5 @@
 import "./App.css";
-import { Navbar } from "./components";
-import { NewsPage, HomePage, CreateNews } from "./pages";
+import { NewsPage, CreateNews } from "./pages";
 import { routes } from "./routes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
