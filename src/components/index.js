@@ -9,18 +9,20 @@ import Entertainment from "./entertainment/Entertainment";
 import Witness from "./witness/Witness";
 import RightContainer from "./right-container/RightContainer";
 import NewsFlex from "./news-flex/NewsFlex";
+import Sidebar from "./Sidebar/Sidebar";
 
 // Export Container
 export {
-	Navbar,
-	RightBar,
-	Layout,
-	Card,
-	SelectCard,
-	Opinion,
-	SingleRow,
-	Entertainment,
-	Witness,
-	RightContainer,
-	NewsFlex,
+  Navbar,
+  RightBar,
+  Layout,
+  Card,
+  SelectCard,
+  Opinion,
+  SingleRow,
+  Entertainment,
+  Witness,
+  RightContainer,
+  NewsFlex,
+  Sidebar,
 };

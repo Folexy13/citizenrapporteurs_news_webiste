@@ -2,13 +2,19 @@ import "./App.css";
 import { NewsPage, CreateNews } from "./pages";
 import { routes } from "./routes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar } from "./components";
+import { Navbar, Sidebar } from "./components";
+import { useState } from "react";
 
 function App() {
+  const [show, setShow] = useState(false);
+  const handleToggleShow = () => {
+    setShow(!show);
+  };
   return (
     <div className="main-container">
       <Router>
-        <Navbar />
+        <Navbar state={show} onClick={handleToggleShow} />
+        <Sidebar show={show} onClick={handleToggleShow} />
         <Routes>
           {/* <Route
             name={routes.HOMEPAGE.name}

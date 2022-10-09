@@ -1,0 +1,49 @@
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: 0.8s ease all;
+  background: rgba(0, 0, 0, 0.753);
+}
+.cr-sidebar {
+  background: #000;
+  height: 100vh;
+  transition: 0.8s ease-out all;
+  width: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .fa {
+    position: absolute;
+    right: 30px;
+    top: 33px;
+    color: red;
+    font-size: 30px;
+  }
+  ul {
+    width: 400px;
+    li {
+      color: #fff;
+      list-style: none;
+      margin: 20px 0;
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+    form {
+      width: 100%;
+      input {
+        padding: 10px;
+        width: 100%;
+      }
+    }
+  }
+}

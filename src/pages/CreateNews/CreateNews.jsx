@@ -179,6 +179,7 @@ const CreateNews = () => {
               <option value="Business">Business</option>
               <option value="Crime Report">Crime Report</option>
               <option value="Sport">Sport</option>
+              <option value="Opinions">Opinions</option>
             </select>
             {categoryHasError && (
               <p className="error-text">Select a category</p>

@@ -5,8 +5,11 @@
   justify-content: space-between;
 }
 @mixin center {
-  width: 60%;
+  width: 90%;
   margin: auto;
+  @media (min-width: 1034px) {
+    width: 60%;
+  }
 }
 .navBar {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
@@ -51,6 +54,9 @@
         .row {
           width: 100%;
           display: flex;
+          @media (max-width: 750px) {
+            display: none;
+          }
           input {
             padding: 11px;
             width: 85%;
@@ -69,6 +75,9 @@
   }
   .navLast {
     @include center();
+    @media (max-width: 750px) {
+      display: none;
+    }
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -107,5 +116,16 @@
       background-color: red;
       bottom: 10px;
     }
+  }
+}
+
+.menu {
+  .fa {
+    font-size: 30px;
+    color: #000;
+  }
+
+  @media (min-width: 750px) {
+    display: none;
   }
 }
