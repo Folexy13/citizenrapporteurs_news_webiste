@@ -1,7 +1,7 @@
 const News = require("../model/news");
 
 async function postNews(req, res) {
-  const { description, video, image, title, category, author } = req.body;
+  const { description, video, image, title, category, author, date } = req.body;
   const hasMedia = video || image;
   if (!description || !hasMedia || !title || !category || !author) {
     return res.json({
@@ -28,7 +28,7 @@ async function postNews(req, res) {
   latestNews.slug = getSlugFromCategory(category);
   latestNews.author = author;
   latestNews.media = video ? "video " : "image";
-
+  latestNews.createdAt = date ? date : new Date().toISOString();
   latestNews.save(function (err, data) {
     if (err) {
       return res.json({
