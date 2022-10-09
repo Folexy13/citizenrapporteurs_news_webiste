@@ -46,6 +46,7 @@ const CreateNews = () => {
   const { value: video, valueChangedHandler: videoChangeHandler } =
     useForm(isNotEmpty);
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const imageHandler = (img) => {
     const data = new FormData();
     data.append("file", img);
@@ -57,6 +58,7 @@ const CreateNews = () => {
       });
   };
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     let payload = {
       title,
@@ -82,12 +84,6 @@ const CreateNews = () => {
       return;
     }
     dispatch(newsAction.postNews(payload));
-    titleChangeHandler("");
-    dateChangeHandler("");
-    categoryChangeHandler("");
-    setImage(null);
-    videoChangeHandler("");
-    authorChangeHandler("");
   };
 
   return (
@@ -199,7 +195,9 @@ const CreateNews = () => {
             )}
           </div>
           <div className="submit">
-            <button>Post News</button>
+            <button disabled={loading}>
+              {loading ? "Submitting..." : "Post News"}
+            </button>
           </div>
         </form>
       </div>
