@@ -14,7 +14,6 @@ function Navbar() {
   const handleHeaderChange = (slug) => {
     setSlug(slug);
   };
-  console.log(slug);
   return (
     <div className="navBar">
       <div className="navTopCon">

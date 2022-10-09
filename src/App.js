@@ -1,6 +1,6 @@
 import "./App.css";
 import { Navbar } from "./components";
-import { NewsPage, HomePage } from "./pages";
+import { NewsPage, HomePage, CreateNews } from "./pages";
 import { routes } from "./routes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -8,12 +8,18 @@ function App() {
   return (
     <div className="main-container">
       <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
-          <Route
+          {/* <Route
             name={routes.HOMEPAGE.name}
             path={routes.HOMEPAGE.path}
             element={<HomePage />}
+            exact
+          /> */}
+          <Route
+            name={routes.HOMEPAGE.name}
+            path={routes.HOMEPAGE.path}
+            element={<CreateNews />}
             exact
           />
           <Route
