@@ -91,7 +91,7 @@ const CreateNews = () => {
     if (alert) {
       setLoading(false);
     }
-  }, [dispatch]);
+  }, [dispatch, alert]);
 
   return (
     <div>
