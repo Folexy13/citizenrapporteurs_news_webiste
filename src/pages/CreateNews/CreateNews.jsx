@@ -82,7 +82,6 @@ const CreateNews = () => {
       return;
     }
     dispatch(newsAction.postNews(payload));
-    window.location.reload();
   };
 
   return (

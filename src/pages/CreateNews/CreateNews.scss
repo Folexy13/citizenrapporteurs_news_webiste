@@ -59,3 +59,17 @@
     }
   }
 }
+
+.Toastify__toast--success {
+  background: #00c781 !important;
+  color: #fff !important;
+  font-weight: 200;
+  font-size: 12px;
+}
+
+.Toastify__toast--error {
+  background: red !important;
+  color: #fff !important;
+  font-weight: 200;
+  font-size: 12px;
+}
