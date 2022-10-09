@@ -39,7 +39,7 @@ async function postNews(req, res) {
     }
     return res.status(200).json({
       status: 200,
-      message: "News saved successfully",
+      message: "News created successfully",
       savedNews: data,
     });
   });
