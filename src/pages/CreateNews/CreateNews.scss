@@ -1,0 +1,35 @@
+@mixin center {
+	width: 60%;
+	margin: 30px auto;
+}
+.blog-form {
+	box-sizing: border-box;
+	@include center();
+	form {
+		div {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			margin-bottom: 15px;
+			input {
+				width: 100%;
+				padding: 10px;
+				box-sizing: border-box;
+				border: 2px solid #eee;
+				outline: none;
+			}
+			textarea {
+				width: 100%;
+				box-sizing: border-box;
+				padding: 10px;
+				border: 2px solid #eee;
+				outline: none;
+			}
+			label {
+				font-size: 14px;
+				color: #000;
+				font-weight: 600;
+			}
+		}
+	}
+}
