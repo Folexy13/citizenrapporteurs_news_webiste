@@ -13,6 +13,7 @@ app.use((req, res, next) => {
     "https://citizenrapporteurs.com",
     "https://www.citizenrapporteurs.com",
     "https://citizen-rapporteur.netlify.app",
+    "http://localhost:3000",
   ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
