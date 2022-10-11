@@ -1,11 +1,12 @@
 //import
 import { alertActions } from "./alertAction";
+import { userConstants } from "../../constant/userConstants";
 import axios from "../../helpers/api";
 const BASE_API_URL = "https://citizen-rapporteur-api.herokuapp.com";
 export const newsAction = {
   postNews,
   postComment,
-  getNews,
+  getLatestNews,
 };
 
 function postNews(payload) {
@@ -24,9 +25,14 @@ function postNews(payload) {
       });
   };
 }
-function getNews() {
+function getLatestNews() {
   return (dispatch) => {
-    axios.get(`${BASE_API_URL}/`);
+    axios.get(`${BASE_API_URL}/latest-news`).then((res) => {
+      dispatch({
+        type: userConstants.GET_LATEST_NEWS,
+        data: res.data?.news,
+      });
+    });
   };
 }
 function postComment() {}
