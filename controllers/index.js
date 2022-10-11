@@ -92,8 +92,13 @@ async function getLatestNews(req, res) {
   News.find()
     .sort({ _id: -1 })
     .limit(10)
-    .then((err, news) => {
-      console.log(err);
+    .then((news) => {
+      return res.status(200).json({
+        status: 200,
+        news: news, //returns latest added ten news
+      });
+    })
+    .catch((err) => {
       if (err) {
         return res.json({
           status: false,
@@ -101,10 +106,6 @@ async function getLatestNews(req, res) {
           error: err,
         });
       }
-      return res.status(200).json({
-        status: 200,
-        news: news, //returns latest added ten news
-      });
     });
 }
 async function getTrendingNews() {}
