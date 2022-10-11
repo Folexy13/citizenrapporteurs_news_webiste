@@ -5,6 +5,7 @@ const BASE_API_URL = "https://citizen-rapporteur-api.herokuapp.com";
 export const newsAction = {
   postNews,
   postComment,
+  getNews,
 };
 
 function postNews(payload) {
@@ -23,5 +24,9 @@ function postNews(payload) {
       });
   };
 }
-
+function getNews() {
+  return (dispatch) => {
+    axios.get(`${BASE_API_URL}/`);
+  };
+}
 function postComment() {}

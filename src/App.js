@@ -1,5 +1,5 @@
 import "./App.css";
-import { NewsPage, CreateNews } from "./pages";
+import { NewsPage, CreateNews, HomePage } from "./pages";
 import { routes } from "./routes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
@@ -16,12 +16,12 @@ function App() {
         <Navbar state={show} onClick={handleToggleShow} />
         <Sidebar show={show} onClick={handleToggleShow} />
         <Routes>
-          {/* <Route
+          <Route
             name={routes.HOMEPAGE.name}
-            path={routes.HOMEPAGE.path}
+            path={"/home"}
             element={<HomePage />}
             exact
-          /> */}
+          />
           <Route
             name={routes.HOMEPAGE.name}
             path={routes.HOMEPAGE.path}
