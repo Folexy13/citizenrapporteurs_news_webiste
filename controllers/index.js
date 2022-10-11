@@ -93,16 +93,17 @@ async function getLatestNews(req, res) {
     .sort({ _id: -1 })
     .limit(10)
     .then((err, news) => {
+      console.log(err);
       if (err) {
         return res.json({
-          status: 403,
+          status: false,
           message: "Error in fetching news",
           error: err,
         });
       }
       return res.status(200).json({
         status: 200,
-        news: news, //returns latest added five news
+        news: news, //returns latest added ten news
       });
     });
 }
