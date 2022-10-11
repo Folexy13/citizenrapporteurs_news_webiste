@@ -47,21 +47,21 @@ async function postNews(req, res) {
 
 async function postComments(req, res) {}
 
-async function getLatestNews(req, res) {
-  News.find({}, (err, news) => {
-    if (err) {
-      return res.json({
-        status: 403,
-        message: "Error in fetching news",
-        error: err,
-      });
-    }
-    return res.status(200).json({
-      status: 200,
-      news: news.length > 5 ? news.splice(news.length - 5, news.length) : news, //returns latest added five news
-    });
-  });
-}
+// async function getLatestNews(req, res) {
+//   News.find({}, (err, news) => {
+//     if (err) {
+//       return res.json({
+//         status: 403,
+//         message: "Error in fetching news",
+//         error: err,
+//       });
+//     }
+//     return res.status(200).json({
+//       status: 200,
+//       news: news.length > 5 ? news.splice(news.length - 5, news.length) : news, //returns latest added five news
+//     });
+//   });
+// }
 
 async function getNewsByCategory(req, res) {
   const query = req.query.category;
@@ -88,24 +88,24 @@ async function getNewsByCategory(req, res) {
 async function getNewsComment(req, res) {}
 
 //returns 10 latest
-// async function getLatestNews(req, res) {
-//   News.find()
-//     .sort({ _id: -1 })
-//     .limit(10)
-//     .then((err, news) => {
-//       if (err) {
-//         return res.json({
-//           status: 403,
-//           message: "Error in fetching news",
-//           error: err,
-//         });
-//       }
-//       return res.status(200).json({
-//         status: 200,
-//         news: news, //returns latest added five news
-//       });
-//     });
-// }
+async function getLatestNews(req, res) {
+  News.find()
+    .sort({ _id: -1 })
+    .limit(10)
+    .then((err, news) => {
+      if (err) {
+        return res.json({
+          status: 403,
+          message: "Error in fetching news",
+          error: err,
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        news: news, //returns latest added five news
+      });
+    });
+}
 async function getTrendingNews() {}
 async function getSearchQuery(req, res) {}
 module.exports = {
