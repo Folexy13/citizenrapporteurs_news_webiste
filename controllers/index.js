@@ -58,7 +58,7 @@ async function getLatestNews(req, res) {
     }
     return res.status(200).json({
       status: 200,
-      news: news.splice(news.length - 5, news.length), //returns latest added five news
+      news: news.length > 5 ? news.splice(news.length - 5, news.length) : news, //returns latest added five news
     });
   });
 }
