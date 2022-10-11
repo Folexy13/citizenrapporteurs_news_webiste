@@ -26,7 +26,7 @@ function HomePage({ children }) {
   return (
     <div className="home-page">
       <Layout>
-        {/* <Card /> */}
+        <Card store={latestNews} />
         <SelectCard />
         <Opinion />
       </Layout>

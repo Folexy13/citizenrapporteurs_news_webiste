@@ -27,12 +27,21 @@ function postNews(payload) {
 }
 function getLatestNews() {
   return (dispatch) => {
-    axios.get(`${BASE_API_URL}/latest-news`).then((res) => {
-      dispatch({
-        type: userConstants.GET_LATEST_NEWS,
-        data: res.data?.news,
+    axios
+      .get(`${BASE_API_URL}/latest-news`)
+      .then((res) => {
+        if (res.data.status) {
+          dispatch({
+            type: userConstants.GET_LATEST_NEWS,
+            data: res.data?.news,
+          });
+        } else {
+          throw res.data;
+        }
+      })
+      .catch((err) => {
+        dispatch(alertActions.error(err.message));
       });
-    });
   };
 }
 function postComment() {}
