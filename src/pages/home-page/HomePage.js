@@ -11,12 +11,10 @@ import {
 } from "../../components";
 import Footer from "../../components/footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { newsAction } from "../../redux/action/newsAction";
 
 function HomePage({ children }) {
   const dispacth = useDispatch();
-  const navigate = useNavigate();
   const latestNews = useSelector((el) => el?.latestNews);
 
   useEffect(() => {
