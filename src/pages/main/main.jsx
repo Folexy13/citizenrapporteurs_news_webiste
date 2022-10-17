@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Card, Layout, Opinion } from "../../components";
 import Footer from "../../components/footer/Footer";
 import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
-import { routes } from "../../routes";
 import "./main.scss";
 
 const Main = ({ type }) => {
@@ -39,7 +37,6 @@ const Main = ({ type }) => {
     news = newsBusiness;
   }
   const dispacth = useDispatch();
-  const naviagate = useNavigate();
   const handleSubmitComment = (e) => {
     e.preventDefault();
     let payload = {
