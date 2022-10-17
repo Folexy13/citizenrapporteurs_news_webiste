@@ -7,4 +7,8 @@ export const routes = {
     name: "News Page",
     path: "/category/",
   },
+  NEWSPAGE_MAIN: {
+    name: "News Page Main",
+    path: "/news/",
+  },
 };

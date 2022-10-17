@@ -41,24 +41,7 @@
           line-height: 40px;
         }
       }
-      .detail-flex {
-        margin-top: 10px;
-        color: grey;
-        display: flex;
-        gap: 8px;
-        font-size: 14px;
-        line-height: 22px;
-        font-weight: 600;
-        a {
-          text-decoration: none;
-          color: #ed1c15;
-        }
-        .svg-flex {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-        }
-      }
+
       p {
         color: #403d39;
         font-size: 14px;
@@ -98,5 +81,23 @@
         }
       }
     }
+  }
+}
+.detail-flex {
+  margin-top: 10px;
+  color: grey;
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
+  a {
+    text-decoration: none;
+    color: #ed1c15;
+  }
+  .svg-flex {
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 }

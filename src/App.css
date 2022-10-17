@@ -1,3 +1,7 @@
 .main-container {
   position: relative;
 }
+
+body {
+  color: #403d39;
+}

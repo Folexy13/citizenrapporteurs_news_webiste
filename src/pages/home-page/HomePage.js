@@ -4,9 +4,7 @@ import {
   Card,
   Entertainment,
   Layout,
-  Opinion,
   SelectCard,
-  SingleRow,
   Witness,
 } from "../../components";
 import Footer from "../../components/footer/Footer";
@@ -23,14 +21,15 @@ function HomePage({ children }) {
 
   return (
     <div className="home-page">
-      <Layout>
+      <Layout hasRightSidebar={true}>
         <Card store={latestNews} />
-        <SelectCard />
-        <Opinion />
+        <SelectCard type="opinion" />
+        <SelectCard type="news" />
+        <SelectCard type="business" />
+        <SelectCard type="sport" />
       </Layout>
       <div className="last-container">
         <div className="middle-container">
-          <SingleRow />
           <Entertainment />
           <Witness />
         </div>

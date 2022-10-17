@@ -1,36 +1,29 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { NewImage } from "../../assets";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { newsAction } from "../../redux/action/newsAction";
+import { routes } from "../../routes";
+import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import "./image-card.scss";
-const titleParser = (slug) => {
-  if (slug) {
-    console.log(slug);
-    let outcome = slug?.split("-");
-    slug = outcome.length > 1 ? outcome[0] + " " + outcome[1] : outcome[0];
-    return slug;
-  }
-  return "";
-};
-function ImageCard() {
-  const { slug } = useParams();
-  console.log(slug);
 
+function ImageCard({ store }) {
+  const dispacth = useDispatch();
   return (
     <div className="image-card">
-      {/* News-container */}
-      <div className="image-container">
-        <img src={NewImage} alt="img.jpg" />
+      <Link
+        to={routes.NEWSPAGE_MAIN.path + convertToSlug(store.title)}
+        onClick={() => dispacth(newsAction.getMainNews(store))}
+        className="image-container"
+      >
+        <img src={store?.image} alt="img.jpg" />
         <div className="text-container">
           <div>
-            <h5 className="nation-badge">{titleParser(slug.toUpperCase())}</h5>
+            <h5 className="nation-badge">{store?.category?.toUpperCase()}</h5>
           </div>
-          <h2>
-            Insecurity: Northern governors, traditional rulers demand state
-            police
-          </h2>
+          <h2>{store?.title}</h2>
           <div className="detail-flex">
             <small>
-              BY <a href="/">STANLEY OSARIEMEN</a>
+              BY <a href="/">{store?.title}</a>
             </small>
             <small className="svg-flex">
               <svg
@@ -44,7 +37,7 @@ function ImageCard() {
                 <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                 <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
               </svg>
-              September 14, 2022
+              {convertDate(store?.createdAt)}
             </small>
             <small className="svg-flex">
               <svg
@@ -61,7 +54,7 @@ function ImageCard() {
             </small>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
