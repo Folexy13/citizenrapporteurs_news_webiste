@@ -2,6 +2,9 @@
 .card {
   font-family: "Fira Sans", sans-serif;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  @media (max-width: 970px) {
+    border: 0;
+  }
   .img-container {
     width: 100%;
     height: 600px;
@@ -46,6 +49,7 @@
         color: #403d39;
         font-size: 14px;
         line-height: 22px;
+        white-space: break-spaces;
       }
       .read {
         text-decoration: none;

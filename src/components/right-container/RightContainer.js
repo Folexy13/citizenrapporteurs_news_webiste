@@ -27,9 +27,9 @@ function RightContainer() {
             routes.NEWSPAGE_MAIN.path +
             convertToSlug(politicsNews[politicsNews?.length - 1]?.title)
           }
+          onClick={() => handleClick(politicsNews[politicsNews?.length - 1])}
           className="image-container"
           style={{ cursor: "pointer" }}
-          onClick={() => handleClick(politicsNews[politicsNews?.length - 1])}
         >
           <img
             src={politicsNews[politicsNews?.length - 1]?.image}

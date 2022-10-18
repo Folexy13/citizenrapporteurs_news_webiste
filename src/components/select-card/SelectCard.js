@@ -81,46 +81,49 @@ function SelectCard({ type }) {
         </Link>
         {/* IMAGE GRID DISPLAY */}
         <div className="grid-container">
-          {opinion?.slice(opinion?.length - 6, opinion?.length)?.map((el) => {
-            return (
-              <div className="item">
-                <div className="img-container">
-                  <h5 className="nation-badge">OPINION</h5>
-                  <img src={el?.image} alt="img.jpg" />
-                </div>
-                <div className="item-body">
-                  <Link
-                    to={routes.NEWSPAGE_MAIN.path + convertToSlug(el?.title)}
-                    onClick={() => disaptch(newsAction.getMainNews(el))}
-                  >
-                    <h2>{el?.title}</h2>
-                  </Link>
-                  <div className="time-bottom">
-                    <small className="svg-flex">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="10"
-                        fill="currentColor"
-                        class="bi bi-clock"
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
-                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
-                      </svg>
-                      {convertDate2(el?.createdAt)}
-                    </small>
+          {opinion
+            ?.filter((el) => el?.title !== opinion[opinion?.length - 1]?.title)
+            ?.slice(opinion?.length - 6, opinion?.length)
+            ?.map((el) => {
+              return (
+                <div className="item">
+                  <div className="img-container">
+                    <h5 className="nation-badge">OPINION</h5>
+                    <img src={el?.image} alt="img.jpg" />
+                  </div>
+                  <div className="item-body">
+                    <Link
+                      to={routes.NEWSPAGE_MAIN.path + convertToSlug(el?.title)}
+                      onClick={() => disaptch(newsAction.getMainNews(el))}
+                    >
+                      <h2>{el?.title}</h2>
+                    </Link>
+                    <div className="time-bottom">
+                      <small className="svg-flex">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="10"
+                          height="10"
+                          fill="currentColor"
+                          class="bi bi-clock"
+                          viewBox="0 0 16 16"
+                        >
+                          <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+                        </svg>
+                        {convertDate2(el?.createdAt)}
+                      </small>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     );
   } else if (type === "sport" && opinionSport?.length) {
     return (
-      <div className="select-card">
+      <div className="select-card" style={{ marginTop: 150 }}>
         <h1>SPORTS</h1>
         <Link
           to={
@@ -177,6 +180,10 @@ function SelectCard({ type }) {
         {/* IMAGE GRID DISPLAY */}
         <div className="grid-container">
           {opinionSport
+            ?.filter(
+              (el) =>
+                el?.title !== opinionSport[opinionSport?.length - 1]?.title
+            )
             ?.slice(opinionSport?.length - 6, opinionSport?.length)
             ?.map((el) => {
               return (
@@ -284,6 +291,11 @@ function SelectCard({ type }) {
         {/* IMAGE GRID DISPLAY */}
         <div className="grid-container">
           {opinionBusiness
+            ?.filter(
+              (el) =>
+                el?.title !==
+                opinionBusiness[opinionBusiness?.length - 1]?.title
+            )
             ?.slice(opinionBusiness?.length - 6, opinionBusiness?.length)
             ?.map((el) => {
               return (
@@ -385,6 +397,9 @@ function SelectCard({ type }) {
         {/* IMAGE GRID DISPLAY */}
         <div className="grid-container">
           {opinionNews
+            ?.filter(
+              (el) => el?.title !== opinionNews[opinionNews?.length - 1]?.title
+            )
             ?.slice(opinionNews?.length - 6, opinionNews?.length)
             ?.map((el) => {
               return (

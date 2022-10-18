@@ -1,23 +1,32 @@
 @mixin flex {
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @media (max-width: 970px) {
+    flex-direction: column;
+  }
 }
 @mixin center {
-	width: 60%;
-	margin-top: 30px;
-	margin-left: auto;
-	margin-right: auto;
+  width: 76%;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  @media (min-width: 1499px) {
+    width: 60%;
+  }
 }
 .container {
-	@include center();
-	.flex-container {
-		@include flex();
-		.flex-right {
-			width: 28%;
-		}
-		.flex-left {
-			width: 69%;
-		}
-	}
+  @include center();
+  .flex-container {
+    @include flex();
+    .flex-right {
+      width: 28%;
+    }
+    .flex-left {
+      width: 69%;
+      @media (max-width: 970px) {
+        width: 100%;
+      }
+    }
+  }
 }

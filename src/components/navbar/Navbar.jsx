@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { logo } from "../../assets";
 import moment from "moment";
 import "./navbar.scss";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { routes } from "../../routes";
 import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
@@ -40,6 +40,9 @@ function Navbar({ onClick, state }) {
       }, 1000);
     }
   }, [dispatch, alert]);
+  useEffect(() => {
+    setInterval(() => {}, 1000);
+  }, []);
 
   return (
     <>
@@ -81,9 +84,10 @@ function Navbar({ onClick, state }) {
         <div className="secondNavContainer">
           {/* Middle Navbar */}
           <div className="navMiddle">
-            <a href="/">
+            <Link to="/" className="logo">
               <img src={logo} className="logo" alt="img.jpg" />
-            </a>
+              <p>Citizen Rapporteur</p>
+            </Link>
 
             {/* Filter Form */}
             <form className="search">
@@ -133,6 +137,13 @@ function Navbar({ onClick, state }) {
             end
           >
             <h5>BUSINESS</h5>
+          </NavLink>
+          <NavLink
+            to={routes.NEWSPAGE.path + "opinions"}
+            onClick={() => handleHeaderChange("opinions")}
+            end
+          >
+            <h5>OPINION</h5>
           </NavLink>
           <NavLink
             to={routes.NEWSPAGE.path + "sport"}

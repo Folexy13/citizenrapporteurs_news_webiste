@@ -17,15 +17,18 @@ function BodyFlex({ type, store }) {
             <div className="body-flex" key={el?._id}>
               <Link
                 to={routes.NEWSPAGE_MAIN.path + convertToSlug(el.title)}
-                className="img"
                 onClick={() => dispatch(newsAction.getMainNews(el))}
+                className="img"
               >
                 <img src={el.image} alt="img.jpg" />
               </Link>
               <div className="item-body">
-                <a href="/">
+                <Link
+                  to={routes.NEWSPAGE_MAIN.path + convertToSlug(el.title)}
+                  onClick={() => dispatch(newsAction.getMainNews(el))}
+                >
                   <h2>{el.title}</h2>
-                </a>
+                </Link>
                 <div className="time-bottom">
                   <small className="svg-flex">
                     <svg

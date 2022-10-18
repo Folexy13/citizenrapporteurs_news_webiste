@@ -5,9 +5,9 @@
   justify-content: space-between;
 }
 @mixin center {
-  width: 90%;
+  width: 76%;
   margin: auto;
-  @media (min-width: 1034px) {
+  @media (min-width: 1499px) {
     width: 60%;
   }
 }
@@ -39,6 +39,23 @@
       }
     }
   }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 50% !important;
+      border-radius: 50%;
+    }
+    p {
+      font-family: "Shrikhand", cursive;
+      font-size: 16px;
+      text-transform: uppercase;
+      width: 200px;
+    }
+  }
   .secondNavContainer {
     @include center();
     .navMiddle {
@@ -48,7 +65,7 @@
       gap: 60px;
       align-items: center;
       .logo {
-        width: 100px;
+        width: 200px;
         margin: 10px 0;
       }
       .search {

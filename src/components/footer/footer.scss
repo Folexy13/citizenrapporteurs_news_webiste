@@ -22,6 +22,7 @@
         color: red;
         margin: 0 0 10px 0;
       }
+
       .item-flex {
         display: flex;
         align-items: flex-start;
@@ -46,6 +47,24 @@
           }
         }
       }
+    }
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 50% !important;
+      border-radius: 50%;
+    }
+    p {
+      font-family: "Shrikhand", cursive;
+      font-size: 16px;
+      text-transform: uppercase;
+      width: 200px;
+      color: #fff;
     }
   }
   .copy-cont {

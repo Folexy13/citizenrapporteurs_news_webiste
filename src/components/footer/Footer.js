@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { logo } from "../../assets";
 import "./footer.scss";
 
@@ -7,52 +8,53 @@ function Footer() {
     <div className="footer">
       <div className="footer-container">
         <div className="footer-item">
-          <a href="/">
-            <img src={logo} alt="img.jpg" />
-          </a>
+          <Link to="/" className="logo">
+            <img src={logo} alt="img.jpg" className="logo" />
+            <p>Citizen Rapporteur</p>
+          </Link>
         </div>
         <div className="footer-item">
           <h6>Categories</h6>
           <div className="item-flex">
             <div className="flex1">
-              <a href="/">
+              <Link to="/">
                 <h6>Business</h6>
-              </a>
-              <a href="/">
+              </Link>
+              <Link to="/">
                 <h6>Entertainment</h6>
-              </a>
-              <a href="/">
+              </Link>
+              <Link to="/">
                 <h6>Health</h6>
-              </a>
+              </Link>
             </div>
             <div className="flex1">
-              <a href="/">
+              <Link to="/">
                 <h6>Business</h6>
-              </a>
-              <a href="/">
+              </Link>
+              <Link to="/">
                 <h6>Entertainment</h6>
-              </a>
-              <a href="/">
+              </Link>
+              <Link to="/">
                 <h6>Health</h6>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         <div className="footer-item">
           <h6>Categories</h6>
           <div className="item-text">
-            <a href="/">
+            <Link to="/">
               <h6>
                 Insecurity: Northern governors, traditional rulers demand state
                 police
               </h6>
-            </a>
-            <a href="/">
+            </Link>
+            <Link to="/">
               <h6>
                 Insecurity: Northern governors, traditional rulers demand state
                 police
               </h6>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -65,11 +67,11 @@ function Footer() {
             </p>
           </div>
           <div className="copy-flex copy-link">
-            <a href="/">About Us /</a>
-            <a href="/">Advertise /</a>
-            <a href="/">Contact Us /</a>
-            <a href="/">Privacy Policy /</a>
-            <a href="/">Terms and Conditions</a>
+            <Link to="/">About Us /</Link>
+            <Link to="/">Advertise /</Link>
+            <Link to="/">Contact Us /</Link>
+            <Link to="/">Privacy Policy /</Link>
+            <Link to="/">Terms and Conditions</Link>
           </div>
         </div>
       </div>

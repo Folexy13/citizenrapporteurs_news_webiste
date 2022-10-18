@@ -16,9 +16,15 @@
     align-items: stretch;
     gap: 20px 10px;
     place-content: flex-start;
+    @media (max-width: 970px) {
+      flex-direction: column;
+    }
     .item {
       // background-color: rgba(0, 0, 0, 0.05);
       width: 32%;
+      @media (max-width: 970px) {
+        width: 100%;
+      }
       .img-container {
         width: 100%;
         height: 180px;
