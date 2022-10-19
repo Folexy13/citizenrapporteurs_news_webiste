@@ -23,7 +23,7 @@ function SelectCard({ type }) {
     disaptch(newsAction.getOpinionCategory("opinions"));
     disaptch(newsAction.getBusinessCategory("business"));
     disaptch(newsAction.getSportCategory("sport"));
-    disaptch(newsAction.getNewsCategory("news"));
+    disaptch(newsAction.getNewsCategory("breaking-news"));
   }, [disaptch]);
   if (type === "opinion" && opinion?.length) {
     return (
@@ -83,7 +83,8 @@ function SelectCard({ type }) {
         <div className="grid-container">
           {opinion
             ?.filter((el) => el?.title !== opinion[opinion?.length - 1]?.title)
-            ?.slice(opinion?.length - 6, opinion?.length)
+            ?.sort((a, b) => b._id - a._id)
+            ?.slice(0, 6)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -128,9 +129,13 @@ function SelectCard({ type }) {
         <Link
           to={
             routes.NEWSPAGE_MAIN.path +
-            convertToSlug(opinionBusiness[opinionBusiness?.length - 1]?.title)
+            convertToSlug(opinionSport[opinionSport?.length - 1]?.title)
           }
-          onClick={() => disaptch(opinionBusiness[opinionBusiness?.length - 1])}
+          onClick={() =>
+            disaptch(
+              newsAction.getMainNews(opinionSport[opinionSport?.length - 1])
+            )
+          }
           className="image-container"
         >
           <img
@@ -184,7 +189,8 @@ function SelectCard({ type }) {
               (el) =>
                 el?.title !== opinionSport[opinionSport?.length - 1]?.title
             )
-            ?.slice(opinionSport?.length - 6, opinionSport?.length)
+            ?.sort((a, b) => b._id - a._id)
+            ?.slice(0, 6)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -296,7 +302,8 @@ function SelectCard({ type }) {
                 el?.title !==
                 opinionBusiness[opinionBusiness?.length - 1]?.title
             )
-            ?.slice(opinionBusiness?.length - 6, opinionBusiness?.length)
+            ?.sort((a, b) => b._id - a._id)
+            ?.slice(0, 6)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -337,7 +344,7 @@ function SelectCard({ type }) {
   } else if (type === "news" && opinionNews?.length) {
     return (
       <div className="select-card">
-        <h1>NEWS</h1>
+        <h1>BREAKING NEWS</h1>
         <Link
           to={
             routes.NEWSPAGE_MAIN.path +
@@ -356,7 +363,7 @@ function SelectCard({ type }) {
           />
           <div className="text-container">
             <div>
-              <h5 className="nation-badge">NEWS</h5>
+              <h5 className="nation-badge">BREAKING NEWS</h5>
             </div>
             <h2>{opinionNews[opinionNews?.length - 1]?.title}</h2>
             <div className="detail-flex">
@@ -400,7 +407,8 @@ function SelectCard({ type }) {
             ?.filter(
               (el) => el?.title !== opinionNews[opinionNews?.length - 1]?.title
             )
-            ?.slice(opinionNews?.length - 6, opinionNews?.length)
+            ?.sort((a, b) => b._id - a._id)
+            ?.slice(0, 6)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -408,7 +416,7 @@ function SelectCard({ type }) {
                     to={routes.NEWSPAGE_MAIN.path + convertToSlug(el?.title)}
                     className="img-container"
                   >
-                    <h5 className="nation-badge">NEWS</h5>
+                    <h5 className="nation-badge">BREAKING NEWS</h5>
                     <img src={el?.image} alt="img.jpg" />
                   </Link>
                   <div className="item-body">

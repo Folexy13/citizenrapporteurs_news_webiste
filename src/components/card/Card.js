@@ -81,7 +81,9 @@ function Card({ store, type }) {
                 <h1>{store?.title}</h1>
               </Link>
 
-              <p style={{ fontSize: 16 }}>{store?.description}</p>
+              <p style={{ fontSize: 16, marginTop: 80 }}>
+                {store?.description}
+              </p>
             </div>
           </div>
         </div>

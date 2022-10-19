@@ -55,7 +55,7 @@ const Main = ({ type }) => {
     if (store?.slug === "crime-report") {
       dispacth(newsAction.getCrimeCategory("crime-report"));
     } else if (store?.slug === "news") {
-      dispacth(newsAction.getNewsCategory("news"));
+      dispacth(newsAction.getNewsCategory("breaking-news"));
     } else if (store?.slug === "politics") {
       dispacth(newsAction.getPoliticsategory("politics"));
     } else if (store?.slug === "business") {

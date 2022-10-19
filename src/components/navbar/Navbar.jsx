@@ -15,7 +15,7 @@ const todayDate = (date) => {
   return date;
 };
 function Navbar({ onClick, state }) {
-  const [slug, setSlug] = useState("news");
+  const [slug, setSlug] = useState("breaking-news");
   const alert = useSelector((el) => el?.alert);
   const dispatch = useDispatch();
   console.log(slug);
@@ -119,8 +119,8 @@ function Navbar({ onClick, state }) {
             <h5>HOME</h5>
           </NavLink>
           <NavLink
-            to={routes.NEWSPAGE.path + "news"}
-            onClick={() => handleHeaderChange("news")}
+            to={routes.NEWSPAGE.path + "breaking-news"}
+            onClick={() => handleHeaderChange("breaking-news")}
           >
             <h5>NEWS</h5>
           </NavLink>

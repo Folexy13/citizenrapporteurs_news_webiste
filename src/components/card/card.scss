@@ -50,8 +50,16 @@
         font-size: 14px;
         line-height: 22px;
         white-space: break-spaces;
-        letter-spacing: -1px;
-        line-height: 40px;
+        letter-spacing: 1px;
+        line-height: 20px;
+        margin-top: 20px;
+
+        font-family: "Poppins", sans-serif;
+        &::first-letter {
+          font-size: 100px;
+          color: red;
+          font-weight: 400;
+        }
       }
       .read {
         text-decoration: none;
