@@ -43,7 +43,7 @@ function Layout({ children, hasRightSidebar }) {
         </div>
         {hasRightSidebar && (
           <div className="flex-right">
-            <RightBar type={path === "/" || path === "/home" ? "home" : ""}>
+            <RightBar>
               <RightContainer />
             </RightBar>
           </div>
