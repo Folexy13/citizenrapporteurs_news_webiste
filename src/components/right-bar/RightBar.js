@@ -1,7 +1,7 @@
 import React from "react";
 import "./right-bar.scss";
 
-function RightBar({ props }) {
+function RightBar(props) {
   return <div>{props.children}</div>;
 }
 
