@@ -5,7 +5,6 @@ import RightContainer from "../right-container/RightContainer";
 import { FaAngleRight } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { routes } from "../../routes";
-const path = window.location.pathname;
 function Layout({ children, hasRightSidebar }) {
   const { slug } = useParams();
   const titleParser = (slug) => {
