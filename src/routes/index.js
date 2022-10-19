@@ -9,6 +9,6 @@ export const routes = {
   },
   NEWSPAGE_MAIN: {
     name: "News Page Main",
-    path: "/news/",
+    path: "/news",
   },
 };

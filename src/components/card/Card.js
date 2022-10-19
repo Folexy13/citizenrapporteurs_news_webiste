@@ -31,7 +31,7 @@ function Card({ store, type }) {
   const dispacth = useDispatch();
   const handleNewsMain = (id) => {
     let news = store?.find((el) => el?._id === id);
-    dispacth(newsAction.getMainNews(news));
+    dispacth(newsAction.getSingleNews(news?._id));
   };
 
   if (type === "main") {
@@ -39,7 +39,7 @@ function Card({ store, type }) {
       <>
         <div className="detail-flex">
           <small>
-            BY <a href="/">{store?.author} </a>
+            BY <Link to="#">{store?.author} </Link>
           </small>
           <small className="svg-flex">
             <svg
@@ -97,7 +97,13 @@ function Card({ store, type }) {
         onClick={() => handleNewsMain(store[0]?._id)}
       >
         <Link
-          to={routes.NEWSPAGE_MAIN.path + convertToSlug(store[0]?.title)}
+          to={
+            routes.NEWSPAGE_MAIN.path +
+            "/" +
+            store[0]?._id +
+            "/" +
+            convertToSlug(store[0]?.title)
+          }
           onClick={() => handleNewsMain(store[0]?._id)}
         >
           <img src={store[0]?.image} alt="img.jpg" />
@@ -107,7 +113,13 @@ function Card({ store, type }) {
       <div className="card-body">
         <div className="item1">
           <Link
-            to={routes.NEWSPAGE_MAIN.path + convertToSlug(store[0]?.title)}
+            to={
+              routes.NEWSPAGE_MAIN.path +
+              "/" +
+              store._id +
+              "/" +
+              convertToSlug(store[0]?.title)
+            }
             className="item-title"
           >
             <h1>{store[0]?.title}</h1>

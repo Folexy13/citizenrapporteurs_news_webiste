@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { logo } from "../../assets";
 import "./footer.scss";
 
 function Footer() {
@@ -9,8 +8,7 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-item">
           <Link to="/" className="logo">
-            <img src={logo} alt="img.jpg" className="logo" />
-            <p>Citizen Rapporteur</p>
+            Citizen Rapporteur
           </Link>
         </div>
         <div className="footer-item">

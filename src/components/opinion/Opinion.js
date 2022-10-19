@@ -42,9 +42,15 @@ function Opinion({ type }) {
                       <div className="item-body">
                         <Link
                           to={
-                            routes.NEWSPAGE_MAIN.path + convertToSlug(el?.title)
+                            routes.NEWSPAGE_MAIN.path +
+                            "/" +
+                            el._id +
+                            "/" +
+                            convertToSlug(el?.title)
                           }
-                          onClick={() => dispatch(newsAction.getMainNews(el))}
+                          onClick={() =>
+                            dispatch(newsAction.getSingleNews(el?._id))
+                          }
                         >
                           <h2>{el?.title}</h2>
                         </Link>

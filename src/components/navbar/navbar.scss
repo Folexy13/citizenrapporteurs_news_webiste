@@ -39,35 +39,17 @@
       }
     }
   }
-  .logo {
-    display: flex;
-    flex-direction: column;
-    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 50% !important;
-      border-radius: 50%;
-    }
-    p {
-      font-family: "Shrikhand", cursive;
-      font-size: 16px;
-      text-transform: uppercase;
-      width: 200px;
-    }
-  }
+
   .secondNavContainer {
     @include center();
     .navMiddle {
       width: 100%;
       @include flex();
+      margin: 10px 0;
       justify-content: unset;
       gap: 60px;
       align-items: center;
-      .logo {
-        width: 200px;
-        margin: 10px 0;
-      }
+
       .search {
         width: 100%;
         .row {
@@ -147,4 +129,14 @@
   @media (min-width: 750px) {
     display: none;
   }
+}
+.logo {
+  margin: 10px 0;
+  font-weight: 900;
+  color: #000;
+  text-transform: uppercase;
+  display: block;
+  font-family: "Poppins";
+  font-size: 3pc;
+  line-height: 41px;
 }

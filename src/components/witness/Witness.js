@@ -25,9 +25,15 @@ function Witness() {
               <div className="item-body">
                 <div>
                   <Link
-                    to={routes.NEWSPAGE_MAIN.path + convertToSlug(el?.title)}
+                    to={
+                      routes.NEWSPAGE_MAIN.path +
+                      "/" +
+                      el._id +
+                      "/" +
+                      convertToSlug(el?.title)
+                    }
                     className="image-container"
-                    onClick={() => disaptch(newsAction.getMainNews(el))}
+                    onClick={() => disaptch(newsAction.getSingleNews(el?._id))}
                   >
                     <img src={el?.image} alt="img.jpg" />
                     <a href="/" className="link-container">
@@ -81,12 +87,15 @@ function Witness() {
                         <Link
                           to={
                             routes.NEWSPAGE_MAIN.path +
+                            "/" +
+                            el[crimeNews?.indexOf(el) + 5]?._id +
+                            "/" +
                             convertToSlug(el[crimeNews?.indexOf(el) + 5]?.title)
                           }
                           onClick={() =>
                             disaptch(
-                              newsAction.getMainNews(
-                                el[crimeNews?.indexOf(el) + 5]
+                              newsAction.getSingleNews(
+                                el[crimeNews?.indexOf(el) + 5]?._id
                               )
                             )
                           }
@@ -110,12 +119,15 @@ function Witness() {
                         <Link
                           to={
                             routes.NEWSPAGE_MAIN.path +
+                            "/" +
+                            el[crimeNews?.indexOf(el) + 6]?._id +
+                            "/" +
                             convertToSlug(el[crimeNews?.indexOf(el) + 5]?.title)
                           }
                           onClick={() =>
                             disaptch(
-                              newsAction.getMainNews(
-                                el[crimeNews?.indexOf(el) + 6]
+                              newsAction.getSingleNews(
+                                el[crimeNews?.indexOf(el) + 6]?._id
                               )
                             )
                           }

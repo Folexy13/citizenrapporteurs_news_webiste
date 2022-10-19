@@ -47,7 +47,7 @@ function App() {
             />
             <Route
               name={routes.NEWSPAGE_MAIN.name}
-              path={routes.NEWSPAGE_MAIN.path + ":slug"}
+              path={routes.NEWSPAGE_MAIN.path + "/:id/:slug"}
               element={<NewsMain />}
             />
           </Routes>

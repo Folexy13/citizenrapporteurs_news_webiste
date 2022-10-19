@@ -16,16 +16,28 @@ function BodyFlex({ type, store }) {
           return (
             <div className="body-flex" key={el?._id}>
               <Link
-                to={routes.NEWSPAGE_MAIN.path + convertToSlug(el.title)}
-                onClick={() => dispatch(newsAction.getMainNews(el))}
+                to={
+                  routes.NEWSPAGE_MAIN.path +
+                  "/" +
+                  el._id +
+                  "/" +
+                  convertToSlug(el.title)
+                }
+                onClick={() => dispatch(newsAction.getSingleNews(el._id))}
                 className="img"
               >
                 <img src={el.image} alt="img.jpg" />
               </Link>
               <div className="item-body">
                 <Link
-                  to={routes.NEWSPAGE_MAIN.path + convertToSlug(el.title)}
-                  onClick={() => dispatch(newsAction.getMainNews(el))}
+                  to={
+                    routes.NEWSPAGE_MAIN.path +
+                    "/" +
+                    el._id +
+                    "/" +
+                    convertToSlug(el.title)
+                  }
+                  onClick={() => dispatch(newsAction.getSingleNews(el._id))}
                 >
                   <h2>{el.title}</h2>
                 </Link>

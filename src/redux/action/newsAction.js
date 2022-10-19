@@ -17,7 +17,6 @@ export const newsAction = {
   getOpinionCategory,
   getPoliticsategory,
   getSportCategory,
-  getMainNews,
 };
 
 function postNews(payload) {
@@ -60,7 +59,7 @@ function getLatestNews() {
 function getSingleNews(id) {
   return (dispatch) => {
     trackPromise(
-      axios.get(`${BASE_API_URL}/getSingleNews/${id}`).then((res) => {
+      axios.get(`${BASE_API_URL}/single-news/${id}`).then((res) => {
         dispatch({
           type: userConstants.GET_SINGLE_NEWS,
           news: res.data.news,
@@ -152,15 +151,5 @@ function getEntertainmentCategory(slug) {
         });
       })
     );
-  };
-}
-
-function getMainNews(news) {
-  console.log(news);
-  return (dispatch) => {
-    dispatch({
-      type: userConstants.GET_MAIN_NEWS,
-      news,
-    });
   };
 }

@@ -32,10 +32,15 @@ function SelectCard({ type }) {
         <Link
           to={
             routes.NEWSPAGE_MAIN.path +
+            "/" +
+            opinion[opinion?.length - 1]?._id +
+            "/" +
             convertToSlug(opinion[opinion?.length - 1]?.title)
           }
           onClick={() =>
-            disaptch(newsAction.getMainNews(opinion[opinion?.length - 1]))
+            disaptch(
+              newsAction.getSingleNews(opinion[opinion?.length - 1]?._id)
+            )
           }
           className="image-container"
         >
@@ -94,8 +99,16 @@ function SelectCard({ type }) {
                   </div>
                   <div className="item-body">
                     <Link
-                      to={routes.NEWSPAGE_MAIN.path + convertToSlug(el?.title)}
-                      onClick={() => disaptch(newsAction.getMainNews(el))}
+                      to={
+                        routes.NEWSPAGE_MAIN.path +
+                        "/" +
+                        el._id +
+                        "/" +
+                        convertToSlug(el?.title)
+                      }
+                      onClick={() =>
+                        disaptch(newsAction.getSingleNews(el?._id))
+                      }
                     >
                       <h2>{el?.title}</h2>
                     </Link>
@@ -129,11 +142,16 @@ function SelectCard({ type }) {
         <Link
           to={
             routes.NEWSPAGE_MAIN.path +
+            "/" +
+            opinionSport[opinionSport?.length - 1]?._id +
+            "/" +
             convertToSlug(opinionSport[opinionSport?.length - 1]?.title)
           }
           onClick={() =>
             disaptch(
-              newsAction.getMainNews(opinionSport[opinionSport?.length - 1])
+              newsAction.getSingleNews(
+                opinionSport[opinionSport?.length - 1]?._id
+              )
             )
           }
           className="image-container"
@@ -200,8 +218,16 @@ function SelectCard({ type }) {
                   </div>
                   <div className="item-body">
                     <Link
-                      to={routes.NEWSPAGE_MAIN.path + convertToSlug(el?.title)}
-                      onClick={() => disaptch(newsAction.getMainNews(el))}
+                      to={
+                        routes.NEWSPAGE_MAIN.path +
+                        "/" +
+                        el._id +
+                        "/" +
+                        convertToSlug(el?.title)
+                      }
+                      onClick={() =>
+                        disaptch(newsAction.getSingleNews(el?._id))
+                      }
                     >
                       <h2>{el?.title}</h2>
                     </Link>
@@ -235,12 +261,15 @@ function SelectCard({ type }) {
         <Link
           to={
             routes.NEWSPAGE_MAIN.path +
+            "/" +
+            opinionBusiness[opinionBusiness - 1]?._id +
+            "/" +
             convertToSlug(opinionBusiness[opinionBusiness?.length - 1]?.title)
           }
           onClick={() =>
             disaptch(
-              newsAction.getMainNews(
-                opinionBusiness[opinionBusiness?.length - 1]
+              newsAction.getSingleNews(
+                opinionBusiness[opinionBusiness?.length - 1]?._id
               )
             )
           }
@@ -313,8 +342,16 @@ function SelectCard({ type }) {
                   </div>
                   <div className="item-body">
                     <Link
-                      to={routes.NEWSPAGE_MAIN.path + convertToSlug(el?.title)}
-                      onClick={() => disaptch(newsAction.getMainNews(el))}
+                      to={
+                        routes.NEWSPAGE_MAIN.path +
+                        "/" +
+                        el._id +
+                        "/" +
+                        convertToSlug(el?.title)
+                      }
+                      onClick={() =>
+                        disaptch(newsAction.getSingleNews(el?._id))
+                      }
                     >
                       <h2>{el?.title}</h2>
                     </Link>
@@ -348,11 +385,16 @@ function SelectCard({ type }) {
         <Link
           to={
             routes.NEWSPAGE_MAIN.path +
+            "/" +
+            opinionNews[opinionNews?.length - 1]._id +
+            "/" +
             convertToSlug(opinionNews[opinionNews?.length - 1]?.title)
           }
           onClick={() =>
             disaptch(
-              newsAction.getMainNews(opinionNews[opinionNews?.length - 1])
+              newsAction.getSingleNews(
+                opinionNews[opinionNews?.length - 1]?._id
+              )
             )
           }
           className="image-container"
@@ -421,8 +463,16 @@ function SelectCard({ type }) {
                   </Link>
                   <div className="item-body">
                     <Link
-                      to={routes.NEWSPAGE_MAIN.path + convertToSlug(el?.title)}
-                      onClick={() => disaptch(newsAction.getMainNews(el))}
+                      to={
+                        routes.NEWSPAGE_MAIN.path +
+                        "/" +
+                        el._id +
+                        "/" +
+                        convertToSlug(el?.title)
+                      }
+                      onClick={() =>
+                        disaptch(newsAction.getSingleNews(el?._id))
+                      }
                     >
                       <h2>{el?.title}</h2>
                     </Link>

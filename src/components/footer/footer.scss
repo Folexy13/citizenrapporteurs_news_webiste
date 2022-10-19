@@ -4,12 +4,16 @@
   .footer-container {
     padding: 50px 0;
     margin: auto;
-    width: 60%;
+    width: 80%;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    gap: 50px;
     .footer-item {
-      width: 32%;
+      width: 40%;
+      &:first-child {
+        width: 300px;
+      }
       a {
         img {
           width: 95%;
@@ -50,22 +54,7 @@
     }
   }
   .logo {
-    display: flex;
-    flex-direction: column;
-    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-    justify-content: center;
-    align-items: center;
-    img {
-      width: 50% !important;
-      border-radius: 50%;
-    }
-    p {
-      font-family: "Shrikhand", cursive;
-      font-size: 16px;
-      text-transform: uppercase;
-      width: 200px;
-      color: #fff;
-    }
+    color: #fff;
   }
   .copy-cont {
     background-color: black;

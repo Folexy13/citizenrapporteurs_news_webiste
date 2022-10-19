@@ -15,7 +15,7 @@ function RightContainer() {
     dispacth(newsAction.getPoliticsategory("politics"));
   }, [dispacth]);
   const handleClick = (store) => {
-    dispacth(newsAction.getMainNews(store));
+    dispacth(newsAction.getSingleNews(store?._id));
     navigate(store);
   };
   return (
@@ -25,6 +25,9 @@ function RightContainer() {
         <Link
           to={
             routes.NEWSPAGE_MAIN.path +
+            "/" +
+            politicsNews[politicsNews?.length - 1]?._id +
+            "/" +
             convertToSlug(politicsNews[politicsNews?.length - 1]?.title)
           }
           onClick={() => handleClick(politicsNews[politicsNews?.length - 1])}
@@ -38,11 +41,16 @@ function RightContainer() {
           <Link
             to={
               routes.NEWSPAGE_MAIN.path +
+              "/" +
+              politicsNews[politicsNews?.length - 1]?._id +
+              "/" +
               convertToSlug(politicsNews[politicsNews?.length - 1]?.title)
             }
             onClick={() =>
               dispacth(
-                newsAction.getMainNews(politicsNews[politicsNews?.length - 1])
+                newsAction.getSingleNews(
+                  politicsNews[politicsNews?.length - 1]?._id
+                )
               )
             }
             className="link-container"

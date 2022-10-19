@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { logo } from "../../assets";
 import moment from "moment";
 import "./navbar.scss";
 import { Link, NavLink } from "react-router-dom";
@@ -85,10 +84,8 @@ function Navbar({ onClick, state }) {
           {/* Middle Navbar */}
           <div className="navMiddle">
             <Link to="/" className="logo">
-              <img src={logo} className="logo" alt="img.jpg" />
-              <p>Citizen Rapporteur</p>
+              Citizen Rapporteur
             </Link>
-
             {/* Filter Form */}
             <form className="search">
               <div className="row">

@@ -11,8 +11,14 @@ function ImageCard({ store }) {
   return (
     <div className="image-card">
       <Link
-        to={routes.NEWSPAGE_MAIN.path + convertToSlug(store.title)}
-        onClick={() => dispacth(newsAction.getMainNews(store))}
+        to={
+          routes.NEWSPAGE_MAIN.path +
+          "/" +
+          store?._id +
+          "/" +
+          convertToSlug(store.title)
+        }
+        onClick={() => dispacth(newsAction.getSingleNews(store?._id))}
         className="image-container"
       >
         <img src={store?.image} alt="img.jpg" />
@@ -23,7 +29,7 @@ function ImageCard({ store }) {
           <h2>{store?.title}</h2>
           <div className="detail-flex">
             <small>
-              BY <a href="/">{store?.title}</a>
+              BY <Link to="#">{store?.author}</Link>
             </small>
             <small className="svg-flex">
               <svg

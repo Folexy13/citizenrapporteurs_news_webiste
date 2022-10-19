@@ -42,8 +42,14 @@ function NewsFlex() {
               </div>
               <div className="item-body">
                 <Link
-                  to={routes.NEWSPAGE_MAIN.path + convertToSlug(ele?.title)}
-                  onClick={() => dispatch(newsAction.getMainNews(ele))}
+                  to={
+                    routes.NEWSPAGE_MAIN.path +
+                    "/" +
+                    ele._id +
+                    "/" +
+                    convertToSlug(ele?.title)
+                  }
+                  onClick={() => dispatch(newsAction.getSingleNews(ele?._id))}
                 >
                   <h2>{ele?.title}</h2>
                 </Link>

@@ -34,11 +34,14 @@ function Entertainment() {
         <Link
           to={
             routes.NEWSPAGE_MAIN.path +
+            "/" +
+            entertainmentNews[lx]?._id +
+            "/" +
             convertToSlug(entertainmentNews[lx]?.title)
           }
           className="item1"
           onClick={() =>
-            disaptch(newsAction.getMainNews(entertainmentNews[lx]))
+            disaptch(newsAction.getSingleNews(entertainmentNews[lx]?._id))
           }
         >
           <img src={entertainmentNews[lx]?.image} alt="img.jpg" />
@@ -87,9 +90,14 @@ function Entertainment() {
             className="item2"
             to={
               routes.NEWSPAGE_MAIN.path +
+              "/" +
+              entertainmentNews[lx - 1]?._id +
+              "/" +
               convertToSlug(entertainmentNews[lx - 1]?.title)
             }
-            onClick={() => disaptch(entertainmentNews[lx - 1])}
+            onClick={() =>
+              disaptch(newsAction.getSingleNews(entertainmentNews[lx - 1]?._id))
+            }
           >
             <img src={entertainmentNews[lx - 1]?.image} alt="img.jpg" />
             <div className="text-container">
@@ -134,9 +142,16 @@ function Entertainment() {
             <Link
               to={
                 routes.NEWSPAGE_MAIN.path +
+                "/" +
+                entertainmentNews[lx - 2]?._id +
+                "/" +
                 convertToSlug(entertainmentNews[lx - 2]?.title)
               }
-              onClick={() => disaptch(entertainmentNews[lx - 2])}
+              onClick={() =>
+                disaptch(
+                  newsAction.getSingleNews(entertainmentNews[lx - 2]?._id)
+                )
+              }
               className="sub-item1"
             >
               <img src={entertainmentNews[lx - 2]?.image} alt="img.jpg" />
@@ -180,9 +195,16 @@ function Entertainment() {
               <Link
                 to={
                   routes.NEWSPAGE_MAIN.path +
+                  "/" +
+                  entertainmentNews[lx - 3]?._id +
+                  "/" +
                   convertToSlug(entertainmentNews[lx - 3]?.title)
                 }
-                onClick={() => disaptch(entertainmentNews[lx - 3])}
+                onClick={() =>
+                  disaptch(
+                    newsAction.getSingleNews(entertainmentNews[lx - 3]?._id)
+                  )
+                }
                 className="sub-item2"
               >
                 <img src={entertainmentNews[lx - 3]?.image} alt="img.jpg" />
