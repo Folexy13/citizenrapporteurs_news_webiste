@@ -47,21 +47,22 @@ async function postNews(req, res) {
 
 async function postComments(req, res) {}
 
-// async function getLatestNews(req, res) {
-//   News.find({}, (err, news) => {
-//     if (err) {
-//       return res.json({
-//         status: 403,
-//         message: "Error in fetching news",
-//         error: err,
-//       });
-//     }
-//     return res.status(200).json({
-//       status: 200,
-//       news: news.length > 5 ? news.splice(news.length - 5, news.length) : news, //returns latest added five news
-//     });
-//   });
-// }
+async function getSingleNews(req, res) {
+  const id = req.params.id;
+  News.findById({ _id: id }, (err, news) => {
+    if (err) {
+      return res.json({
+        status: 403,
+        message: "Error in fetching news",
+        error: err,
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      news: news, //returns latest added five news
+    });
+  });
+}
 
 async function getNewsByCategory(req, res) {
   const query = req.query.category;
@@ -118,4 +119,5 @@ module.exports = {
   getTrendingNews,
   getSearchQuery,
   getNewsComment,
+  getSingleNews,
 };

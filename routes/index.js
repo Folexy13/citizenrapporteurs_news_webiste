@@ -3,6 +3,7 @@ const {
   postComments,
   getLatestNews,
   getNewsByCategory,
+  getSingleNews,
 } = require("../controllers");
 
 const router = require("express").Router();
@@ -13,5 +14,6 @@ router.post("/create-news", postNews);
 router.post("/send-comment", postComments);
 router.get("/latest-news", getLatestNews);
 router.get("/news/", getNewsByCategory);
+router.get("/single-news/:id", getSingleNews);
 
 module.exports = router;
