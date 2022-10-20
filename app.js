@@ -2,6 +2,7 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const router = require("./routes");
 
@@ -24,6 +25,7 @@ const app = express();
 //   res.header("Access-Control-Allow-Credentials", true);
 //   return next();
 // });
+app.use(cors("*"));
 app.use(morgan("combined"));
 
 app.use(express.json());
