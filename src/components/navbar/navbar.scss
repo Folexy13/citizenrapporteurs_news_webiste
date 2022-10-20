@@ -150,5 +150,9 @@
   line-height: 41px;
   @media (max-width: 600px) {
     font-size: 2pc;
+    @media (max-width: 480px) {
+      font-size: 23px;
+      line-height: 29px;
+    }
   }
 }
