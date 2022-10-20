@@ -173,7 +173,7 @@ const CreateNews = () => {
               <option value="" selected disabled>
                 Select News Category
               </option>
-              <option value="News">News</option>
+              <option value="Breaking News">News</option>
               <option value="Politics">Politics</option>
               <option value="Entertainment">Entertainment</option>
               <option value="Business">Business</option>
