@@ -56,7 +56,7 @@ const CreateNews = () => {
     axios
       .post("https://api.cloudinary.com/v1_1/folajimidev/image/upload", data)
       .then((res) => {
-        setImage(res.data.url);
+        setImage(res.data.secure_url);
       });
   };
   const handleSubmit = (e) => {
