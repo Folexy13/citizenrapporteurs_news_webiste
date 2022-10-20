@@ -9,6 +9,9 @@
     width: 100%;
     height: 600px;
     position: relative;
+    @media (max-width: 600px) {
+      height: 400px;
+    }
     img {
       width: 100%;
       object-fit: cover;
@@ -42,6 +45,10 @@
           margin: 0;
           font-size: 32px;
           line-height: 40px;
+          @media (max-width: 600px) {
+            font-size: 21px;
+            line-height: 29px;
+          }
         }
       }
 
@@ -55,6 +62,7 @@
         margin-top: 66px;
         @media (max-width: 600px) {
           line-height: 30px;
+          margin-top: 35px;
         }
 
         font-family: "Poppins", sans-serif;
@@ -108,6 +116,9 @@
   font-size: 14px;
   line-height: 22px;
   font-weight: 600;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
   a {
     text-decoration: none;
     color: #ed1c15;

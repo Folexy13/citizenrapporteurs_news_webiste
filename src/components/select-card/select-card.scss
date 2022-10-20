@@ -36,6 +36,10 @@
         line-height: 40px;
         font-weight: 700;
         color: #fff;
+        @media (max-width: 600px) {
+          font-size: 21px;
+          line-height: 29px;
+        }
       }
       .nation-badge {
         margin: 0 0 10px;
@@ -95,6 +99,9 @@
           padding: 0 5px;
           background-color: red;
           color: #fff;
+          @media (max-width: 600px) {
+            bottom: 101px;
+          }
         }
       }
       .item-body {
