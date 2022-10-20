@@ -100,7 +100,7 @@
           background-color: red;
           color: #fff;
           @media (max-width: 600px) {
-            bottom: 101px;
+            bottom: 101px !important;
           }
         }
       }
