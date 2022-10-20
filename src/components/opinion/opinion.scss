@@ -17,10 +17,11 @@
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: stretch;
-    gap: 20px 10px;
+    gap: 168px 10px;
     place-content: flex-start;
     @media (max-width: 970px) {
       flex-direction: column;
+      gap: 20px 10px;
     }
     .item {
       // background-color: rgba(0, 0, 0, 0.05);
