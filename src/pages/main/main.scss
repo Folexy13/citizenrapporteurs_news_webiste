@@ -9,42 +9,40 @@
     width: 90%;
     margin: 30px 0;
     // padding: 20px;
-    @media (min-width: 1034px) {
-      h1 {
-        font-weight: 700;
-        font-size: 24px;
-        margin: 20px 0 10px;
-        letter-spacing: -0.02em;
-        position: relative;
-      }
-      h3 {
-        font-weight: 300;
+    h1 {
+      font-weight: 700;
+      font-size: 24px;
+      margin: 20px 0 10px;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+    h3 {
+      font-weight: 300;
+      font-size: 16px;
+    }
+    .form-control {
+      width: 100%;
+      margin: 20px 0;
+      label {
+        font-weight: 500;
         font-size: 16px;
+        display: flex;
+        gap: 3px;
       }
-      .form-control {
+      input,
+      textarea {
         width: 100%;
-        margin: 20px 0;
-        label {
-          font-weight: 500;
-          font-size: 16px;
-          display: flex;
-          gap: 3px;
-        }
-        input,
-        textarea {
-          width: 100%;
-          padding: 10px 20px;
-        }
-        button {
-          background: red;
-          width: 200px;
-          border-radius: 4px;
-          padding: 10px 0;
-          border: 0;
-          color: #fff;
-          font-weight: 600;
-          cursor: pointer;
-        }
+        padding: 10px 20px;
+      }
+      button {
+        background: red;
+        width: 200px;
+        border-radius: 4px;
+        padding: 10px 0;
+        border: 0;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
       }
     }
   }

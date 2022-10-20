@@ -19,7 +19,6 @@ const Main = ({ type }) => {
   let newsEntertainment = useSelector((el) => el?.categoryEntertainment);
   const [comment, setComment] = useState("");
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
   const [website, setWebsite] = useState("");
 
   if (type === "breaking-news") {
@@ -43,10 +42,9 @@ const Main = ({ type }) => {
     let payload = {
       comment,
       email,
-      name,
       website,
     };
-    if (!comment || !name || !comment) {
+    if (!comment || !comment) {
       dispacth(alertActions.error("All Fields marked(*) are important"));
       return;
     }
@@ -106,18 +104,6 @@ const Main = ({ type }) => {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             ></textarea>
-          </div>
-          <div className="form-control">
-            <label htmlFor="">
-              Name <span style={{ color: "#F00", fontWeight: 800 }}>*</span>
-            </label>
-            <input
-              type="text"
-              name=""
-              id=""
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
           </div>
           <div className="flex">
             <div className="form-control">

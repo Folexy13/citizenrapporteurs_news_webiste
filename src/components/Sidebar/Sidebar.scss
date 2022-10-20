@@ -6,6 +6,7 @@
   height: 100vh;
   transition: 0.8s ease all;
   background: rgba(0, 0, 0, 0.753);
+  z-index: 100000;
 }
 .cr-sidebar {
   background: #000;
@@ -15,7 +16,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 100000;
   display: flex;
   justify-content: center;
   align-items: center;

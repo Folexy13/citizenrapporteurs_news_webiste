@@ -14,6 +14,9 @@
   @media (min-width: 1499px) {
     width: 60%;
   }
+  @media (max-width: 970px) {
+    width: 90%;
+  }
 }
 .container {
   @include center();
@@ -21,11 +24,14 @@
     @include flex();
     .flex-right {
       width: 28%;
+      @media (max-width: 970px) {
+        width: 100% !important;
+      }
     }
     .flex-left {
       width: 69%;
       @media (max-width: 970px) {
-        width: 100%;
+        width: 100% !important;
       }
     }
   }

@@ -20,6 +20,7 @@ function App() {
   const [show, setShow] = useState(false);
   const handleToggleShow = () => {
     setShow(!show);
+    console.log("first");
   };
   return (
     <div className="main-container">

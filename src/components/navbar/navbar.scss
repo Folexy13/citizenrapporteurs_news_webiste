@@ -10,6 +10,9 @@
   @media (min-width: 1499px) {
     width: 60%;
   }
+  @media (max-width: 970px) {
+    width: 90%;
+  }
 }
 .navBar {
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
@@ -23,6 +26,9 @@
         // @include center();
         width: 60%;
         margin-left: auto;
+        @media (max-width: 600px) {
+          width: 100%;
+        }
         @include flex();
         color: #fff;
         .time {
@@ -42,6 +48,7 @@
 
   .secondNavContainer {
     @include center();
+
     .navMiddle {
       width: 100%;
       @include flex();
@@ -49,13 +56,15 @@
       justify-content: unset;
       gap: 60px;
       align-items: center;
-
+      @media (max-width: 600px) {
+        gap: unset;
+      }
       .search {
         width: 100%;
         .row {
           width: 100%;
           display: flex;
-          @media (max-width: 750px) {
+          @media (max-width: 970px) {
             display: none;
           }
           input {
@@ -76,7 +85,7 @@
   }
   .navLast {
     @include center();
-    @media (max-width: 750px) {
+    @media (max-width: 970px) {
       display: none;
     }
     display: flex;
@@ -126,7 +135,7 @@
     color: #000;
   }
 
-  @media (min-width: 750px) {
+  @media (min-width: 971px) {
     display: none;
   }
 }
