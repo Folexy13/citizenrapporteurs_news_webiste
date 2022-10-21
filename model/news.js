@@ -14,9 +14,7 @@ const newsSchema = new mongoose.Schema(
       type: String,
       // required: true,
     },
-    image: {
-      type: new Schema({ any: Schema.Types.Mixed }),
-    },
+    image: String,
     video: {
       type: String,
     },
