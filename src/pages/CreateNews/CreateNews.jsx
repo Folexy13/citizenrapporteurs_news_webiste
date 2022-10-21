@@ -47,17 +47,41 @@ const CreateNews = () => {
   } = useForm(isNotEmpty);
   const { value: video, valueChangedHandler: videoChangeHandler } =
     useForm(isNotEmpty);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
   const [loading, setLoading] = useState(false);
   const imageHandler = (img) => {
     const data = new FormData();
-    data.append("file", img);
-    data.append("upload_preset", "zoahguuq");
-    axios
-      .post("https://api.cloudinary.com/v1_1/folajimidev/image/upload", data)
-      .then((res) => {
-        setImage(res.data.secure_url);
-      });
+    setLoading(true);
+    if (img.length > 1) {
+      for (let i = 0; i < img.length; i++) {
+        data.append("file", img[i]);
+        data.append("upload_preset", "zoahguuq");
+        axios
+          .post(
+            "https://api.cloudinary.com/v1_1/folajimidev/image/upload",
+            data
+          )
+          .then((res) => {
+            if (typeof image !== "string") {
+              setImage(() => [...image, res.data.secure_url]);
+              setLoading(false);
+            } else {
+              setImage([]);
+              setImage(() => [...image, res.data.secure_url]);
+              setLoading(false);
+            }
+          });
+      }
+    } else {
+      data.append("file", img[0]);
+      data.append("upload_preset", "zoahguuq");
+      axios
+        .post("https://api.cloudinary.com/v1_1/folajimidev/image/upload", data)
+        .then((res) => {
+          setImage(res.data.secure_url);
+          setLoading(false);
+        });
+    }
   };
   const handleSubmit = (e) => {
     setLoading(true);
@@ -67,7 +91,7 @@ const CreateNews = () => {
       description,
       author,
       date,
-      image,
+      image: typeof image !== "string" ? image : image[0],
       video,
       category,
     };
@@ -153,13 +177,14 @@ const CreateNews = () => {
             />
           </div>
           <div className="image">
-            <label htmlFor="title">Upload Image</label>
+            <label htmlFor="title">Upload Images</label>
             <input
               type="file"
+              multiple
               id="image"
               name="image"
               accept="image/png, image/jpeg"
-              onChange={(e) => imageHandler(e.target.files[0])}
+              onChange={(e) => imageHandler(e.target.files)}
             />
           </div>
           <div className="category">
