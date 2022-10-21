@@ -91,7 +91,7 @@ const CreateNews = () => {
       description,
       author,
       date,
-      image: typeof image !== "string" ? image : image[0],
+      image: typeof image !== "string" ? image : image,
       video,
       category,
     };
@@ -110,6 +110,7 @@ const CreateNews = () => {
       return;
     }
     dispatch(newsAction.postNews(payload));
+    console.log(payload);
   };
   useEffect(() => {
     if (alert) {
