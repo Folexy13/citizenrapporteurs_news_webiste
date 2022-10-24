@@ -15,8 +15,9 @@ function RightContainer() {
     dispacth(newsAction.getPoliticsategory("politics"));
   }, [dispacth]);
   const handleClick = (store) => {
-    dispacth(newsAction.getSingleNews(store?._id));
-    navigate(store);
+    // dispacth(newsAction.getSingleNews(store?._id));
+    // navigate(store);
+    console.log(store)
   };
   return (
     <div className="right-container">

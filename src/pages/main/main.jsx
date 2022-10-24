@@ -8,34 +8,34 @@ import "./main.scss";
 import { useParams } from "react-router-dom";
 const Main = ({ type }) => {
   const store = useSelector((el) => el?.mainNews);
-  let news = [];
+  let news = useSelector((el)=>el?.categoryNews);
   const { id } = useParams();
-  let newsCrime = useSelector((el) => el?.categoryCrime);
-  let newsPolitics = useSelector((el) => el?.categoryPolitics);
-  let newsBusiness = useSelector((el) => el?.categoryBusiness);
-  let newsSport = useSelector((el) => el?.categorySport);
-  let newsOpinion = useSelector((el) => el?.categoryOpinion);
-  let newsNews = useSelector((el) => el?.categoryNews);
-  let newsEntertainment = useSelector((el) => el?.categoryEntertainment);
+  // let newsCrime = useSelector((el) => el?.categoryCrime);
+  // let newsPolitics = useSelector((el) => el?.categoryPolitics);
+  // let newsBusiness = useSelector((el) => el?.categoryBusiness);
+  // let newsSport = useSelector((el) => el?.categorySport);
+  // let newsOpinion = useSelector((el) => el?.categoryOpinion);
+  // let newsNews = useSelector((el) => el?.categoryNews);
+  // let newsEntertainment = useSelector((el) => el?.categoryEntertainment);
   const [comment, setComment] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
 
-  if (type === "breaking-news") {
-    news = newsNews;
-  } else if (type === "crime-report") {
-    news = newsCrime;
-  } else if (type === "entertainment") {
-    news = newsEntertainment;
-  } else if (type === "opinion") {
-    news = newsOpinion;
-  } else if (type === "sport") {
-    news = newsSport;
-  } else if (type === "politics") {
-    news = newsPolitics;
-  } else if (type === "business") {
-    news = newsBusiness;
-  }
+  // if (type === "breaking-news") {
+  //   news = newsNews;
+  // } else if (type === "crime-report") {
+  //   news = newsCrime;
+  // } else if (type === "entertainment") {
+  //   news = newsEntertainment;
+  // } else if (type === "opinion") {
+  //   news = newsOpinion;
+  // } else if (type === "sport") {
+  //   news = newsSport;
+  // } else if (type === "politics") {
+  //   news = newsPolitics;
+  // } else if (type === "business") {
+  //   news = newsBusiness;
+  // }
   const dispacth = useDispatch();
   const handleSubmitComment = (e) => {
     e.preventDefault();
@@ -51,29 +51,32 @@ const Main = ({ type }) => {
     dispacth(newsAction.postComment(payload));
   };
   useEffect(() => {
-    if (store?.slug === "crime-report") {
-      dispacth(newsAction.getCrimeCategory("crime-report"));
-      // dispacth(newsAction.getSingleNews(id));
-    } else if (store?.slug === "news") {
-      dispacth(newsAction.getNewsCategory("breaking-news"));
-      // dispacth(newsAction.getSingleNews(id));
-    } else if (store?.slug === "politics") {
-      dispacth(newsAction.getPoliticsategory("politics"));
-      // dispacth(newsAction.getSingleNews(id));
-    } else if (store?.slug === "business") {
-      dispacth(newsAction.getBusinessCategory("business"));
-      // dispacth(newsAction.getSingleNews(id));
-    } else if (store?.slug === "sport") {
-      dispacth(newsAction.getSportCategory("sport"));
-      // dispacth(newsAction.getSingleNews(id));
-    } else if (store?.slug === "entertainment") {
-      dispacth(newsAction.getCrimeCategory("entertainment"));
-      // dispacth(newsAction.getSingleNews(id));
-    } else if (store?.slug === "opinion") {
-      dispacth(newsAction.getOpinionCategory("opinion"));
-      // dispacth(newsAction.getSingleNews(id));
-    }
-  }, [dispacth, store, id]);
+    dispacth(newsAction.getNewsCategory(store.slug))
+  })
+  // useEffect(() => {
+  //   if (store?.slug === "crime-report") {
+  //     dispacth(newsAction.getCrimeCategory("crime-report"));
+  //     // dispacth(newsAction.getSingleNews(id));
+  //   } else if (store?.slug === "news") {
+  //     dispacth(newsAction.getNewsCategory("breaking-news"));
+  //     // dispacth(newsAction.getSingleNews(id));
+  //   } else if (store?.slug === "politics") {
+  //     dispacth(newsAction.getPoliticsategory("politics"));
+  //     // dispacth(newsAction.getSingleNews(id));
+  //   } else if (store?.slug === "business") {
+  //     dispacth(newsAction.getBusinessCategory("business"));
+  //     // dispacth(newsAction.getSingleNews(id));
+  //   } else if (store?.slug === "sport") {
+  //     dispacth(newsAction.getSportCategory("sport"));
+  //     // dispacth(newsAction.getSingleNews(id));
+  //   } else if (store?.slug === "entertainment") {
+  //     dispacth(newsAction.getCrimeCategory("entertainment"));
+  //     // dispacth(newsAction.getSingleNews(id));
+  //   } else if (store?.slug === "opinion") {
+  //     dispacth(newsAction.getOpinionCategory("opinion"));
+  //     // dispacth(newsAction.getSingleNews(id));
+  //   }
+  // }, [dispacth, store, id]);
   useEffect(() => {
     if (id) {
       dispacth(newsAction.getSingleNews(id));
