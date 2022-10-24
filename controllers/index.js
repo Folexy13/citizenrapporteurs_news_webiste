@@ -122,7 +122,6 @@ async function getSingleNews(req, res) {
 
 async function getNewsByCategory(req, res) {
   const query = req.query.category;
-
   await News.find({ slug: query }, (err, news) => {
     if (err) {
       return res.json({
@@ -135,8 +134,7 @@ async function getNewsByCategory(req, res) {
       status: 200,
       news: news, //returns latest added five news
     });
-  })
-    .clone()
+  }).clone()
     .catch(function (err) {
       console.log(err);
     });
