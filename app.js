@@ -12,8 +12,11 @@ const app = express();
 app.use((req, res, next) => {
   const allowedOrigins = [
     "https://citizenrapporteurs.com/",
+    "https://citizenrapporteurs.com",
     "https://www.citizenrapporteurs.com/",
+    "https://www.citizenrapporteurs.com",
     "https://citizen-rapporteur.netlify.app/",
+    "https://citizen-rapporteur.netlify.app",
     "http://localhost:3000",
   ];
   const origin = req.headers.origin;
