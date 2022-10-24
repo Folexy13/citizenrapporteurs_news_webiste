@@ -4,6 +4,8 @@ const {
   getLatestNews,
   getNewsByCategory,
   getSingleNews,
+  getNewsClicks,
+  postNewsClicks,
 } = require("../controllers");
 
 const router = require("express").Router();
@@ -15,5 +17,7 @@ router.post("/send-comment", postComments);
 router.get("/latest-news", getLatestNews);
 router.get("/news/", getNewsByCategory);
 router.get("/single-news/:id", getSingleNews);
+router.get('/clicked-news/:id',getNewsClicks)
+router.post('/clicked-news/:id',postNewsClicks)
 
 module.exports = router;

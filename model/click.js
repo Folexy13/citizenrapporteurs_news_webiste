@@ -3,13 +3,13 @@ const mongoose = require("mongoose");
 const clickSchema = new mongoose.Schema(
   {
     userIp: {
-      type: String,
+      type: [Number],
       required: true,
         },
         clicks: {
-          type:String
+          type:Number
       },
-    news: { type: mongoose.Types.ObjectId, ref: "News" },
+    newsID: { type:String},
   },
 );
-module.exports = mongoose.model("Clicks", clickSchema);
+module.exports = mongoose.model("Click", clickSchema);

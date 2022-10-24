@@ -108,7 +108,82 @@ async function getLatestNews(req, res) {
       }
     });
 }
+async function getClickedItem() {
+  
+}
+async function getTrendingNews() { }
+async function postComments(req, res) { }
 
+
+async function postNewsClicks(req, res) {
+  const id = req.params.id
+  const { ip } = req.body;
+  Clicks.findOne({ newsID: id }, function (err, data) {
+    if (err) {
+      return res.json({
+        status: 403,
+        message: "Error with Model",
+        error: err,
+      });
+    }
+     else if (data && data.userIp.includes(ip)) {
+      return res.json({
+        status: 403,
+        message: "No Update made",
+      });
+    }
+   else  if (data && !data.userIp.includes(ip)) {
+      Clicks.findOneAndUpdate({ newsID: id }, { $set: { clicks: data.clicks + 1, userIp: [...data.userIp, ip] } }, { new: true }, (err, clickedNews) => {
+         if (err) {
+        console.log("Something wrong when updating data");
+         }
+        return res.status(200).json({
+      status: 200,
+      message: "Click updated",
+      savedNews: clickedNews,
+    });
+       })
+    } else {
+      const newClick = new Clicks()
+    newClick.userIp = ip
+    newClick.clicks = 1
+    newClick.newsID =id
+    newClick.save(function (err, data) {
+    if (err) {
+      return res.json({
+        status: 403,
+        message: "Error with Model",
+        error: err,
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: "News was clicked",
+      savedNews: data,
+    });
+  });
+    }
+   
+    
+  })
+}
+async function getNewsClicks(req, res) {
+  const id = req.params.id
+  Clicks.findOne({ newsId: id }, function (err, news) {
+    if (err) {
+      return res.json({
+        status: 403,
+        message: "Error with Model",
+        error: err,
+      });
+    } else {
+      return res.status(200).json({
+        status: 200,
+        news: news, //returns latest added ten news
+      });
+    }
+  })
+}
 async function getSearchQuery(req, res) {}
 module.exports = {
   postNews,
@@ -119,20 +194,6 @@ module.exports = {
   getSearchQuery,
   getNewsComment,
   getSingleNews,
+  getNewsClicks,
+  postNewsClicks
 };
-async function getClickedItem() {
-  
-}
-async function getTrendingNews() { }
-async function postComments(req, res) { }
-
-
-async function getNewsClicks(req,res) {
-  const { ip, newsId } = req.body;
-
-  try {
-    
-  } catch (error) {
-    
-  }
-}
