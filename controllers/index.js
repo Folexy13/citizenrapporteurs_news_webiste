@@ -105,6 +105,7 @@ async function deleteNews(req, res) {
 }
 async function getSingleNews(req, res) {
   const id = req.params.id;
+  console.log(id)
   await News.findById({ _id: id }, (err, news) => {
     if (err) {
       return res.json({
@@ -112,12 +113,17 @@ async function getSingleNews(req, res) {
         message: "Error in fetching news",
         error: err,
       });
-    }
-    return res.status(200).json({
+    } 
+      return res.status(200).json({
       status: 200,
       news: news, //returns latest added five news
     });
-  });
+    
+    
+  }).clone()
+    .catch(function (err) {
+      console.log(err);
+    });
 }
 
 async function getNewsByCategory(req, res) {
