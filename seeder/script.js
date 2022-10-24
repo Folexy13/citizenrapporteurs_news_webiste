@@ -16,7 +16,6 @@ const connectDB = async () => {
 };
 const newsData = require("./newsSeeder");
 const newsModel = require("../model/news");
-
 // initialize the db connection
 const importData = async () => {
   await connectDB();
