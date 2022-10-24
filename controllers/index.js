@@ -1,4 +1,5 @@
 const News = require("../model/news");
+const Clicks = require("../model/click")
 
 async function postNews(req, res) {
   const { description, video, image, title, category, author, date } = req.body;
@@ -44,8 +45,6 @@ async function postNews(req, res) {
     });
   });
 }
-
-async function postComments(req, res) {}
 
 async function getSingleNews(req, res) {
   const id = req.params.id;
@@ -109,7 +108,7 @@ async function getLatestNews(req, res) {
       }
     });
 }
-async function getTrendingNews() {}
+
 async function getSearchQuery(req, res) {}
 module.exports = {
   postNews,
@@ -121,3 +120,19 @@ module.exports = {
   getNewsComment,
   getSingleNews,
 };
+async function getClickedItem() {
+  
+}
+async function getTrendingNews() { }
+async function postComments(req, res) { }
+
+
+async function getNewsClicks(req,res) {
+  const { ip, newsId } = req.body;
+
+  try {
+    
+  } catch (error) {
+    
+  }
+}
