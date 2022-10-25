@@ -257,7 +257,10 @@ async function getClickedNews(req, res) {
         clickedNews: news, //returns latest added ten news
       });
     }
-  })
+  }).clone()
+    .catch(function (err) {
+      console.log(err);
+    });
 }
 async function getSearchQuery(req, res) {}
 module.exports = {
