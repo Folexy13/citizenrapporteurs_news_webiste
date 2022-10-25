@@ -36,7 +36,10 @@ function Card({ store, type }) {
       .get("https://ipapi.co/json/")
       .then((response) => {
         let data = response.data;
-        dispacth(newsAction.postClickedNews(id, data.ip))
+        let payload = {
+          id,userIp:data.ip
+        }
+        dispacth(newsAction.postClickedNews(payload))
         dispacth(newsAction.getSingleNews(news?._id));
       })
       .catch((error) => {

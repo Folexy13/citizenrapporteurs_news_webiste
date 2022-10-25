@@ -167,9 +167,9 @@ function getClickedNews() {
   }
 }
 
-function postClickedNews(id, ipAddress) {
+function postClickedNews(payload) {
   return (dispatch) => {
-    axios.post(`${BASE_API_URL}/clicked-news/${id}`,ipAddress).then(res => {
+    axios.post(`${BASE_API_URL}/clicked-news`,payload).then(res => {
       console.log(res.data.message)
     })
   }
