@@ -175,8 +175,7 @@ async function postComments(req, res) { }
 
 
 async function postNewsClicks(req, res) {
-  const id = req.params.id
-  const { ip } = req.body;
+  const { ip,id } = req.body;
   await Clicks.findOne({ newsID: id }, function (err, data) {
     if (err) {
       return res.json({
