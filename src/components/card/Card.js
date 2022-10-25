@@ -37,7 +37,7 @@ function Card({ store, type }) {
       .then((response) => {
         let data = response.data;
         let payload = {
-          id,userIp:data.ip
+          id,ip:data.ip
         }
         dispacth(newsAction.postClickedNews(payload))
         dispacth(newsAction.getSingleNews(news?._id));
