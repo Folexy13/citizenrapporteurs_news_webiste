@@ -243,6 +243,22 @@ async function getNewsClicks(req, res) {
     }
   })
 }
+async function getClickedNews(req, res) {
+  await Clicks.find({}, function (err, news) {
+     if (err) {
+      return res.json({
+        status: 403,
+        message: "Error in fecthing clicked news",
+        error: err,
+      });
+    } else {
+      return res.status(200).json({
+        status: 200,
+        clickedNews: news, //returns latest added ten news
+      });
+    }
+  })
+}
 async function getSearchQuery(req, res) {}
 module.exports = {
   postNews,
@@ -256,5 +272,6 @@ module.exports = {
   getNewsComment,
   getSingleNews,
   getNewsClicks,
+  getClickedNews,
   postNewsClicks
 };
