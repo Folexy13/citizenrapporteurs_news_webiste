@@ -2,6 +2,7 @@ import moment from "moment";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 import { newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import "./card.scss";
@@ -31,7 +32,16 @@ function Card({ store, type }) {
   const dispacth = useDispatch();
   const handleNewsMain = (id) => {
     let news = store?.find((el) => el?._id === id);
-    dispacth(newsAction.getSingleNews(news?._id));
+     axios
+      .get("https://ipapi.co/json/")
+      .then((response) => {
+        let data = response.data;
+        dispacth(newsAction.postClickedNews(id, data.ip))
+        dispacth(newsAction.getSingleNews(news?._id));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   if (type === "main") {

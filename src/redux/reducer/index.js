@@ -9,6 +9,7 @@ import { categorySport } from "./categorySport";
 import { categoryCrime } from "./categroyCrime";
 import { categoryEntertainmnet } from "./categoryEntertainment";
 import { categoryPolitics } from "./categoryPolitics";
+import { clickedNews } from "./clickedNews";
 const appReducer = combineReducers({
   alert,
   latestNews,
@@ -20,6 +21,7 @@ const appReducer = combineReducers({
   categoryOpinion,
   categorySport,
   categoryCrime,
+  clickedNews
 });
 
 const reducers = (state, action) => {

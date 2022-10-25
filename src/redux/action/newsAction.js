@@ -18,6 +18,7 @@ export const newsAction = {
   getPoliticsategory,
   getSportCategory,
   getClickedNews,
+  postClickedNews,
 
 };
 
@@ -162,6 +163,14 @@ function getClickedNews() {
         type: userConstants.GET_CLICKED_NEWS,
         news:res.data.clickedNews
       })
+    })
+  }
+}
+
+function postClickedNews(id, ipAddress) {
+  return (dispatch) => {
+    axios.post(`${BASE_API_URL}/clicked-news/${id}`,ipAddress).then(res => {
+      console.log(res.data.message)
     })
   }
 }
