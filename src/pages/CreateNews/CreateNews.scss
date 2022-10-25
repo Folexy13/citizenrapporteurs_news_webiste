@@ -50,6 +50,9 @@
       width: 300px;
       float: right;
       margin: 20px 0;
+      @media (max-width:600px) {
+        width: 100%;
+      }
       button {
         background: #000;
         color: #fff;

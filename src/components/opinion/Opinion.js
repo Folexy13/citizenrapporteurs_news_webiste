@@ -27,10 +27,11 @@ function Opinion({ type }) {
           <div className="select-card">
             <h1>Related Post</h1>
             {/* IMAGE GRID DISPLAY */}
-            <div className="grid-container">
+            <div className="grid-container" style={{gap:"90px 10px"}}>
               {store
                 ?.filter((el) => el?.title !== news?.title)
-                .map((el) => {
+                ?.slice(0,6)
+                ?.map((el) => {
                   return (
                     <div className="item" key={el?._id}>
                       <div className="img-container">

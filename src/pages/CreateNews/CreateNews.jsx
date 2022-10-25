@@ -63,11 +63,11 @@ const CreateNews = () => {
           )
           .then((res) => {
             if (typeof image !== "string") {
-              setImage(() => [...image, res.data.secure_url]);
+              setImage((prev) => [...prev, res.data.secure_url]);
               setLoading(false);
             } else {
               setImage([]);
-              setImage(() => [...image, res.data.secure_url]);
+              setImage((prev) => [...prev, res.data.secure_url]);
               setLoading(false);
             }
           });
@@ -80,9 +80,13 @@ const CreateNews = () => {
         .then((res) => {
           setImage(res.data.secure_url);
           setLoading(false);
-        });
+        }).finally(() => {
+    console.log('Experiment completed');
+  })
+        
     }
   };
+  
   const handleSubmit = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -109,7 +113,7 @@ const CreateNews = () => {
       dispatch(alertActions.error("Upload an image/Post a video link"));
       return;
     }
-    dispatch(newsAction.postNews(payload));
+    // dispatch(newsAction.postNews(payload));
     console.log(payload);
   };
   useEffect(() => {

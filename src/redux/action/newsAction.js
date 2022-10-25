@@ -17,6 +17,8 @@ export const newsAction = {
   getOpinionCategory,
   getPoliticsategory,
   getSportCategory,
+  getClickedNews,
+
 };
 
 function postNews(payload) {
@@ -152,4 +154,14 @@ function getEntertainmentCategory(slug) {
       })
     );
   };
+}
+function getClickedNews() {
+  return (dispatch) => {
+    axios.get(`${BASE_API_URL}/clicked-news`).then(res => {
+      dispatch({
+        type: userConstants.GET_CLICKED_NEWS,
+        news:res.data.clickedNews
+      })
+    })
+  }
 }
