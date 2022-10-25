@@ -113,7 +113,7 @@ const CreateNews = () => {
       dispatch(alertActions.error("Upload an image/Post a video link"));
       return;
     }
-    // dispatch(newsAction.postNews(payload));
+    dispatch(newsAction.postNews(payload));
     console.log(payload);
   };
   useEffect(() => {
