@@ -241,7 +241,10 @@ async function getNewsClicks(req, res) {
         news: news, //returns latest added ten news
       });
     }
-  })
+  }).clone()
+    .catch(function (err) {
+      console.log(err);
+    });
 }
 async function getClickedNews(req, res) {
   await Clicks.find({}, function (err, news) {
