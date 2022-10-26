@@ -146,31 +146,45 @@
   width: 90%;
   margin: 30px auto;
   @media (min-width:1000px) {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
   gap: 30px;
   .fb{
     background-color: #45629f !important;
     color: #fff !important;
+    padding: 0 12px !important;
+    border-radius: 2px;
+
   }
   .wh{
     background-color: #075e54 !important;
         color: #fff !important;
+    padding: 0 12px !important;
+    border-radius: 2px;
+
 
   }
   .tw{
     background-color: #5eb2ef !important;
         color: #fff !important;
+    padding: 0 12px !important;
+    border-radius: 2px;
+
 
   }
-  ins{
+  .ins{
     background-color: blue !important;
         color: #fff !important;
+    padding: 0 12px !important;
+    border-radius: 2px;
+
 
   }
   button{
     width: auto;
     max-width: none;
-    padding: 0 12px;
+    padding: 0 12px !important;
+    border-radius: 2px;
     height: 32px;
     line-height: 32px;
     color: #fff;
