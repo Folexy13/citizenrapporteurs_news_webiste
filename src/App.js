@@ -1,6 +1,9 @@
 import "./App.css";
 import { NewsPage, CreateNews, HomePage, NewsMain } from "./pages";
+import React,{useEffect} from "react";
 import { routes } from "./routes";
+import { useDispatch } from "react-redux";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -9,6 +12,7 @@ import {
 } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
 import { useLayoutEffect, useState } from "react";
+import { newsAction } from "./redux/action/newsAction";
 const Wrapper = ({ children }) => {
   const location = useLocation();
   useLayoutEffect(() => {
@@ -18,10 +22,17 @@ const Wrapper = ({ children }) => {
 };
 function App() {
   const [show, setShow] = useState(false);
+  const dispacth = useDispatch()
+
   const handleToggleShow = () => {
     setShow(!show);
     console.log("first");
   };
+  useEffect(() => {
+ dispacth(newsAction.getClickedNews())
+  }, [dispacth])
+  
+  
   return (
     <div className="main-container">
       <Router>

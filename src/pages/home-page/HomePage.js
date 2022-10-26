@@ -17,7 +17,6 @@ function HomePage({ children }) {
 
   useEffect(() => {
     dispacth(newsAction.getLatestNews());
-    dispacth(newsAction.getClickedNews())
   }, [dispacth]);
 
   return (
