@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
+import axios from "axios"
+import { getNewsClicks } from "../card/Card";
 import "./entertainment.scss";
 export const convertToSlug = (input) => {
   if (input) {
@@ -23,6 +25,23 @@ function Entertainment() {
   const disaptch = useDispatch();
   const entertainmentNews = useSelector((el) => el?.categoryEntertainmnet);
   const lx = entertainmentNews?.length - 1;
+  const clickedNews = useSelector(el => el?.clickedNews)
+  const handleClicks = (id) => {
+      axios
+      .get("https://ipapi.co/json/")
+      .then((response) => {
+        let data = response.data;
+        let payload = {
+          id,ip:data.ip
+        }
+        console.log(payload)
+        disaptch(newsAction.postClickedNews(payload))
+        disaptch( newsAction.getSingleNews(id))
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   useEffect(() => {
     disaptch(newsAction.getEntertainmentCategory("entertainment"));
   }, [disaptch]);
@@ -41,7 +60,7 @@ function Entertainment() {
           }
           className="item1"
           onClick={() =>
-            disaptch(newsAction.getSingleNews(entertainmentNews[lx]?._id))
+            handleClicks(entertainmentNews[lx]?._id)
           }
         >
           <img src={entertainmentNews[lx]?.image} alt="img.jpg" />
@@ -82,6 +101,7 @@ function Entertainment() {
                 </svg>
                 0
               </small>
+                <small style={{display:"flex",gap:"5px",alignItems:"center"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,entertainmentNews[lx]?._id) }</small>
             </div>
           </div>
         </Link>
@@ -96,7 +116,7 @@ function Entertainment() {
               convertToSlug(entertainmentNews[lx - 1]?.title)
             }
             onClick={() =>
-              disaptch(newsAction.getSingleNews(entertainmentNews[lx - 1]?._id))
+              handleClicks(entertainmentNews[lx - 1]?._id)
             }
           >
             <img src={entertainmentNews[lx - 1]?.image} alt="img.jpg" />
@@ -133,6 +153,7 @@ function Entertainment() {
                   </svg>
                   0
                 </small>
+                  <small style={{display:"flex",gap:"5px",alignItems:"center"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,entertainmentNews[lx - 1]?._id) }</small>
               </div>
             </div>
           </Link>
@@ -148,9 +169,8 @@ function Entertainment() {
                 convertToSlug(entertainmentNews[lx - 2]?.title)
               }
               onClick={() =>
-                disaptch(
-                  newsAction.getSingleNews(entertainmentNews[lx - 2]?._id)
-                )
+                  handleClicks(entertainmentNews[lx - 2]?._id)
+                
               }
               className="sub-item1"
             >
@@ -188,6 +208,7 @@ function Entertainment() {
                     </svg>
                     0
                   </small>
+                    <small style={{display:"flex",gap:"5px",alignItems:"center"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,entertainmentNews[lx - 2]?._id) }</small>
                 </div>
               </div>
             </Link>
@@ -201,9 +222,8 @@ function Entertainment() {
                   convertToSlug(entertainmentNews[lx - 3]?.title)
                 }
                 onClick={() =>
-                  disaptch(
-                    newsAction.getSingleNews(entertainmentNews[lx - 3]?._id)
-                  )
+                  handleClicks(entertainmentNews[lx - 3]?._id)
+                  
                 }
                 className="sub-item2"
               >
@@ -241,6 +261,7 @@ function Entertainment() {
                       </svg>
                       0
                     </small>
+                      <small style={{display:"flex",gap:"5px",alignItems:"center"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,entertainmentNews[lx - 3]?._id) }</small>
                   </div>
                 </div>
               </Link>

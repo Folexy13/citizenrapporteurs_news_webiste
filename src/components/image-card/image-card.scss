@@ -9,7 +9,7 @@
     img {
       width: 100%;
       height: 600px;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
       cursor: pointer;
       transition: 0.8s ease-in-out;
@@ -21,7 +21,7 @@
     }
     &::after {
       content: "";
-      background-color: rgba(0, 0, 0, 0.5);
+      // background-color: rgba(0, 0, 0, 0.5);
       position: absolute;
       inset: 0;
     }
@@ -31,6 +31,7 @@
       bottom: -6px;
       margin: 0;
       padding: 40px;
+      background-color: rgba(0, 0, 0, 0.5);
       h2 {
         margin: 0;
         font-size: 32px;
@@ -48,7 +49,7 @@
         display: inline-block;
       }
       .detail-flex {
-        display: none !important;
+        // display: none !important;
         margin-top: 10px;
         color: #fff;
         display: flex;

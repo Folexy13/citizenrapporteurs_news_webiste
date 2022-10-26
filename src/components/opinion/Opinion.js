@@ -4,18 +4,36 @@ import { NewImage } from "../../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { newsAction } from "../../redux/action/newsAction";
 import moment from "moment";
+import axios from 'axios'
 import { Link } from "react-router-dom";
 import { routes } from "../../routes";
 import { convertToSlug } from "../entertainment/Entertainment";
+import { getNewsClicks } from "../card/Card";
 
 function Opinion({ type }) {
   const dispatch = useDispatch();
   let store;
   const news = useSelector((el) => el?.mainNews);
+  const clickedNews = useSelector(el=>el?.clickedNews)
   const formatDate = (date) => {
     date = moment(date).format("LL");
     return date;
   };
+  const handleClicks = (id) => {
+      axios
+      .get("https://ipapi.co/json/")
+      .then((response) => {
+        let data = response.data;
+        let payload = {
+          id,ip:data.ip
+        }
+        dispatch(newsAction.postClickedNews(payload))
+        dispatch( newsAction.getSingleNews(id))
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   store = useSelector((el) => el?.categoryNews);
   useEffect(() => {
     dispatch(newsAction.getNewsCategory(news?.slug));
@@ -50,7 +68,7 @@ function Opinion({ type }) {
                             convertToSlug(el?.title)
                           }
                           onClick={() =>
-                            dispatch(newsAction.getSingleNews(el?._id))
+                            handleClicks(el?._id)
                           }
                         >
                           <h2>{el?.title}</h2>
@@ -69,6 +87,8 @@ function Opinion({ type }) {
                               <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                             </svg>
                             {formatDate(el?.createdAt)}
+                             <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,el?._id) }</small>
+                
                           </small>
                         </div>
                       </div>
@@ -152,12 +172,12 @@ function Opinion({ type }) {
             <img src={NewImage} alt="img.jpg" />
           </div>
           <div className="item-body">
-            <a href="/">
+            <Link to="#">
               <h2>
                 Nigerian football coach jailed for 15 years in UK over sexual
                 assault
               </h2>
-            </a>
+            </Link>
             <div className="time-bottom">
               <small className="svg-flex">
                 <svg

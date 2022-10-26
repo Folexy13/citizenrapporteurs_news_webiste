@@ -1,13 +1,32 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
+import axios from 'axios'
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import "./image-card.scss";
+import { getNewsClicks } from "../card/Card";
 
 function ImageCard({ store }) {
   const dispacth = useDispatch();
+  const clickedNews = useSelector(el=>el?.clickedNews)
+const handleClicks = (id) => {
+      axios
+      .get("https://ipapi.co/json/")
+      .then((response) => {
+        let data = response.data;
+        let payload = {
+          id,ip:data.ip
+        }
+        console.log(payload)
+        dispacth(newsAction.postClickedNews(payload))
+        dispacth( newsAction.getSingleNews(id))
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   return (
     <div className="image-card">
       <Link
@@ -18,7 +37,7 @@ function ImageCard({ store }) {
           "/" +
           convertToSlug(store.title)
         }
-        onClick={() => dispacth(newsAction.getSingleNews(store?._id))}
+        onClick={() => handleClicks(store?._id)}
         className="image-container"
       >
         <img src={store?.image} alt="img.jpg" />
@@ -58,6 +77,7 @@ function ImageCard({ store }) {
               </svg>
               0
             </small>
+               <small style={{display:"flex",gap:"5px",alignItems:"center"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,store?._id) }</small>
           </div>
         </div>
       </Link>

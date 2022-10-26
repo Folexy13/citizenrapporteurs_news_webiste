@@ -1,6 +1,6 @@
 import moment from "moment";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from 'axios'
 import { newsAction } from "../../redux/action/newsAction";
@@ -9,6 +9,15 @@ import "./card.scss";
 const capitalizeLetter = (name) => {
   return name?.toUpperCase();
 };
+export const getNewsClicks = (arr, id) => {
+  let click=0
+  if (arr?.length) {
+    let news = arr.find(el => el.newsID === id)
+    click = news?.clicks ? news?.clicks : 0
+    return click
+  }
+  return click
+}
 const convertDate = (date) => {
   return moment(date).format("dddd, MMMM Do YYYY");
 };
@@ -30,6 +39,7 @@ const convertToSlug = (input) => {
 
 function Card({ store, type }) {
   const dispacth = useDispatch();
+  const clickedNews = useSelector(el=>el?.clickedNews)
   const handleNewsMain = (id) => {
     let news = store?.find((el) => el?._id === id);
      axios
@@ -82,6 +92,7 @@ function Card({ store, type }) {
             </svg>
             0
           </small>
+           <small style={{display:"flex",color:"#002",gap:"5px",alignItems:"center"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,store?._id) }</small>
         </div>
         <div className="card">
           <div className="img-container">
@@ -171,7 +182,7 @@ function Card({ store, type }) {
               0
 
             </small>
-            <small><i class="fa fa-eye" aria-hidden="true"></i>{ }</small>
+            <small style={{display:"flex",color:"#002",gap:"5px",alignItems:"center"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,store[0]?._id) }</small>
           </div>
           <p>{truncateText(store[0]?.description, 250)}</p>
           <Link

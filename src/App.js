@@ -29,7 +29,9 @@ function App() {
     console.log("first");
   };
   useEffect(() => {
- dispacth(newsAction.getClickedNews())
+ setInterval(() => {
+  dispacth(newsAction.getClickedNews())
+ }, 1000);
   }, [dispacth])
   
   
