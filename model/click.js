@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const clickSchema = new mongoose.Schema(
   {
-    userIp: {
-      type: [Number],
+    ip: {
+      type: [String],
       required: true,
         },
         clicks: {

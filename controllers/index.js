@@ -105,7 +105,6 @@ async function deleteNews(req, res) {
 }
 async function getSingleNews(req, res) {
   const id = req.params.id;
-  console.log(id)
   await News.findById({ _id: id }, (err, news) => {
     if (err) {
       return res.json({
@@ -180,18 +179,18 @@ async function postNewsClicks(req, res) {
     if (err) {
       return res.json({
         status: 403,
-        message: "Error with Model",
+        message: "Error with CLicking",
         error: err,
       });
     }
-     else if (data && data.userIp.includes(ip)) {
+     else if (data && data.ip.includes(ip)) {
       return res.json({
         status: 403,
         message: "No Update made",
       });
     }
-   else  if (data && !data.userIp.includes(ip)) {
-       Clicks.findOneAndUpdate({ newsID: id }, { $set: { clicks: data.clicks + 1, userIp: [...data.userIp, ip] } }, { new: true }, (err, clickedNews) => {
+   else  if (data && !data.ip.includes(ip)) {
+       Clicks.findOneAndUpdate({ newsID: id }, { $set: { clicks: data.clicks + 1, ip: [...data.ip, ip] } }, { new: true }, (err, clickedNews) => {
          if (err) {
         console.log("Something wrong when updating data");
          }
@@ -223,7 +222,10 @@ async function postNewsClicks(req, res) {
     }
    
     
-  })
+  }).clone()
+    .catch(function (err) {
+      console.log(err);
+    });
 }
 async function getNewsClicks(req, res) {
   const id = req.params.id
