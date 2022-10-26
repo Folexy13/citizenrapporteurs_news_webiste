@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios'
 import { newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
+import {WhatsappShareButton,FacebookShareButton,TwitterShareButton,InstapaperShareButton} from 'react-share'
 import "./card.scss";
 const capitalizeLetter = (name) => {
   return name?.toUpperCase();
@@ -105,7 +106,12 @@ function Card({ store, type }) {
               <Link href="#" className="item-title">
                 <h1>{store?.title}</h1>
               </Link>
-
+              <div className="btn-flex">
+               <WhatsappShareButton url={window.location.href} className="wh"><i className="fa fa-whatsapp"></i> <span>Share On Whatsapp</span></WhatsappShareButton>
+                <FacebookShareButton url={window.location.href} className="fb"><i className="fa fa-facebook-official"></i> <span>Share on Facebook</span></FacebookShareButton>
+                <InstapaperShareButton url={window.location.href} className="ins"><i className="fa fa-instagram"></i> <span>Share On Instagram</span></InstapaperShareButton>
+                <TwitterShareButton url={window.location.href} className="tw"><i className="fa fa-twitter"></i> <span>Share On Twitter</span></TwitterShareButton>
+              </div>
               <p style={{ fontSize: 16, marginTop: 80 }}>
                 {store?.description}
               </p>

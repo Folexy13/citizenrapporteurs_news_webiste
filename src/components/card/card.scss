@@ -141,3 +141,32 @@
     gap: 5px;
   }
 }
+.btn-flex{
+  display: block;
+  width: 90%;
+  margin: 30px auto;
+  @media (min-width:1000px) {
+  display: flex;
+  gap: 30px;
+  .fb{
+    background-color: #45629f !important;
+  }
+  .wh{
+    background-color: #075e54 !important;
+  }
+  .tw{
+    background-color: #5eb2ef !important;
+  }
+  ins{
+    background-color: blue !important;
+  }
+  button{
+    width: auto;
+    max-width: none;
+    padding: 0 12px;
+    height: 32px;
+    line-height: 32px;
+    color: #fff;
+  }
+  }
+}
