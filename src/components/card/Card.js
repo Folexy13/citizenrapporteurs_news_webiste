@@ -125,9 +125,7 @@ function Card({ store, type }) {
                 <WhatsappShareButton url={window.location.href} className="wh">
                   <i className="fa fa-whatsapp"></i>{" "}
                   <span>Share On Whatsapp</span>{" "}
-                  {(shareCount) => (
-                    <span className="myShareCountWrapper">{shareCount}</span>
-                  )}
+                
                 </WhatsappShareButton>
                 <FacebookShareButton url={window.location.href} className="fb">
                   <i className="fa fa-facebook-official"></i>{" "}
