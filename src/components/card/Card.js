@@ -147,7 +147,7 @@ function Card({ store, type }) {
             to={
               routes.NEWSPAGE_MAIN.path +
               "/" +
-              store._id +
+              store[0]?._id +
               "/" +
               convertToSlug(store[0]?.title)
             }
