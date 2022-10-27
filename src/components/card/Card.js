@@ -121,6 +121,7 @@ function Card({ store, type }) {
                   <span>Share On Whatsapp</span>{" "}
                 </WhatsappShareButton>
                 <FacebookShareButton
+                  openShareDialogOnClick={false}
                   url={window.location.href}
                   className="fb"
                   title={truncateText(store?.title, 120)}
