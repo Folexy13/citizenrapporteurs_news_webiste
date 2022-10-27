@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { truncateText } from "../components/card/Card";
 
 const MetaDecorator = ({ description, imageUrl, imageAlt }) => (
-  <Helmet>
+  <Helmet encodeSpecialCharacters>
     <meta name="description" content={truncateText(description, 80)} />
     <meta property="og:description" content={truncateText(description, 80)} />
     <meta property="og:image" itemProp="image" content={imageUrl} />
