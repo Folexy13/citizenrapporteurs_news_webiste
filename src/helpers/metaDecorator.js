@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
-import { truncateText } from "../components/card/Card";
+// import { truncateText } from "../components/card/Card";
 
 const MetaDecorator = ({ description, imageUrl }) => (
   <Helmet>
