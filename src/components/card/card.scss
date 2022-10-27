@@ -145,41 +145,45 @@
   display: block;
   width: 90%;
   margin: 30px auto;
+  .fb {
+      background-color: #45629f !important;
+      color: #fff !important;
+      padding: 0 12px !important;
+      border-radius: 2px;
+  
+    }
+  
+    .wh {
+      background-color: #075e54 !important;
+      color: #fff !important;
+      padding: 0 12px !important;
+      border-radius: 2px;
+  
+  
+    }
+  
+    .tw {
+      background-color: #5eb2ef !important;
+      color: #fff !important;
+      padding: 0 12px !important;
+      border-radius: 2px;
+  
+  
+    }
+  
+    .ins {
+      background-color: blue !important;
+      color: #fff !important;
+      padding: 0 12px !important;
+      border-radius: 2px;
+  
+  
+    }
   @media (min-width:1000px) {
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 30px;
-  .fb{
-    background-color: #45629f !important;
-    color: #fff !important;
-    padding: 0 12px !important;
-    border-radius: 2px;
-
-  }
-  .wh{
-    background-color: #075e54 !important;
-        color: #fff !important;
-    padding: 0 12px !important;
-    border-radius: 2px;
-
-
-  }
-  .tw{
-    background-color: #5eb2ef !important;
-        color: #fff !important;
-    padding: 0 12px !important;
-    border-radius: 2px;
-
-
-  }
-  .ins{
-    background-color: blue !important;
-        color: #fff !important;
-    padding: 0 12px !important;
-    border-radius: 2px;
-
-
-  }
+ 
   button{
     width: auto;
     max-width: none;
