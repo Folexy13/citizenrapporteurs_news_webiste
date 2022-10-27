@@ -12,6 +12,11 @@ const MetaDecorator = ({ description, imageUrl, imageAlt }) => (
     <meta property="og:image:width" content="300" />
     <meta property="og:url" content={window.location.href} />
     <meta property="og:image:height" content="300" />
+    <meta property="og:determiner" content="the" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:site_name" content="IMDb" />
   </Helmet>
 );
 
