@@ -112,7 +112,7 @@ function Card({ store, type }) {
               </Link>
               <div className="btn-flex">
                 <WhatsappShareButton
-                  itemProp="image"
+                  image={store.image}
                   title={truncateText(store?.title, 120)}
                   description={truncateText(store.description, 120)}
                   url={window.location.href}
@@ -123,6 +123,7 @@ function Card({ store, type }) {
                 </WhatsappShareButton>
                 <FacebookShareButton
                   url={window.location.href}
+                  image={store.image}
                   className="fb"
                   quote={truncateText(store?.title, 120)}
                   description={truncateText(store.description, 120)}
