@@ -23,6 +23,11 @@ export const convertToSlug = (input) => {
     return slug;
   }
 };
+// console.log(
+//   convertToSlug(
+//     "CAN Calls Inclusion of Its Members In APC Campaign Council ‘worrisome,’ - Sets To Probe It"
+//   )
+// );
 
 export const convertDate = (date) => {
   return moment(date).format("LL");

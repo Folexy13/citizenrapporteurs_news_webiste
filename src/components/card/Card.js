@@ -12,6 +12,7 @@ import {
   LinkedinShareButton,
 } from "react-share";
 import "./card.scss";
+import { convertToSlug } from "../entertainment/Entertainment";
 const capitalizeLetter = (name) => {
   return name?.toUpperCase();
 };
@@ -29,18 +30,6 @@ const convertDate = (date) => {
 };
 export const truncateText = (str, size) => {
   return str?.length > size ? str.substring(0, size - 3) + "..." : str;
-};
-
-const convertToSlug = (input) => {
-  if (input) {
-    let slug = input
-      .toLocaleLowerCase()
-      .replaceAll(",", "-")
-      .split(" ")
-      .filter((el) => el.length > 1)
-      .join("-");
-    return slug;
-  }
 };
 
 function Card({ store, type }) {
