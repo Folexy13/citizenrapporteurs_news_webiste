@@ -112,7 +112,7 @@ function Card({ store, type }) {
               </Link>
               <div className="btn-flex">
                 <WhatsappShareButton
-                  title={truncateText(store?.title, 40)}
+                  title={truncateText(store?.title, 60)}
                   description={truncateText(store.description, 80)}
                   url={window.location.href}
                   className="wh"
@@ -123,7 +123,7 @@ function Card({ store, type }) {
                 <FacebookShareButton
                   url={window.location.href}
                   className="fb"
-                  title={truncateText(store?.title, 40)}
+                  title={truncateText(store?.title, 60)}
                   description={truncateText(store.description, 80)}
                 >
                   <i className="fa fa-facebook-official"></i>{" "}
@@ -132,16 +132,17 @@ function Card({ store, type }) {
                 <LinkedinShareButton
                   url={window.location.href}
                   className="ins"
-                  title={truncateText(store?.title, 40)}
-                  description={truncateText(store.description, 80)}
+                  title={truncateText(store?.title, 60)}
+                  summary={truncateText(store.description, 80)}
                 >
                   <i className="fa fa-linkedin"></i>{" "}
                   <span>Share On LinkedIn</span>
                 </LinkedinShareButton>
                 <TwitterShareButton
+                  via="Opeyemi Folajimi"
                   url={window.location.href}
                   className="tw"
-                  title={truncateText(store?.title, 40)}
+                  title={truncateText(store?.title, 60)}
                   description={truncateText(store.description, 80)}
                 >
                   <i className="fa fa-twitter"></i>{" "}
@@ -150,7 +151,7 @@ function Card({ store, type }) {
               </div>
               <p
                 style={{ fontSize: 16, marginTop: 80 }}
-                title={truncateText(store?.title, 40)}
+                title={truncateText(store?.title, 60)}
                 description={truncateText(store.description, 80)}
               >
                 {store?.description}
