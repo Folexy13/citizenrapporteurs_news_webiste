@@ -111,14 +111,18 @@ function Card({ store, type }) {
                 <h1>{store?.title}</h1>
               </Link>
               <div className="btn-flex">
-                <WhatsappShareButton url={window.location.href} className="wh">
+                <WhatsappShareButton
+                  title={truncateText(store?.title, 40)}
+                  url={window.location.href}
+                  className="wh"
+                >
                   <i className="fa fa-whatsapp"></i>{" "}
                   <span>Share On Whatsapp</span>{" "}
                 </WhatsappShareButton>
                 <FacebookShareButton
                   url={window.location.href}
                   className="fb"
-                  quote={truncateText(store?.title, 80)}
+                  title={truncateText(store?.title, 40)}
                 >
                   <i className="fa fa-facebook-official"></i>{" "}
                   <span>Share on Facebook</span>
@@ -126,7 +130,7 @@ function Card({ store, type }) {
                 <LinkedinShareButton
                   url={window.location.href}
                   className="ins"
-                  quote={truncateText(store?.title, 80)}
+                  title={truncateText(store?.title, 40)}
                 >
                   <i className="fa fa-linkedin"></i>{" "}
                   <span>Share On LinkedIn</span>
@@ -134,7 +138,7 @@ function Card({ store, type }) {
                 <TwitterShareButton
                   url={window.location.href}
                   className="tw"
-                  quote={truncateText(store?.title, 80)}
+                  title={truncateText(store?.title, 40)}
                 >
                   <i className="fa fa-twitter"></i>{" "}
                   <span>Share On Twitter</span>
@@ -142,7 +146,7 @@ function Card({ store, type }) {
               </div>
               <p
                 style={{ fontSize: 16, marginTop: 80 }}
-                quote={truncateText(store?.title, 80)}
+                title={truncateText(store?.title, 40)}
               >
                 {store?.description}
               </p>
