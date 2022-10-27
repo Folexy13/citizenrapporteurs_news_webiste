@@ -118,7 +118,6 @@ function Card({ store, type }) {
                   url={window.location.href}
                   className="wh"
                 >
-                  <img src={store.image} alt="" />
                   <i className="fa fa-whatsapp"></i>{" "}
                   <span>Share On Whatsapp</span>{" "}
                 </WhatsappShareButton>
@@ -129,7 +128,6 @@ function Card({ store, type }) {
                   quote={truncateText(store?.title, 120)}
                   description={truncateText(store.description, 120)}
                 >
-                  <img src={store.image} alt="" />
                   <i className="fa fa-facebook-official"></i>{" "}
                   <span>Share on Facebook</span>
                 </FacebookShareButton>
