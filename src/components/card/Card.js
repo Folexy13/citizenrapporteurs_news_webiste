@@ -112,8 +112,8 @@ function Card({ store, type }) {
               </Link>
               <div className="btn-flex">
                 <WhatsappShareButton
-                  title={truncateText(store?.title, 60)}
-                  description={truncateText(store.description, 80)}
+                  title={truncateText(store?.title, 120)}
+                  description={truncateText(store.description, 120)}
                   url={window.location.href}
                   className="wh"
                 >
@@ -123,8 +123,8 @@ function Card({ store, type }) {
                 <FacebookShareButton
                   url={window.location.href}
                   className="fb"
-                  title={truncateText(store?.title, 60)}
-                  description={truncateText(store.description, 80)}
+                  title={truncateText(store?.title, 120)}
+                  description={truncateText(store.description, 120)}
                 >
                   <i className="fa fa-facebook-official"></i>{" "}
                   <span>Share on Facebook</span>
@@ -132,8 +132,8 @@ function Card({ store, type }) {
                 <LinkedinShareButton
                   url={window.location.href}
                   className="ins"
-                  title={truncateText(store?.title, 60)}
-                  summary={truncateText(store.description, 80)}
+                  title={truncateText(store?.title, 120)}
+                  summary={truncateText(store.description, 120)}
                 >
                   <i className="fa fa-linkedin"></i>{" "}
                   <span>Share On LinkedIn</span>
@@ -142,8 +142,8 @@ function Card({ store, type }) {
                   via="Opeyemi Folajimi"
                   url={window.location.href}
                   className="tw"
-                  title={truncateText(store?.title, 60)}
-                  description={truncateText(store.description, 80)}
+                  title={truncateText(store?.title, 120)}
+                  description={truncateText(store.description, 120)}
                 >
                   <i className="fa fa-twitter"></i>{" "}
                   <span>Share On Twitter</span>
@@ -151,8 +151,8 @@ function Card({ store, type }) {
               </div>
               <p
                 style={{ fontSize: 16, marginTop: 80 }}
-                title={truncateText(store?.title, 60)}
-                description={truncateText(store.description, 80)}
+                title={truncateText(store?.title, 120)}
+                description={truncateText(store.description, 120)}
               >
                 {store?.description}
               </p>
