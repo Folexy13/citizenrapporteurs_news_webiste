@@ -125,22 +125,36 @@ function Card({ store, type }) {
                 <WhatsappShareButton url={window.location.href} className="wh">
                   <i className="fa fa-whatsapp"></i>{" "}
                   <span>Share On Whatsapp</span>{" "}
-                
                 </WhatsappShareButton>
-                <FacebookShareButton url={window.location.href} className="fb">
+                <FacebookShareButton
+                  url={window.location.href}
+                  className="fb"
+                  quote={truncateText(store?.title, 80)}
+                >
                   <i className="fa fa-facebook-official"></i>{" "}
                   <span>Share on Facebook</span>
                 </FacebookShareButton>
-                <LinkedinShareButton url={window.location.href} className="ins">
+                <LinkedinShareButton
+                  url={window.location.href}
+                  className="ins"
+                  quote={truncateText(store?.title, 80)}
+                >
                   <i className="fa fa-linkedin"></i>{" "}
                   <span>Share On LinkedIn</span>
                 </LinkedinShareButton>
-                <TwitterShareButton url={window.location.href} className="tw">
+                <TwitterShareButton
+                  url={window.location.href}
+                  className="tw"
+                  quote={truncateText(store?.title, 80)}
+                >
                   <i className="fa fa-twitter"></i>{" "}
                   <span>Share On Twitter</span>
                 </TwitterShareButton>
               </div>
-              <p style={{ fontSize: 16, marginTop: 80 }}>
+              <p
+                style={{ fontSize: 16, marginTop: 80 }}
+                quote={truncateText(store?.title, 80)}
+              >
                 {store?.description}
               </p>
             </div>
