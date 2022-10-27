@@ -1,14 +1,19 @@
 const News = require("../model/news");
-const Clicks = require("../model/click")
+const Clicks = require("../model/click");
 const getSlugFromCategory = (category) => {
-    let slug = category
-      .toLocaleLowerCase()
-      .replaceAll(",", "-")
-      .split(" ")
-      .filter((el) => el.length > 1)
-      .join("-");
-    return slug;
-  };
+  let slug = category
+    .trim()
+    .toLocaleLowerCase()
+    .replace(/\s/g, "-")
+    .replaceAll(",", "-")
+    .replace(/[^\w\s_.,-/#-'"]/g, "-")
+    .split("-");
+  slug = slug
+    .map((el) => el.trim())
+    .filter((el) => el !== "")
+    .join("-");
+  return slug;
+};
 async function postNews(req, res) {
   const { description, video, image, title, category, author, date } = req.body;
   const hasMedia = video || image;
@@ -19,7 +24,6 @@ async function postNews(req, res) {
     });
   }
 
-  
   const latestNews = new News();
   latestNews.description = description;
   latestNews.video = video;
@@ -46,7 +50,7 @@ async function postNews(req, res) {
   });
 }
 async function editNews(req, res) {
-  let { id } = req.params
+  let { id } = req.params;
   const { description, video, image, title, category, author, date } = req.body;
   const hasMedia = video || image;
   if (!description || !hasMedia || !title || !category || !author) {
@@ -55,39 +59,44 @@ async function editNews(req, res) {
       message: "All Fields are required",
     });
   }
-  News.findByIdAndUpdate({ _id: id }, {
-     description,
-    media: video ? "video" : "image",
-    video,
-    image,
-    createdAt: date ? date : new Date().toISOString(),
-    author,
-    slug: getSlugFromCategory(category),
-    title,
-    category
-  }, { new: true }, (err, news) => {
-    if (err) {
-      return res.json({
-        status: 403,
-        message: "Error in updating news",
-        error: err,
-      });
-    } else if (!news) {
-       return res.json({
-        status: 403,
-        message: "News Update went wrong",
-        news: [],
-      });
-    } else {
-       return res.status(200).json({
-      status: 200,
-      news: news, //returns latest added five news
-    });
+  News.findByIdAndUpdate(
+    { _id: id },
+    {
+      description,
+      media: video ? "video" : "image",
+      video,
+      image,
+      createdAt: date ? date : new Date().toISOString(),
+      author,
+      slug: getSlugFromCategory(category),
+      title,
+      category,
+    },
+    { new: true },
+    (err, news) => {
+      if (err) {
+        return res.json({
+          status: 403,
+          message: "Error in updating news",
+          error: err,
+        });
+      } else if (!news) {
+        return res.json({
+          status: 403,
+          message: "News Update went wrong",
+          news: [],
+        });
+      } else {
+        return res.status(200).json({
+          status: 200,
+          news: news, //returns latest added five news
+        });
+      }
     }
-  })
+  );
 }
 async function deleteNews(req, res) {
-  let { id } = req.params
+  let { id } = req.params;
   await News.findByIdAndDelete({ _id: id }, function (err, news) {
     if (err) {
       return res.json({
@@ -98,10 +107,10 @@ async function deleteNews(req, res) {
     }
     return res.status(200).json({
       status: 200,
-      message:"News deleted",
+      message: "News deleted",
       news: news, //returns latest added five news
     });
- })
+  });
 }
 async function getSingleNews(req, res) {
   const id = req.params.id;
@@ -112,14 +121,13 @@ async function getSingleNews(req, res) {
         message: "Error in fetching news",
         error: err,
       });
-    } 
-      return res.status(200).json({
+    }
+    return res.status(200).json({
       status: 200,
       news: news, //returns latest added five news
     });
-    
-    
-  }).clone()
+  })
+    .clone()
     .catch(function (err) {
       console.log(err);
     });
@@ -139,7 +147,8 @@ async function getNewsByCategory(req, res) {
       status: 200,
       news: news, //returns latest added five news
     });
-  }).clone()
+  })
+    .clone()
     .catch(function (err) {
       console.log(err);
     });
@@ -169,12 +178,11 @@ async function getLatestNews(req, res) {
     });
 }
 
-async function getTrendingNews() { }
-async function postComments(req, res) { }
-
+async function getTrendingNews() {}
+async function postComments(req, res) {}
 
 async function postNewsClicks(req, res) {
-  const { ip,id } = req.body;
+  const { ip, id } = req.body;
   await Clicks.findOne({ newsID: id }, function (err, data) {
     if (err) {
       return res.json({
@@ -182,54 +190,56 @@ async function postNewsClicks(req, res) {
         message: "Error with CLicking",
         error: err,
       });
-    }
-     else if (data && data.ip.includes(ip)) {
+    } else if (data && data.ip.includes(ip)) {
       return res.json({
         status: 403,
         message: "No Update made",
       });
-    }
-   else  if (data && !data.ip.includes(ip)) {
-       Clicks.findOneAndUpdate({ newsID: id }, { $set: { clicks: data.clicks + 1, ip: [...data.ip, ip] } }, { new: true }, (err, clickedNews) => {
-         if (err) {
-        console.log("Something wrong when updating data");
-         }
-        return res.status(200).json({
-      status: 200,
-      message: "Click updated",
-      savedNews: clickedNews,
-    });
-       })
+    } else if (data && !data.ip.includes(ip)) {
+      Clicks.findOneAndUpdate(
+        { newsID: id },
+        { $set: { clicks: data.clicks + 1, ip: [...data.ip, ip] } },
+        { new: true },
+        (err, clickedNews) => {
+          if (err) {
+            console.log("Something wrong when updating data");
+          }
+          return res.status(200).json({
+            status: 200,
+            message: "Click updated",
+            savedNews: clickedNews,
+          });
+        }
+      );
     } else {
-      const newClick = new Clicks()
-    newClick.userIp = ip
-    newClick.clicks = 1
-    newClick.newsID =id
-    newClick.save(function (err, data) {
-    if (err) {
-      return res.json({
-        status: 403,
-        message: "Error with Model",
-        error: err,
+      const newClick = new Clicks();
+      newClick.userIp = ip;
+      newClick.clicks = 1;
+      newClick.newsID = id;
+      newClick.save(function (err, data) {
+        if (err) {
+          return res.json({
+            status: 403,
+            message: "Error with Model",
+            error: err,
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          message: "News was clicked",
+          savedNews: data,
+        });
       });
     }
-    return res.status(200).json({
-      status: 200,
-      message: "News was clicked",
-      savedNews: data,
-    });
-  });
-    }
-   
-    
-  }).clone()
+  })
+    .clone()
     .catch(function (err) {
       console.log(err);
     });
 }
 async function getNewsClicks(req, res) {
-  const id = req.params.id
- await Clicks.findOne({ newsId: id }, function (err, news) {
+  const id = req.params.id;
+  await Clicks.findOne({ newsId: id }, function (err, news) {
     if (err) {
       return res.json({
         status: 403,
@@ -242,15 +252,16 @@ async function getNewsClicks(req, res) {
         news: news, //returns latest added ten news
       });
     }
-  }).clone()
+  })
+    .clone()
     .catch(function (err) {
       console.log(err);
     });
 }
 async function getClickedNews(req, res) {
   await Clicks.find({}, function (err, news) {
-    console.log(news)
-     if (err) {
+    console.log(news);
+    if (err) {
       return res.json({
         status: 403,
         message: "Error in fecthing clicked news",
@@ -262,7 +273,8 @@ async function getClickedNews(req, res) {
         clickedNews: news, //returns latest added ten news
       });
     }
-  }).clone()
+  })
+    .clone()
     .catch(function (err) {
       console.log(err);
     });
@@ -281,5 +293,5 @@ module.exports = {
   getSingleNews,
   getNewsClicks,
   getClickedNews,
-  postNewsClicks
+  postNewsClicks,
 };
