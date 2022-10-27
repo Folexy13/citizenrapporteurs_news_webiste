@@ -124,7 +124,7 @@ function Card({ store, type }) {
                   openShareDialogOnClick={false}
                   url={window.location.href}
                   className="fb"
-                  title={truncateText(store?.title, 120)}
+                  quote={truncateText(store?.title, 120)}
                   description={truncateText(store.description, 120)}
                 >
                   <i className="fa fa-facebook-official"></i>{" "}
