@@ -10,14 +10,20 @@ import "./entertainment.scss";
 export const convertToSlug = (input) => {
   if (input) {
     let slug = input
+      .trim()
       .toLocaleLowerCase()
-      .replaceAll(",", "-", "'")
-      .split(" ")
-      .filter((el) => el.length > 1)
+      .replace(/\s/g, "-")
+      .replaceAll(",", "-")
+      .replace(/[^\w\s_.,-/#-'"]/g, "-")
+      .split("-");
+    slug = slug
+      .map((el) => el.trim())
+      .filter((el) => el !== "")
       .join("-");
     return slug;
   }
 };
+
 export const convertDate = (date) => {
   return moment(date).format("LL");
 };
