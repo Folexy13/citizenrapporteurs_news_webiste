@@ -113,6 +113,7 @@ function Card({ store, type }) {
               <div className="btn-flex">
                 <WhatsappShareButton
                   title={truncateText(store?.title, 40)}
+                  description={truncateText(store.description, 80)}
                   url={window.location.href}
                   className="wh"
                 >
@@ -123,6 +124,7 @@ function Card({ store, type }) {
                   url={window.location.href}
                   className="fb"
                   title={truncateText(store?.title, 40)}
+                  description={truncateText(store.description, 80)}
                 >
                   <i className="fa fa-facebook-official"></i>{" "}
                   <span>Share on Facebook</span>
@@ -131,6 +133,7 @@ function Card({ store, type }) {
                   url={window.location.href}
                   className="ins"
                   title={truncateText(store?.title, 40)}
+                  description={truncateText(store.description, 80)}
                 >
                   <i className="fa fa-linkedin"></i>{" "}
                   <span>Share On LinkedIn</span>
@@ -139,6 +142,7 @@ function Card({ store, type }) {
                   url={window.location.href}
                   className="tw"
                   title={truncateText(store?.title, 40)}
+                  description={truncateText(store.description, 80)}
                 >
                   <i className="fa fa-twitter"></i>{" "}
                   <span>Share On Twitter</span>
@@ -147,6 +151,7 @@ function Card({ store, type }) {
               <p
                 style={{ fontSize: 16, marginTop: 80 }}
                 title={truncateText(store?.title, 40)}
+                description={truncateText(store.description, 80)}
               >
                 {store?.description}
               </p>
