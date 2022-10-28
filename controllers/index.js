@@ -1,3 +1,4 @@
+require("dotenv").config();
 const News = require("../model/news");
 const Clicks = require("../model/click");
 const getSlugFromCategory = (category) => {
@@ -263,13 +264,13 @@ async function getClickedNews(req, res) {
     console.log(news);
     if (err) {
       return res.json({
-        status: 403,
+        status: false,
         message: "Error in fecthing clicked news",
         error: err,
       });
     } else {
       return res.status(200).json({
-        status: 200,
+        status: true,
         clickedNews: news, //returns latest added ten news
       });
     }
@@ -278,6 +279,22 @@ async function getClickedNews(req, res) {
     .catch(function (err) {
       console.log(err);
     });
+}
+async function login(req, res) {
+  const { username, password } = req.body;
+  if (
+    username !== process.env.ADMIN_USER ||
+    password !== process.env.ADMIN_PASSWORD
+  ) {
+    return res.json({
+      status: false,
+      message: "Incorrect Login Details",
+    });
+  }
+  return res.json({
+    status: true,
+    message: "Login Sucessfully",
+  });
 }
 async function getSearchQuery(req, res) {}
 module.exports = {
@@ -294,4 +311,5 @@ module.exports = {
   getNewsClicks,
   getClickedNews,
   postNewsClicks,
+  login,
 };
