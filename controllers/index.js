@@ -296,6 +296,7 @@ async function login(req, res) {
     message: "Login Sucessfully",
   });
 }
+
 async function getSearchQuery(req, res) {}
 module.exports = {
   postNews,
