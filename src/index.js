@@ -22,7 +22,6 @@ root.render(
         imageUrl={
           "https://yt3.ggpht.com/ytc/AMLnZu_iIR_sJ69owCwzuDYvx-FuXA4n2CJYAPWIM33rBA=s900-c-k-c0x00ffffff-no-rj"
         }
-        imageAlt="alt"
       />
       <App />
       <LoadingIndicator />
