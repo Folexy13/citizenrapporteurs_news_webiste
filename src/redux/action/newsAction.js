@@ -79,12 +79,14 @@ function getLatestNews() {
 }
 function getSingleNews(payload) {
   return (dispatch) => {
-    axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
-      dispatch({
-        type: userConstants.GET_SINGLE_NEWS,
-        news: res.data.news,
-      });
-    });
+    trackPromise(
+      axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
+        dispatch({
+          type: userConstants.GET_SINGLE_NEWS,
+          news: res.data.news,
+        });
+      })
+    );
   };
 }
 function postComment() {}
