@@ -126,8 +126,6 @@ function Entertainment() {
             to={
               routes.NEWSPAGE_MAIN.path +
               "/" +
-              entertainmentNews[lx - 1]?._id +
-              "/" +
               convertToSlug(entertainmentNews[lx - 1]?.title)
             }
             onClick={() => handleClicks(entertainmentNews[lx - 1]?._id)}
@@ -181,8 +179,6 @@ function Entertainment() {
             <Link
               to={
                 routes.NEWSPAGE_MAIN.path +
-                "/" +
-                entertainmentNews[lx - 2]?._id +
                 "/" +
                 convertToSlug(entertainmentNews[lx - 2]?.title)
               }
@@ -240,8 +236,6 @@ function Entertainment() {
               <Link
                 to={
                   routes.NEWSPAGE_MAIN.path +
-                  "/" +
-                  entertainmentNews[lx - 3]?._id +
                   "/" +
                   convertToSlug(entertainmentNews[lx - 3]?.title)
                 }

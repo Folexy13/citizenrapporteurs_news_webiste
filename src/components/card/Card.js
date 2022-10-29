@@ -188,11 +188,7 @@ function Card({ store, type }) {
         <div className="item1">
           <Link
             to={
-              routes.NEWSPAGE_MAIN.path +
-              "/" +
-              store[0]?._id +
-              "/" +
-              convertToSlug(store[0]?.title)
+              routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store[0]?.title)
             }
             className="item-title"
           >
