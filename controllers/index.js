@@ -115,6 +115,7 @@ async function deleteNews(req, res) {
   });
 }
 async function getSingleNews(req, res) {
+  console.log(req.body);
   const { id } = req.body;
   await News.findById({ _id: id }, (err, news) => {
     if (err) {
