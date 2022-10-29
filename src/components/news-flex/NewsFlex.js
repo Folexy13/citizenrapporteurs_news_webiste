@@ -62,11 +62,7 @@ function NewsFlex() {
               <div className="item-body">
                 <Link
                   to={
-                    routes.NEWSPAGE_MAIN.path +
-                    "/" +
-                    ele._id +
-                    "/" +
-                    convertToSlug(ele?.title)
+                    routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(ele?.title)
                   }
                   onClick={() => handleClicks(ele?._id)}
                 >

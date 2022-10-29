@@ -4,7 +4,7 @@ import { NewImage } from "../../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { newsAction } from "../../redux/action/newsAction";
 import moment from "moment";
-import axios from 'axios'
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { routes } from "../../routes";
 import { convertToSlug } from "../entertainment/Entertainment";
@@ -14,26 +14,27 @@ function Opinion({ type }) {
   const dispatch = useDispatch();
   let store;
   const news = useSelector((el) => el?.mainNews);
-  const clickedNews = useSelector(el=>el?.clickedNews)
+  const clickedNews = useSelector((el) => el?.clickedNews);
   const formatDate = (date) => {
     date = moment(date).format("LL");
     return date;
   };
   const handleClicks = (id) => {
-      axios
+    axios
       .get("https://ipapi.co/json/")
       .then((response) => {
         let data = response.data;
         let payload = {
-          id,ip:data.ip
-        }
-        dispatch(newsAction.postClickedNews(payload))
-        dispatch( newsAction.getSingleNews(payload))
+          id,
+          ip: data.ip,
+        };
+        dispatch(newsAction.postClickedNews(payload));
+        dispatch(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);
       });
-    }
+  };
   store = useSelector((el) => el?.categoryNews);
   useEffect(() => {
     dispatch(newsAction.getNewsCategory(news?.slug));
@@ -45,10 +46,10 @@ function Opinion({ type }) {
           <div className="select-card">
             <h1>Related Post</h1>
             {/* IMAGE GRID DISPLAY */}
-            <div className="grid-container" style={{gap:"90px 10px"}}>
+            <div className="grid-container" style={{ gap: "90px 10px" }}>
               {store
                 ?.filter((el) => el?.title !== news?.title)
-                ?.slice(0,6)
+                ?.slice(0, 6)
                 ?.map((el) => {
                   return (
                     <div className="item" key={el?._id}>
@@ -63,13 +64,9 @@ function Opinion({ type }) {
                           to={
                             routes.NEWSPAGE_MAIN.path +
                             "/" +
-                            el._id +
-                            "/" +
                             convertToSlug(el?.title)
                           }
-                          onClick={() =>
-                            handleClicks(el?._id)
-                          }
+                          onClick={() => handleClicks(el?._id)}
                         >
                           <h2>{el?.title}</h2>
                         </Link>
@@ -87,8 +84,17 @@ function Opinion({ type }) {
                               <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                             </svg>
                             {formatDate(el?.createdAt)}
-                             <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,el?._id) }</small>
-                
+                            <small
+                              style={{
+                                display: "flex",
+                                gap: "5px",
+                                alignItems: "center",
+                                color: "#002",
+                              }}
+                            >
+                              <i class="fa fa-eye" aria-hidden="true"></i>
+                              {getNewsClicks(clickedNews, el?._id)}
+                            </small>
                           </small>
                         </div>
                       </div>
