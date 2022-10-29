@@ -36,7 +36,6 @@ function Card({ store, type }) {
   const dispacth = useDispatch();
   const clickedNews = useSelector((el) => el?.clickedNews);
   const handleNewsMain = (id) => {
-    let news = store?.find((el) => el?._id === id);
     axios
       .get("https://ipapi.co/json/")
       .then((response) => {
@@ -170,7 +169,6 @@ function Card({ store, type }) {
         className="img-container"
         onClick={() => handleNewsMain(store[0]?._id)}
       >
-        {console.log(store[0]?._id)}
         <Link
           to={routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store[0]?.title)}
           onClick={() => handleNewsMain(store[0]?._id)}
