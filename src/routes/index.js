@@ -11,4 +11,8 @@ export const routes = {
     name: "News Page Main",
     path: "/news",
   },
+  LOGIN: {
+    name: "Login Page",
+    path: "/login",
+  },
 };

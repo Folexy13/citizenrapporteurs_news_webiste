@@ -1,6 +1,6 @@
 import "./App.css";
-import { NewsPage, CreateNews, HomePage, NewsMain } from "./pages";
-import React,{useEffect} from "react";
+import { NewsPage, CreateNews, HomePage, NewsMain, LoginPage } from "./pages";
+import React, { useEffect } from "react";
 import { routes } from "./routes";
 import { useDispatch } from "react-redux";
 
@@ -22,19 +22,18 @@ const Wrapper = ({ children }) => {
 };
 function App() {
   const [show, setShow] = useState(false);
-  const dispacth = useDispatch()
+  const dispacth = useDispatch();
 
   const handleToggleShow = () => {
     setShow(!show);
     console.log("first");
   };
   useEffect(() => {
- setInterval(() => {
-  dispacth(newsAction.getClickedNews())
- }, 1000);
-  }, [dispacth])
-  
-  
+    setInterval(() => {
+      dispacth(newsAction.getClickedNews());
+    }, 1000);
+  }, [dispacth]);
+
   return (
     <div className="main-container">
       <Router>
@@ -63,6 +62,11 @@ function App() {
               name={routes.NEWSPAGE_MAIN.name}
               path={routes.NEWSPAGE_MAIN.path + "/:id/:slug"}
               element={<NewsMain />}
+            />
+            <Route
+              name={routes.LOGIN.name}
+              path={routes.LOGIN.path}
+              element={<LoginPage />}
             />
           </Routes>
         </Wrapper>

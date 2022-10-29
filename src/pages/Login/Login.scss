@@ -1,0 +1,32 @@
+.login{
+   padding: 50px 0;
+    form{
+        width: 90%;
+        margin: 100px auto;
+        padding: 10px 15px;
+        border-radius: 4px;
+        @media (min-width:600px) {
+            width: 30%;
+            margin: 30px auto;
+        }
+        .form-control{
+            input {
+                width: 80%;
+            }
+            button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                margin: 30px auto;
+                @media (min-width:600px) {
+                        width: 90%;
+                        display: block;
+                        margin: unset;
+
+                    }
+            }
+        }
+    }
+
+}

@@ -19,10 +19,25 @@ export const newsAction = {
   getPoliticsategory,
   getSportCategory,
   getClickedNews,
+  login,
   postClickedNews,
-
 };
-
+function login(payload) {
+  return (dispatch) => {
+    axios
+      .post(`${BASE_API_URL}/login`, payload)
+      .then((res) => {
+        if (res.data.status) {
+          dispatch(alertActions.success(res.data.message));
+        } else {
+          throw res.data.message;
+        }
+      })
+      .catch((e) => {
+        dispatch(alertActions.error(e));
+      });
+  };
+}
 function postNews(payload) {
   return (dispatch) => {
     axios
@@ -159,19 +174,19 @@ function getEntertainmentCategory(slug) {
 }
 function getClickedNews() {
   return (dispatch) => {
-    axios.get(`${BASE_API_URL}/clicked-news`).then(res => {
+    axios.get(`${BASE_API_URL}/clicked-news`).then((res) => {
       dispatch({
         type: userConstants.GET_CLICKED_NEWS,
-        news:res.data.clickedNews
-      })
-    })
-  }
+        news: res.data.clickedNews,
+      });
+    });
+  };
 }
 
 function postClickedNews(payload) {
   return (dispatch) => {
-    axios.post(`${BASE_API_URL}/clicked-news`,payload).then(res => {
-      console.log(res.data.message)
-    })
-  }
+    axios.post(`${BASE_API_URL}/clicked-news`, payload).then((res) => {
+      console.log(res.data.message);
+    });
+  };
 }
