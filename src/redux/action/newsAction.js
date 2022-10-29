@@ -72,6 +72,7 @@ function getLatestNews() {
           }
         })
         .catch((err) => {
+          alert(err);
           dispatch(alertActions.error(err.message));
         })
     );
