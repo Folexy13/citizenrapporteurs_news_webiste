@@ -1,5 +1,12 @@
 import "./App.css";
-import { NewsPage, CreateNews, HomePage, NewsMain, LoginPage } from "./pages";
+import {
+  NewsPage,
+  CreateNews,
+  HomePage,
+  NewsMain,
+  LoginPage,
+  RouteGard,
+} from "./pages";
 import React, { useEffect } from "react";
 import { routes } from "./routes";
 import { useDispatch } from "react-redux";
@@ -68,6 +75,9 @@ function App() {
               path={routes.LOGIN.path}
               element={<LoginPage />}
             />
+            <Route element={<RouteGard />}>
+              <Route path="/dashboard" element={<>"Hello</>}></Route>
+            </Route>
           </Routes>
         </Wrapper>
       </Router>

@@ -28,6 +28,7 @@ function login(payload) {
       .post(`${BASE_API_URL}/login`, payload)
       .then((res) => {
         if (res.data.status) {
+          localStorage.setItem("token", res.data.token);
           dispatch(alertActions.success(res.data.message));
         } else {
           throw res.data.message;

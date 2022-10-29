@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "../../helpers/useForm";
+import { useNavigate } from "react-router-dom";
 import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./Login.scss";
 const isNotEmpty = (value) => value?.trim() !== "";
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const alert = useSelector((el) => el?.alert);
   const {
     value: username,
     isValid: usernameIsValid,
@@ -35,6 +38,12 @@ const Login = () => {
     }
     dispatch(newsAction.login(payload));
   };
+  useEffect(() => {
+    if (alert.type === "alert-success") {
+      navigate("/dashboard");
+    }
+  }, [alert]);
+
   return (
     <div className="login">
       <form onSubmit={handleSubmit}>

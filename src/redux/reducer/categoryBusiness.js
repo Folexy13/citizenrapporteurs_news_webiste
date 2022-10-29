@@ -1,4 +1,4 @@
-import { userConstants } from "../../constant/userConstants";
+import { userConstants } from "../../constant";
 
 export function categoryBusiness(state = [], action) {
   const { type, news } = action;
