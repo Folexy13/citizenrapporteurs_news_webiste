@@ -42,7 +42,7 @@ const Login = () => {
     if (alert.type === "alert-success") {
       navigate("/dashboard");
     }
-  }, [alert]);
+  }, [alert, navigate]);
 
   return (
     <div className="login">
