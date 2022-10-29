@@ -1,7 +1,8 @@
 //import
 import { alertActions } from "./alertAction";
 import { userConstants } from "../../constant/userConstants";
-import axios from "../../helpers/api";
+// import axios from "../../helpers/api";
+import axios from "axios";
 import { trackPromise } from "react-promise-tracker";
 
 const BASE_API_URL = "https://cr-news-api.herokuapp.com";
