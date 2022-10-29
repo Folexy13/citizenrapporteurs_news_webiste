@@ -7,7 +7,7 @@ import {
   LoginPage,
   RouteGard,
 } from "./pages";
-import React, { useEffect } from "react";
+import React from "react";
 import { routes } from "./routes";
 import { useDispatch } from "react-redux";
 
@@ -19,7 +19,6 @@ import {
 } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
 import { useLayoutEffect, useState } from "react";
-import { newsAction } from "./redux/action/newsAction";
 const Wrapper = ({ children }) => {
   const location = useLocation();
   useLayoutEffect(() => {
@@ -29,17 +28,17 @@ const Wrapper = ({ children }) => {
 };
 function App() {
   const [show, setShow] = useState(false);
-  const dispacth = useDispatch();
+  // const dispacth = useDispatch();
 
   const handleToggleShow = () => {
     setShow(!show);
     console.log("first");
   };
-  useEffect(() => {
-    setInterval(() => {
-      dispacth(newsAction.getClickedNews());
-    }, 1000);
-  }, [dispacth]);
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     dispacth(newsAction.getClickedNews());
+  //   }, 1000);
+  // }, [dispacth]);
 
   return (
     <div className="main-container">
