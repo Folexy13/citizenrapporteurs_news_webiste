@@ -9,7 +9,6 @@ import {
 } from "./pages";
 import React from "react";
 import { routes } from "./routes";
-import { useDispatch } from "react-redux";
 
 import {
   BrowserRouter as Router,
@@ -28,7 +27,6 @@ const Wrapper = ({ children }) => {
 };
 function App() {
   const [show, setShow] = useState(false);
-  // const dispacth = useDispatch();
 
   const handleToggleShow = () => {
     setShow(!show);
