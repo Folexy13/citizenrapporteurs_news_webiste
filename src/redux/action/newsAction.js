@@ -77,16 +77,14 @@ function getLatestNews() {
     );
   };
 }
-function getSingleNews(id) {
+function getSingleNews(payload) {
   return (dispatch) => {
-    trackPromise(
-      axios.get(`${BASE_API_URL}/single-news/${id}`).then((res) => {
-        dispatch({
-          type: userConstants.GET_SINGLE_NEWS,
-          news: res.data.news,
-        });
-      })
-    );
+    axios.post(`${BASE_API_URL}/single-news/`, payload).then((res) => {
+      dispatch({
+        type: userConstants.GET_SINGLE_NEWS,
+        news: res.data.news,
+      });
+    });
   };
 }
 function postComment() {}

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { newsAction } from "../../redux/action/newsAction";
-import axios from 'axios'
+import axios from "axios";
 import { routes } from "../../routes";
 import { getNewsClicks, truncateText } from "../card/Card";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
@@ -12,24 +12,25 @@ import "./news-flex.scss";
 function NewsFlex() {
   const { slug } = useParams();
   const dispatch = useDispatch();
-  const clickedNews = useSelector(el=>el?.clickedNews)
+  const clickedNews = useSelector((el) => el?.clickedNews);
   const store = useSelector((el) => el?.categoryNews);
   const handleClicks = (id) => {
-      axios
+    axios
       .get("https://ipapi.co/json/")
       .then((response) => {
         let data = response.data;
         let payload = {
-          id,ip:data.ip
-        }
-        console.log(payload)
-        dispatch(newsAction.postClickedNews(payload))
-        dispatch( newsAction.getSingleNews(id))
+          id,
+          ip: data.ip,
+        };
+        console.log(payload);
+        dispatch(newsAction.postClickedNews(payload));
+        dispatch(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);
       });
-    }
+  };
   useEffect(() => {
     dispatch(newsAction.getNewsCategory(slug));
   }, [dispatch, slug]);
@@ -102,7 +103,17 @@ function NewsFlex() {
                     </svg>
                     0
                   </small>
-                   <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,ele?._id) }</small>
+                  <small
+                    style={{
+                      display: "flex",
+                      gap: "5px",
+                      alignItems: "center",
+                      color: "#002",
+                    }}
+                  >
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    {getNewsClicks(clickedNews, ele?._id)}
+                  </small>
                 </div>
                 <p>{truncateText(ele?.description, 200)}</p>
               </div>

@@ -28,7 +28,7 @@ function Opinion({ type }) {
           id,ip:data.ip
         }
         dispatch(newsAction.postClickedNews(payload))
-        dispatch( newsAction.getSingleNews(id))
+        dispatch( newsAction.getSingleNews(payload))
       })
       .catch((error) => {
         console.log(error);

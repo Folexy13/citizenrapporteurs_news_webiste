@@ -2,32 +2,33 @@ import React from "react";
 import "./body-flex.scss";
 import { david } from "../../assets";
 import { Link } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 import { routes } from "../../routes";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
-import { useDispatch,useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { newsAction } from "../../redux/action/newsAction";
 import { getNewsClicks } from "../card/Card";
 
 function BodyFlex({ type, store }) {
   const dispatch = useDispatch();
-  const clickedNews = useSelector(el=>el?.clickedNews)
-   const handleClicks = (id) => {
-      axios
+  const clickedNews = useSelector((el) => el?.clickedNews);
+  const handleClicks = (id) => {
+    axios
       .get("https://ipapi.co/json/")
       .then((response) => {
         let data = response.data;
         let payload = {
-          id,ip:data.ip
-        }
-        console.log(payload)
-        dispatch(newsAction.postClickedNews(payload))
-        dispatch( newsAction.getSingleNews(id))
+          id,
+          ip: data.ip,
+        };
+        console.log(payload);
+        dispatch(newsAction.postClickedNews(payload));
+        dispatch(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);
       });
-    }
+  };
   if (type === "politics") {
     return (
       <>
@@ -74,8 +75,17 @@ function BodyFlex({ type, store }) {
                       <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                     </svg>
                     {convertDate(el.createdAt)}
-                     <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,el?._id) }</small>
-
+                    <small
+                      style={{
+                        display: "flex",
+                        gap: "5px",
+                        alignItems: "center",
+                        color: "#002",
+                      }}
+                    >
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      {getNewsClicks(clickedNews, el?._id)}
+                    </small>
                   </small>
                 </div>
               </div>
