@@ -170,6 +170,7 @@ function Card({ store, type }) {
         className="img-container"
         onClick={() => handleNewsMain(store[0]?._id)}
       >
+        {console.log(store[0]?._id)}
         <Link
           to={routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store[0]?.title)}
           onClick={() => handleNewsMain(store[0]?._id)}
