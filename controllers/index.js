@@ -1,6 +1,7 @@
 require("dotenv").config();
 const News = require("../model/news");
 const Clicks = require("../model/click");
+const jwt = require("jsonwebtoken");
 const getSlugFromCategory = (category) => {
   let slug = category
     .trim()
@@ -282,6 +283,9 @@ async function getClickedNews(req, res) {
 }
 async function login(req, res) {
   const { username, password } = req.body;
+  const token = jwt.sign({ username, password }, process.env.JWT_TOKEN, {
+    expiresIn: "3h",
+  });
   if (
     username !== process.env.ADMIN_USER ||
     password !== process.env.ADMIN_PASSWORD
@@ -294,6 +298,7 @@ async function login(req, res) {
   return res.json({
     status: true,
     message: "Login Sucessfully",
+    token,
   });
 }
 
