@@ -63,13 +63,7 @@ function Entertainment() {
       <h1>Entertainment</h1>
       <div className="flex-container">
         <Link
-          to={
-            routes.NEWSPAGE_MAIN.path +
-            "/" +
-            entertainmentNews[lx]?._id +
-            "/" +
-            convertToSlug(entertainmentNews[lx]?.title)
-          }
+          to={"/" + convertToSlug(entertainmentNews[lx]?.title)}
           className="item1"
           onClick={() => handleClicks(entertainmentNews[lx]?._id)}
         >
