@@ -34,7 +34,7 @@ const Main = ({ type }) => {
   }, [dispacth, store, id]);
   useEffect(() => {
     if (id) {
-      dispacth(newsAction.getSingleNews(id));
+      dispacth(newsAction.getSingleNews({ id }));
     } else {
       return;
     }

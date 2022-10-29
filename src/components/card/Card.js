@@ -46,7 +46,7 @@ function Card({ store, type }) {
           ip: data.ip,
         };
         dispacth(newsAction.postClickedNews(payload));
-        dispacth(newsAction.getSingleNews(news?._id));
+        dispacth(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);
