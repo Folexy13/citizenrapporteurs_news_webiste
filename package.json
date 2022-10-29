@@ -37,6 +37,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "/create-news",
   "browserslist": {
     "production": [
       ">0.2%",
