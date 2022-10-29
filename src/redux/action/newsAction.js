@@ -60,7 +60,7 @@ function getLatestNews() {
   return (dispatch) => {
     trackPromise(
       axios
-        .get(`${"httt"}/latest-news`)
+        .get(`www.google.com/latest-news`)
         .then((res) => {
           if (res.data.status) {
             dispatch({
