@@ -6,7 +6,6 @@ import { store } from "./redux/store";
 import { Provider } from "react-redux";
 import { usePromiseTracker } from "react-promise-tracker";
 import { Spinner } from "./components";
-import MetaDecorator from "./helpers/metaDecorator";
 const LoadingIndicator = (props) => {
   const { promiseInProgress } = usePromiseTracker();
 
