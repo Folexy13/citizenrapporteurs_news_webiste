@@ -78,8 +78,9 @@ function getLatestNews() {
   };
 }
 function getSingleNews(payload) {
+  const { id } = payload;
   return (dispatch) => {
-    axios.post(`${BASE_API_URL}/single-news/`, payload).then((res) => {
+    axios.post(`${BASE_API_URL}/single-news/`, id).then((res) => {
       dispatch({
         type: userConstants.GET_SINGLE_NEWS,
         news: res.data.news,
