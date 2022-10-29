@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { routes } from "../routes";
 import { alertActions } from "../redux/action/alertAction";
 
