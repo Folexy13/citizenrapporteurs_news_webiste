@@ -171,13 +171,7 @@ function Card({ store, type }) {
         onClick={() => handleNewsMain(store[0]?._id)}
       >
         <Link
-          to={
-            routes.NEWSPAGE_MAIN.path +
-            "/" +
-            store[0]?._id +
-            "/" +
-            convertToSlug(store[0]?.title)
-          }
+          to={routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store[0]?.title)}
           onClick={() => handleNewsMain(store[0]?._id)}
         >
           <img src={store[0]?.image} alt="img.jpg" />
@@ -263,11 +257,7 @@ function Card({ store, type }) {
                 </svg>
                 <Link
                   to={
-                    routes.NEWSPAGE_MAIN.path +
-                    "/" +
-                    el._id +
-                    "/" +
-                    convertToSlug(el?.title)
+                    routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(el?.title)
                   }
                   onClick={() => handleNewsMain(el?._id)}
                 >
