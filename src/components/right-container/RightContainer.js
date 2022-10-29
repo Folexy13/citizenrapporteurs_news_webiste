@@ -6,31 +6,31 @@ import { newsAction } from "../../redux/action/newsAction";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import { Link, useNavigate } from "react-router-dom";
 import { routes } from "../../routes";
-import axios from "axios"
+import axios from "axios";
 import { getNewsClicks } from "../card/Card";
 
 function RightContainer() {
   const dispacth = useDispatch();
   const navigate = useNavigate();
   const politicsNews = useSelector((el) => el?.categoryPolitics);
-  const clickedNews = useSelector(el=>el?.clickedNews)
- 
+  const clickedNews = useSelector((el) => el?.clickedNews);
+
   useEffect(() => {
     dispacth(newsAction.getPoliticsategory("politics"));
   }, [dispacth]);
   const handleClick = (store) => {
-     axios
+    axios
       .get("https://ipapi.co/json/")
       .then((response) => {
         let data = response.data;
         let payload = {
-         id: store?._id,ip:data.ip
-        }
-        console.log(payload)
-        dispacth(newsAction.postClickedNews(payload))
-        dispacth(newsAction.getSingleNews(store?._id))
-    navigate(store);
-        
+          id: store?._id,
+          ip: data.ip,
+        };
+        console.log(payload);
+        dispacth(newsAction.postClickedNews(payload));
+        dispacth(newsAction.getSingleNews(store?._id));
+        navigate(store);
       })
       .catch((error) => {
         console.log(error);
@@ -43,8 +43,6 @@ function RightContainer() {
         <Link
           to={
             routes.NEWSPAGE_MAIN.path +
-            "/" +
-            politicsNews[politicsNews?.length - 1]?._id +
             "/" +
             convertToSlug(politicsNews[politicsNews?.length - 1]?.title)
           }
@@ -60,16 +58,10 @@ function RightContainer() {
             to={
               routes.NEWSPAGE_MAIN.path +
               "/" +
-              politicsNews[politicsNews?.length - 1]?._id +
-              "/" +
               convertToSlug(politicsNews[politicsNews?.length - 1]?.title)
             }
             onClick={() =>
-              dispacth(
-                handleClick(
-                  politicsNews[politicsNews?.length - 1]
-                )
-              )
+              dispacth(handleClick(politicsNews[politicsNews?.length - 1]))
             }
             className="link-container"
           >
@@ -105,8 +97,20 @@ function RightContainer() {
                   </svg>
                   0
                 </small>
-               <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,politicsNews[politicsNews?.length - 1]?._id) }</small>
-
+                <small
+                  style={{
+                    display: "flex",
+                    gap: "5px",
+                    alignItems: "center",
+                    color: "#002",
+                  }}
+                >
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                  {getNewsClicks(
+                    clickedNews,
+                    politicsNews[politicsNews?.length - 1]?._id
+                  )}
+                </small>
               </div>
             </div>
           </Link>

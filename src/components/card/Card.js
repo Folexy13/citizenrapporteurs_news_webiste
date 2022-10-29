@@ -240,11 +240,7 @@ function Card({ store, type }) {
           <p>{truncateText(store[0]?.description, 250)}</p>
           <Link
             to={
-              routes.NEWSPAGE_MAIN.path +
-              "/" +
-              store[0]?._id +
-              "/" +
-              convertToSlug(store[0]?.title)
+              routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store[0]?.title)
             }
             className="read"
           >
