@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
-import axios from 'axios'
+import axios from "axios";
 import { convertToSlug } from "../entertainment/Entertainment";
 import "./select-card.scss";
 import { getNewsClicks } from "../card/Card";
@@ -13,7 +13,7 @@ function SelectCard({ type }) {
   const disaptch = useDispatch();
   const opinion = useSelector((el) => el?.categoryOpinion);
   const opinionSport = useSelector((el) => el?.categorySport);
-  const clickedNews = useSelector(el=>el?.clickedNews)
+  const clickedNews = useSelector((el) => el?.clickedNews);
   const opinionBusiness = useSelector((el) => el?.categoryBusiness);
   const opinionNews = useSelector((el) => el?.categoryNews);
   const convertDate = (date) => {
@@ -23,27 +23,27 @@ function SelectCard({ type }) {
     return moment(date).format("LL");
   };
   const handleClicks = (id) => {
-      axios
+    axios
       .get("https://ipapi.co/json/")
       .then((response) => {
         let data = response.data;
         let payload = {
-          id,ip:data.ip
-        }
-        console.log(payload)
-        disaptch(newsAction.postClickedNews(payload))
-        disaptch( newsAction.getSingleNews(id))
+          id,
+          ip: data.ip,
+        };
+        console.log(payload);
+        disaptch(newsAction.postClickedNews(payload));
+        disaptch(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);
       });
-    }
+  };
   useEffect(() => {
     disaptch(newsAction.getOpinionCategory("opinions"));
     disaptch(newsAction.getBusinessCategory("business"));
     disaptch(newsAction.getSportCategory("sport"));
     disaptch(newsAction.getNewsCategory("breaking-news"));
-    
   }, [disaptch]);
   if (type === "opinion" && opinion?.length) {
     return (
@@ -57,9 +57,7 @@ function SelectCard({ type }) {
             "/" +
             convertToSlug(opinion[opinion?.length - 1]?.title)
           }
-          onClick={() =>
-            handleClicks(opinion[opinion?.length - 1]?._id)
-          }
+          onClick={() => handleClicks(opinion[opinion?.length - 1]?._id)}
           className="image-container"
         >
           <div className="overlay"></div>
@@ -100,7 +98,17 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-               <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,opinion[opinion?.length - 1]?._id) }</small>
+              <small
+                style={{
+                  display: "flex",
+                  gap: "5px",
+                  alignItems: "center",
+                  color: "#002",
+                }}
+              >
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                {getNewsClicks(clickedNews, opinion[opinion?.length - 1]?._id)}
+              </small>
             </div>
           </div>
         </Link>
@@ -126,9 +134,7 @@ function SelectCard({ type }) {
                         "/" +
                         convertToSlug(el?.title)
                       }
-                      onClick={() =>
-                        handleClicks(el?._id)
-                      }
+                      onClick={() => handleClicks(el?._id)}
                     >
                       <h2>{el?.title}</h2>
                     </Link>
@@ -146,7 +152,17 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-                        <small style={{ display: "flex", gap: "5px", alignItems: "center", color: "#002" }}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews, el?._id)}</small>
+                        <small
+                          style={{
+                            display: "flex",
+                            gap: "5px",
+                            alignItems: "center",
+                            color: "#002",
+                          }}
+                        >
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                          {getNewsClicks(clickedNews, el?._id)}
+                        </small>
                       </small>
                     </div>
                   </div>
@@ -214,8 +230,20 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-               <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,opinionSport[opinionSport?.length - 1]?._id) }</small>
-
+              <small
+                style={{
+                  display: "flex",
+                  gap: "5px",
+                  alignItems: "center",
+                  color: "#002",
+                }}
+              >
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                {getNewsClicks(
+                  clickedNews,
+                  opinionSport[opinionSport?.length - 1]?._id
+                )}
+              </small>
             </div>
           </div>
         </Link>
@@ -244,9 +272,7 @@ function SelectCard({ type }) {
                         "/" +
                         convertToSlug(el?.title)
                       }
-                      onClick={() =>
-                        handleClicks(el?._id)
-                      }
+                      onClick={() => handleClicks(el?._id)}
                     >
                       <h2>{el?.title}</h2>
                     </Link>
@@ -264,10 +290,18 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-               <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,el?._id) }</small>
-                        
+                        <small
+                          style={{
+                            display: "flex",
+                            gap: "5px",
+                            alignItems: "center",
+                            color: "#002",
+                          }}
+                        >
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                          {getNewsClicks(clickedNews, el?._id)}
+                        </small>
                       </small>
-
                     </div>
                   </div>
                 </div>
@@ -289,8 +323,7 @@ function SelectCard({ type }) {
             convertToSlug(opinionBusiness[opinionBusiness?.length - 1]?.title)
           }
           onClick={() =>
-             handleClicks(opinionBusiness[opinionBusiness?.length - 1]?._id)
-            
+            handleClicks(opinionBusiness[opinionBusiness?.length - 1]?._id)
           }
           className="image-container"
         >
@@ -339,7 +372,20 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-               <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,opinionBusiness[opinionBusiness?.length - 1]?._id) }</small>
+              <small
+                style={{
+                  display: "flex",
+                  gap: "5px",
+                  alignItems: "center",
+                  color: "#002",
+                }}
+              >
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                {getNewsClicks(
+                  clickedNews,
+                  opinionBusiness[opinionBusiness?.length - 1]?._id
+                )}
+              </small>
             </div>
           </div>
         </Link>
@@ -369,9 +415,7 @@ function SelectCard({ type }) {
                         "/" +
                         convertToSlug(el?.title)
                       }
-                      onClick={() =>
-                       handleClicks(el?._id)
-                      }
+                      onClick={() => handleClicks(el?._id)}
                     >
                       <h2>{el?.title}</h2>
                     </Link>
@@ -389,8 +433,17 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-               <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,el?._id) }</small>
-
+                        <small
+                          style={{
+                            display: "flex",
+                            gap: "5px",
+                            alignItems: "center",
+                            color: "#002",
+                          }}
+                        >
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                          {getNewsClicks(clickedNews, el?._id)}
+                        </small>
                       </small>
                     </div>
                   </div>
@@ -413,9 +466,7 @@ function SelectCard({ type }) {
             convertToSlug(opinionNews[opinionNews?.length - 1]?.title)
           }
           onClick={() =>
-                handleClicks(opinionNews[opinionNews?.length - 1]?._id
-              )
-            
+            handleClicks(opinionNews[opinionNews?.length - 1]?._id)
           }
           className="image-container"
         >
@@ -460,8 +511,20 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-               <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,opinionNews[opinionNews?.length - 1]?._id) }</small>
-
+              <small
+                style={{
+                  display: "flex",
+                  gap: "5px",
+                  alignItems: "center",
+                  color: "#002",
+                }}
+              >
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                {getNewsClicks(
+                  clickedNews,
+                  opinionNews[opinionNews?.length - 1]?._id
+                )}
+              </small>
             </div>
           </div>
         </Link>
@@ -477,11 +540,15 @@ function SelectCard({ type }) {
               return (
                 <div className="item">
                   <Link
-                    to={routes.NEWSPAGE_MAIN.path + "/"+ el?._id + "/"+ convertToSlug(el?.title)}
+                    to={
+                      routes.NEWSPAGE_MAIN.path +
+                      "/" +
+                      el?._id +
+                      "/" +
+                      convertToSlug(el?.title)
+                    }
                     className="img-container"
-                    onClick={() =>
-                        handleClicks(el?._id)
-                      }
+                    onClick={() => handleClicks(el?._id)}
                   >
                     <h5 className="nation-badge">BREAKING NEWS</h5>
                     <img src={el?.image} alt="img.jpg" />
@@ -495,9 +562,7 @@ function SelectCard({ type }) {
                         "/" +
                         convertToSlug(el?.title)
                       }
-                      onClick={() =>
-                        handleClicks(el?._id)
-                      }
+                      onClick={() => handleClicks(el?._id)}
                     >
                       <h2>{el?.title}</h2>
                     </Link>
@@ -515,8 +580,17 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-               <small style={{display:"flex",gap:"5px",alignItems:"center",color:"#002"}}><i class="fa fa-eye" aria-hidden="true"></i>{getNewsClicks(clickedNews,el?._id) }</small>
-
+                        <small
+                          style={{
+                            display: "flex",
+                            gap: "5px",
+                            alignItems: "center",
+                            color: "#002",
+                          }}
+                        >
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                          {getNewsClicks(clickedNews, el?._id)}
+                        </small>
                       </small>
                     </div>
                   </div>

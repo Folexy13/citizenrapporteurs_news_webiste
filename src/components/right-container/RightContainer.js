@@ -29,7 +29,7 @@ function RightContainer() {
         };
         console.log(payload);
         dispacth(newsAction.postClickedNews(payload));
-        dispacth(newsAction.getSingleNews(store?._id));
+        dispacth(newsAction.getSingleNews(payload));
         navigate(store);
       })
       .catch((error) => {

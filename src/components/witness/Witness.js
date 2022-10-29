@@ -26,14 +26,12 @@ function Witness() {
                 <div>
                   <Link
                     to={
-                      routes.NEWSPAGE_MAIN.path +
-                      "/" +
-                      el._id +
-                      "/" +
-                      convertToSlug(el?.title)
+                      routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(el?.title)
                     }
                     className="image-container"
-                    onClick={() => disaptch(newsAction.getSingleNews(el?._id))}
+                    onClick={() =>
+                      disaptch(newsAction.getSingleNews({ id: el?._id }))
+                    }
                   >
                     <img src={el?.image} alt="img.jpg" />
                     <a href="/" className="link-container">
@@ -94,9 +92,9 @@ function Witness() {
                           }
                           onClick={() =>
                             disaptch(
-                              newsAction.getSingleNews(
-                                el[crimeNews?.indexOf(el) + 5]?._id
-                              )
+                              newsAction.getSingleNews({
+                                id: el[crimeNews?.indexOf(el) + 5]?._id,
+                              })
                             )
                           }
                         >
@@ -126,9 +124,9 @@ function Witness() {
                           }
                           onClick={() =>
                             disaptch(
-                              newsAction.getSingleNews(
-                                el[crimeNews?.indexOf(el) + 6]?._id
-                              )
+                              newsAction.getSingleNews({
+                                id: el[crimeNews?.indexOf(el) + 6]?._id,
+                              })
                             )
                           }
                         >
