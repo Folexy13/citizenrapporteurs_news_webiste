@@ -60,7 +60,7 @@ function getLatestNews() {
   return (dispatch) => {
     trackPromise(
       axios
-        .get(`${BASE_API_URL}/latest-news`)
+        .get(`${"httt"}/latest-news`)
         .then((res) => {
           if (res.data.status) {
             dispatch({
