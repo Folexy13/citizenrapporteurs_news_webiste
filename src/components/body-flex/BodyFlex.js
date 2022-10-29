@@ -21,7 +21,6 @@ function BodyFlex({ type, store }) {
           id,
           ip: data.ip,
         };
-        console.log(payload);
         dispatch(newsAction.postClickedNews(payload));
         dispatch(newsAction.getSingleNews(payload));
       })
@@ -36,13 +35,7 @@ function BodyFlex({ type, store }) {
           return (
             <div className="body-flex" key={el?._id}>
               <Link
-                to={
-                  routes.NEWSPAGE_MAIN.path +
-                  "/" +
-                  el._id +
-                  "/" +
-                  convertToSlug(el.title)
-                }
+                to={routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(el.title)}
                 onClick={() => handleClicks(el._id)}
                 className="img"
               >
@@ -50,13 +43,7 @@ function BodyFlex({ type, store }) {
               </Link>
               <div className="item-body">
                 <Link
-                  to={
-                    routes.NEWSPAGE_MAIN.path +
-                    "/" +
-                    el._id +
-                    "/" +
-                    convertToSlug(el.title)
-                  }
+                  to={routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(el.title)}
                   onClick={() => handleClicks(el._id)}
                 >
                   <h2>{el.title}</h2>

@@ -31,13 +31,7 @@ function ImageCard({ store }) {
   return (
     <div className="image-card">
       <Link
-        to={
-          routes.NEWSPAGE_MAIN.path +
-          "/" +
-          store?._id +
-          "/" +
-          convertToSlug(store.title)
-        }
+        to={routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store.title)}
         onClick={() => handleClicks(store?._id)}
         className="image-container"
       >
