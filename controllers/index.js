@@ -95,7 +95,11 @@ async function editNews(req, res) {
         });
       }
     }
-  );
+  )
+    .clone()
+    .catch(function (err) {
+      console.log(err);
+    });
 }
 async function deleteNews(req, res) {
   let { id } = req.params;
@@ -110,9 +114,12 @@ async function deleteNews(req, res) {
     return res.status(200).json({
       status: 200,
       message: "News deleted",
-      news: news, //returns latest added five news
     });
-  });
+  })
+    .clone()
+    .catch(function (err) {
+      console.log(err);
+    });
 }
 async function getSingleNews(req, res) {
   const { id } = req.body;
