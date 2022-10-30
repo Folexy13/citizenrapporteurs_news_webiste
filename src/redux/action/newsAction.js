@@ -22,6 +22,8 @@ export const newsAction = {
   getClickedNews,
   login,
   postClickedNews,
+  editNews,
+  deleteNews,
 };
 function login(payload) {
   return (dispatch) => {
@@ -53,6 +55,38 @@ function postNews(payload) {
       })
       .catch((err) => {
         dispatch(alertActions.error(err));
+      });
+  };
+}
+function editNews(id) {
+  return (dispatch) => {
+    axios
+      .put(`${BASE_API_URL}/edit-news/${id}`)
+      .then((res) => {
+        if (res.data.status) {
+          dispatch(alertActions.success(res.data.message));
+        } else {
+          throw res.data;
+        }
+      })
+      .catch((err) => {
+        dispatch(alertActions.error(err.message));
+      });
+  };
+}
+function deleteNews(id) {
+  return (dispatch) => {
+    axios
+      .put(`${BASE_API_URL}/delete-news/${id}`)
+      .then((res) => {
+        if (res.data.status) {
+          dispatch(alertActions.success(res.data.message));
+        } else {
+          throw res.data;
+        }
+      })
+      .catch((err) => {
+        dispatch(alertActions.error(err.message));
       });
   };
 }

@@ -1,19 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { newsAction } from "../../redux/action/newsAction";
 import axios from "axios";
 import { routes } from "../../routes";
 import { getNewsClicks, truncateText } from "../card/Card";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import ImageCard from "../image-card/ImageCard";
+import { Pagination } from "../../components";
 import "./news-flex.scss";
+import Swal from "sweetalert2";
 
 function NewsFlex() {
   const { slug } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  let PageSize = 10;
+  const [currentPage, setCurrentPage] = useState(1);
   const clickedNews = useSelector((el) => el?.clickedNews);
   const store = useSelector((el) => el?.categoryNews);
+  const data = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return store.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, store, PageSize]);
   const handleClicks = (id) => {
     axios
       .get("https://ipapi.co/json/")
@@ -30,6 +40,27 @@ function NewsFlex() {
       .catch((error) => {
         console.log(error);
       });
+  };
+  const handleDeleteNews = (id) => {
+    Swal.fire({
+      title: "Are you sure you want to delete this news?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(newsAction.deleteNews(id));
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  };
+  const handleEditNews = (id) => {
+    let news = store.find((el) => el._id === id);
+    dispatch(newsAction.getSingleNews({ id }));
+    navigate(`/edit-news/${convertToSlug(news.title)}`);
   };
   useEffect(() => {
     dispatch(newsAction.getNewsCategory(slug));
@@ -51,7 +82,7 @@ function NewsFlex() {
   return (
     <div>
       <ImageCard store={store[store?.length - 1]} />
-      {store
+      {data
         ?.filter((el) => el?.title !== store[store?.length - 1]?.title)
         ?.map((ele) => {
           return (
@@ -112,10 +143,30 @@ function NewsFlex() {
                   </small>
                 </div>
                 <p>{truncateText(ele?.description, 200)}</p>
+                <div className="flex">
+                  <div onClick={() => handleDeleteNews(ele?._id)}>
+                    <i class="fa fa-trash" aria-hidden="true">
+                      <span>Delete</span>
+                    </i>
+                  </div>
+
+                  <div onClick={() => handleEditNews(ele?._id)}>
+                    <i class="fa fa-pencil" aria-hidden="true">
+                      <span> Edit</span>
+                    </i>
+                  </div>
+                </div>
               </div>
             </div>
           );
         })}
+      <Pagination
+        className="pagination-bar"
+        currentPage={currentPage}
+        totalCount={store?.length - 1}
+        pageSize={PageSize}
+        onPageChange={(page) => setCurrentPage(page)}
+      />
     </div>
   );
 }

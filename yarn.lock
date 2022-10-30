@@ -4684,7 +4684,7 @@ class-utils@^0.3.5:
 
 classnames@^2.3.2:
   version "2.3.2"
-  resolved "https://registry.npmjs.org/classnames/-/classnames-2.3.2.tgz"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
 
 clean-css@^5.2.2:
@@ -14248,6 +14248,11 @@ svgo@^2.7.0:
     csso "^4.2.0"
     picocolors "^1.0.0"
     stable "^0.1.8"
+
+sweetalert2@^11.6.4:
+  version "11.6.4"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.6.4.tgz#8d0bcfcc9af415319f9e93262923b49834da729c"
+  integrity sha512-EfvbqpApvOLbJ7UehO4rjmlltramOGVNpWhh9hBDyeSP1WhoslpmYUXZXI8AiC77Yl6esCfRcWXpzCAKkbvcgg==
 
 symbol-observable@^1.1.0:
   version "1.2.0"

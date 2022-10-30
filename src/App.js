@@ -1,13 +1,13 @@
 import "./App.css";
 import {
   NewsPage,
-  CreateNews,
+  UpdateNews,
   HomePage,
   NewsMain,
   LoginPage,
   RouteGard,
 } from "./pages";
-import React from "react";
+import React, { useEffect } from "react";
 import { routes } from "./routes";
 
 import {
@@ -18,6 +18,8 @@ import {
 } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
 import { useLayoutEffect, useState } from "react";
+import { newsAction } from "./redux/action/newsAction";
+import { useDispatch } from "react-redux";
 const Wrapper = ({ children }) => {
   const location = useLocation();
   useLayoutEffect(() => {
@@ -27,16 +29,15 @@ const Wrapper = ({ children }) => {
 };
 function App() {
   const [show, setShow] = useState(false);
-
+  const dispacth = useDispatch();
   const handleToggleShow = () => {
     setShow(!show);
-    console.log("first");
   };
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     dispacth(newsAction.getClickedNews());
-  //   }, 1000);
-  // }, [dispacth]);
+  useEffect(() => {
+    setInterval(() => {
+      dispacth(newsAction.getClickedNews());
+    }, 1000);
+  }, [dispacth]);
 
   return (
     <div className="main-container">
@@ -54,7 +55,7 @@ function App() {
             <Route
               name={routes.HOMEPAGE.name}
               path={"/create-news"}
-              element={<CreateNews />}
+              element={<UpdateNews type={"create"} />}
               exact
             />
             <Route
@@ -73,8 +74,12 @@ function App() {
               element={<LoginPage />}
             />
             <Route element={<RouteGard />}>
-              <Route path="/dashboard" element={<>"Hello</>}></Route>
+              <Route path="/dashboard" element={<>"Hello</>} />
             </Route>
+            <Route
+              path="/edit-news/:slug"
+              element={<UpdateNews type="update" />}
+            />
           </Routes>
         </Wrapper>
       </Router>

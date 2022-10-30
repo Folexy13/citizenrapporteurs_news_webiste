@@ -53,8 +53,6 @@ function SelectCard({ type }) {
           to={
             routes.NEWSPAGE_MAIN.path +
             "/" +
-            opinion[opinion?.length - 1]?._id +
-            "/" +
             convertToSlug(opinion[opinion?.length - 1]?.title)
           }
           onClick={() => handleClicks(opinion[opinion?.length - 1]?._id)}
@@ -129,8 +127,6 @@ function SelectCard({ type }) {
                     <Link
                       to={
                         routes.NEWSPAGE_MAIN.path +
-                        "/" +
-                        el._id +
                         "/" +
                         convertToSlug(el?.title)
                       }

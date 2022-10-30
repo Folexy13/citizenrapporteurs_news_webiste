@@ -10,6 +10,8 @@ import Witness from "./witness/Witness";
 import RightContainer from "./right-container/RightContainer";
 import NewsFlex from "./news-flex/NewsFlex";
 import Sidebar from "./Sidebar/Sidebar";
+import Container from "./Dashboard/Dashboard";
+import Pagination from "./pagination/Pagination";
 import { Spinner } from "./Spinner/Spinner";
 
 // Export Container
@@ -27,4 +29,6 @@ export {
   NewsFlex,
   Sidebar,
   Spinner,
+  Container,
+  Pagination,
 };
