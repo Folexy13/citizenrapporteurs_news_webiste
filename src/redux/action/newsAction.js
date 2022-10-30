@@ -5,7 +5,7 @@ import { userConstants } from "../../constant/userConstants";
 import axios from "axios";
 import { trackPromise } from "react-promise-tracker";
 
-const BASE_API_URL = "https://cr-news-api.herokuapp.com";
+export const BASE_API_URL = "https://cr-news-api.herokuapp.com";
 // const BASE_API_URL = "http://localhost:8080"
 export const newsAction = {
   postNews,
@@ -77,7 +77,7 @@ function editNews(id) {
 function deleteNews(id) {
   return (dispatch) => {
     axios
-      .put(`${BASE_API_URL}/delete-news/${id}`)
+      .delete(`${BASE_API_URL}/delete-news/${id}`)
       .then((res) => {
         if (res.data.status) {
           dispatch(alertActions.success(res.data.message));
@@ -90,6 +90,7 @@ function deleteNews(id) {
       });
   };
 }
+
 function getLatestNews() {
   return (dispatch) => {
     trackPromise(
@@ -218,7 +219,6 @@ function getClickedNews() {
     });
   };
 }
-
 function postClickedNews(payload) {
   return (dispatch) => {
     axios.post(`${BASE_API_URL}/clicked-news`, payload).then((res) => {

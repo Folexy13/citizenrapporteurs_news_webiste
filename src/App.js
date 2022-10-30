@@ -52,12 +52,7 @@ function App() {
               element={<HomePage />}
               exact
             />
-            <Route
-              name={routes.HOMEPAGE.name}
-              path={"/create-news"}
-              element={<UpdateNews type={"create"} />}
-              exact
-            />
+
             <Route
               name={routes.NEWSPAGE.name}
               path={routes.NEWSPAGE.path + ":slug"}
@@ -74,12 +69,18 @@ function App() {
               element={<LoginPage />}
             />
             <Route element={<RouteGard />}>
-              <Route path="/dashboard" element={<>"Hello</>} />
+              <Route
+                name={routes.HOMEPAGE.name}
+                path={"/create-news"}
+                element={<UpdateNews type={"create"} />}
+                exact
+              />
+
+              <Route
+                path="/edit-news/:slug"
+                element={<UpdateNews type="update" />}
+              />
             </Route>
-            <Route
-              path="/edit-news/:slug"
-              element={<UpdateNews type="update" />}
-            />
           </Routes>
         </Wrapper>
       </Router>

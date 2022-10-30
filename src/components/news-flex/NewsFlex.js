@@ -60,6 +60,7 @@ function NewsFlex() {
   const handleEditNews = (id) => {
     let news = store.find((el) => el._id === id);
     dispatch(newsAction.getSingleNews({ id }));
+    localStorage.setItem("newsID", id);
     navigate(`/edit-news/${convertToSlug(news.title)}`);
   };
   useEffect(() => {

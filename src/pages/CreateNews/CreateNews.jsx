@@ -6,11 +6,19 @@ import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./CreateNews.scss";
 const isNotEmpty = (value) => value?.trim() !== "";
-
 const News = ({ type }) => {
   const alert = useSelector((el) => el?.alert);
   const dispatch = useDispatch();
-  const news = useSelector((el) => el?.mainNews);
+  const id = localStorage.getItem("newsID");
+  const [news, setNews] = useState("");
+
+  useEffect(() => {
+    axios
+      .post(`https://cr-news-api.herokuapp.com/single-news`, { id })
+      .then((res) => {
+        setNews(res.data.news);
+      });
+  }, [id]);
   const {
     value: title,
     isValid: titleIsValid,
@@ -31,21 +39,23 @@ const News = ({ type }) => {
     hasError: dateHasError,
     valueChangedHandler: dateChangeHandler,
     inputBlurHandler: dateBlurHandler,
-  } = useForm(isNotEmpty, news.date);
+  } = useForm(isNotEmpty, news?.createdAt);
   const {
     value: category,
     isValid: categoryIsValid,
     hasError: categoryHasError,
     valueChangedHandler: categoryChangeHandler,
     inputBlurHandler: categoryBlurHandler,
-  } = useForm(isNotEmpty, news.category);
+  } = useForm(isNotEmpty, news?.category);
   const {
     value: description,
     isValid: descriptionIsValid,
     hasError: descriptionHasError,
     valueChangedHandler: descriptionChangeHandler,
     inputBlurHandler: descriptionBlurHandler,
-  } = useForm(isNotEmpty, news.description);
+  } = useForm(isNotEmpty, news?.description);
+  console.log(date, news?.createdAt);
+
   const { value: video, valueChangedHandler: videoChangeHandler } =
     useForm(isNotEmpty);
   const [image, setImage] = useState([]);

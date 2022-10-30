@@ -1,9 +1,7 @@
 import { useState } from "react";
 
-export const useForm = (validateValue, value, defaultValue) => {
-  const [enteredValue, setEnteredValue] = useState(
-    defaultValue ? defaultValue : value
-  );
+export const useForm = (validateValue, value) => {
+  const [enteredValue, setEnteredValue] = useState(value);
   const [isTouched, setIsTouched] = useState(false);
 
   const valueIsValid = validateValue(enteredValue) && enteredValue?.length > 0;
