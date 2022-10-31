@@ -295,7 +295,6 @@ async function getNewsClicks(req, res) {
 }
 async function getClickedNews(req, res) {
   await Clicks.find({}, function (err, news) {
-    console.log(news);
     if (err) {
       return res.json({
         status: false,
