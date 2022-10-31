@@ -1,9 +1,12 @@
 require("dotenv").config();
 const path = require("path");
+const fs = require("fs");
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const indexPath = path.resolve(__dirname, "build", "index.html");
 const router = require("./routes");
+const { getSingleNews } = require("./controllers");
 
 const app = express();
 
@@ -14,11 +17,12 @@ app.use((req, res, next) => {
     "https://citizenrapporteurs.com",
     "https://www.citizenrapporteurs.com/",
     "https://www.citizenrapporteurs.com",
-    "https://cr-news-api.herokuapp.com/",
     "https://citizen-rapporteur.netlify.app/",
     "https://citizen-rapporteur.netlify.app",
     "http://localhost:3000",
     "http://localhost:8080",
+    "https://celadon-halva-7a36a9.netlify.app",
+    "https://www.celadon-halva-7a36a9.netlify.app",
   ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
@@ -34,9 +38,6 @@ app.use(morgan("combined"));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
-app.get("/", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
 
 app.use(router);
 
