@@ -13,9 +13,9 @@ const {
 } = require("../controllers");
 
 const router = require("express").Router();
-router.get("/", (req, res) => {
-  res.send("Live");
-});
+// router.get("/", (req, res) => {
+//   res.send("Live");
+// });
 router.post("/create-news", postNews);
 router.put("/edit-news/:id", editNews);
 router.delete("/delete-news/:id", deleteNews);

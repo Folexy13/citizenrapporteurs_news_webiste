@@ -192,6 +192,7 @@ async function postComments(req, res) {}
 
 async function postNewsClicks(req, res) {
   const { ip, id } = req.body;
+
   await Clicks.findOne({ newsID: id }, function (err, data) {
     if (err) {
       return res.json({
@@ -310,6 +311,7 @@ async function login(req, res) {
 }
 
 async function getSearchQuery(req, res) {}
+
 module.exports = {
   postNews,
   editNews,
