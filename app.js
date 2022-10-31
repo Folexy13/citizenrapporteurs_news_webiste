@@ -19,7 +19,6 @@ app.use((req, res, next) => {
     "https://citizen-rapporteur.netlify.app",
     "http://localhost:3000",
     "http://localhost:8080",
-    "https://www.celadon-halva-7a36a9.netlify.app",
   ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
