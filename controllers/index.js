@@ -2,6 +2,9 @@ require("dotenv").config();
 const News = require("../model/news");
 const Clicks = require("../model/click");
 const jwt = require("jsonwebtoken");
+const path = require("path");
+const indexPath = path.resolve(__dirname, "..", "build", "index.html");
+const fs = require("fs");
 const getSlugFromCategory = (category) => {
   let slug = category
     .trim()
@@ -123,6 +126,9 @@ async function deleteNews(req, res) {
 }
 async function getSingleNews(req, res) {
   const { id } = req.body;
+  const truncateText = (str, size) => {
+    return str.length > size ? str.substring(0, size - 3) + "..." : str;
+  };
   await News.findById({ _id: id }, (err, news) => {
     if (err) {
       return res.json({
@@ -131,10 +137,29 @@ async function getSingleNews(req, res) {
         error: err,
       });
     }
-    return res.status(200).json({
-      status: 200,
-      news: news, //returns latest added five news
+    fs.readFile(indexPath, "utf8", (err, htmlData) => {
+      if (err) {
+        console.error("Error during file reading", err);
+        return res.status(404).end();
+      }
+      // if (!post) return res.status(404).send("Post not found");
+
+      // inject meta tags
+      htmlData = htmlData
+        .replace("__META_OG_TITLE__", news.title)
+        .replace("__META_OG_DESCRIPTION__", truncateText(news.description, 120))
+        .replace("__META_DESCRIPTION__", truncateText(news.description, 120))
+        .replace("__META_OG_IMAGE__", news.image);
+      return res.status(200).json({
+        status: 200,
+        news: news,
+      });
+      // res.send(htmlData);
     });
+    // return res.status(200).json({
+    //   status: 200,
+    //   news: news, //returns latest added five news
+    // });
   })
     .clone()
     .catch(function (err) {
