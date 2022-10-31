@@ -111,12 +111,11 @@ function Card({ store, type }) {
               </Link>
               <div className="btn-flex">
                 <a
-                  href="whatsapp://send?text=The text to share!"
-                  data-action="share/whatsapp/share"
-                  target={"_blank"}
+                  href="https://twitter.com/intent/tweet?url=https://dev.to/dsasse07/beginner-s-guide-to-jest-testing-in-react-1nig&text=Beginner's%20Guide%20to%20Jest%20Testing%20in%20React&via=dannysasse"
+                  target="_blank"
                   rel="noreferrer"
                 >
-                  Share via Whatsapp
+                  Share on Twitter
                 </a>
                 <WhatsappShareButton
                   image={store.image}
