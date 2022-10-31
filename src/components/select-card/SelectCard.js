@@ -457,8 +457,6 @@ function SelectCard({ type }) {
           to={
             routes.NEWSPAGE_MAIN.path +
             "/" +
-            opinionNews[opinionNews?.length - 1]._id +
-            "/" +
             convertToSlug(opinionNews[opinionNews?.length - 1]?.title)
           }
           onClick={() =>
@@ -537,11 +535,7 @@ function SelectCard({ type }) {
                 <div className="item">
                   <Link
                     to={
-                      routes.NEWSPAGE_MAIN.path +
-                      "/" +
-                      el?._id +
-                      "/" +
-                      convertToSlug(el?.title)
+                      routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(el?.title)
                     }
                     className="img-container"
                     onClick={() => handleClicks(el?._id)}
