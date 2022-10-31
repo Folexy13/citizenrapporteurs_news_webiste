@@ -126,10 +126,11 @@ async function deleteNews(req, res) {
 }
 async function getSingleNews(req, res) {
   const { id } = req.body;
+  const { slug } = req.params;
   const truncateText = (str, size) => {
     return str.length > size ? str.substring(0, size - 3) + "..." : str;
   };
-  await News.findById({ _id: id }, (err, news) => {
+  await News.findOne({ $or: [{ _id: id }, { slug }] }, (err, news) => {
     if (err) {
       return res.json({
         status: 403,
