@@ -18,7 +18,7 @@ import {
 } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
 import { useLayoutEffect, useState } from "react";
-import { newsAction } from "./redux/action/newsAction";
+// import { newsAction } from "./redux/action/newsAction";
 import { useDispatch } from "react-redux";
 const Wrapper = ({ children }) => {
   const location = useLocation();
