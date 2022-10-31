@@ -110,6 +110,14 @@ function Card({ store, type }) {
                 <h1>{store?.title}</h1>
               </Link>
               <div className="btn-flex">
+                <a
+                  href="whatsapp://send?text=The text to share!"
+                  data-action="share/whatsapp/share"
+                  target={"_blank"}
+                  rel="noreferrer"
+                >
+                  Share via Whatsapp
+                </a>
                 <WhatsappShareButton
                   image={store.image}
                   title={truncateText(store?.title, 120)}
