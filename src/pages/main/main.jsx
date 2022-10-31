@@ -6,7 +6,7 @@ import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./main.scss";
 import { useParams } from "react-router-dom";
-// import MetaDecorator from "../../helpers/metaDecorator";
+import MetaDecorator from "../../helpers/metaDecorator";
 const Main = ({ type }) => {
   const store = useSelector((el) => el?.mainNews);
   let news = useSelector((el) => el?.categoryNews);
@@ -41,12 +41,12 @@ const Main = ({ type }) => {
   }, [dispacth, id]);
   return (
     <>
-      {/* <MetaDecorator
+      <MetaDecorator
         description={store.description}
         title={store.title}
         imageUrl={store.image}
         imageAlt="alt"
-      /> */}
+      />
       <div className="news_main">
         <Layout hasRightSidebar={false}>
           <Card store={store} type="main" />
