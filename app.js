@@ -14,6 +14,7 @@ app.use((req, res, next) => {
     "https://citizenrapporteurs.com",
     "https://www.citizenrapporteurs.com/",
     "https://www.citizenrapporteurs.com",
+    "https://cr-news-api.herokuapp.com/",
     "https://citizen-rapporteur.netlify.app/",
     "https://citizen-rapporteur.netlify.app",
     "http://localhost:3000",
