@@ -11,7 +11,7 @@ import React, { useEffect } from "react";
 import { routes } from "./routes";
 
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
