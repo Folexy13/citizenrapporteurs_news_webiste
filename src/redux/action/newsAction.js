@@ -97,6 +97,7 @@ function getLatestNews() {
         .get(`${BASE_API_URL}/latest-news`)
         .then((res) => {
           if (res.data.status) {
+            alert(JSON.stringify(res.data.news));
             dispatch({
               type: userConstants.GET_LATEST_NEWS,
               data: res.data?.news,
