@@ -13,3 +13,9 @@ a {
   color: inherit;
   text-decoration: unset;
 }
+
+button:disabled {
+  background: #ccc !important;
+  color: #fff !important;
+  cursor: not-allowed;
+}
