@@ -8,14 +8,14 @@ import axios from "axios";
 import { getNewsClicks } from "../card/Card";
 import "./entertainment.scss";
 export const convertToSlug = (input) => {
-  if (input) {
+  if (typeof input === "string") {
     let slug = input
-      .trim()
-      .toLocaleLowerCase()
-      .replace(/\s/g, "-")
-      .replaceAll(",", "-")
-      .replace(/[^\w\s_.,-/#-'"]/g, "-")
-      .split("-");
+      ?.trim()
+      ?.toLocaleLowerCase()
+      ?.replace(/\s/g, "-")
+      ?.replaceAll(",", "-")
+      ?.replace(/[^\w\s_.,-/#-'"]/g, "-")
+      ?.split("-");
     slug = slug
       .map((el) => el.trim())
       .filter((el) => el !== "")
@@ -23,11 +23,6 @@ export const convertToSlug = (input) => {
     return slug;
   }
 };
-// console.log(
-//   convertToSlug(
-//     "CAN Calls Inclusion of Its Members In APC Campaign Council ‘worrisome,’ - Sets To Probe It"
-//   )
-// );
 
 export const convertDate = (date) => {
   return moment(date).format("LL");
