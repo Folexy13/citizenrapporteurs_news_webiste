@@ -44,7 +44,7 @@ const Login = () => {
     if (alert.type === "alert-success") {
       navigate("/create-news");
     }
-    if (alert) {
+    if (alert.type) {
       setLoading(!loading);
     }
   }, [alert, navigate, loading]);
