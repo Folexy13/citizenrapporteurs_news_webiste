@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "../../helpers/useForm";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const alert = useSelector((el) => el?.alert);
+  const [loading, setLoading] = useState(false);
   const {
     value: username,
     isValid: usernameIsValid,
@@ -26,15 +27,16 @@ const Login = () => {
     inputBlurHandler: passwordBlurHandler,
   } = useForm(isNotEmpty);
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
     let payload = {
       username: username.trim(),
       password: password.trim(),
     };
-    console.log(username);
 
     if (!passwordIsValid || !usernameIsValid) {
       dispatch(alertActions.error("Fill in all required fields"));
+      setLoading(false);
       return;
     }
     dispatch(newsAction.login(payload));
@@ -42,6 +44,9 @@ const Login = () => {
   useEffect(() => {
     if (alert.type === "alert-success") {
       navigate("/create-news");
+    }
+    if (alert) {
+      setLoading(!loading);
     }
   }, [alert, navigate]);
 
@@ -75,7 +80,9 @@ const Login = () => {
           )}
         </div>
         <div className="form-control">
-          <button type="submit">Login</button>
+          <button disabled={loading} type="submit">
+            {loading ? "Loading..." : "Login"}
+          </button>
         </div>
       </form>
     </div>
