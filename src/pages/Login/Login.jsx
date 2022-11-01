@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./Login.scss";
+import { routes } from "../../routes";
 const isNotEmpty = (value) => value?.trim() !== "";
 const Login = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const Login = () => {
   };
   useEffect(() => {
     if (alert.type === "alert-success") {
-      navigate("/dashboard");
+      navigate(routes.HOMEPAGE.path);
     }
   }, [alert, navigate]);
 

@@ -10,7 +10,6 @@ const ProtectedPages = () => {
   let isLoggedin = JSON.parse(localStorage.getItem("isLoggedIn"));
   try {
     const time = JSON.parse(atob(token?.split(".")[1]))?.exp;
-
     const tokenIsExpired = time * 1000 < new Date();
     tokenIsExpired
       ? localStorage.setItem("isLoggedIn", false)

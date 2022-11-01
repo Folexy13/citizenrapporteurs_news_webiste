@@ -7,13 +7,16 @@ import { newsAction } from "../../redux/action/newsAction";
 import "./main.scss";
 import { useParams } from "react-router-dom";
 import MetaDecorator from "../../helpers/metaDecorator";
+import axios from "axios";
+import { BASE_API_URL } from "../../redux/action/newsAction";
 const Main = ({ type }) => {
-  const store = useSelector((el) => el?.mainNews);
+  let prod;
   let news = useSelector((el) => el?.categoryNews);
   const { id } = useParams();
   const [comment, setComment] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
+  const newsID = localStorage.getItem("newsID");
 
   const dispacth = useDispatch();
   const handleSubmitComment = (e) => {
@@ -29,6 +32,13 @@ const Main = ({ type }) => {
     }
     dispacth(newsAction.postComment(payload));
   };
+  let store = useSelector((el) => el?.mainNews);
+
+  if (!store.length)
+    axios.post(`${BASE_API_URL}/single-news`, { id: newsID }).then((res) => {
+      prod = res.data.news;
+    });
+
   useEffect(() => {
     dispacth(newsAction.getNewsCategory(store.slug));
   }, [dispacth, store, id]);
@@ -42,14 +52,15 @@ const Main = ({ type }) => {
   return (
     <>
       <MetaDecorator
-        description={store.description}
-        title={store.title}
-        imageUrl={store.image}
+        description={store.length ? store?.description : prod?.description}
+        title={store.length ? store?.title : prod?.title}
+        imageUrl={store.length ? store?.image : prod?.image}
         imageAlt="alt"
       />
+      {console.log(prod)}
       <div className="news_main">
         <Layout hasRightSidebar={false}>
-          <Card store={store} type="main" />
+          <Card store={store.length ? store : prod} type="main" />
           <Opinion type="main" store={news} />
           <form onSubmit={handleSubmitComment} className="comment-section">
             <h1>Leave a Reply</h1>

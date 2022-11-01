@@ -118,9 +118,9 @@ function Card({ store, type }) {
                   Share on Twitter
                 </a>
                 <WhatsappShareButton
-                  image={store.image}
+                  image={store?.image}
                   title={truncateText(store?.title, 120)}
-                  description={truncateText(store.description, 120)}
+                  description={truncateText(store?.description, 120)}
                   url={window.location.href}
                   className="wh"
                 >
@@ -129,10 +129,10 @@ function Card({ store, type }) {
                 </WhatsappShareButton>
                 <FacebookShareButton
                   url={window.location.href}
-                  image={store.image}
+                  image={store?.image}
                   className="fb"
                   quote={truncateText(store?.title, 120)}
-                  description={truncateText(store.description, 120)}
+                  description={truncateText(store?.description, 120)}
                 >
                   <i className="fa fa-facebook-official"></i>{" "}
                   <span>Share on Facebook</span>
@@ -141,7 +141,7 @@ function Card({ store, type }) {
                   url={window.location.href}
                   className="ins"
                   title={truncateText(store?.title, 120)}
-                  summary={truncateText(store.description, 120)}
+                  summary={truncateText(store?.description, 120)}
                 >
                   <i className="fa fa-linkedin"></i>{" "}
                   <span>Share On LinkedIn</span>
@@ -151,7 +151,7 @@ function Card({ store, type }) {
                   url={window.location.href}
                   className="tw"
                   title={truncateText(store?.title, 120)}
-                  description={truncateText(store.description, 120)}
+                  description={truncateText(store?.description, 120)}
                 >
                   <i className="fa fa-twitter"></i>{" "}
                   <span>Share On Twitter</span>
@@ -160,7 +160,7 @@ function Card({ store, type }) {
               <p
                 style={{ fontSize: 16, marginTop: 80 }}
                 title={truncateText(store?.title, 120)}
-                description={truncateText(store.description, 120)}
+                description={truncateText(store?.description, 120)}
               >
                 {store?.description}
               </p>

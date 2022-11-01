@@ -4,7 +4,7 @@ import { userConstants } from "../../constant/userConstants";
 // import axios from "../../helpers/api";
 import axios from "axios";
 import { trackPromise } from "react-promise-tracker";
-const BASE_API_URL = "https://cr-news-api.herokuapp.com";
+export const BASE_API_URL = "https://cr-news-api.herokuapp.com";
 // const BASE_API_URL = "http://localhost:8080";
 export const newsAction = {
   postNews,
@@ -115,6 +115,7 @@ function getSingleNews(payload) {
   return (dispatch) => {
     trackPromise(
       axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
+        localStorage.setItem("newsID", res.data.news._id);
         dispatch({
           type: userConstants.GET_SINGLE_NEWS,
           news: res.data.news,
