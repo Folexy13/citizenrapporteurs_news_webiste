@@ -6,17 +6,13 @@ const path = require("path");
 const indexPath = path.resolve(__dirname, "..", "build", "index.html");
 const fs = require("fs");
 const getSlugFromCategory = (category) => {
-  let slug;
-  if (typeof category === "string") {
-    slug = category
-      .trim()
-      .toLocaleLowerCase()
-      .replace(/\s/g, "-")
-      .replaceAll(",", "-")
-      .replace(/[^\w\s_.,-/#-'"]/g, "-")
-      .split("-");
-  }
-
+  let slug = category
+    .trim()
+    .toLocaleLowerCase()
+    .replace(/\s/g, "-")
+    .replaceAll(",", "-")
+    .replace(/[^\w\s_.,-/#-'"]/g, "-")
+    .split("-");
   slug = slug
     .map((el) => el.trim())
     .filter((el) => el !== "")
