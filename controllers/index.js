@@ -105,7 +105,7 @@ async function editNews(req, res) {
     });
 }
 async function deleteNews(req, res) {
-  let { id } = req.params;
+  let { id } = req.body;
   await News.findByIdAndDelete({ _id: id }, function (err, news) {
     if (err) {
       return res.json({
@@ -127,9 +127,7 @@ async function deleteNews(req, res) {
 async function getSingleNews(req, res) {
   const { id } = req.body;
   const { slug } = req.params;
-  const truncateText = (str, size) => {
-    return str.length > size ? str.substring(0, size - 3) + "..." : str;
-  };
+
   await News.findOne({ $or: [{ _id: id }, { slug }] }, (err, news) => {
     if (err) {
       return res.json({
