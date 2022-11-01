@@ -39,7 +39,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": ".",
+  "homepage": "https://citizen-rapporteur.netlify.app",
   "browserslist": {
     "production": [
       ">0.2%",
