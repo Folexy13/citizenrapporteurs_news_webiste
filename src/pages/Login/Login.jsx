@@ -41,7 +41,7 @@ const Login = () => {
   };
   useEffect(() => {
     if (alert.type === "alert-success") {
-      navigate(routes.HOMEPAGE.path);
+      navigate("/create-news");
     }
   }, [alert, navigate]);
 

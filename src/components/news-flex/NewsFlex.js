@@ -17,6 +17,7 @@ function NewsFlex() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let PageSize = 10;
+  let isLoggedin = JSON.parse(localStorage.getItem("isLoggedIn"));
   const [currentPage, setCurrentPage] = useState(1);
   const clickedNews = useSelector((el) => el?.clickedNews);
   const store = useSelector((el) => el?.categoryNews);
@@ -58,7 +59,13 @@ function NewsFlex() {
           .then((res) => {
             if (res.data.status) {
               dispatch(alertActions.success(res.data.message));
-              Swal.fire("Deleted!", "News has been deleted.", "success");
+              Swal.fire("Deleted!", "News has been deleted.", "success").then(
+                (res) => {
+                  if (res.isConfirmed) {
+                    dispatch(newsAction.getNewsCategory(slug));
+                  }
+                }
+              );
             } else {
               throw res.data;
             }
@@ -157,19 +164,21 @@ function NewsFlex() {
                   </small>
                 </div>
                 <p>{truncateText(ele?.description, 200)}</p>
-                <div className="flex">
-                  <div onClick={() => handleDeleteNews(ele?._id)}>
-                    <i class="fa fa-trash" aria-hidden="true">
-                      <span>Delete</span>
-                    </i>
-                  </div>
+                {isLoggedin && (
+                  <div className="flex">
+                    <div onClick={() => handleDeleteNews(ele?._id)}>
+                      <i class="fa fa-trash" aria-hidden="true">
+                        <span>Delete</span>
+                      </i>
+                    </div>
 
-                  <div onClick={() => handleEditNews(ele?._id)}>
-                    <i class="fa fa-pencil" aria-hidden="true">
-                      <span> Edit</span>
-                    </i>
+                    <div onClick={() => handleEditNews(ele?._id)}>
+                      <i class="fa fa-pencil" aria-hidden="true">
+                        <span> Edit</span>
+                      </i>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           );

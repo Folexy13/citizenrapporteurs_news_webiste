@@ -14,7 +14,7 @@ const ProtectedPages = () => {
     tokenIsExpired
       ? localStorage.setItem("isLoggedIn", false)
       : localStorage.setItem("isLoggedIn", true);
-    isAuth = !tokenIsExpired && isLoggedin;
+    isAuth = !tokenIsExpired || isLoggedin;
   } catch {}
   if (!isAuth) {
     dispatch(alertActions.error("You must login first"));
