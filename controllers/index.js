@@ -181,7 +181,7 @@ async function getNewsByCategory(req, res) {
     }
     return res.status(200).json({
       status: 200,
-      news: [], //returns latest added five news
+      news, //returns latest added five news
     });
   })
     .clone()
@@ -200,7 +200,7 @@ async function getLatestNews(req, res) {
     .then((news) => {
       return res.status(200).json({
         status: 200,
-        news, //returns latest added ten news
+        news: [], //returns latest added ten news
       });
     })
     .catch((err) => {
