@@ -76,7 +76,7 @@ function editNews(id) {
 function deleteNews(id) {
   return (dispatch) => {
     axios
-      .delete(`${BASE_API_URL}/delete-news/${id}`)
+      .delete(`${BASE_API_URL}/delete-news`, { data: { id } })
       .then((res) => {
         if (res.data.status) {
           dispatch(alertActions.success(res.data.message));
