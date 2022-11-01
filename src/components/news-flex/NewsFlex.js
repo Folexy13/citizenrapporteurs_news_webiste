@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { newsAction } from "../../redux/action/newsAction";
+import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import axios from "axios";
 import { routes } from "../../routes";
 import { getNewsClicks, truncateText } from "../card/Card";
@@ -10,6 +10,7 @@ import ImageCard from "../image-card/ImageCard";
 import { Pagination } from "../../components";
 import "./news-flex.scss";
 import Swal from "sweetalert2";
+import { alertActions } from "../../redux/action/alertAction";
 
 function NewsFlex() {
   const { slug } = useParams();
@@ -52,8 +53,20 @@ function NewsFlex() {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(newsAction.deleteNews(id));
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        axios
+          .post(`${BASE_API_URL}/delete-news`, { id })
+          .then((res) => {
+            if (res.data.status) {
+              dispatch(alertActions.success(res.data.message));
+              Swal.fire("Deleted!", "News has been deleted.", "success");
+            } else {
+              throw res.data;
+            }
+          })
+          .catch((err) => {
+            dispatch(alertActions.error(err.message));
+            Swal.fire("Error!", "News was not deleted.", "error");
+          });
       }
     });
   };
