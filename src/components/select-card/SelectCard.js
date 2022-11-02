@@ -115,7 +115,7 @@ function SelectCard({ type }) {
           {opinion
             ?.filter((el) => el?.title !== opinion[opinion?.length - 1]?.title)
             ?.sort((a, b) => b._id - a._id)
-            ?.slice(0, 6)
+            ?.slice(opinion?.length - 7, opinion?.length)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -251,7 +251,7 @@ function SelectCard({ type }) {
                 el?.title !== opinionSport[opinionSport?.length - 1]?.title
             )
             ?.sort((a, b) => b._id - a._id)
-            ?.slice(0, 6)
+            ?.slice(opinionSport?.length - 7, opinionSport?.length)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -394,7 +394,7 @@ function SelectCard({ type }) {
                 opinionBusiness[opinionBusiness?.length - 1]?.title
             )
             ?.sort((a, b) => b._id - a._id)
-            ?.slice(0, 6)
+            ?.slice(opinionBusiness?.length - 7, opinionBusiness?.length)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -529,7 +529,7 @@ function SelectCard({ type }) {
               (el) => el?.title !== opinionNews[opinionNews?.length - 1]?.title
             )
             ?.sort((a, b) => b._id - a._id)
-            ?.slice(0, 6)
+            ?.slice(opinionNews?.length - 7, opinionNews?.length)
             ?.map((el) => {
               return (
                 <div className="item">
