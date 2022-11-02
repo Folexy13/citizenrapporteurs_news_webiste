@@ -183,6 +183,9 @@
   display: grid;
   grid-template-columns: auto auto auto auto;
   gap: 30px;
+  @media (max-width:600px) {
+    grid-template-columns: unset;
+  }
  
   button{
     width: auto;
