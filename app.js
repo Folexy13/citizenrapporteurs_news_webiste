@@ -35,16 +35,6 @@ app.use(morgan("combined"));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
-app.get("*", (req, res) => {
-  // fs.readFileSync(indexPath, "utf8", (err, data) => {
-  //   if (err) {
-  //     return console.log(err);
-  //   }
-  //   console.log("first");
-  //   return console.log(data);
-  // });
-  console.log(req.method);
-});
 
 app.use(router);
 
