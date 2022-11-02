@@ -13,7 +13,7 @@ export const convertToSlug = (input) => {
       ?.trim()
       ?.toLocaleLowerCase()
       ?.replace(/\s/g, "-")
-      ?.replaceAll(",", "-")
+      ?.replace(/,/g, "-")
       ?.replace(/[^\w\s_.,-/#-'"]/g, "-")
       ?.split("-");
     slug = slug
@@ -23,7 +23,13 @@ export const convertToSlug = (input) => {
     return slug;
   }
 };
-
+//  let slug = input
+//    ?.trim()
+//    ?.toLocaleLowerCase()
+//    ?.replace(/\s/g, "-")
+//    ?.replaceAll(",", "-")
+//    ?.replace(/[^\w\s_.,-/#-'"]/g, "-")
+//    ?.split("-");
 export const convertDate = (date) => {
   return moment(date).format("LL");
 };
