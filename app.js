@@ -6,7 +6,6 @@ const morgan = require("morgan");
 const cors = require("cors");
 const indexPath = path.resolve(__dirname, "build", "index.html");
 const router = require("./routes");
-const { getSingleNews } = require("./controllers");
 
 const app = express();
 
@@ -21,8 +20,6 @@ app.use((req, res, next) => {
     "https://citizen-rapporteur.netlify.app",
     "http://localhost:3000",
     "http://localhost:8080",
-    "https://celadon-halva-7a36a9.netlify.app",
-    "https://www.celadon-halva-7a36a9.netlify.app",
   ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
@@ -38,6 +35,16 @@ app.use(morgan("combined"));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
+app.get("*", (req, res) => {
+  // fs.readFileSync(indexPath, "utf8", (err, data) => {
+  //   if (err) {
+  //     return console.log(err);
+  //   }
+  //   console.log("first");
+  //   return console.log(data);
+  // });
+  console.log(req.method);
+});
 
 app.use(router);
 
