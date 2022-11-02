@@ -110,11 +110,7 @@ function Card({ store, type }) {
                 <h1>{store?.title}</h1>
               </Link>
               <div className="btn-flex">
-                <a
-                  href="https://twitter.com/intent/tweet?url=https://dev.to/dsasse07/beginner-s-guide-to-jest-testing-in-react-1nig&text=Beginner's%20Guide%20to%20Jest%20Testing%20in%20React&via=dannysasse"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <a href={window.location.href} target="_blank" rel="noreferrer">
                   Share on Twitter
                 </a>
                 <WhatsappShareButton
