@@ -16,10 +16,12 @@
   }
   @media (max-width: 970px) {
     width: 90%;
+    font-size: 12px;
   }
 }
 .container {
   @include center();
+
   .flex-container {
     @include flex();
     .flex-right {

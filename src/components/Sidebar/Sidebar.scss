@@ -21,12 +21,16 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media (max-width:600px) {
+    align-items: unset;
+  }
   .fa {
     position: absolute;
     right: 30px;
     top: 33px;
     color: red;
     font-size: 30px;
+    cursor: pointer;
   }
   ul {
     @media (min-width: 500px) {
@@ -45,7 +49,7 @@
       width: 100%;
       input {
         padding: 10px;
-        width: 100%;
+        width: calc(100% - 20px);
       }
     }
   }
