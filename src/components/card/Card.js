@@ -194,7 +194,7 @@ function Card({ store, type }) {
           >
             <h1>{store[0]?.title}</h1>
           </Link>
-          <div className="detail-flex">
+          <div className="detail-flex lre">
             <small>
               BY <a href="/">{store[0]?.author}</a>
             </small>

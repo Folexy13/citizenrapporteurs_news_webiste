@@ -14,6 +14,7 @@ const todayDate = (date) => {
   return date;
 };
 function Navbar({ onClick, state }) {
+  let isLoggedin = JSON.parse(localStorage.getItem("isLoggedIn"));
   const [slug, setSlug] = useState("breaking-news");
   const alert = useSelector((el) => el?.alert);
   const dispatch = useDispatch();
@@ -42,7 +43,10 @@ function Navbar({ onClick, state }) {
   useEffect(() => {
     setInterval(() => {}, 1000);
   }, []);
-
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch(alertActions.success("Logged out"));
+  };
   return (
     <>
       <div className="navBar">
@@ -163,9 +167,14 @@ function Navbar({ onClick, state }) {
           >
             <h5>ENTERTAINMENT</h5>
           </NavLink>
-          <NavLink to={"/dd#"} end>
+          <Link to={"#"} end>
             <h5>CONTACT US</h5>
-          </NavLink>
+          </Link>
+          {isLoggedin && (
+            <div onClick={handleLogout} style={{ cursor: "pointer" }}>
+              <h5 style={{ marginTop: 10 }}>LOGOUT</h5>
+            </div>
+          )}
         </div>
       </div>
     </>

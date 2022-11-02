@@ -49,7 +49,7 @@ function Opinion({ type }) {
             <div className="grid-container" style={{ gap: "90px 10px" }}>
               {store
                 ?.filter((el) => el?.title !== news?.title)
-                ?.slice(0, 6)
+                ?.slice(store.length - 7, store.length)
                 ?.map((el) => {
                   return (
                     <div className="item" key={el?._id}>

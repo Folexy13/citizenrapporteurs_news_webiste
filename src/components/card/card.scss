@@ -131,6 +131,7 @@
   @media (max-width: 600px) {
     flex-direction: column;
   }
+  
   a {
     text-decoration: none;
     color: #ed1c15;
@@ -193,5 +194,13 @@
     line-height: 32px;
     color: #fff;
   }
+  }
+}
+.lre {
+  flex-direction: row !important;
+  @media (max-width:600px) {
+    .svg-flex {
+        display: block;
+      }
   }
 }

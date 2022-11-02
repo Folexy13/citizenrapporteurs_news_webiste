@@ -46,7 +46,7 @@ function App() {
   useEffect(() => {
     setInterval(() => {
       dispacth(newsAction.getClickedNews());
-    }, 1000);
+    }, 2000);
   }, [dispacth]);
 
   return (
