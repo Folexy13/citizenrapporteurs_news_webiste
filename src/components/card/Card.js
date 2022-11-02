@@ -110,7 +110,11 @@ function Card({ store, type }) {
                 <h1>{store?.title}</h1>
               </Link>
               <div className="btn-flex">
-                <a href={window.location.href} target="_blank" rel="noreferrer">
+                <a
+                  href={`https://www.facebook.com/sharer.php?u=${window.location.href}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Share on Twitter
                 </a>
                 <WhatsappShareButton
