@@ -336,7 +336,10 @@ async function login(req, res) {
   });
 }
 
-async function getSearchQuery(req, res) {}
+async function getSearchQuery(req, res) {
+  const { slug } = req.body;
+  News.find({ $or: { author: slug, description: slug, category: slug } });
+}
 
 module.exports = {
   postNews,
