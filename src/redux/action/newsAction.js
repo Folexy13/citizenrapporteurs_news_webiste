@@ -113,7 +113,6 @@ function getLatestNews() {
 }
 function getSingleNews(payload) {
   return (dispatch) => {
-    localStorage.setItem("main", true);
     trackPromise(
       axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
         localStorage.setItem("newsID", res.data.news._id);
@@ -127,8 +126,6 @@ function getSingleNews(payload) {
 }
 function postComment() {}
 function getNewsCategory(slug) {
-  localStorage.removeItem("main");
-
   return (dispatch) => {
     trackPromise(
       axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
@@ -141,8 +138,6 @@ function getNewsCategory(slug) {
   };
 }
 function getPoliticsategory(slug) {
-  localStorage.removeItem("main");
-
   return (dispatch) => {
     trackPromise(
       axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
@@ -155,8 +150,6 @@ function getPoliticsategory(slug) {
   };
 }
 function getBusinessCategory(slug) {
-  localStorage.removeItem("main");
-
   return (dispatch) => {
     trackPromise(
       axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
@@ -169,8 +162,6 @@ function getBusinessCategory(slug) {
   };
 }
 function getSportCategory(slug) {
-  localStorage.removeItem("main");
-
   return (dispatch) => {
     trackPromise(
       axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
@@ -183,8 +174,6 @@ function getSportCategory(slug) {
   };
 }
 function getCrimeCategory(slug) {
-  localStorage.removeItem("main");
-
   return (dispatch) => {
     trackPromise(
       axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
@@ -197,8 +186,6 @@ function getCrimeCategory(slug) {
   };
 }
 function getOpinionCategory(slug) {
-  localStorage.removeItem("main");
-
   return (dispatch) => {
     trackPromise(
       axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
@@ -211,8 +198,6 @@ function getOpinionCategory(slug) {
   };
 }
 function getEntertainmentCategory(slug) {
-  localStorage.removeItem("main");
-
   return (dispatch) => {
     trackPromise(
       axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
@@ -225,8 +210,6 @@ function getEntertainmentCategory(slug) {
   };
 }
 function getClickedNews() {
-  localStorage.removeItem("main");
-
   return (dispatch) => {
     axios.get(`${BASE_API_URL}/clicked-news`).then((res) => {
       dispatch({
@@ -237,8 +220,6 @@ function getClickedNews() {
   };
 }
 function postClickedNews(payload) {
-  localStorage.removeItem("main");
-
   return (dispatch) => {
     axios.post(`${BASE_API_URL}/clicked-news`, payload).then((res) => {
       console.log(res.data.message);

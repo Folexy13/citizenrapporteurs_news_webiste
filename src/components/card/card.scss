@@ -144,7 +144,7 @@
   line-height: 22px;
   font-weight: 600;
   @media (max-width: 600px) {
-    // flex-direction: column;
+    flex-wrap: wrap;
     font-size: 12px !important;
   }
   
