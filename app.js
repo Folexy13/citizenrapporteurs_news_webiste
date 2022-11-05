@@ -6,6 +6,7 @@ const mustacheExpress = require("mustache-express");
 const morgan = require("morgan");
 const cors = require("cors");
 const router = require("./routes");
+const { arr } = require("./controllers");
 
 const app = express();
 // Register '.mustache' extension with The Mustache Express
@@ -39,6 +40,13 @@ app.use(morgan("combined"));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
+app.get("/index", function (req, res) {
+  // let yourImage = getYourImageUrl();
+
+  res.render("index", {
+    imageUrl: arr.length ? arr.image : "...",
+  });
+});
 
 app.use(router);
 

@@ -124,6 +124,7 @@ async function deleteNews(req, res) {
       console.log(err);
     });
 }
+let arr = [];
 async function getSingleNews(req, res) {
   const { id } = req.body;
   const { slug } = req.params;
@@ -136,6 +137,7 @@ async function getSingleNews(req, res) {
         error: err,
       });
     }
+    arr.concat(news);
     return res.status(200).json({
       status: 200,
       news: news, //returns latest added five news
@@ -357,4 +359,5 @@ module.exports = {
   getClickedNews,
   postNewsClicks,
   login,
+  arr,
 };
