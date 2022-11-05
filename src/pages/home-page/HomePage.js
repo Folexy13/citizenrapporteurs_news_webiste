@@ -17,6 +17,7 @@ function HomePage({ children }) {
 
   useEffect(() => {
     dispacth(newsAction.getLatestNews());
+    document.title = "Homepage";
   }, [dispacth]);
 
   return (

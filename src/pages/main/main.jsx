@@ -6,7 +6,7 @@ import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./main.scss";
 import { useParams } from "react-router-dom";
-import MetaDecorator from "../../helpers/metaDecorator";
+import { truncateText } from "../../components/card/Card";
 const Main = ({ type }) => {
   let news = useSelector((el) => el?.categoryNews);
   const { id } = useParams();
@@ -38,16 +38,27 @@ const Main = ({ type }) => {
     if (!store.length) {
       dispacth(newsAction.getSingleNews({ id: newsID }));
     }
+
     // eslint-disable-next-line
   }, [dispacth, newsID]);
+  useEffect(() => {
+    document
+      .querySelector('meta[name="description"]')
+      .setAttribute("content", truncateText(store?.description, 80));
+    document
+      .querySelector('meta[property="og:description"]')
+      .setAttribute("content", truncateText(store?.description, 80));
+    document
+      .querySelector('meta[property="og:image"]')
+      .setAttribute("content", store?.image);
+    document
+      .querySelector('meta[property="og:image:secure_url"]')
+      .setAttribute("content", store?.image);
+    document.title = store.title;
+  }, [store]);
+
   return (
     <>
-      <MetaDecorator
-        description={store?.description}
-        title={store?.title}
-        imageUrl={store?.image}
-        imageAlt="alt"
-      />
       <div className="news_main">
         <Layout hasRightSidebar={false}>
           <Card store={store} type="main" />

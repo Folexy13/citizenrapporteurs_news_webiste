@@ -47,6 +47,7 @@ const Login = () => {
     if (alert.type) {
       setLoading(!loading);
     }
+    document.title = "Login";
   }, [alert, navigate, loading]);
 
   return (

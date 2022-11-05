@@ -18,6 +18,7 @@ const News = ({ type }) => {
       .then((res) => {
         setNews(res.data.news);
       });
+    document.title = "Create News";
   }, [id]);
   const {
     value: title,
