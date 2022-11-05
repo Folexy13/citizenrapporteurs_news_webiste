@@ -2,13 +2,17 @@ require("dotenv").config();
 const path = require("path");
 const fs = require("fs");
 const express = require("express");
+const mustacheExpress = require("mustache-express");
 const morgan = require("morgan");
 const cors = require("cors");
-const indexPath = path.resolve(__dirname, "build", "index.html");
 const router = require("./routes");
 
 const app = express();
+// Register '.mustache' extension with The Mustache Express
+app.engine("mustache", mustacheExpress());
 
+app.set("view engine", "mustache");
+app.set("views", __dirname + "/views");
 // cors middleware
 app.use((req, res, next) => {
   const allowedOrigins = [
