@@ -20,7 +20,8 @@ import {
 import { Navbar, Sidebar } from "./components";
 import { useLayoutEffect, useState } from "react";
 import { newsAction } from "./redux/action/newsAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { truncateText } from "./components/card/Card";
 const Wrapper = ({ children }) => {
   const location = useLocation();
   useLayoutEffect(() => {
@@ -39,6 +40,7 @@ function MyFallbackComponent({ error, resetErrorBoundary }) {
 }
 function App() {
   const [show, setShow] = useState(false);
+  const store = useSelector((el) => el?.mainNews);
   const dispacth = useDispatch();
   const handleToggleShow = () => {
     setShow(!show);
@@ -49,6 +51,21 @@ function App() {
     }, 2000);
   }, [dispacth]);
 
+  useEffect(() => {
+    document
+      .querySelector('meta[name="description"]')
+      .setAttribute("content", truncateText(store?.description, 80));
+    document
+      .querySelector('meta[property="og:description"]')
+      .setAttribute("content", truncateText(store?.description, 80));
+    document
+      .querySelector('meta[property="og:image"]')
+      .setAttribute("content", store?.image);
+    document
+      .querySelector('meta[property="og:image:secure_url"]')
+      .setAttribute("content", store?.image);
+    document.title = store.title;
+  }, [store]);
   return (
     <div className="main-container">
       <Router>

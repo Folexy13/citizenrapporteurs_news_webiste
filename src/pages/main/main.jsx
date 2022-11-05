@@ -41,21 +41,6 @@ const Main = ({ type }) => {
 
     // eslint-disable-next-line
   }, [dispacth, newsID]);
-  useEffect(() => {
-    document
-      .querySelector('meta[name="description"]')
-      .setAttribute("content", truncateText(store?.description, 80));
-    document
-      .querySelector('meta[property="og:description"]')
-      .setAttribute("content", truncateText(store?.description, 80));
-    document
-      .querySelector('meta[property="og:image"]')
-      .setAttribute("content", store?.image);
-    document
-      .querySelector('meta[property="og:image:secure_url"]')
-      .setAttribute("content", store?.image);
-    document.title = store.title;
-  }, [store]);
 
   return (
     <>
