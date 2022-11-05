@@ -130,6 +130,9 @@
       font-size: 14px;
       line-height: 22px;
       font-weight: 700;
+      @media (max-width:600px) {
+        flex-wrap: wrap;
+      }
       a {
         text-decoration: none;
         color: #ed1c15;
