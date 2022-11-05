@@ -110,13 +110,13 @@ function Card({ store, type }) {
                 <h1>{store?.title}</h1>
               </Link>
               <div className="btn-flex">
-                {/* <a
+                <a
                   href={`https://www.facebook.com/sharer.php?u=${window.location.href}`}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Share on Twitter
-                </a> */}
+                  Share on FB
+                </a>
                 <WhatsappShareButton
                   image={store?.image}
                   title={truncateText(store?.title, 120)}
