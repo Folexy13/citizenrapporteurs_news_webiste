@@ -15,10 +15,16 @@
       margin: 20px 0 10px;
       letter-spacing: -0.02em;
       position: relative;
+      @media (max-width:480px) {
+        font-size: 14px;
+      }
     }
     h3 {
       font-weight: 300;
       font-size: 16px;
+      @media (max-width:480px) {
+          font-size: 12px;
+        }
     }
    
   }
