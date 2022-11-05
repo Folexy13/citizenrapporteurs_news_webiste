@@ -1,15 +1,22 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
+import { alertActions } from "../../redux/action/alertAction";
 import { routes } from "../../routes";
 import "./Sidebar.scss";
 
 const Sidebar = ({ show, onClick }) => {
   const [slug, setSlug] = useState("breaking-news");
   const [isClosed, setisClosed] = useState(false);
+  const dispatch = useDispatch();
   const handleHeaderChange = (slug) => {
     setSlug(slug);
   };
   console.log(slug);
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch(alertActions.success("Logged out"));
+  };
   return (
     <>
       <div
@@ -104,6 +111,11 @@ const Sidebar = ({ show, onClick }) => {
           </li>
           <li>
             <NavLink to="#">Contact Us</NavLink>
+          </li>
+          <li style={{ color: "#f00" }}>
+            <Link to={"#"} end onClick={handleLogout}>
+              Logout
+            </Link>
           </li>
           <form action="">
             <input type="search" name="" id="" placeholder="Search..." />
