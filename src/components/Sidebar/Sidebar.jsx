@@ -14,22 +14,16 @@ const Sidebar = ({ show, onClick }) => {
     setSlug(slug);
   };
   console.log(slug);
-  const preState = JSON.parse(localStorage.getItem("state"));
 
   const handleLogout = () => {
     localStorage.clear();
     dispatch(alertActions.success("Logged out"));
   };
-  if (isClosed) {
-    localStorage.setItem("state", true);
-  } else {
-    localStorage.removeItem("state");
-  }
   return (
     <>
       <div
         className="sidebar-container"
-        style={{ display: (show || preState) && !isClosed ? "block" : "none" }}
+        style={{ display: show && !isClosed ? "block" : "none" }}
         onClick={() => {
           setisClosed(isClosed);
           onClick();
@@ -38,10 +32,7 @@ const Sidebar = ({ show, onClick }) => {
       <div
         className="cr-sidebar"
         style={{
-          transform:
-            (show || preState) && !isClosed
-              ? "translateX(0)"
-              : "translateX(-100vw)",
+          transform: show && !isClosed ? "translateX(0)" : "translateX(-100vw)",
         }}
       >
         <i
@@ -63,7 +54,7 @@ const Sidebar = ({ show, onClick }) => {
               to={routes.NEWSPAGE.path + "breaking-news"}
               onClick={() => {
                 handleHeaderChange("breaking-news");
-                setisClosed(!isClosed);
+                onClick();
               }}
             >
               News
@@ -72,7 +63,10 @@ const Sidebar = ({ show, onClick }) => {
           <li>
             <NavLink
               to={routes.NEWSPAGE.path + "entertainment"}
-              onClick={() => handleHeaderChange("entertainment")}
+              onClick={() => {
+                handleHeaderChange("entertainment");
+                onClick();
+              }}
               end
             >
               Entertainment
@@ -81,7 +75,10 @@ const Sidebar = ({ show, onClick }) => {
           <li>
             <NavLink
               to={routes.NEWSPAGE.path + "business"}
-              onClick={() => handleHeaderChange("business")}
+              onClick={() => {
+                handleHeaderChange("business");
+                onClick();
+              }}
               end
             >
               Business
@@ -99,7 +96,10 @@ const Sidebar = ({ show, onClick }) => {
           <li>
             <NavLink
               to={routes.NEWSPAGE.path + "opinions"}
-              onClick={() => handleHeaderChange("opinions")}
+              onClick={() => {
+                handleHeaderChange("opinions");
+                onClick();
+              }}
               end
             >
               Opinions
@@ -108,7 +108,10 @@ const Sidebar = ({ show, onClick }) => {
           <li>
             <NavLink
               to={routes.NEWSPAGE.path + "sport"}
-              onClick={() => handleHeaderChange("sport")}
+              onClick={() => {
+                handleHeaderChange("sport");
+                onClick();
+              }}
               end
             >
               Sport
@@ -117,7 +120,10 @@ const Sidebar = ({ show, onClick }) => {
           <li>
             <NavLink
               to={routes.NEWSPAGE.path + "crime-report"}
-              onClick={() => handleHeaderChange("crime-report")}
+              onClick={() => {
+                handleHeaderChange("crime-report");
+                onClick();
+              }}
               end
             >
               Crime Report

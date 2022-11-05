@@ -42,7 +42,6 @@ function App() {
   const dispacth = useDispatch();
   const handleToggleShow = () => {
     setShow(!show);
-    localStorage.setItem("state", true);
   };
   useEffect(() => {
     setInterval(() => {

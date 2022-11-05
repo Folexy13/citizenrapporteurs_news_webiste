@@ -15,7 +15,6 @@ const todayDate = (date) => {
 };
 function Navbar({ onClick, state }) {
   let isLoggedin = JSON.parse(localStorage.getItem("isLoggedIn"));
-  const preState = JSON.parse(localStorage.getItem("state"));
 
   const [slug, setSlug] = useState("breaking-news");
   const alert = useSelector((el) => el?.alert);
@@ -111,9 +110,7 @@ function Navbar({ onClick, state }) {
             </form>
             {/* Menu Bar */}
             <div className="menu" onClick={onClick}>
-              {(!state || preState) && (
-                <i class="fa fa-bars" aria-hidden="true" />
-              )}
+              {!state && <i class="fa fa-bars" aria-hidden="true" />}
             </div>
           </div>
         </div>
