@@ -6,7 +6,6 @@ import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./main.scss";
 import { useParams } from "react-router-dom";
-import { truncateText } from "../../components/card/Card";
 const Main = ({ type }) => {
   let news = useSelector((el) => el?.categoryNews);
   const { id } = useParams();
