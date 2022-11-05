@@ -37,6 +37,7 @@
         line-height: 40px;
         font-weight: 700;
         color: #fff;
+        
       }
       .nation-badge {
         margin: 0 0 10px;
@@ -110,6 +111,11 @@
         line-height: 30px;
         padding-right: 5px;
         margin: 0;
+        @media (max-width:600px) {
+           font-size: 14px;
+           line-height: 20px;
+           margin-top: 10px;
+          }
       }
       &:hover {
         color: red;
@@ -138,6 +144,9 @@
     p {
       font-size: 15px;
       margin: 20px 0 0 0;
+      @media (max-width:600px) {
+        font-size: 12px;
+        }
     }
   }
 }

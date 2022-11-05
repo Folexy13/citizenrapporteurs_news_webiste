@@ -30,6 +30,10 @@
       @media (max-width: 970px) {
         width: 100% !important;
         height: 510px;
+        @media (max-width: 970px) {
+            width: 100% !important;
+            height: 300px;
+          }
       }
       img {
         width: 100%;
@@ -55,6 +59,10 @@
           line-height: 40px;
           font-weight: 700;
           color: #fff;
+          @media (max-width: 970px) {
+              font-size: 14px;
+          
+            }
         }
         .nation-badge {
           margin: 0 0 10px;
@@ -73,6 +81,9 @@
           font-size: 14px;
           line-height: 22px;
           font-weight: 600;
+          @media (max-width:480px) {
+            display: block;
+          }
           a {
             font-weight: 600;
             text-decoration: none;

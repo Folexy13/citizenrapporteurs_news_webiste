@@ -36,6 +36,9 @@
 				bottom: -10px;
 				margin: 0;
 				padding: 14px;
+				@media (max-width:480px) {
+					position: relative;
+				}
 				h3 {
 					margin: 0;
 					font-size: 15px;
@@ -51,10 +54,16 @@
 					font-size: 14px;
 					line-height: 22px;
 					font-weight: 600;
+					@media (max-width:480px) {
+							color: #000000;
+						}
 					a {
 						font-weight: 600;
 						text-decoration: none;
 						color: #fff;
+						@media (max-width:480px) {
+								color: #000000;
+							}
 					}
 					.svg-flex {
 						display: flex;

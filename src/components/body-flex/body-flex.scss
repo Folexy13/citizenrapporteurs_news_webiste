@@ -6,6 +6,9 @@
   justify-content: space-between;
   @media (max-width: 970px) {
     height: 200px;
+    @media (max-width:480px) {
+      align-items: center;
+    }
   }
   .img {
     width: 38%;
