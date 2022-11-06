@@ -55,7 +55,6 @@ const News = ({ type }) => {
     valueChangedHandler: descriptionChangeHandler,
     inputBlurHandler: descriptionBlurHandler,
   } = useForm(isNotEmpty, news?.description);
-  console.log(date, news?.createdAt);
 
   const { value: video, valueChangedHandler: videoChangeHandler } =
     useForm(isNotEmpty);
