@@ -119,7 +119,7 @@ function getSingleNews(payload) {
       //   .then(() => {
       //     console.log("index");
       //   })
-      axios.get(`${BASE_API_URL}/single-news`, payload).then((res) => {
+      axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
         localStorage.setItem("newsID", res.data.news._id);
         dispatch({
           type: userConstants.GET_SINGLE_NEWS,
