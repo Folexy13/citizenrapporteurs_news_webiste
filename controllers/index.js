@@ -343,6 +343,14 @@ async function getSearchQuery(req, res) {
   News.find({ $or: { author: slug, description: slug, category: slug } });
 }
 
+async function updateSlug(req, res) {
+  News.find({}, (err, news) => {
+    if (err) console.log(err);
+
+    console.log(news);
+  });
+}
+
 module.exports = {
   postNews,
   editNews,
@@ -359,5 +367,6 @@ module.exports = {
   getClickedNews,
   postNewsClicks,
   login,
+  updateSlug,
   arr,
 };

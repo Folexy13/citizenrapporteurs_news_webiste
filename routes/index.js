@@ -11,6 +11,7 @@ const {
   getClickedNews,
   getSingleNewsBySlug,
   login,
+  updateSlug,
 } = require("../controllers");
 
 const router = require("express").Router();
@@ -28,6 +29,7 @@ router.get("/single-news/:slug", getSingleNewsBySlug);
 router.get("/clicked-news/:id", getNewsClicks);
 router.get("/clicked-news", getClickedNews);
 router.post("/clicked-news", postNewsClicks);
+router.post("/update-slug", updateSlug);
 router.post("/login", login);
 
 module.exports = router;
