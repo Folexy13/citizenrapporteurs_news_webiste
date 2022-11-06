@@ -8,11 +8,11 @@ import "./main.scss";
 import { useParams } from "react-router-dom";
 const Main = ({ type }) => {
   let news = useSelector((el) => el?.categoryNews);
-  const { id } = useParams();
+  const { slug } = useParams();
   const [comment, setComment] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
-  const newsID = localStorage.getItem("newsID");
+  // const newsID = localStorage.getItem("newsID");
 
   const dispacth = useDispatch();
   const handleSubmitComment = (e) => {
@@ -34,12 +34,10 @@ const Main = ({ type }) => {
     dispacth(newsAction.getNewsCategory(store.slug));
   }, [dispacth, store, id]);
   useEffect(() => {
-    if (!store.length) {
-      dispacth(newsAction.getSingleNews({ id: newsID }));
-    }
+    dispacth(newsAction.getSingleNews({ slug }));
 
     // eslint-disable-next-line
-  }, [dispacth, newsID]);
+  }, [dispacth]);
 
   return (
     <>
