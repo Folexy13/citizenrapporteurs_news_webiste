@@ -1,0 +1,93 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add all
+
+PATH: 
+  /home/folajimi/anaconda3/bin:/home/folajimi/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.18.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/react: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (/usr/share/yarn/lib/cli.js:141517:19)
+      at Object.onceWrapper (node:events:627:28)
+      at ClientRequest.emit (node:events:513:28)
+      at TLSSocket.emitRequestTimeout (node:_http_client:839:9)
+      at Object.onceWrapper (node:events:627:28)
+      at TLSSocket.emit (node:events:525:35)
+      at TLSSocket.Socket._onTimeout (node:net:550:8)
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
+
+npm manifest: 
+  {
+    "name": "witness",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "@testing-library/jest-dom": "^5.16.5",
+      "@testing-library/react": "^13.4.0",
+      "@testing-library/user-event": "^13.5.0",
+      "all": "^0.0.0",
+      "axios": "^1.1.2",
+      "bootstrap-icons": "^1.9.1",
+      "classnames": "^2.3.2",
+      "moment": "^2.29.4",
+      "node-sass": "^7.0.3",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "react-error-boundary": "^3.1.4",
+      "react-helmet": "^6.1.0",
+      "react-icons": "^4.4.0",
+      "react-promise-tracker": "^2.1.0",
+      "react-redux": "^8.0.4",
+      "react-router-dom": "^6.4.0",
+      "react-scripts": "5.0.1",
+      "react-share": "^4.4.1",
+      "react-toastify": "^9.0.8",
+      "redux": "^4.2.0",
+      "redux-thunk": "^2.4.1",
+      "sweetalert2": "^11.6.4",
+      "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "INLINE_RUNTIME_CHUNK=false react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "homepage": "https://citizen-rapporteur.netlify.app",
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "devDependencies": {
+      "netlify-cli": "^12.0.11"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
