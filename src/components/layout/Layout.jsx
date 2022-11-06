@@ -6,7 +6,7 @@ import { FaAngleRight } from "react-icons/fa";
 import { Link, useHref, useParams } from "react-router-dom";
 import { routes } from "../../routes";
 import { useSelector } from "react-redux";
-function Layout({ children, hasRightSidebar }) {
+function Layout({ children, style, hasRightSidebar }) {
   const { slug } = useParams();
   const mainNews = useSelector((el) => el?.mainNews);
   const param = useHref();
@@ -40,7 +40,7 @@ function Layout({ children, hasRightSidebar }) {
         </div>
       )}
 
-      <div className="flex-container">
+      <div className="flex-container" style={style}>
         {isMain && <h2>{mainNews?.title}</h2>}
 
         <div

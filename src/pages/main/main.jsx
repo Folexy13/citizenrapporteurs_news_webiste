@@ -6,6 +6,7 @@ import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./main.scss";
 import { useParams } from "react-router-dom";
+
 const Main = ({ type }) => {
   let news = useSelector((el) => el?.categoryNews);
   const { slug } = useParams();
@@ -42,7 +43,7 @@ const Main = ({ type }) => {
   return (
     <>
       <div className="news_main">
-        <Layout hasRightSidebar={false}>
+        <Layout hasRightSidebar={false} style={{ flexDirection: "column" }}>
           <Card store={store} type="main" />
           <Opinion type="main" store={news} />
           <form onSubmit={handleSubmitComment} className="comment-section">
