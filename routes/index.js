@@ -24,7 +24,7 @@ router.post("/delete-news", deleteNews);
 router.post("/send-comment", postComments);
 router.get("/latest-news", getLatestNews);
 router.get("/news/", getNewsByCategory);
-router.post("/single-news", getSingleNews);
+router.get("/single-news", getSingleNews);
 router.get("/single-news/:slug", getSingleNewsBySlug);
 router.get("/clicked-news/:id", getNewsClicks);
 router.get("/clicked-news", getClickedNews);
