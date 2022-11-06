@@ -32,7 +32,7 @@ const Main = ({ type }) => {
 
   useEffect(() => {
     dispacth(newsAction.getNewsCategory(store.slug));
-  }, [dispacth, store, id]);
+  }, [dispacth, store]);
   useEffect(() => {
     dispacth(newsAction.getSingleNews({ slug }));
 
