@@ -5,19 +5,21 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 const indexPath = path.resolve(__dirname, "..", "build", "index.html");
 const fs = require("fs");
-const getSlugFromCategory = (category) => {
-  let slug = category
-    .trim()
-    .toLocaleLowerCase()
-    .replace(/\s/g, "-")
-    .replaceAll(",", "-")
-    .replace(/[^\w\s_.,-/#-'"]/g, "-")
-    .split("-");
-  slug = slug
-    .map((el) => el.trim())
-    .filter((el) => el !== "")
-    .join("-");
-  return slug;
+const getSlugFromCategory = (input) => {
+  if (typeof input === "string") {
+    let slug = input
+      ?.trim()
+      ?.toLocaleLowerCase()
+      ?.replace(/\s/g, "-")
+      ?.replace(/,/g, "-")
+      ?.replace(/[^\w\s_.,-/#-'"]/g, "-")
+      ?.split("-");
+    slug = slug
+      .map((el) => el.trim())
+      .filter((el) => el !== "")
+      .join("-");
+    return slug;
+  }
 };
 async function postNews(req, res) {
   const { description, video, image, title, category, author, date } = req.body;
@@ -37,6 +39,7 @@ async function postNews(req, res) {
   latestNews.category = category;
   latestNews.slug = getSlugFromCategory(category);
   latestNews.author = author;
+  latestNews.newsSlug = getSlugFromCategory(title);
   latestNews.media = video ? "video " : "image";
   latestNews.createdAt = date ? date : new Date().toISOString();
   latestNews.save(function (err, data) {
@@ -129,20 +132,23 @@ async function getSingleNews(req, res) {
   const { id } = req.body;
   const { slug } = req.params;
 
-  await News.findOne({ $or: [{ _id: id }, { slug }] }, (err, news) => {
-    if (err) {
-      return res.json({
-        status: 403,
-        message: "Error in fetching news",
-        error: err,
+  await News.findOne(
+    { $or: [{ _id: id }, { newsSlug: slug }] },
+    (err, news) => {
+      if (err) {
+        return res.json({
+          status: 403,
+          message: "Error in fetching news",
+          error: err,
+        });
+      }
+      arr.concat(news);
+      return res.status(200).json({
+        status: 200,
+        news: news, //returns latest added five news
       });
     }
-    arr.concat(news);
-    return res.status(200).json({
-      status: 200,
-      news: news, //returns latest added five news
-    });
-  })
+  )
     .clone()
     .catch(function (err) {
       console.log(err);
@@ -345,9 +351,17 @@ async function getSearchQuery(req, res) {
 
 async function updateSlug(req, res) {
   News.find({}, (err, news) => {
-    if (err) console.log(err);
-
-    console.log(news);
+    for (let i = 0; i < news.length; i++) {
+      News.findByIdAndUpdate(
+        { _id: news[i]?._id },
+        { newsSlug: getSlugFromCategory(news[i]?.title) },
+        (err, news) => {
+          if (err) console.log(err);
+          console.log(news);
+          console.log(news[i]?.title);
+        }
+      );
+    }
   });
 }
 

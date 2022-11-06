@@ -15,6 +15,7 @@ const newsSchema = new mongoose.Schema(
       // required: true,
     },
     image: mongoose.Schema.Types.Mixed,
+    newsSlug: String,
     video: {
       type: String,
     },
@@ -31,7 +32,7 @@ const newsSchema = new mongoose.Schema(
     },
     clicks: {
       type: mongoose.Types.ObjectId,
-      ref:"Click"
+      ref: "Click",
     },
     comments: { type: mongoose.Types.ObjectId, ref: "Comment" },
   },
