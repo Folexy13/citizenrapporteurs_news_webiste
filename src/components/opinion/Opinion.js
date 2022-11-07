@@ -59,7 +59,7 @@ function Opinion({ type }) {
                         </h5>
                         <img
                           src={
-                            typeof el?.image !== "string"
+                            typeof el?.image === "object"
                               ? el?.image[0]
                               : el?.image
                           }

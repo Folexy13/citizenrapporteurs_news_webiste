@@ -52,7 +52,7 @@ function RightContainer() {
         >
           <img
             src={
-              typeof politicsNews[politicsNews?.length - 1]?.image !== "string"
+              typeof politicsNews[politicsNews?.length - 1]?.image === "object"
                 ? politicsNews[politicsNews?.length - 1]?.image[0]
                 : politicsNews[politicsNews?.length - 1]?.image
             }

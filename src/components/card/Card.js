@@ -59,7 +59,7 @@ function Card({ store, type }) {
         <MetaDecorator
           description={store?.description}
           imageUrl={
-            typeof store?.image !== "string" ? store?.image[0] : store?.image
+            typeof store?.image === "object" ? store?.image[0] : store?.image
           }
           title={store?.title}
         />
@@ -111,7 +111,7 @@ function Card({ store, type }) {
             <Link to="#">
               <img
                 src={
-                  typeof store?.image !== "string"
+                  typeof store?.image === "object"
                     ? store?.image[0]
                     : store?.image
                 }
@@ -125,13 +125,6 @@ function Card({ store, type }) {
                 <h1>{store?.title}</h1>
               </Link>
               <div className="btn-flex">
-                {/* <a
-                  href={`https://www.facebook.com/sharer.php?u=${window.location.href}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Share on FB
-                </a> */}
                 <WhatsappShareButton url={window.location.href} className="wh">
                   <i className="fa fa-whatsapp"></i>{" "}
                   <span>Share On Whatsapp</span>{" "}
@@ -154,7 +147,6 @@ function Card({ store, type }) {
                   <span>Share On LinkedIn</span>
                 </LinkedinShareButton>
                 <TwitterShareButton
-                  via="Opeyemi Folajimi"
                   url={window.location.href}
                   className="tw"
                   title={truncateText(store?.title, 120)}
@@ -189,7 +181,7 @@ function Card({ store, type }) {
         >
           <img
             src={
-              typeof store[0]?.image !== "string"
+              typeof store[0]?.image === "object"
                 ? store[0]?.image[0]
                 : store[0]?.image
             }

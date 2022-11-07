@@ -111,7 +111,7 @@ function NewsFlex() {
               <div className="img">
                 <img
                   src={
-                    typeof ele?.image !== "string" ? ele?.image[0] : ele?.image
+                    typeof ele?.image === "object" ? ele?.image[0] : ele?.image
                   }
                   alt="img.jpg"
                 />

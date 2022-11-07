@@ -61,7 +61,7 @@ function SelectCard({ type }) {
           <div className="overlay"></div>
           <img
             src={
-              typeof opinion[opinion?.length - 1]?.image !== "string"
+              typeof opinion[opinion?.length - 1]?.image === "object"
                 ? opinion[opinion?.length - 1]?.image[0]
                 : opinion[opinion?.length - 1]?.image
             }
@@ -130,7 +130,7 @@ function SelectCard({ type }) {
                     <h5 className="nation-badge">OPINION</h5>
                     <img
                       src={
-                        typeof el?.image !== "string" ? el?.image[0] : el?.image
+                        typeof el?.image === "object" ? el?.image[0] : el?.image
                       }
                       alt="img.jpg"
                     />
@@ -197,7 +197,7 @@ function SelectCard({ type }) {
         >
           <img
             src={
-              typeof opinionSport[opinionSport?.length - 1]?.image !== "string"
+              typeof opinionSport[opinionSport?.length - 1]?.image === "object"
                 ? opinionSport[opinionSport?.length - 1]?.image[0]
                 : opinionSport[opinionSport?.length - 1]?.image
             }
@@ -273,7 +273,7 @@ function SelectCard({ type }) {
                     <h5 className="nation-badge">SPORT</h5>
                     <img
                       src={
-                        typeof el?.image !== "string" ? el?.image[0] : el?.image
+                        typeof el?.image === "object" ? el?.image[0] : el?.image
                       }
                       alt="img.jpg"
                     />
@@ -422,7 +422,7 @@ function SelectCard({ type }) {
                     <h5 className="nation-badge">OPINION</h5>
                     <img
                       src={
-                        typeof el?.image !== "string" ? el?.image[0] : el?.image
+                        typeof el?.image === "object" ? el?.image[0] : el?.image
                       }
                       alt="img.jpg"
                     />
@@ -489,7 +489,7 @@ function SelectCard({ type }) {
         >
           <img
             src={
-              typeof opinionNews[opinionNews?.length - 1]?.image !== "string"
+              typeof opinionNews[opinionNews?.length - 1]?.image === "object"
                 ? opinionNews[opinionNews?.length - 1]?.image[0]
                 : opinionNews[opinionNews?.length - 1]?.image
             }
@@ -570,7 +570,7 @@ function SelectCard({ type }) {
                     <h5 className="nation-badge">BREAKING NEWS</h5>
                     <img
                       src={
-                        typeof el?.image !== "string" ? el?.image[0] : el?.image
+                        typeof el?.image === "object" ? el?.image[0] : el?.image
                       }
                       alt="img.jpg"
                     />

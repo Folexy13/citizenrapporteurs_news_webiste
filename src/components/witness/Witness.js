@@ -35,7 +35,7 @@ function Witness() {
                   >
                     <img
                       src={
-                        typeof el?.image !== "string" ? el?.image[0] : el?.image
+                        typeof el?.image === "object" ? el?.image[0] : el?.image
                       }
                       alt="img.jpg"
                     />

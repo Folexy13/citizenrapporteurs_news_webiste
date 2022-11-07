@@ -73,7 +73,7 @@ const News = ({ type }) => {
             data
           )
           .then((res) => {
-            if (typeof image !== "string") {
+            if (typeof image === "object") {
               setImage((prev) => [...prev, res.data.secure_url]);
               setLoading(false);
             } else {
@@ -106,7 +106,7 @@ const News = ({ type }) => {
       description,
       author,
       date,
-      image: typeof image !== "string" ? image : image,
+      image: typeof image === "object" ? image : image,
       video,
       category,
     };

@@ -70,7 +70,7 @@ function Entertainment() {
         >
           <img
             src={
-              typeof entertainmentNews[lx]?.image !== "string"
+              typeof entertainmentNews[lx]?.image === "object"
                 ? entertainmentNews[lx]?.image[0]
                 : entertainmentNews[lx]?.image
             }
@@ -134,7 +134,7 @@ function Entertainment() {
           >
             <img
               src={
-                typeof entertainmentNews[lx - 1]?.image !== "string"
+                typeof entertainmentNews[lx - 1]?.image === "object"
                   ? entertainmentNews[lx - 1]?.image[0]
                   : entertainmentNews[lx - 1]?.image
               }
@@ -196,7 +196,7 @@ function Entertainment() {
             >
               <img
                 src={
-                  typeof entertainmentNews[lx - 2]?.image !== "string"
+                  typeof entertainmentNews[lx - 2]?.image === "object"
                     ? entertainmentNews[lx - 2]?.image[0]
                     : entertainmentNews[lx - 2]?.image
                 }
@@ -260,7 +260,7 @@ function Entertainment() {
               >
                 <img
                   src={
-                    typeof entertainmentNews[lx - 3]?.image !== "string"
+                    typeof entertainmentNews[lx - 3]?.image === "object"
                       ? entertainmentNews[lx - 3]?.image[0]
                       : entertainmentNews[lx - 3]?.image
                   }

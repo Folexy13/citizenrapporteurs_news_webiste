@@ -40,7 +40,7 @@ function BodyFlex({ type, store }) {
                 className="img"
               >
                 <img
-                  src={typeof el?.image !== "string" ? el?.image[0] : el.image}
+                  src={typeof el?.image === "object" ? el?.image[0] : el.image}
                   alt="img.jpg"
                 />
               </Link>
