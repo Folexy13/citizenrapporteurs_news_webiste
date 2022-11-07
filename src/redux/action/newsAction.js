@@ -114,11 +114,13 @@ function getLatestNews() {
 function getSingleNews(payload) {
   return (dispatch) => {
     trackPromise(
-      axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
-        localStorage.setItem("newsID", res.data.news._id);
-        dispatch({
-          type: userConstants.GET_SINGLE_NEWS,
-          news: res.data.news,
+      axios.get(`${BASE_API_URL}/index`).then(() => {
+        axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
+          localStorage.setItem("newsID", res.data.news._id);
+          dispatch({
+            type: userConstants.GET_SINGLE_NEWS,
+            news: res.data.news,
+          });
         });
       })
     );
