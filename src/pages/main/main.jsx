@@ -36,6 +36,7 @@ const Main = ({ type }) => {
   }, [dispacth, store]);
   useEffect(() => {
     dispacth(newsAction.getSingleNews({ slug }));
+    location.reload();
     // eslint-disable-next-line
   }, [dispacth]);
 

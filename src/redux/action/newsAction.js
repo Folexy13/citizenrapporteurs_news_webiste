@@ -111,7 +111,6 @@ function getLatestNews() {
   };
 }
 function getSingleNews(payload) {
-  location.reload();
   return (dispatch) => {
     trackPromise(
       axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
