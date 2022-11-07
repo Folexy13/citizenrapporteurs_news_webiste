@@ -1,4 +1,0 @@
-router.post("/create-news", postNews);
-router.post("/send-comment", postComments);
-router.get("/latest-news", getLatestNews);
-router.get("/news/", getNewsByCategory);
