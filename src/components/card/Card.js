@@ -55,6 +55,11 @@ function Card({ store, type }) {
   if (type === "main") {
     return (
       <>
+        <MetaDecorator
+          description={store?.description}
+          imageUrl={store?.image}
+          title={store?.title}
+        />
         <div className="detail-flex">
           <small>
             BY <Link to="#">{store?.author} </Link>
