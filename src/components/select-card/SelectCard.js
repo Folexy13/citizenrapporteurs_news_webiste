@@ -8,7 +8,6 @@ import axios from "axios";
 import { convertToSlug } from "../entertainment/Entertainment";
 import "./select-card.scss";
 import { getNewsClicks } from "../card/Card";
-import e from "express";
 
 function SelectCard({ type }) {
   const disaptch = useDispatch();
@@ -123,7 +122,7 @@ function SelectCard({ type }) {
           {opinion
             ?.filter((el) => el?.title !== opinion[opinion?.length - 1]?.title)
             ?.sort((a, b) => b._id - a._id)
-            ?.slice(0, 6)
+            ?.slice(opinion?.length - 7, opinion?.length)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -284,6 +283,8 @@ function SelectCard({ type }) {
                       to={
                         routes.NEWSPAGE_MAIN.path +
                         "/" +
+                        el._id +
+                        "/" +
                         convertToSlug(el?.title)
                       }
                       onClick={() => handleClicks(el?._id)}
@@ -331,8 +332,6 @@ function SelectCard({ type }) {
         <Link
           to={
             routes.NEWSPAGE_MAIN.path +
-            "/" +
-            opinionBusiness[opinionBusiness - 1]?._id +
             "/" +
             convertToSlug(opinionBusiness[opinionBusiness?.length - 1]?.title)
           }
