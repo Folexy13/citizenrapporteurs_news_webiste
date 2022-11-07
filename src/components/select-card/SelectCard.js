@@ -115,7 +115,7 @@ function SelectCard({ type }) {
           {opinion
             ?.filter((el) => el?.title !== opinion[opinion?.length - 1]?.title)
             ?.sort((a, b) => b._id - a._id)
-            ?.slice(opinion?.length - 7, opinion?.length)
+            ?.slice(0, 6)
             ?.map((el) => {
               return (
                 <div className="item">
