@@ -19,6 +19,8 @@ import {
 } from "react-router-dom";
 import { Navbar, Sidebar } from "./components";
 import { useLayoutEffect, useState } from "react";
+import { newsAction } from "./redux/action/newsAction";
+import { useDispatch } from "react-redux";
 const Wrapper = ({ children }) => {
   const location = useLocation();
   useLayoutEffect(() => {
@@ -37,15 +39,15 @@ function MyFallbackComponent({ error, resetErrorBoundary }) {
 }
 function App() {
   const [show, setShow] = useState(false);
-  // const dispacth = useDispatch();
+  const dispacth = useDispatch();
   const handleToggleShow = () => {
     setShow(!show);
   };
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     dispacth(newsAction.getClickedNews());
-  //   }, 2000);
-  // }, [dispacth]);
+  useEffect(() => {
+    setInterval(() => {
+      dispacth(newsAction.getClickedNews());
+    }, 2000);
+  }, [dispacth]);
 
   return (
     <div className="main-container">
