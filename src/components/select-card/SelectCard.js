@@ -283,8 +283,6 @@ function SelectCard({ type }) {
                       to={
                         routes.NEWSPAGE_MAIN.path +
                         "/" +
-                        el._id +
-                        "/" +
                         convertToSlug(el?.title)
                       }
                       onClick={() => handleClicks(el?._id)}
