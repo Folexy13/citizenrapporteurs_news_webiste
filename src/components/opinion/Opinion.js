@@ -57,7 +57,14 @@ function Opinion({ type }) {
                         <h5 className="nation-badge">
                           {el?.category?.toUpperCase()}
                         </h5>
-                        <img src={el?.image} alt="img.jpg" />
+                        <img
+                          src={
+                            typeof el?.image !== "string"
+                              ? el?.image[0]
+                              : el?.image
+                          }
+                          alt="img.jpg"
+                        />
                       </div>
                       <div className="item-body">
                         <Link

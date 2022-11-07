@@ -35,7 +35,12 @@ function ImageCard({ store }) {
         onClick={() => handleClicks(store?._id)}
         className="image-container"
       >
-        <img src={store?.image} alt="img.jpg" />
+        <img
+          src={
+            typeof store?.image !== "string" ? store?.image[0] : store?.image
+          }
+          alt="img.jpg"
+        />
         <div className="text-container">
           <div>
             <h5 className="nation-badge">{store?.category?.toUpperCase()}</h5>

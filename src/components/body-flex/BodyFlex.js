@@ -39,7 +39,10 @@ function BodyFlex({ type, store }) {
                 onClick={() => handleClicks(el._id)}
                 className="img"
               >
-                <img src={el.image} alt="img.jpg" />
+                <img
+                  src={typeof el?.image !== "string" ? el?.image[0] : el.image}
+                  alt="img.jpg"
+                />
               </Link>
               <div className="item-body">
                 <Link

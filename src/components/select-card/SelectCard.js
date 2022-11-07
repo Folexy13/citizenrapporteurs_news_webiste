@@ -8,6 +8,7 @@ import axios from "axios";
 import { convertToSlug } from "../entertainment/Entertainment";
 import "./select-card.scss";
 import { getNewsClicks } from "../card/Card";
+import e from "express";
 
 function SelectCard({ type }) {
   const disaptch = useDispatch();
@@ -59,7 +60,14 @@ function SelectCard({ type }) {
           className="image-container"
         >
           <div className="overlay"></div>
-          <img src={opinion[opinion?.length - 1]?.image} alt="img.jpg" />
+          <img
+            src={
+              typeof opinion[opinion?.length - 1]?.image !== "string"
+                ? opinion[opinion?.length - 1]?.image[0]
+                : opinion[opinion?.length - 1]?.image
+            }
+            alt="img.jpg"
+          />
           <div className="text-container">
             <div>
               <h5 className="nation-badge">OPINION</h5>
@@ -121,7 +129,12 @@ function SelectCard({ type }) {
                 <div className="item">
                   <div className="img-container">
                     <h5 className="nation-badge">OPINION</h5>
-                    <img src={el?.image} alt="img.jpg" />
+                    <img
+                      src={
+                        typeof el?.image !== "string" ? el?.image[0] : el?.image
+                      }
+                      alt="img.jpg"
+                    />
                   </div>
                   <div className="item-body">
                     <Link
@@ -184,7 +197,11 @@ function SelectCard({ type }) {
           className="image-container"
         >
           <img
-            src={opinionSport[opinionSport?.length - 1]?.image}
+            src={
+              typeof opinionSport[opinionSport?.length - 1]?.image !== "string"
+                ? opinionSport[opinionSport?.length - 1]?.image[0]
+                : opinionSport[opinionSport?.length - 1]?.image
+            }
             alt="img.jpg"
           />
           <div className="text-container">
@@ -255,7 +272,12 @@ function SelectCard({ type }) {
                 <div className="item">
                   <div className="img-container">
                     <h5 className="nation-badge">SPORT</h5>
-                    <img src={el?.image} alt="img.jpg" />
+                    <img
+                      src={
+                        typeof el?.image !== "string" ? el?.image[0] : el?.image
+                      }
+                      alt="img.jpg"
+                    />
                   </div>
                   <div className="item-body">
                     <Link
@@ -320,7 +342,12 @@ function SelectCard({ type }) {
           className="image-container"
         >
           <img
-            src={opinionBusiness[opinionBusiness?.length - 1]?.image}
+            src={
+              typeof opinionBusiness[opinionBusiness?.length - 1]?.image !==
+              "string"
+                ? opinionBusiness[opinionBusiness?.length - 1]?.image[0]
+                : opinionBusiness[opinionBusiness?.length - 1]?.image
+            }
             alt="img.jpg"
           />
           <div className="text-container">
@@ -396,14 +423,17 @@ function SelectCard({ type }) {
                 <div className="item">
                   <div className="img-container">
                     <h5 className="nation-badge">OPINION</h5>
-                    <img src={el?.image} alt="img.jpg" />
+                    <img
+                      src={
+                        typeof el?.image !== "string" ? el?.image[0] : el?.image
+                      }
+                      alt="img.jpg"
+                    />
                   </div>
                   <div className="item-body">
                     <Link
                       to={
                         routes.NEWSPAGE_MAIN.path +
-                        "/" +
-                        el._id +
                         "/" +
                         convertToSlug(el?.title)
                       }
@@ -461,7 +491,11 @@ function SelectCard({ type }) {
           className="image-container"
         >
           <img
-            src={opinionNews[opinionNews?.length - 1]?.image}
+            src={
+              typeof opinionNews[opinionNews?.length - 1]?.image !== "string"
+                ? opinionNews[opinionNews?.length - 1]?.image[0]
+                : opinionNews[opinionNews?.length - 1]?.image
+            }
             alt="img.jpg"
           />
           <div className="text-container">
@@ -537,7 +571,12 @@ function SelectCard({ type }) {
                     onClick={() => handleClicks(el?._id)}
                   >
                     <h5 className="nation-badge">BREAKING NEWS</h5>
-                    <img src={el?.image} alt="img.jpg" />
+                    <img
+                      src={
+                        typeof el?.image !== "string" ? el?.image[0] : el?.image
+                      }
+                      alt="img.jpg"
+                    />
                   </Link>
                   <div className="item-body">
                     <Link

@@ -109,7 +109,12 @@ function NewsFlex() {
           return (
             <div className="news-flex" key={ele?._id}>
               <div className="img">
-                <img src={ele?.image} alt="img.jpg" />
+                <img
+                  src={
+                    typeof ele?.image !== "string" ? ele?.image[0] : ele?.image
+                  }
+                  alt="img.jpg"
+                />
               </div>
               <div className="item-body">
                 <Link

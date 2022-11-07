@@ -58,7 +58,9 @@ function Card({ store, type }) {
       <>
         <MetaDecorator
           description={store?.description}
-          imageUrl={store?.image}
+          imageUrl={
+            typeof store?.image !== "string" ? store?.image[0] : store?.image
+          }
           title={store?.title}
         />
         <div className="detail-flex">
@@ -107,7 +109,14 @@ function Card({ store, type }) {
         <div className="card">
           <div className="img-container">
             <Link to="#">
-              <img src={store?.image} alt="img.jpg" />
+              <img
+                src={
+                  typeof store?.image !== "string"
+                    ? store?.image[0]
+                    : store?.image
+                }
+                alt="img.jpg"
+              />
             </Link>
           </div>
           <div className="card-body">
@@ -178,7 +187,14 @@ function Card({ store, type }) {
           to={routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store[0]?.title)}
           onClick={() => handleNewsMain(store[0]?._id)}
         >
-          <img src={store[0]?.image} alt="img.jpg" />
+          <img
+            src={
+              typeof store[0]?.image !== "string"
+                ? store[0]?.image[0]
+                : store[0]?.image
+            }
+            alt="img.jpg"
+          />
         </Link>
         <h5>{capitalizeLetter(store[0]?.category)}</h5>
       </div>

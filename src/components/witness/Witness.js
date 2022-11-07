@@ -33,7 +33,12 @@ function Witness() {
                       disaptch(newsAction.getSingleNews({ id: el?._id }))
                     }
                   >
-                    <img src={el?.image} alt="img.jpg" />
+                    <img
+                      src={
+                        typeof el?.image !== "string" ? el?.image[0] : el?.image
+                      }
+                      alt="img.jpg"
+                    />
                     <a href="/" className="link-container">
                       <div className="text-container">
                         <h3>{el?.title}</h3>

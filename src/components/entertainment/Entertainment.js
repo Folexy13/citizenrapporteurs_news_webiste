@@ -68,7 +68,14 @@ function Entertainment() {
           className="item1"
           onClick={() => handleClicks(entertainmentNews[lx]?._id)}
         >
-          <img src={entertainmentNews[lx]?.image} alt="img.jpg" />
+          <img
+            src={
+              typeof entertainmentNews[lx]?.image !== "string"
+                ? entertainmentNews[lx]?.image[0]
+                : entertainmentNews[lx]?.image
+            }
+            alt="img.jpg"
+          />
           <div className="text-container">
             <div>
               <h5 className="nation-badge">ENTERTAINMENT</h5>
@@ -125,7 +132,14 @@ function Entertainment() {
             }
             onClick={() => handleClicks(entertainmentNews[lx - 1]?._id)}
           >
-            <img src={entertainmentNews[lx - 1]?.image} alt="img.jpg" />
+            <img
+              src={
+                typeof entertainmentNews[lx - 1]?.image !== "string"
+                  ? entertainmentNews[lx - 1]?.image[0]
+                  : entertainmentNews[lx - 1]?.image
+              }
+              alt="img.jpg"
+            />
             <div className="text-container">
               <div>
                 <h5 className="nation-badge">ENTERTAINMENT</h5>
@@ -180,7 +194,14 @@ function Entertainment() {
               onClick={() => handleClicks(entertainmentNews[lx - 2]?._id)}
               className="sub-item1"
             >
-              <img src={entertainmentNews[lx - 2]?.image} alt="img.jpg" />
+              <img
+                src={
+                  typeof entertainmentNews[lx - 2]?.image !== "string"
+                    ? entertainmentNews[lx - 2]?.image[0]
+                    : entertainmentNews[lx - 2]?.image
+                }
+                alt="img.jpg"
+              />
               <div className="text-container">
                 <div>
                   <h5 className="nation-badge">ENTERTAINMENT</h5>
@@ -237,7 +258,14 @@ function Entertainment() {
                 onClick={() => handleClicks(entertainmentNews[lx - 3]?._id)}
                 className="sub-item2"
               >
-                <img src={entertainmentNews[lx - 3]?.image} alt="img.jpg" />
+                <img
+                  src={
+                    typeof entertainmentNews[lx - 3]?.image !== "string"
+                      ? entertainmentNews[lx - 3]?.image[0]
+                      : entertainmentNews[lx - 3]?.image
+                  }
+                  alt="img.jpg"
+                />
                 <div className="text-container">
                   <div>
                     <h5 className="nation-badge">ENTERTAINMENT</h5>

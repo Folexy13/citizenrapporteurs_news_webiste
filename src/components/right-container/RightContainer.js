@@ -51,7 +51,11 @@ function RightContainer() {
           style={{ cursor: "pointer" }}
         >
           <img
-            src={politicsNews[politicsNews?.length - 1]?.image}
+            src={
+              typeof politicsNews[politicsNews?.length - 1]?.image !== "string"
+                ? politicsNews[politicsNews?.length - 1]?.image[0]
+                : politicsNews[politicsNews?.length - 1]?.image
+            }
             alt="img.jpg"
           />
           <Link
