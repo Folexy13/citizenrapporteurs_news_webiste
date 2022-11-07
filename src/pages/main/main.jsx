@@ -36,7 +36,6 @@ const Main = ({ type }) => {
   }, [dispacth, store]);
   useEffect(() => {
     dispacth(newsAction.getSingleNews({ slug }));
-
     // eslint-disable-next-line
   }, [dispacth]);
 
