@@ -13,6 +13,7 @@ import {
 } from "react-share";
 import "./card.scss";
 import { convertToSlug } from "../entertainment/Entertainment";
+import MetaDecorator from "../../helpers/metaDecorator";
 const capitalizeLetter = (name) => {
   return name?.toUpperCase();
 };
