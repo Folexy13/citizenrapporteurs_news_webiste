@@ -24,6 +24,13 @@ const getSlugFromCategory = (input) => {
 async function postNews(req, res) {
   const { description, video, image, title, category, author, date } = req.body;
   const hasMedia = video || image;
+  News.findOne({ title }, (err, news) => {
+    if (news)
+      return res.json({
+        status: false,
+        message: "News Already exist",
+      });
+  });
   if (!description || !hasMedia || !title || !category || !author) {
     return res.json({
       status: false,
