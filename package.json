@@ -10,8 +10,13 @@
     "axios": "^1.1.2",
     "bootstrap-icons": "^1.9.1",
     "classnames": "^2.3.2",
+    "crypto": "^1.0.1",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
     "moment": "^2.29.4",
+    "net": "^1.0.2",
     "node-sass": "^7.0.3",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^3.1.4",
@@ -25,8 +30,10 @@
     "react-toastify": "^9.0.8",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
+    "stream": "^0.0.2",
     "sweetalert2": "^11.6.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zlib": "^1.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
