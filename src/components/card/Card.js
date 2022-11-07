@@ -123,12 +123,7 @@ function Card({ store, type }) {
                 >
                   Share on FB
                 </a> */}
-                <WhatsappShareButton
-                  title={truncateText(store?.title, 120)}
-                  description={truncateText(store?.description, 120)}
-                  url={window.location.href}
-                  className="wh"
-                >
+                <WhatsappShareButton url={window.location.href} className="wh">
                   <i className="fa fa-whatsapp"></i>{" "}
                   <span>Share On Whatsapp</span>{" "}
                 </WhatsappShareButton>
