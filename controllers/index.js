@@ -130,7 +130,6 @@ async function deleteNews(req, res) {
 let arr = [];
 async function getSingleNews(req, res) {
   const { id, slug } = req.body;
-
   await News.findOne(
     { $or: [{ _id: id }, { newsSlug: slug }] },
     (err, news) => {

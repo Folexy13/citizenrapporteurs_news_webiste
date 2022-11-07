@@ -40,7 +40,7 @@ app.use(morgan("combined"));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
-app.get("/*", function (req, res) {
+app.get("/", function (req, res) {
   res.render("index", {
     imageUrl: arr.length ? arr.image : "xxx",
   });
