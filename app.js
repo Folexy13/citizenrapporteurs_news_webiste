@@ -44,7 +44,7 @@ app.get("/index", function (req, res) {
   // let yourImage = getYourImageUrl();
 
   res.render("index", {
-    imageUrl: arr.length ? arr.image : "...",
+    imageUrl: arr.length ? arr.image : "xxx",
   });
 });
 
