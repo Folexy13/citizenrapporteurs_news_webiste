@@ -142,6 +142,7 @@ async function getSingleNews(req, res) {
         });
       }
       arr.concat(news);
+      console.log(arr);
       return res.status(200).json({
         status: 200,
         news: news, //returns latest added five news
