@@ -6,6 +6,7 @@ import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./main.scss";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Main = ({ type }) => {
   let news = useSelector((el) => el?.categoryNews);
@@ -35,7 +36,20 @@ const Main = ({ type }) => {
     dispacth(newsAction.getNewsCategory(store.slug));
   }, [dispacth, store]);
   useEffect(() => {
-    dispacth(newsAction.getSingleNews({ slug }));
+    axios
+      .get("https://ipapi.co/json/")
+      .then((response) => {
+        let data = response.data;
+        let payload = {
+          ip: data.ip,
+        };
+        dispacth(newsAction.postClickedNews(payload));
+        dispacth(newsAction.getSingleNews({ slug }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     // eslint-disable-next-line
   }, [dispacth]);
 
