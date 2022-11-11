@@ -87,13 +87,14 @@ function App() {
                 path={routes.LOGIN.path}
                 element={<LoginPage />}
               />
-              <Route
-                name={routes.HOMEPAGE.name}
-                path={"/create-news"}
-                element={<UpdateNews type={"create"} />}
-                exact
-              />
               <Route element={<RouteGard />}>
+                <Route
+                  name={routes.HOMEPAGE.name}
+                  path={"/create-news"}
+                  element={<UpdateNews type={"create"} />}
+                  exact
+                />
+
                 <Route
                   path="/edit-news/:slug"
                   element={<UpdateNews type="update" />}
