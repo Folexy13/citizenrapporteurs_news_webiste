@@ -1,16 +1,16 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import axios from "axios";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import "./image-card.scss";
-import { getNewsClicks } from "../card/Card";
+// import { getNewsClicks } from "../card/Card";
 
 function ImageCard({ store }) {
   const dispacth = useDispatch();
-  const clickedNews = useSelector((el) => el?.clickedNews);
+  // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleClicks = (id) => {
     axios
       .get("https://ipapi.co/json/")
@@ -72,12 +72,12 @@ function ImageCard({ store }) {
               </svg>
               0
             </small>
-            <small
+            {/* <small
               style={{ display: "flex", gap: "5px", alignItems: "center" }}
             >
               <i class="fa fa-eye" aria-hidden="true"></i>
               {getNewsClicks(clickedNews, store?._id)}
-            </small>
+            </small> */}
           </div>
         </div>
       </Link>

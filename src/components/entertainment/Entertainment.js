@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import axios from "axios";
-import { getNewsClicks } from "../card/Card";
+// import { getNewsClicks } from "../card/Card";
 import "./entertainment.scss";
 export const convertToSlug = (input) => {
   if (typeof input === "string") {
@@ -37,7 +37,7 @@ function Entertainment() {
   const disaptch = useDispatch();
   const entertainmentNews = useSelector((el) => el?.categoryEntertainmnet);
   const lx = entertainmentNews?.length - 1;
-  const clickedNews = useSelector((el) => el?.clickedNews);
+  // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleClicks = (id) => {
     axios
       .get("https://ipapi.co/json/")
@@ -113,12 +113,12 @@ function Entertainment() {
                 </svg>
                 0
               </small>
-              <small
+              {/* <small
                 style={{ display: "flex", gap: "5px", alignItems: "center" }}
               >
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 {getNewsClicks(clickedNews, entertainmentNews[lx]?._id)}
-              </small>
+              </small> */}
             </div>
           </div>
         </Link>
@@ -173,12 +173,12 @@ function Entertainment() {
                   </svg>
                   0
                 </small>
-                <small
+                {/* <small
                   style={{ display: "flex", gap: "5px", alignItems: "center" }}
                 >
                   <i class="fa fa-eye" aria-hidden="true"></i>
                   {getNewsClicks(clickedNews, entertainmentNews[lx - 1]?._id)}
-                </small>
+                </small> */}
               </div>
             </div>
           </Link>
@@ -235,7 +235,7 @@ function Entertainment() {
                     </svg>
                     0
                   </small>
-                  <small
+                  {/* <small
                     style={{
                       display: "flex",
                       gap: "5px",
@@ -244,7 +244,7 @@ function Entertainment() {
                   >
                     <i class="fa fa-eye" aria-hidden="true"></i>
                     {getNewsClicks(clickedNews, entertainmentNews[lx - 2]?._id)}
-                  </small>
+                  </small> */}
                 </div>
               </div>
             </Link>
@@ -299,7 +299,7 @@ function Entertainment() {
                       </svg>
                       0
                     </small>
-                    <small
+                    {/* <small
                       style={{
                         display: "flex",
                         gap: "5px",
@@ -311,7 +311,7 @@ function Entertainment() {
                         clickedNews,
                         entertainmentNews[lx - 3]?._id
                       )}
-                    </small>
+                    </small> */}
                   </div>
                 </div>
               </Link>

@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { routes } from "../../routes";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { newsAction } from "../../redux/action/newsAction";
-import { getNewsClicks } from "../card/Card";
+// import { getNewsClicks } from "../card/Card";
 
 function BodyFlex({ type, store }) {
   const dispatch = useDispatch();
-  const clickedNews = useSelector((el) => el?.clickedNews);
+  // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleClicks = (id) => {
     axios
       .get("https://ipapi.co/json/")
@@ -65,7 +65,7 @@ function BodyFlex({ type, store }) {
                       <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                     </svg>
                     {convertDate(el.createdAt)}
-                    <small
+                    {/* <small
                       style={{
                         display: "flex",
                         gap: "5px",
@@ -75,7 +75,7 @@ function BodyFlex({ type, store }) {
                     >
                       <i class="fa fa-eye" aria-hidden="true"></i>
                       {getNewsClicks(clickedNews, el?._id)}
-                    </small>
+                    </small> */}
                   </small>
                 </div>
               </div>

@@ -8,13 +8,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { routes } from "../../routes";
 import { convertToSlug } from "../entertainment/Entertainment";
-import { getNewsClicks } from "../card/Card";
+// import { getNewsClicks } from "../card/Card";
 
 function Opinion({ type }) {
   const dispatch = useDispatch();
   let store;
   const news = useSelector((el) => el?.mainNews);
-  const clickedNews = useSelector((el) => el?.clickedNews);
+  // const clickedNews = useSelector((el) => el?.clickedNews);
   const formatDate = (date) => {
     date = moment(date).format("LL");
     return date;
@@ -91,7 +91,7 @@ function Opinion({ type }) {
                               <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                             </svg>
                             {formatDate(el?.createdAt)}
-                            <small
+                            {/* <small
                               style={{
                                 display: "flex",
                                 gap: "5px",
@@ -101,7 +101,7 @@ function Opinion({ type }) {
                             >
                               <i class="fa fa-eye" aria-hidden="true"></i>
                               {getNewsClicks(clickedNews, el?._id)}
-                            </small>
+                            </small> */}
                           </small>
                         </div>
                       </div>

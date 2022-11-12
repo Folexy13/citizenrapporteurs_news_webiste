@@ -7,13 +7,13 @@ import { routes } from "../../routes";
 import axios from "axios";
 import { convertToSlug } from "../entertainment/Entertainment";
 import "./select-card.scss";
-import { getNewsClicks } from "../card/Card";
+// import { getNewsClicks } from "../card/Card";
 
 function SelectCard({ type }) {
   const disaptch = useDispatch();
   const opinion = useSelector((el) => el?.categoryOpinion);
   const opinionSport = useSelector((el) => el?.categorySport);
-  const clickedNews = useSelector((el) => el?.clickedNews);
+  // const clickedNews = useSelector((el) => el?.clickedNews);
   const opinionBusiness = useSelector((el) => el?.categoryBusiness);
   const opinionNews = useSelector((el) => el?.categoryNews);
   const convertDate = (date) => {
@@ -103,7 +103,7 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-              <small
+              {/* <small
                 style={{
                   display: "flex",
                   gap: "5px",
@@ -113,7 +113,7 @@ function SelectCard({ type }) {
               >
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 {getNewsClicks(clickedNews, opinion[opinion?.length - 1]?._id)}
-              </small>
+              </small> */}
             </div>
           </div>
         </Link>
@@ -160,7 +160,7 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-                        <small
+                        {/* <small
                           style={{
                             display: "flex",
                             gap: "5px",
@@ -170,7 +170,7 @@ function SelectCard({ type }) {
                         >
                           <i class="fa fa-eye" aria-hidden="true"></i>
                           {getNewsClicks(clickedNews, el?._id)}
-                        </small>
+                        </small> */}
                       </small>
                     </div>
                   </div>
@@ -240,7 +240,7 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-              <small
+              {/* <small
                 style={{
                   display: "flex",
                   gap: "5px",
@@ -253,7 +253,7 @@ function SelectCard({ type }) {
                   clickedNews,
                   opinionSport[opinionSport?.length - 1]?._id
                 )}
-              </small>
+              </small> */}
             </div>
           </div>
         </Link>
@@ -303,7 +303,7 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-                        <small
+                        {/* <small
                           style={{
                             display: "flex",
                             gap: "5px",
@@ -313,7 +313,7 @@ function SelectCard({ type }) {
                         >
                           <i class="fa fa-eye" aria-hidden="true"></i>
                           {getNewsClicks(clickedNews, el?._id)}
-                        </small>
+                        </small> */}
                       </small>
                     </div>
                   </div>
@@ -388,7 +388,7 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-              <small
+              {/* <small
                 style={{
                   display: "flex",
                   gap: "5px",
@@ -401,7 +401,7 @@ function SelectCard({ type }) {
                   clickedNews,
                   opinionBusiness[opinionBusiness?.length - 1]?._id
                 )}
-              </small>
+              </small> */}
             </div>
           </div>
         </Link>
@@ -452,7 +452,7 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-                        <small
+                        {/* <small
                           style={{
                             display: "flex",
                             gap: "5px",
@@ -462,7 +462,7 @@ function SelectCard({ type }) {
                         >
                           <i class="fa fa-eye" aria-hidden="true"></i>
                           {getNewsClicks(clickedNews, el?._id)}
-                        </small>
+                        </small> */}
                       </small>
                     </div>
                   </div>
@@ -532,7 +532,7 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-              <small
+              {/* <small
                 style={{
                   display: "flex",
                   gap: "5px",
@@ -545,7 +545,7 @@ function SelectCard({ type }) {
                   clickedNews,
                   opinionNews[opinionNews?.length - 1]?._id
                 )}
-              </small>
+              </small> */}
             </div>
           </div>
         </Link>
@@ -600,7 +600,7 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-                        <small
+                        {/* <small
                           style={{
                             display: "flex",
                             gap: "5px",
@@ -610,7 +610,7 @@ function SelectCard({ type }) {
                         >
                           <i class="fa fa-eye" aria-hidden="true"></i>
                           {getNewsClicks(clickedNews, el?._id)}
-                        </small>
+                        </small> */}
                       </small>
                     </div>
                   </div>

@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import axios from "axios";
 import { routes } from "../../routes";
-import { getNewsClicks, truncateText } from "../card/Card";
+import { truncateText } from "../card/Card";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import ImageCard from "../image-card/ImageCard";
 import { Pagination } from "../../components";
@@ -19,7 +19,7 @@ function NewsFlex() {
   let PageSize = 10;
   let isLoggedin = JSON.parse(localStorage.getItem("isLoggedIn"));
   const [currentPage, setCurrentPage] = useState(1);
-  const clickedNews = useSelector((el) => el?.clickedNews);
+  // const clickedNews = useSelector((el) => el?.clickedNews);
   const store = useSelector((el) => el?.categoryNews);
   const data = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -156,7 +156,7 @@ function NewsFlex() {
                     </svg>
                     0
                   </small>
-                  <small
+                  {/* <small
                     style={{
                       display: "flex",
                       gap: "5px",
@@ -166,7 +166,7 @@ function NewsFlex() {
                   >
                     <i class="fa fa-eye" aria-hidden="true"></i>
                     {getNewsClicks(clickedNews, ele?._id)}
-                  </small>
+                  </small> */}
                 </div>
                 <p>{truncateText(ele?.description, 200)}</p>
                 {isLoggedin && (

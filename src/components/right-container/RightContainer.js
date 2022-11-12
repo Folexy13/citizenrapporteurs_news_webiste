@@ -4,16 +4,16 @@ import BodyFlex from "../body-flex/BodyFlex";
 import { useDispatch, useSelector } from "react-redux";
 import { newsAction } from "../../redux/action/newsAction";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { routes } from "../../routes";
 import axios from "axios";
-import { getNewsClicks } from "../card/Card";
+// import { getNewsClicks } from "../card/Card";
 
 function RightContainer() {
   const dispacth = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const politicsNews = useSelector((el) => el?.categoryPolitics);
-  const clickedNews = useSelector((el) => el?.clickedNews);
+  // const clickedNews = useSelector((el) => el?.clickedNews);
 
   useEffect(() => {
     dispacth(newsAction.getPoliticsategory("politics"));
@@ -27,10 +27,8 @@ function RightContainer() {
           id: store?._id,
           ip: data.ip,
         };
-        console.log(payload);
         dispacth(newsAction.postClickedNews(payload));
         dispacth(newsAction.getSingleNews(payload));
-        navigate(store);
       })
       .catch((error) => {
         console.log(error);
@@ -101,7 +99,7 @@ function RightContainer() {
                   </svg>
                   0
                 </small>
-                <small
+                {/* <small
                   style={{
                     display: "flex",
                     gap: "5px",
@@ -114,7 +112,7 @@ function RightContainer() {
                     clickedNews,
                     politicsNews[politicsNews?.length - 1]?._id
                   )}
-                </small>
+                </small> */}
               </div>
             </div>
           </Link>

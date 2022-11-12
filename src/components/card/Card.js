@@ -1,6 +1,6 @@
 import moment from "moment";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { newsAction } from "../../redux/action/newsAction";
@@ -35,7 +35,7 @@ export const truncateText = (str, size) => {
 
 function Card({ store, type }) {
   const dispacth = useDispatch();
-  const clickedNews = useSelector((el) => el?.clickedNews);
+  // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleNewsMain = (id) => {
     axios
       .get("https://ipapi.co/json/")
@@ -94,7 +94,7 @@ function Card({ store, type }) {
             </svg>
             0
           </small>
-          <small
+          {/* <small
             style={{
               display: "flex",
               color: "#002",
@@ -104,7 +104,7 @@ function Card({ store, type }) {
           >
             <i class="fa fa-eye" aria-hidden="true"></i>
             {getNewsClicks(clickedNews, store?._id)}
-          </small>
+          </small> */}
         </div>
         <div className="card">
           <div className="img-container">
@@ -232,7 +232,7 @@ function Card({ store, type }) {
               </svg>
               0
             </small>
-            <small
+            {/* <small
               style={{
                 display: "flex",
                 color: "#002",
@@ -242,7 +242,7 @@ function Card({ store, type }) {
             >
               <i class="fa fa-eye" aria-hidden="true"></i>
               {getNewsClicks(clickedNews, store[0]?._id)}
-            </small>
+            </small> */}
           </div>
           <p>{truncateText(store[0]?.description, 250)}</p>
           <Link
