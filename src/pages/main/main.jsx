@@ -59,6 +59,47 @@ const Main = ({ type }) => {
         <Layout hasRightSidebar={false} style={{ flexDirection: "column" }}>
           <Card store={store} type="main" />
           <Opinion type="main" store={news} />
+          <div className="comment">
+            <h2>
+              Comments <span className="badge">2</span>
+            </h2>
+
+            <div className="comment__body">
+              <div className="flex">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <div className="name">
+                  <b>Aluko Opeyemi</b>
+                </div>
+                <i class="fa fa-clock-o" aria-hidden="true">
+                  <span>1 week ago</span>
+                </i>
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Deleniti dolor molestias quisquam ut accusamus tempora
+                  consequatur quae recusandae itaque facere aspernatur ab
+                  obcaecati architecto nobis, nam ipsa vero saepe expedita!
+                </p>
+              </div>
+            </div>
+
+            <div className="comment__body">
+              <div className="flex">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <div className="name">
+                  <b>Tunde Bakare</b>
+                </div>
+                <i class="fa fa-clock-o" aria-hidden="true">
+                  <span>2 seconds ago</span>
+                </i>
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Deleniti dolor molestias quisquam ut accusamus tempora
+                  consequatur quae recusandae itaque facere aspernatur ab
+                  obcaecati architecto nobis, nam ipsa vero saepe expedita!
+                </p>
+              </div>
+            </div>
+          </div>
           <form onSubmit={handleSubmitComment} className="comment-section">
             <h1>Leave a Reply</h1>
             <h3>
