@@ -1,8 +1,10 @@
 require("dotenv").config();
 const News = require("../model/news");
 const Clicks = require("../model/click");
+const Comments = require("../model/comment");
 const jwt = require("jsonwebtoken");
 const path = require("path");
+const nodemailer = require("nodemailer");
 const indexPath = path.resolve(__dirname, "..", "build", "index.html");
 const fs = require("fs");
 const getSlugFromCategory = (input) => {
@@ -204,7 +206,27 @@ async function getNewsByCategory(req, res) {
     });
 }
 
-async function getNewsComment(req, res) {}
+async function getNewsComment(req, res) {
+  let { id } = req.params;
+  await Comments.findOne({ newsID: id }, function (err, news) {
+    if (err) {
+      return res.json({
+        status: false,
+        message: "Error in fecthing clicked news",
+        error: err,
+      });
+    } else {
+      return res.status(200).json({
+        status: true,
+        comments: news, //returns latest added ten news
+      });
+    }
+  })
+    .clone()
+    .catch(function (err) {
+      console.log(err);
+    });
+}
 
 //returns 10 latest
 async function getLatestNews(req, res) {
@@ -229,7 +251,28 @@ async function getLatestNews(req, res) {
 }
 
 async function getTrendingNews() {}
-async function postComments(req, res) {}
+async function postComments(req, res) {
+  const { author, email, comments, newsID, website } = req.body;
+  let newComment = new Comments();
+  newComment.author = author;
+  newComment.email = email;
+  newComment.comment = comments;
+  newComment.website = website;
+  newComment.newsID = newsID;
+  newComment.save(function (err, data) {
+    if (err) {
+      return res.json({
+        status: 403,
+        message: "Error with Model",
+        error: err,
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: "Comment posted successfully",
+    });
+  });
+}
 
 async function postNewsClicks(req, res) {
   const { ip, id } = req.body;
@@ -371,6 +414,68 @@ async function updateSlug(req, res) {
   });
 }
 
+async function bookAppointment(req, res) {
+  const { name, phone, email, service, date, message } = req.body;
+
+  let mailTransporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "folajimiopeyemisax13@gmail.com",
+      pass: process.env.PASS, //_wr(d+.3-JMk
+    },
+  });
+
+  let mailDetails = {
+    from: "noreply@pluralhealthcareltd.com<info@pluralhealthcareltd.com>",
+    to: "info@pluralhealthcareltd.com",
+    subject: "New Appointment",
+    html: `<h2>Hi Admin,you got a new appointment</h2></br><div><p>Name: <b>${name}</b></p><p>Email: ${email}</p><p>Phone: ${phone}</p><p>Service: ${service}</p><p>Appointment Date:${date}</p><p>Message: ${message}</p></div>`,
+  };
+
+  mailTransporter.sendMail(mailDetails, function (err, data) {
+    if (err) {
+      console.log("Error Occurs");
+      console.log(err);
+    } else {
+      res.json({
+        status: true,
+        message: "Appointment was successful",
+      });
+    }
+  });
+}
+
+async function subscribe(req, res) {
+  const { email } = req.body;
+
+  let mailTransporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "folajimiopeyemisax13@gmail.com",
+      pass: process.env.PASS, //_wr(d+.3-JMk
+    },
+  });
+
+  let mailDetails = {
+    from: "noreply@pluralhealthcareltd.com<info@pluralhealthcareltd.com>",
+    to: "info@pluralhealthcareltd.com",
+    subject: "New Subscription",
+    html: `<div>Hi Admin,A new user with email ${email} just joined the subscription list</div>`,
+  };
+
+  mailTransporter.sendMail(mailDetails, function (err, data) {
+    if (err) {
+      console.log("Error Occurs");
+      console.log(err);
+    } else {
+      res.json({
+        status: true,
+        message: "Appointment was successful",
+      });
+    }
+  });
+}
+
 module.exports = {
   postNews,
   editNews,
@@ -379,6 +484,7 @@ module.exports = {
   getLatestNews,
   getNewsByCategory,
   getTrendingNews,
+  subscribe,
   getSearchQuery,
   getNewsComment,
   getSingleNews,
@@ -386,6 +492,7 @@ module.exports = {
   getNewsClicks,
   getClickedNews,
   postNewsClicks,
+  bookAppointment,
   login,
   updateSlug,
   arr,

@@ -12,13 +12,12 @@ const commentSchema = new mongoose.Schema(
     },
     website: {
       type: String,
-      required: true,
     },
     comment: {
       type: String,
       required: true,
     },
-    news: { type: mongoose.Types.ObjectId, ref: "News" },
+    newsID: { type: String, required: "true" },
   },
   { timestamps: true }
 );

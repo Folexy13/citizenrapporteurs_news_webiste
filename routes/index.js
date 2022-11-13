@@ -12,6 +12,8 @@ const {
   getSingleNewsBySlug,
   login,
   updateSlug,
+  getNewsComment,
+  bookAppointment,
 } = require("../controllers");
 
 const router = require("express").Router();
@@ -22,6 +24,7 @@ router.post("/create-news", postNews);
 router.put("/edit-news/:id", editNews);
 router.post("/delete-news", deleteNews);
 router.post("/send-comment", postComments);
+router.get("/comment/:id", getNewsComment);
 router.get("/latest-news", getLatestNews);
 router.get("/news/", getNewsByCategory);
 router.post("/single-news", getSingleNews);
@@ -31,5 +34,7 @@ router.get("/clicked-news", getClickedNews);
 router.post("/clicked-news", postNewsClicks);
 router.get("/update-slug", updateSlug);
 router.post("/login", login);
+router.post("/book-appointment", bookAppointment);
+router.post("/subscribe", bookAppointment);
 
 module.exports = router;
