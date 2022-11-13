@@ -25,8 +25,8 @@ app.use((req, res, next) => {
     "https://citizen-rapporteur.netlify.app",
     "http://localhost:3000",
     "http://localhost:8080",
-    "http://www.pluralhealthcareltd.com",
-    "http://pluralhealthcareltd.com",
+    "https://www.pluralhealthcareltd.com/",
+    "https://pluralhealthcareltd.com/",
   ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
