@@ -26,7 +26,9 @@ app.use((req, res, next) => {
     "http://localhost:3000",
     "http://localhost:8080",
     "https://www.pluralhealthcareltd.com/",
+    "https://www.pluralhealthcareltd.com",
     "https://pluralhealthcareltd.com/",
+    "https://pluralhealthcareltd.com",
   ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
