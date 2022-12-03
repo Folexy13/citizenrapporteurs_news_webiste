@@ -3,7 +3,7 @@ import { alertActions } from "./alertAction";
 import { userConstants } from "../../constant/userConstants";
 import axios from "../../helpers/api";
 import { trackPromise } from "react-promise-tracker";
-export const BASE_API_URL = "https://cr-news-api.herokuapp.com";
+export const BASE_API_URL = "https://cr-web-api.onrender.com";
 // export const BASE_API_URL = "http://localhost:8080";
 export const newsAction = {
   postNews,

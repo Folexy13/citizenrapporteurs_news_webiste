@@ -14,7 +14,7 @@ const News = ({ type }) => {
 
   useEffect(() => {
     axios
-      .post(`https://cr-news-api.herokuapp.com/single-news`, { id })
+      .post(`https://cr-web-api.onrender.com/single-news`, { id })
       .then((res) => {
         setNews(res.data.news);
       });
