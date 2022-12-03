@@ -9,12 +9,10 @@ const router = require("./routes");
 const { arr } = require("./controllers");
 
 const app = express();
-// Register '.mustache' extension with The Mustache Express
 app.engine("mustache", mustacheExpress());
 
 app.set("view engine", "mustache");
 app.set("views", __dirname + "/views");
-// cors middleware
 // app.use((req, res, next) => {
 //   const allowedOrigins = [
 //     "https://citizenrapporteurs.com/",
