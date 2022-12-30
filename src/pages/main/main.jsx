@@ -24,7 +24,7 @@ const Main = ({ type }) => {
       email,
       website,
     };
-    if (!comment || !comment) {
+    if (!comment || !email) {
       dispacth(alertActions.error("All Fields marked(*) are important"));
       return;
     }

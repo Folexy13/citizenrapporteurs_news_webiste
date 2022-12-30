@@ -124,7 +124,22 @@ function getSingleNews(payload) {
     );
   };
 }
-function postComment() {}
+function postComment(payload) {
+  return (dispatch) => {
+    axios
+      .post(`${BASE_API_URL}/comment`, payload)
+      .then((res) => {
+        if (res.data.status) {
+          dispatch(alertActions.success(res.data.message));
+        } else {
+          throw res.data;
+        }
+      })
+      .catch((err) => {
+        dispatch(alertActions.error(err.message));
+      });
+  };
+}
 function getNewsCategory(slug) {
   return (dispatch) => {
     trackPromise(
