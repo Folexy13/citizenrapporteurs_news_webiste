@@ -208,24 +208,11 @@ async function getNewsByCategory(req, res) {
 
 async function getNewsComment(req, res) {
   let { id } = req.params;
-  await Comments.find({ newsID: id }, function (err, comment) {
-    if (err) {
-      return res.json({
-        status: false,
-        message: "Error in fecthing clicked news",
-        error: err,
-      });
-    } else {
-      return res.status(200).json({
-        status: true,
-        comments: comment, //returns latest added ten news
-      });
-    }
-  })
-    .clone()
-    .catch(function (err) {
-      console.log(err);
-    });
+  const comments = await Comments.find({ newsID: id });
+  return res.status(200).json({
+    status: true,
+    comments: comments, //returns latest added ten news
+  });
 }
 
 //returns 10 latest
