@@ -254,7 +254,7 @@ async function getTrendingNews() {}
 async function postComments(req, res) {
   const { author, email, comments, newsID, website } = req.body;
   let newComment = new Comments();
-  newComment.author = author;
+  newComment.author = author ? author : "guest";
   newComment.email = email;
   newComment.comment = comments;
   newComment.website = website;

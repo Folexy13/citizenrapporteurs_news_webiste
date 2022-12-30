@@ -23,7 +23,7 @@ const router = require("express").Router();
 router.post("/create-news", postNews);
 router.put("/edit-news/:id", editNews);
 router.post("/delete-news", deleteNews);
-router.post("/send-comment", postComments);
+router.post("/comment", postComments);
 router.get("/comment/:id", getNewsComment);
 router.get("/latest-news", getLatestNews);
 router.get("/news/", getNewsByCategory);
