@@ -20,7 +20,7 @@ const Main = ({ type }) => {
   const handleSubmitComment = (e) => {
     e.preventDefault();
     let payload = {
-      comment,
+      comments: comment,
       email,
       website,
     };
@@ -35,23 +35,23 @@ const Main = ({ type }) => {
   useEffect(() => {
     dispacth(newsAction.getNewsCategory(store.slug));
   }, [dispacth, store]);
-  useEffect(() => {
-    axios
-      .get("https://ipapi.co/json/")
-      .then((response) => {
-        let data = response.data;
-        let payload = {
-          ip: data.ip,
-        };
-        dispacth(newsAction.postClickedNews(payload));
-        dispacth(newsAction.getSingleNews({ slug }));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  // useEffect(() => {
+  //   axios
+  //     .get("https://ipapi.co/json/")
+  //     .then((response) => {
+  //       let data = response.data;
+  //       let payload = {
+  //         ip: data.ip,
+  //       };
+  //       dispacth(newsAction.postClickedNews(payload));
+  //       dispacth(newsAction.getSingleNews({ slug }));
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
 
-    // eslint-disable-next-line
-  }, [dispacth]);
+  //   // eslint-disable-next-line
+  // }, [dispacth]);
 
   return (
     <>
