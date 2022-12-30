@@ -208,7 +208,7 @@ async function getNewsByCategory(req, res) {
 
 async function getNewsComment(req, res) {
   let { id } = req.params;
-  await Comments.findOne({ newsID: id }, function (err, news) {
+  await Comments.find({ newsID: id }, function (err, comment) {
     if (err) {
       return res.json({
         status: false,
@@ -218,7 +218,7 @@ async function getNewsComment(req, res) {
     } else {
       return res.status(200).json({
         status: true,
-        comments: news, //returns latest added ten news
+        comments: comment, //returns latest added ten news
       });
     }
   })
@@ -252,11 +252,11 @@ async function getLatestNews(req, res) {
 
 async function getTrendingNews() {}
 async function postComments(req, res) {
-  const { author, email, comments, newsID, website } = req.body;
+  const { author, email, comment, newsID, website } = req.body;
   let newComment = new Comments();
   newComment.author = author ? author : "guest";
   newComment.email = email;
-  newComment.comment = comments;
+  newComment.comment = comment;
   newComment.website = website;
   newComment.newsID = newsID;
   newComment.save(function (err, data) {
