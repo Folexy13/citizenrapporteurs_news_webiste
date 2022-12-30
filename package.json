@@ -1,11 +1,11 @@
 {
   "name": "new-server",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon ./server.js",
-    "start": "node ./server.js",
+    "watch": "nodemon ./index.js",
+    "start": "node ./index.js",
     "git:build": "git add . && git commit -m '...' && git push heroku master"
   },
   "license": "MIT",

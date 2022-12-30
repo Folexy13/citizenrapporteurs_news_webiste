@@ -374,13 +374,10 @@ async function getClickedNews(req, res) {
 }
 async function login(req, res) {
   const { username, password } = req.body;
-  const token = jwt.sign({ username, password }, process.env.JWT_TOKEN, {
+  const token = jwt.sign({ username, password }, "process.env.JWT_TOKEN", {
     expiresIn: "3h",
   });
-  if (
-    username !== process.env.ADMIN_USER ||
-    password !== process.env.ADMIN_PASSWORD
-  ) {
+  if (username !== "citizen-admin" || password !== "adminffegg") {
     return res.json({
       status: false,
       message: "Incorrect Login Details",
