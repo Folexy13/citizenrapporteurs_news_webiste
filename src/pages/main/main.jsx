@@ -12,46 +12,51 @@ const Main = ({ type }) => {
   let news = useSelector((el) => el?.categoryNews);
   const { slug } = useParams();
   const [comment, setComment] = useState("");
+  const allComments = useSelector((el) => el?.comments);
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   // const newsID = localStorage.getItem("newsID");
 
   const dispacth = useDispatch();
+  let store = useSelector((el) => el?.mainNews);
+
   const handleSubmitComment = (e) => {
     e.preventDefault();
     let payload = {
-      comments: comment,
+      comment,
       email,
       website,
+      newsID: store?._id,
     };
     if (!comment || !email) {
       dispacth(alertActions.error("All Fields marked(*) are important"));
       return;
     }
     dispacth(newsAction.postComment(payload));
+    // window.location.reload();
   };
-  let store = useSelector((el) => el?.mainNews);
 
   useEffect(() => {
     dispacth(newsAction.getNewsCategory(store.slug));
+    dispacth(newsAction.getNewsComment(store?._id));
   }, [dispacth, store]);
-  // useEffect(() => {
-  //   axios
-  //     .get("https://ipapi.co/json/")
-  //     .then((response) => {
-  //       let data = response.data;
-  //       let payload = {
-  //         ip: data.ip,
-  //       };
-  //       dispacth(newsAction.postClickedNews(payload));
-  //       dispacth(newsAction.getSingleNews({ slug }));
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
+  useEffect(() => {
+    axios
+      .get("https://ipapi.co/json/")
+      .then((response) => {
+        let data = response.data;
+        let payload = {
+          ip: data.ip,
+        };
+        dispacth(newsAction.postClickedNews(payload));
+        dispacth(newsAction.getSingleNews({ slug }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-  //   // eslint-disable-next-line
-  // }, [dispacth]);
+    // eslint-disable-next-line
+  }, [dispacth]);
 
   return (
     <>
@@ -61,44 +66,25 @@ const Main = ({ type }) => {
           <Opinion type="main" store={news} />
           <div className="comment">
             <h2>
-              Comments <span className="badge">2</span>
+              Comments <span className="badge">{allComments?.length}</span>
             </h2>
 
-            <div className="comment__body">
-              <div className="flex">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <div className="name">
-                  <b>Aluko Opeyemi</b>
-                </div>
-                <i class="fa fa-clock-o" aria-hidden="true">
-                  <span>1 week ago</span>
-                </i>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Deleniti dolor molestias quisquam ut accusamus tempora
-                  consequatur quae recusandae itaque facere aspernatur ab
-                  obcaecati architecto nobis, nam ipsa vero saepe expedita!
-                </p>
-              </div>
-            </div>
+            {allComments?.sort()?.map((el) => {
+              console.log(el);
 
-            <div className="comment__body">
-              <div className="flex">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <div className="name">
-                  <b>Tunde Bakare</b>
+              <div className="comment__body" key={el?._id}>
+                <div className="flex">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <div className="name">
+                    <b>{el?.author}</b>
+                  </div>
+                  <i class="fa fa-clock-o" aria-hidden="true">
+                    <span>1 week ago</span>
+                  </i>
+                  <p>{el?.comment}</p>
                 </div>
-                <i class="fa fa-clock-o" aria-hidden="true">
-                  <span>2 seconds ago</span>
-                </i>
-                <p>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Deleniti dolor molestias quisquam ut accusamus tempora
-                  consequatur quae recusandae itaque facere aspernatur ab
-                  obcaecati architecto nobis, nam ipsa vero saepe expedita!
-                </p>
-              </div>
-            </div>
+              </div>;
+            })}
           </div>
           <form onSubmit={handleSubmitComment} className="comment-section">
             <h1>Leave a Reply</h1>

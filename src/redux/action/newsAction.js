@@ -8,6 +8,7 @@ export const BASE_API_URL = "https://cr_new_api.deta.dev";
 export const newsAction = {
   postNews,
   postComment,
+  getNewsComment,
   getLatestNews,
   getNewsCategory,
   getSingleNews,
@@ -139,6 +140,28 @@ function postComment(payload) {
         console.log(err);
         dispatch(alertActions.error(err.message));
       });
+  };
+}
+function getNewsComment(slug) {
+  return (dispatch) => {
+    trackPromise(
+      axios
+        .get(`${BASE_API_URL}/comment/${slug}`)
+        .then((res) => {
+          if (res.data.status) {
+            dispatch({
+              type: userConstants.GET_NEWS_COMMENTS,
+              comments: res.data.comments,
+            });
+          } else {
+            throw res.data;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          dispatch(alertActions.error(err.message));
+        })
+    );
   };
 }
 function getNewsCategory(slug) {
