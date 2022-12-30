@@ -5,6 +5,7 @@ import Footer from "../../components/footer/Footer";
 import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./main.scss";
+import moment from "moment";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -68,22 +69,24 @@ const Main = ({ type }) => {
             <h2>
               Comments <span className="badge">{allComments?.length}</span>
             </h2>
-
-            {allComments?.sort()?.map((el) => {
-              console.log(el);
-
-              <div className="comment__body" key={el?._id}>
-                <div className="flex">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                  <div className="name">
-                    <b>{el?.author}</b>
+            {allComments?.map((el) => {
+              return (
+                <div className="comment__body" key={el?._id}>
+                  <div className="flex">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <div className="name">
+                      <b>{el?.author}</b>
+                    </div>
+                    <i class="fa fa-clock-o" aria-hidden="true">
+                      <span>
+                        {moment(new Date(el.createdAt), "YYYYMMDD").fromNow()}
+                      </span>
+                    </i>
                   </div>
-                  <i class="fa fa-clock-o" aria-hidden="true">
-                    <span>1 week ago</span>
-                  </i>
+
                   <p>{el?.comment}</p>
                 </div>
-              </div>;
+              );
             })}
           </div>
           <form onSubmit={handleSubmitComment} className="comment-section">
