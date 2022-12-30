@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_API_URL = "https://cr-web-api.onrender.com";
+const BASE_API_URL = "https://cr_new_api.deta.dev";
 // const BASE_API_URL = "http://localhost:8080";
 
 const AxiosInstance = axios.create({
