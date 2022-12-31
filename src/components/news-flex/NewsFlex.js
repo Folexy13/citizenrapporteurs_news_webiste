@@ -77,11 +77,9 @@ function NewsFlex() {
       }
     });
   };
-  const handleEditNews = (id) => {
-    let news = store.find((el) => el._id === id);
-    dispatch(newsAction.getSingleNews({ id }));
-    localStorage.setItem("newsID", id);
-    navigate(`/edit-news/${convertToSlug(news.title)}`);
+  const handleEditNews = (cNews) => {
+    let news = store.find((el) => el?._id === cNews._id);
+    navigate(`/edit-news/${convertToSlug(news.title)}`, { state: cNews });
   };
   useEffect(() => {
     dispatch(newsAction.getNewsCategory(slug));
@@ -177,7 +175,7 @@ function NewsFlex() {
                       </i>
                     </div>
 
-                    <div onClick={() => handleEditNews(ele?._id)}>
+                    <div onClick={() => handleEditNews(ele)}>
                       <i class="fa fa-pencil" aria-hidden="true">
                         <span> Edit</span>
                       </i>

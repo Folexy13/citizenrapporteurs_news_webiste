@@ -73,6 +73,22 @@ function editNews(id) {
       });
   };
 }
+function updateNews(payload) {
+  return (dispatch) => {
+    axios
+      .post(`${BASE_API_URL}/update-news/`, payload)
+      .then((res) => {
+        if (res.data.status) {
+          dispatch(alertActions.success(res.data.message));
+        } else {
+          throw res.data;
+        }
+      })
+      .catch((err) => {
+        dispatch(alertActions.error(err.message));
+      });
+  };
+}
 function deleteNews(id) {
   return (dispatch) => {
     axios

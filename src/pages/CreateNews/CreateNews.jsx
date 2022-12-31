@@ -5,20 +5,19 @@ import { useForm } from "../../helpers/useForm";
 import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./CreateNews.scss";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 const isNotEmpty = (value) => value?.trim() !== "";
 const News = ({ type }) => {
   const alert = useSelector((el) => el?.alert);
   const dispatch = useDispatch();
   const id = localStorage.getItem("newsID");
-  const [news, setNews] = useState("");
-
+  const { state } = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
-    axios
-      .post(`https://cr-web-api.onrender.com/single-news`, { id })
-      .then((res) => {
-        setNews(res.data.news);
-      });
-    document.title = "Create News";
+    if (!state) {
+      navigate("/");
+    }
+    document.title = state ? "Edit News" : "Create News";
   }, [id]);
   const {
     value: title,
@@ -26,35 +25,39 @@ const News = ({ type }) => {
     hasError: titleHasError,
     valueChangedHandler: titleChangeHandler,
     inputBlurHandler: titleBlurHandler,
-  } = useForm(isNotEmpty, news?.title);
+  } = useForm(isNotEmpty, state?.title);
   const {
     value: author,
     isValid: authorIsValid,
     hasError: authorHasError,
     valueChangedHandler: authorChangeHandler,
     inputBlurHandler: authorBlurHandler,
-  } = useForm(isNotEmpty, news?.author);
+  } = useForm(isNotEmpty, state?.author);
+
   const {
     value: date,
     isValid: dateIsValid,
     hasError: dateHasError,
     valueChangedHandler: dateChangeHandler,
     inputBlurHandler: dateBlurHandler,
-  } = useForm(isNotEmpty, news?.createdAt);
+  } = useForm(
+    isNotEmpty,
+    state ? new Date(state?.createdAt).toISOString().split("T")[0] : ""
+  );
   const {
     value: category,
     isValid: categoryIsValid,
     hasError: categoryHasError,
     valueChangedHandler: categoryChangeHandler,
     inputBlurHandler: categoryBlurHandler,
-  } = useForm(isNotEmpty, news?.category);
+  } = useForm(isNotEmpty, state?.category);
   const {
     value: description,
     isValid: descriptionIsValid,
     hasError: descriptionHasError,
     valueChangedHandler: descriptionChangeHandler,
     inputBlurHandler: descriptionBlurHandler,
-  } = useForm(isNotEmpty, news?.description);
+  } = useForm(isNotEmpty, state?.description);
 
   const { value: video, valueChangedHandler: videoChangeHandler } =
     useForm(isNotEmpty);
@@ -124,14 +127,17 @@ const News = ({ type }) => {
       dispatch(alertActions.error("Upload an image/Post a video link"));
       return;
     }
-    dispatch(newsAction.postNews(payload));
-    console.log(payload);
-  };
-  useEffect(() => {
-    if (alert) {
-      setLoading(false);
+    if (state) {
+      dispatch(newsAction.editNews(payload));
+    } else {
+      dispatch(newsAction.postNews(payload));
     }
-  }, [dispatch, alert]);
+  };
+  // useEffect(() => {
+  //   if (alert) {
+  //     setLoading(false);
+  //   }
+  // }, [dispatch, alert]);
   if (type === "update") {
     return (
       <div>
@@ -194,6 +200,7 @@ const News = ({ type }) => {
                 onChange={videoChangeHandler}
               />
             </div>
+
             <div className="image">
               <label htmlFor="title">Upload Images</label>
               <input
