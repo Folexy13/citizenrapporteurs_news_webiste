@@ -22,6 +22,7 @@ export const newsAction = {
   login,
   postClickedNews,
   editNews,
+  updateNews,
   deleteNews,
 };
 function login(payload) {
@@ -76,7 +77,7 @@ function editNews(id) {
 function updateNews(payload) {
   return (dispatch) => {
     axios
-      .post(`${BASE_API_URL}/update-news/`, payload)
+      .post(`${BASE_API_URL}/update-news`, payload)
       .then((res) => {
         if (res.data.status) {
           dispatch(alertActions.success(res.data.message));

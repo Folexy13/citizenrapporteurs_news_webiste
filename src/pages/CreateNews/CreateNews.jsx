@@ -112,6 +112,7 @@ const News = ({ type }) => {
       image: typeof image === "object" ? image : image,
       video,
       category,
+      _id: state ? state?._id : "",
     };
 
     if (
@@ -128,7 +129,7 @@ const News = ({ type }) => {
       return;
     }
     if (state) {
-      dispatch(newsAction.editNews(payload));
+      dispatch(newsAction.updateNews(payload));
     } else {
       dispatch(newsAction.postNews(payload));
     }
