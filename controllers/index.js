@@ -164,9 +164,9 @@ async function getSingleNews(req, res) {
 }
 async function getSingleNewsBySlug(req, res) {
   const { slug } = req.params;
-  const truncateText = (str, size) => {
-    return str.length > size ? str.substring(0, size - 3) + "..." : str;
-  };
+  // const truncateText = (str, size) => {
+  //   return str.length > size ? str.substring(0, size - 3) + "..." : str;
+  // };
   await News.findOne({ slug }, (err, news) => {
     if (err) {
       return res.json({
@@ -200,6 +200,7 @@ async function getNewsByCategory(req, res) {
       news, //returns latest added five news
     });
   })
+    .sort({ _id: -1 })
     .clone()
     .catch(function (err) {
       console.log(err);
