@@ -102,7 +102,7 @@ function NewsFlex() {
   }
   return (
     <div>
-      <ImageCard store={store[store?.length - 1]} />
+      <ImageCard store={store[0]} />
       {data
         ?.filter((el) => el?.title !== store[store?.length - 1]?.title)
         ?.map((ele) => {
