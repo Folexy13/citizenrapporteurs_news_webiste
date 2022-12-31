@@ -121,9 +121,7 @@ function Card({ store, type }) {
           </div>
           <div className="card-body">
             <div className="item1">
-              <Link href="#" className="item-title">
-                <h1>{store?.title}</h1>
-              </Link>
+              <Link href="#" className="item-title"></Link>
               <div className="btn-flex">
                 <WhatsappShareButton url={window.location.href} className="wh">
                   <i className="fa fa-whatsapp"></i>{" "}
