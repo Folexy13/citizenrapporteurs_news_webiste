@@ -5,8 +5,6 @@ const Comments = require("../model/comment");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const nodemailer = require("nodemailer");
-const indexPath = path.resolve(__dirname, "..", "build", "index.html");
-const fs = require("fs");
 const getSlugFromCategory = (input) => {
   if (typeof input === "string") {
     let slug = input
@@ -65,6 +63,39 @@ async function postNews(req, res) {
       savedNews: data,
     });
   });
+}
+async function updateNews(req, res) {
+  const { description, video, image, title, category, author, date, _id } =
+    req.body;
+  const news = News.findByIdAndUpdate(
+    { _id },
+    {
+      description,
+      video,
+      image,
+      date,
+      category,
+      title,
+      author,
+      slug: getSlugFromCategory(category),
+      newsSlug: getSlugFromCategory(title),
+      media: video ? "video " : "image",
+    },
+    { new: true }
+  );
+  if (!description || !title || !category || !author) {
+    return res.json({
+      status: false,
+      message: "All Fields are required",
+    });
+  }
+  if (news) {
+    return res.status(200).json({
+      status: 200,
+      message: "News created successfully",
+      savedNews: data,
+    });
+  }
 }
 async function editNews(req, res) {
   let { id } = req.params;
@@ -480,5 +511,6 @@ module.exports = {
   bookAppointment,
   login,
   updateSlug,
+  updateNews,
   arr,
 };

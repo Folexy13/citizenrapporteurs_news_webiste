@@ -14,6 +14,7 @@ const {
   updateSlug,
   getNewsComment,
   bookAppointment,
+  updateNews,
 } = require("../controllers");
 
 const router = require("express").Router();
@@ -33,6 +34,7 @@ router.get("/clicked-news/:id", getNewsClicks);
 router.get("/clicked-news", getClickedNews);
 router.post("/clicked-news", postNewsClicks);
 router.get("/update-slug", updateSlug);
+router.post("/update-news", updateNews);
 router.post("/login", login);
 router.post("/book-appointment", bookAppointment);
 router.post("/subscribe", bookAppointment);
