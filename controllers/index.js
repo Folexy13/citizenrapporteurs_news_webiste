@@ -83,7 +83,7 @@ async function updateNews(req, res) {
     },
     { new: true }
   );
-  console.log(news);
+  // console.log(news);
   if (!description || !title || !category || !author) {
     return res.json({
       status: false,
@@ -93,8 +93,8 @@ async function updateNews(req, res) {
   if (news) {
     return res.status(200).json({
       status: 200,
-      message: "News created successfully",
-      savedNews: data,
+      message: "News edited successfully",
+      savedNews: news,
     });
   }
 }
