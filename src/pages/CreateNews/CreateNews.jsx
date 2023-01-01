@@ -129,6 +129,7 @@ const News = ({ type }) => {
       return;
     }
     if (state) {
+      console.log(payload);
       dispatch(newsAction.updateNews(payload));
     } else {
       dispatch(newsAction.postNews(payload));

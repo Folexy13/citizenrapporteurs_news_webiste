@@ -86,6 +86,7 @@ function updateNews(payload) {
         }
       })
       .catch((err) => {
+        // console.log(err);
         dispatch(alertActions.error(err.message));
       });
   };
