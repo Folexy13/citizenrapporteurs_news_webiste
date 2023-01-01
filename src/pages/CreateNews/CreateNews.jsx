@@ -5,10 +5,10 @@ import { useForm } from "../../helpers/useForm";
 import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
 import "./CreateNews.scss";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const isNotEmpty = (value) => value?.trim() !== "";
 const News = ({ type }) => {
-  const alert = useSelector((el) => el?.alert);
+  // const alert = useSelector((el) => el?.alert);
   const dispatch = useDispatch();
   const id = localStorage.getItem("newsID");
   const { state } = useLocation();
@@ -18,7 +18,7 @@ const News = ({ type }) => {
       navigate("/");
     }
     document.title = state ? "Edit News" : "Create News";
-  }, [id]);
+  }, [id, navigate, state]);
   const {
     value: title,
     isValid: titleIsValid,
