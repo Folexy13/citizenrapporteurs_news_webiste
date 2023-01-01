@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "../../helpers/useForm";
 import { alertActions } from "../../redux/action/alertAction";
 import { newsAction } from "../../redux/action/newsAction";
