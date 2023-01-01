@@ -14,9 +14,9 @@ const News = ({ type }) => {
   const { state } = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
-    if (!state) {
-      navigate("/");
-    }
+    // if (!state) {
+    //   navigate("/");
+    // }
     document.title = state ? "Edit News" : "Create News";
   }, [id, navigate, state]);
   const {
