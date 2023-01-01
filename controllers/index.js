@@ -83,6 +83,7 @@ async function updateNews(req, res) {
     },
     { new: true }
   );
+  console.log(news)
   if (!description || !title || !category || !author) {
     return res.json({
       status: false,
