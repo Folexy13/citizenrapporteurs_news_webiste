@@ -67,7 +67,7 @@ async function postNews(req, res) {
 async function updateNews(req, res) {
   const { description, video, image, title, category, author, date, _id } =
     req.body;
-  const news = News.findByIdAndUpdate(
+  const news = await News.findByIdAndUpdate(
     { _id },
     {
       description,
@@ -83,7 +83,7 @@ async function updateNews(req, res) {
     },
     { new: true }
   );
-  console.log(news)
+  console.log(news);
   if (!description || !title || !category || !author) {
     return res.json({
       status: false,
