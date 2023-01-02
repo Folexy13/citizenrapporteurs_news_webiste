@@ -1,7 +1,12 @@
 .pagination-container {
   display: flex;
   list-style-type: none;
-
+@media (max-width:480px) {
+  overflow: auto;
+    margin-block: unset;
+    margin-inline: unset;
+    padding-inline: unset;
+}
   .pagination-item {
     padding: 0 12px;
     height: 32px;
