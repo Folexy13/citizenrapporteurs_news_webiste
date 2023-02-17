@@ -37,7 +37,7 @@ app.set("views", __dirname + "/views");
 //   res.header("Access-Control-Allow-Credentials", true);
 //   return next();
 // });
-app.use(cors());
+app.use(cors("*"));
 app.use(morgan("combined"));
 
 app.use(express.json());
