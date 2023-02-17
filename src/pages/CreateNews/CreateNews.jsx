@@ -63,9 +63,10 @@ const News = ({ type }) => {
     useForm(isNotEmpty);
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [imgLoading, setImgLoading] = useState(false);
 
   const imageHandler = (img) => {
-    setLoading(true);
+    setImgLoading(true);
     setImages([]);
     try {
       for (const image of img) {
@@ -78,7 +79,7 @@ const News = ({ type }) => {
             formData
           )
           .then((res) => {
-            setLoading(false);
+            setImgLoading(false);
             setImages((prev) => [...prev, res.data["secure_url"]]);
           });
       }
@@ -108,8 +109,9 @@ const News = ({ type }) => {
       !descriptionIsValid
     ) {
       dispatch(alertActions.error("Fill in all required fields"));
+      setLoading(false);
       return;
-    } else if (!images && !video) {
+    } else if (images.length === 0 && !video) {
       dispatch(alertActions.error("Upload an image/Post a video link"));
       return;
     }
@@ -359,8 +361,12 @@ const News = ({ type }) => {
             )}
           </div>
           <div className="submit">
-            <button disabled={loading}>
-              {loading ? "Submitting..." : "Post News"}
+            <button disabled={loading || imgLoading}>
+              {imgLoading
+                ? "Uploading images.."
+                : loading
+                ? "Submitting..."
+                : "Post News"}
             </button>
           </div>
         </form>
