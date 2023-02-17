@@ -44,6 +44,6 @@ app.get("/", (req, res) => {
   res.send("Hi Live ");
 });
 
-// app.listen("5000", () => console.log("Listening on port 5000"));
+app.listen(port, () => console.log("Listening on port " + port));
 
 module.exports = app;
