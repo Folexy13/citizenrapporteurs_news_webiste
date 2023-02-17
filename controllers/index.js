@@ -22,8 +22,9 @@ const getSlugFromCategory = (input) => {
   }
 };
 async function postNews(req, res) {
-  const { description, video, image, title, category, author, date } = req.body;
-  const hasMedia = video || image;
+  const { description, video, images, title, category, author, date } =
+    req.body;
+  const hasMedia = video || images.length;
   News.findOne({ title }, (err, news) => {
     if (news)
       return res.json({
@@ -41,7 +42,7 @@ async function postNews(req, res) {
   const latestNews = new News();
   latestNews.description = description;
   latestNews.video = video;
-  latestNews.image = image;
+  latestNews.image = images;
   latestNews.title = title;
   latestNews.category = category;
   latestNews.slug = getSlugFromCategory(category);
