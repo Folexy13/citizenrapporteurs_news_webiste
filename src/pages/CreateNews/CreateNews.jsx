@@ -61,48 +61,31 @@ const News = ({ type }) => {
 
   const { value: video, valueChangedHandler: videoChangeHandler } =
     useForm(isNotEmpty);
-  const [image, setImage] = useState([]);
+  const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
+
   const imageHandler = (img) => {
-    const data = new FormData();
     setLoading(true);
-    if (img.length > 1) {
-      for (let i = 0; i < img.length; i++) {
-        data.append("file", img[i]);
-        data.append("upload_preset", "zoahguuq");
+    setImages([]);
+    try {
+      for (const image of img) {
+        const formData = new FormData();
+        formData.append("file", image);
+        formData.append("upload_preset", "zoahguuq");
         axios
           .post(
             "https://api.cloudinary.com/v1_1/folajimidev/image/upload",
-            data
+            formData
           )
           .then((res) => {
-            if (typeof image === "object") {
-              setImage((prev) => [...prev, res.data.secure_url]);
-              setLoading(false);
-            } else {
-              setImage([]);
-              setImage((prev) => [...prev, res.data.secure_url]);
-              setLoading(false);
-            }
+            setLoading(false);
+            setImages((prev) => [...prev, res.data["secure_url"]]);
           });
       }
-    } else {
-      console.log(img.length);
-      data.append("file", img[0]);
-      data.append("upload_preset", "zoahguuq");
-      axios
-        .post("https://api.cloudinary.com/v1_1/folajimidev/image/upload", data)
-        .then((res) => {
-          setImage(res.data.secure_url);
-          setLoading(false);
-        })
-        .finally(() => {
-          console.log("Experiment completed");
-        });
+    } catch (error) {
+      console.log(error);
     }
   };
-  console.log(image);
-
   const handleSubmit = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -111,7 +94,7 @@ const News = ({ type }) => {
       description,
       author,
       date,
-      image: typeof image === "object" ? image : image,
+      images,
       video,
       category,
       _id: state ? state?._id : "",
@@ -126,7 +109,7 @@ const News = ({ type }) => {
     ) {
       dispatch(alertActions.error("Fill in all required fields"));
       return;
-    } else if (!image && !video) {
+    } else if (!images && !video) {
       dispatch(alertActions.error("Upload an image/Post a video link"));
       return;
     }
@@ -137,11 +120,6 @@ const News = ({ type }) => {
       dispatch(newsAction.postNews(payload));
     }
   };
-  // useEffect(() => {
-  //   if (alert) {
-  //     setLoading(false);
-  //   }
-  // }, [dispatch, alert]);
   if (type === "update") {
     return (
       <div>

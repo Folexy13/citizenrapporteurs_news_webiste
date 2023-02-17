@@ -44,11 +44,8 @@ const Login = () => {
     if (alert.type === "alert-success") {
       navigate("/create-news");
     }
-    if (alert.type) {
-      setLoading(!loading);
-    }
     document.title = "Login";
-  }, [alert, navigate, loading]);
+  }, [alert, loading]);
 
   return (
     <div className="login">
