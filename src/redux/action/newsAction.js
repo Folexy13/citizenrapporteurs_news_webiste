@@ -150,6 +150,7 @@ function postComment(payload) {
       .then((res) => {
         if (res.data.status) {
           dispatch(alertActions.success(res.data.message));
+          window.location.reload();
         } else {
           throw res.data;
         }

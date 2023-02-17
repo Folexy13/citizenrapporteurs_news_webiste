@@ -104,7 +104,13 @@ function Footer() {
             <Link to="/">About Us /</Link>
             <Link to="/">Advertise /</Link>
             <Link to="/">Contact Us /</Link>
-            <Link to="/">Privacy Policy /</Link>
+            <a
+              href="https://termify.io/dashboard/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Privacy Policy /
+            </a>
             <Link to="/">Terms and Conditions</Link>
           </div>
         </div>

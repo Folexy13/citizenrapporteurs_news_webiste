@@ -20,3 +20,8 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.fa-clock-o{
+  display: flex;
+  gap: 3px;
+  font-style: italic;
+}

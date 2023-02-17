@@ -16,6 +16,7 @@ const Main = ({ type }) => {
   const allComments = useSelector((el) => el?.comments);
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
+  const [author, setAuthor] = useState("");
   // const newsID = localStorage.getItem("newsID");
 
   const dispacth = useDispatch();
@@ -27,6 +28,7 @@ const Main = ({ type }) => {
       comment,
       email,
       website,
+      author,
       newsID: store?._id,
     };
     if (!comment || !email) {
@@ -34,7 +36,6 @@ const Main = ({ type }) => {
       return;
     }
     dispacth(newsAction.postComment(payload));
-    // window.location.reload();
   };
 
   useEffect(() => {
@@ -73,11 +74,11 @@ const Main = ({ type }) => {
               return (
                 <div className="comment__body" key={el?._id}>
                   <div className="flex">
-                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <i className="fa fa-user" aria-hidden="true"></i>
                     <div className="name">
                       <b>{el?.author}</b>
                     </div>
-                    <i class="fa fa-clock-o" aria-hidden="true">
+                    <i className="fa fa-clock-o" aria-hidden="true">
                       <span>
                         {moment(new Date(el.createdAt), "YYYYMMDD").fromNow()}
                       </span>
@@ -85,6 +86,18 @@ const Main = ({ type }) => {
                   </div>
 
                   <p>{el?.comment}</p>
+                  <div style={{ display: "flex", gap: 4 }}>
+                    <div>
+                      <i className="fa fa-thumbs-up" aria-hidden="true">
+                        2
+                      </i>
+                    </div>
+                    <div>
+                      <i className="fa fa-thumbs-down" aria-hidden="true">
+                        2
+                      </i>
+                    </div>
+                  </div>
                 </div>
               );
             })}
@@ -122,6 +135,16 @@ const Main = ({ type }) => {
                   id=""
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="form-control">
+                <label htmlFor="">Name </label>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
                 />
               </div>
               <div className="form-control">

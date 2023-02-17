@@ -87,6 +87,7 @@ const News = ({ type }) => {
           });
       }
     } else {
+      console.log(img.length);
       data.append("file", img[0]);
       data.append("upload_preset", "zoahguuq");
       axios
@@ -100,6 +101,7 @@ const News = ({ type }) => {
         });
     }
   };
+  console.log(image);
 
   const handleSubmit = (e) => {
     setLoading(true);
@@ -202,9 +204,11 @@ const News = ({ type }) => {
                 onChange={videoChangeHandler}
               />
             </div>
-
             <div className="image">
-              <label htmlFor="title">Upload Images</label>
+              <img src={state.image} alt="" />
+            </div>
+            <div className="image">
+              <label htmlFor="title">Upload more Images</label>
               <input
                 type="file"
                 multiple
@@ -214,6 +218,7 @@ const News = ({ type }) => {
                 onChange={(e) => imageHandler(e.target.files)}
               />
             </div>
+
             <div className="category">
               <label htmlFor="category">
                 Category <span className="error-text">*</span>
