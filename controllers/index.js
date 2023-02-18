@@ -233,7 +233,7 @@ async function getNewsByCategory(req, res) {
       news, //returns latest added five news
     });
   })
-    .sort({ _id: -1 })
+    // .sort({ _id: -1 })
     .clone()
     .catch(function (err) {
       console.log(err);
