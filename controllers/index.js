@@ -252,19 +252,25 @@ async function getLikesDislikes(req, res) {
   let { like, dislike, email, newsID } = req.body;
   let updateLike = {
     $inc: { likes: like },
-    $push: { commenter: email },
+    $addToSet: { commenter: email },
   };
   try {
     const updateStatus = like
       ? await Comments.findOneAndUpdate({ newsID }, updateLike, { new: true })
       : await Comments.findOneAndUpdate(
-          { email },
+          { newsID },
           { $inc: { dislikes: dislike } }
         );
     if (updateStatus) {
       return res.status(200).send({
         status: true,
         message: "Update success",
+      });
+    }
+    if (!updateStatus) {
+      return res.status(200).send({
+        status: false,
+        message: "Not Found",
       });
     }
   } catch (error) {
