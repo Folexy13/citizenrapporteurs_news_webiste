@@ -24,11 +24,16 @@ const Main = ({ type }) => {
 
   const dispacth = useDispatch();
   let store = useSelector((el) => el?.mainNews);
-  const handleInteraction = async (act, newsID) => {
+  const handleInteraction = async (id, act, newsID) => {
     setAction(act);
     setActive(!active);
     let payload = {
-      like: active && act === "like" ? 1 : !active && act === "like" ? -1 : "",
+      like:
+        active && act && id === "like"
+          ? 1
+          : !active && act === "like"
+          ? -1
+          : "",
       dislike:
         active && act === "dislike"
           ? 1
@@ -41,6 +46,26 @@ const Main = ({ type }) => {
       console.log(res);
     });
   };
+  const handleLike = (commentId) => {
+    const updatedComments = allComments.map(async (comment) => {
+      let email = localStorage.getItem("email");
+      if (comment._id === commentId && !comment?.commenters?.includes(email)) {
+        await axios
+          .post(BASE_API_URL + "/like-dislike", {
+            likes: comment.likes + 1,
+            newsID: comment.newsID,
+            email,
+          })
+          .then((res) => {
+            console.log(res);
+          });
+        return { ...comment, likes: comment.likes + 1 };
+      }
+      return comment;
+    });
+    setComment(updatedComments);
+  };
+  const handleDisLike = (commentId) => {};
   const handleSubmitComment = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -108,7 +133,7 @@ const Main = ({ type }) => {
 
                   <p>{el?.comment}</p>
                   <div style={{ display: "flex", gap: 4 }}>
-                    <div onClick={() => handleInteraction("like", el?.newsID)}>
+                    <div onClick={() => handleLike(el?._id)}>
                       {active && action === "like" ? (
                         <i className="fa fa-thumbs-up" aria-hidden="true">
                           {el.likes}
@@ -123,7 +148,9 @@ const Main = ({ type }) => {
                       onClick={() => handleInteraction("dislike", el?.newsID)}
                     >
                       {active && action === "dislike" ? (
-                        <i className="fa fa-thumbs-down" aria-hidden="true"></i>
+                        <i className="fa fa-thumbs-down" aria-hidden="true">
+                          {el.dislikes}
+                        </i>
                       ) : (
                         <i class="fa fa-thumbs-o-down" aria-hidden="true">
                           {el.dislikes}
