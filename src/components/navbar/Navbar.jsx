@@ -8,16 +8,42 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { alertActions } from "../../redux/action/alertAction";
+import Modal from "../Modal";
+import simi from "../../assets/img/simi.jpeg";
+import aolat from "../../assets/img/aolat.jpeg";
+import tunde from "../../assets/img/tunde.jpeg";
 
 const todayDate = (date) => {
   date = moment(date).format("LLLL");
   return date;
 };
+const users = [
+  {
+    name: "Aolat Oluwatomisin",
+    phone: "+447404814926",
+    img: aolat,
+    title: "Publisher",
+  },
+  {
+    name: "Tunde Akingbondere",
+    phone: "09066991652",
+    img: tunde,
+    title: "Managing Editor",
+  },
+  {
+    name: "Akinseye Similoluwa",
+    phone: "08119526322",
+    img: simi,
+    title: "Staff Writer",
+  },
+];
 function Navbar({ onClick, state }) {
   let isLoggedin = JSON.parse(localStorage.getItem("isLoggedIn"));
 
   const [slug, setSlug] = useState("breaking-news");
   const alert = useSelector((el) => el?.alert);
+  const [show, setShow] = React.useState(false);
+  const [show2, setShow2] = React.useState(false);
   const dispatch = useDispatch();
   console.log(slug);
   const handleHeaderChange = (slug) => {
@@ -50,6 +76,32 @@ function Navbar({ onClick, state }) {
   };
   return (
     <>
+      <Modal isOpen={show} close={() => setShow(!show)}>
+        <h2 className="title">Contact Us</h2>
+        <div className="imgFlex">
+          {users.map((user, index) => (
+            <div key={index} className="user-card">
+              <img src={user.img} alt={user.name} />
+              <h3>{user.name}</h3>
+              <p className="description">{user.phone}</p>
+              <p className="price">{user.title}</p>
+            </div>
+          ))}
+        </div>
+      </Modal>
+      <Modal type="about" isOpen={show2} close={() => setShow2(!show2)}>
+        <h2 className="title">About Us</h2>
+        <div className="imgFlex">
+          Citizen Rapporteurs is a multi-faceted media and news outfit, created
+          with the intention of spotlighting topical, under-reported and
+          pressing issues having to do with the citizens of Nigeria. It is the
+          mirror of the citizenry to the domestic and international happenings,
+          verified cases of human right abuses, entertainment, politics,
+          business, education, sports, security and classified opinions on
+          topical issues or happenings in the Nigerian State. It is defined by
+          objectivity and the will to tell the story the citizen's way.
+        </div>
+      </Modal>
       <div className="navBar">
         <ToastContainer />
         <div className="navTopCon">
@@ -167,8 +219,11 @@ function Navbar({ onClick, state }) {
           >
             <h5>ENTERTAINMENT</h5>
           </NavLink>
-          <Link to={"#"} end>
+          <Link to={"#"} end onClick={() => setShow(!show)}>
             <h5>CONTACT US</h5>
+          </Link>
+          <Link to={"#"} end onClick={() => setShow2(!show2)}>
+            <h5>ABOUT US</h5>
           </Link>
           {isLoggedin && (
             <div onClick={handleLogout} style={{ cursor: "pointer" }}>

@@ -36,7 +36,7 @@ export const convertDate = (date) => {
 function Entertainment() {
   const disaptch = useDispatch();
   const entertainmentNews = useSelector((el) => el?.categoryEntertainmnet);
-  const lx = entertainmentNews?.length - 1;
+  const lx = 0;
   // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleClicks = (id) => {
     axios
@@ -122,21 +122,21 @@ function Entertainment() {
             </div>
           </div>
         </Link>
-        {entertainmentNews[lx - 1] && (
+        {entertainmentNews[1] && (
           <Link
             className="item2"
             to={
               routes.NEWSPAGE_MAIN.path +
               "/" +
-              convertToSlug(entertainmentNews[lx - 1]?.title)
+              convertToSlug(entertainmentNews[1]?.title)
             }
-            onClick={() => handleClicks(entertainmentNews[lx - 1]?._id)}
+            onClick={() => handleClicks(entertainmentNews[1]?._id)}
           >
             <img
               src={
-                typeof entertainmentNews[lx - 1]?.image === "object"
-                  ? entertainmentNews[lx - 1]?.image[0]
-                  : entertainmentNews[lx - 1]?.image
+                typeof entertainmentNews[1]?.image === "object"
+                  ? entertainmentNews[1]?.image[0]
+                  : entertainmentNews[1]?.image
               }
               alt="img.jpg"
             />
@@ -144,7 +144,7 @@ function Entertainment() {
               <div>
                 <h5 className="nation-badge">ENTERTAINMENT</h5>
               </div>
-              <h3>{entertainmentNews[lx - 1]?.title}</h3>
+              <h3>{entertainmentNews[1]?.title}</h3>
               <div className="detail-flex">
                 <small className="svg-flex">
                   <svg
@@ -158,7 +158,7 @@ function Entertainment() {
                     <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                     <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                   </svg>
-                  {convertDate(entertainmentNews[lx - 1]?.createdAt)}
+                  {convertDate(entertainmentNews[1]?.createdAt)}
                 </small>
                 <small className="svg-flex">
                   <svg
@@ -177,28 +177,28 @@ function Entertainment() {
                   style={{ display: "flex", gap: "5px", alignItems: "center" }}
                 >
                   <i class="fa fa-eye" aria-hidden="true"></i>
-                  {getNewsClicks(clickedNews, entertainmentNews[lx - 1]?._id)}
+                  {getNewsClicks(clickedNews, entertainmentNews[1]?._id)}
                 </small> */}
               </div>
             </div>
           </Link>
         )}
-        {entertainmentNews[lx - 2] && (
+        {entertainmentNews[2] && (
           <div className="item3">
             <Link
               to={
                 routes.NEWSPAGE_MAIN.path +
                 "/" +
-                convertToSlug(entertainmentNews[lx - 2]?.title)
+                convertToSlug(entertainmentNews[2]?.title)
               }
-              onClick={() => handleClicks(entertainmentNews[lx - 2]?._id)}
+              onClick={() => handleClicks(entertainmentNews[2]?._id)}
               className="sub-item1"
             >
               <img
                 src={
-                  typeof entertainmentNews[lx - 2]?.image === "object"
-                    ? entertainmentNews[lx - 2]?.image[0]
-                    : entertainmentNews[lx - 2]?.image
+                  typeof entertainmentNews[2]?.image === "object"
+                    ? entertainmentNews[2]?.image[0]
+                    : entertainmentNews[2]?.image
                 }
                 alt="img.jpg"
               />
@@ -206,7 +206,7 @@ function Entertainment() {
                 <div>
                   <h5 className="nation-badge">ENTERTAINMENT</h5>
                 </div>
-                <h3>{entertainmentNews[lx - 2]?.title}</h3>
+                <h3>{entertainmentNews[2]?.title}</h3>
                 <div className="detail-flex">
                   <small className="svg-flex">
                     <svg
@@ -220,7 +220,7 @@ function Entertainment() {
                       <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                       <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                     </svg>
-                    {convertDate(entertainmentNews[lx - 2]?.createdAt)}
+                    {convertDate(entertainmentNews[2]?.createdAt)}
                   </small>
                   <small className="svg-flex">
                     <svg
@@ -243,26 +243,26 @@ function Entertainment() {
                     }}
                   >
                     <i class="fa fa-eye" aria-hidden="true"></i>
-                    {getNewsClicks(clickedNews, entertainmentNews[lx - 2]?._id)}
+                    {getNewsClicks(clickedNews, entertainmentNews[2]?._id)}
                   </small> */}
                 </div>
               </div>
             </Link>
-            {entertainmentNews[lx - 3] && (
+            {entertainmentNews[3] && (
               <Link
                 to={
                   routes.NEWSPAGE_MAIN.path +
                   "/" +
-                  convertToSlug(entertainmentNews[lx - 3]?.title)
+                  convertToSlug(entertainmentNews[3]?.title)
                 }
-                onClick={() => handleClicks(entertainmentNews[lx - 3]?._id)}
+                onClick={() => handleClicks(entertainmentNews[3]?._id)}
                 className="sub-item2"
               >
                 <img
                   src={
-                    typeof entertainmentNews[lx - 3]?.image === "object"
-                      ? entertainmentNews[lx - 3]?.image[0]
-                      : entertainmentNews[lx - 3]?.image
+                    typeof entertainmentNews[3]?.image === "object"
+                      ? entertainmentNews[3]?.image[0]
+                      : entertainmentNews[3]?.image
                   }
                   alt="img.jpg"
                 />
@@ -270,7 +270,7 @@ function Entertainment() {
                   <div>
                     <h5 className="nation-badge">ENTERTAINMENT</h5>
                   </div>
-                  <h3>{entertainmentNews[lx - 3]?.title}</h3>
+                  <h3>{entertainmentNews[3]?.title}</h3>
                   <div className="detail-flex">
                     <small className="svg-flex">
                       <svg
@@ -284,7 +284,7 @@ function Entertainment() {
                         <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                       </svg>
-                      {convertDate(entertainmentNews[lx - 3]?.createdAt)}
+                      {convertDate(entertainmentNews[3]?.createdAt)}
                     </small>
                     <small className="svg-flex">
                       <svg
@@ -309,7 +309,7 @@ function Entertainment() {
                       <i class="fa fa-eye" aria-hidden="true"></i>
                       {getNewsClicks(
                         clickedNews,
-                        entertainmentNews[lx - 3]?._id
+                        entertainmentNews[3]?._id
                       )}
                     </small> */}
                   </div>

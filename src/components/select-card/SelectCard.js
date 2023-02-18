@@ -120,7 +120,7 @@ function SelectCard({ type }) {
           {opinion
             ?.filter((el) => el?.title !== opinion[0]?.title)
             ?.sort((a, b) => b._id - a._id)
-            ?.slice(opinion?.length - 7, opinion?.length)
+            ?.slice(0, 6)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -186,18 +186,16 @@ function SelectCard({ type }) {
           to={
             routes.NEWSPAGE_MAIN.path +
             "/" +
-            convertToSlug(opinionSport[opinionSport?.length - 1]?.title)
+            convertToSlug(opinionSport[0]?.title)
           }
-          onClick={() =>
-            handleClicks(opinionSport[opinionSport?.length - 1]?._id)
-          }
+          onClick={() => handleClicks(opinionSport[0]?._id)}
           className="image-container"
         >
           <img
             src={
-              typeof opinionSport[opinionSport?.length - 1]?.image === "object"
-                ? opinionSport[opinionSport?.length - 1]?.image[0]
-                : opinionSport[opinionSport?.length - 1]?.image
+              typeof opinionSport[0]?.image === "object"
+                ? opinionSport[0]?.image[0]
+                : opinionSport[0]?.image
             }
             alt="img.jpg"
           />
@@ -205,11 +203,10 @@ function SelectCard({ type }) {
             <div>
               <h5 className="nation-badge">SPORT</h5>
             </div>
-            <h2>{opinionSport[opinionSport?.length - 1]?.title}</h2>
+            <h2>{opinionSport[0]?.title}</h2>
             <div className="detail-flex">
               <small>
-                BY{" "}
-                <a href="/">{opinionSport[opinionSport?.length - 1]?.author}</a>
+                BY <a href="/">{opinionSport[0]?.author}</a>
               </small>
               <small className="svg-flex">
                 <svg
@@ -223,7 +220,7 @@ function SelectCard({ type }) {
                   <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                   <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                 </svg>
-                {convertDate(opinionSport[opinionSport?.length - 1]?.createdAt)}
+                {convertDate(opinionSport[0]?.createdAt)}
               </small>
               <small className="svg-flex">
                 <svg
@@ -249,7 +246,7 @@ function SelectCard({ type }) {
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 {getNewsClicks(
                   clickedNews,
-                  opinionSport[opinionSport?.length - 1]?._id
+                  opinionSport[0]?._id
                 )}
               </small> */}
             </div>
@@ -258,12 +255,9 @@ function SelectCard({ type }) {
         {/* IMAGE GRID DISPLAY */}
         <div className="grid-container">
           {opinionSport
-            ?.filter(
-              (el) =>
-                el?.title !== opinionSport[opinionSport?.length - 1]?.title
-            )
+            ?.filter((el) => el?.title !== opinionSport[0]?.title)
             ?.sort((a, b) => b._id - a._id)
-            ?.slice(opinionSport?.length - 7, opinionSport?.length)
+            ?.slice(0, 6)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -329,19 +323,16 @@ function SelectCard({ type }) {
           to={
             routes.NEWSPAGE_MAIN.path +
             "/" +
-            convertToSlug(opinionBusiness[opinionBusiness?.length - 1]?.title)
+            convertToSlug(opinionBusiness[0]?.title)
           }
-          onClick={() =>
-            handleClicks(opinionBusiness[opinionBusiness?.length - 1]?._id)
-          }
+          onClick={() => handleClicks(opinionBusiness[0]?._id)}
           className="image-container"
         >
           <img
             src={
-              typeof opinionBusiness[opinionBusiness?.length - 1]?.image !==
-              "string"
-                ? opinionBusiness[opinionBusiness?.length - 1]?.image[0]
-                : opinionBusiness[opinionBusiness?.length - 1]?.image
+              typeof opinionBusiness[0]?.image !== "string"
+                ? opinionBusiness[0]?.image[0]
+                : opinionBusiness[0]?.image
             }
             alt="img.jpg"
           />
@@ -349,13 +340,10 @@ function SelectCard({ type }) {
             <div>
               <h5 className="nation-badge">SPORT</h5>
             </div>
-            <h2>{opinionBusiness[opinionBusiness?.length - 1]?.title}</h2>
+            <h2>{opinionBusiness[0]?.title}</h2>
             <div className="detail-flex">
               <small>
-                BY{" "}
-                <a href="/">
-                  {opinionBusiness[opinionBusiness?.length - 1]?.author}
-                </a>
+                BY <a href="/">{opinionBusiness[0]?.author}</a>
               </small>
               <small className="svg-flex">
                 <svg
@@ -369,9 +357,7 @@ function SelectCard({ type }) {
                   <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                   <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                 </svg>
-                {convertDate(
-                  opinionBusiness[opinionBusiness?.length - 1]?.createdAt
-                )}
+                {convertDate(opinionBusiness[0]?.createdAt)}
               </small>
               <small className="svg-flex">
                 <svg
@@ -397,7 +383,7 @@ function SelectCard({ type }) {
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 {getNewsClicks(
                   clickedNews,
-                  opinionBusiness[opinionBusiness?.length - 1]?._id
+                  opinionBusiness[0]?._id
                 )}
               </small> */}
             </div>
@@ -406,13 +392,9 @@ function SelectCard({ type }) {
         {/* IMAGE GRID DISPLAY */}
         <div className="grid-container">
           {opinionBusiness
-            ?.filter(
-              (el) =>
-                el?.title !==
-                opinionBusiness[opinionBusiness?.length - 1]?.title
-            )
+            ?.filter((el) => el?.title !== opinionBusiness[0]?.title)
             ?.sort((a, b) => b._id - a._id)
-            ?.slice(opinionBusiness?.length - 7, opinionBusiness?.length)
+            ?.slice(0, 6)
             ?.map((el) => {
               return (
                 <div className="item">
@@ -478,18 +460,16 @@ function SelectCard({ type }) {
           to={
             routes.NEWSPAGE_MAIN.path +
             "/" +
-            convertToSlug(opinionNews[opinionNews?.length - 1]?.title)
+            convertToSlug(opinionNews[0]?.title)
           }
-          onClick={() =>
-            handleClicks(opinionNews[opinionNews?.length - 1]?._id)
-          }
+          onClick={() => handleClicks(opinionNews[0]?._id)}
           className="image-container"
         >
           <img
             src={
-              typeof opinionNews[opinionNews?.length - 1]?.image === "object"
-                ? opinionNews[opinionNews?.length - 1]?.image[0]
-                : opinionNews[opinionNews?.length - 1]?.image
+              typeof opinionNews[0]?.image === "object"
+                ? opinionNews[0]?.image[0]
+                : opinionNews[0]?.image
             }
             alt="img.jpg"
           />
@@ -497,11 +477,10 @@ function SelectCard({ type }) {
             <div>
               <h5 className="nation-badge">BREAKING NEWS</h5>
             </div>
-            <h2>{opinionNews[opinionNews?.length - 1]?.title}</h2>
+            <h2>{opinionNews[0]?.title}</h2>
             <div className="detail-flex">
               <small>
-                BY{" "}
-                <a href="/">{opinionNews[opinionNews?.length - 1]?.author}</a>
+                BY <a href="/">{opinionNews[0]?.author}</a>
               </small>
               <small className="svg-flex">
                 <svg
@@ -515,7 +494,7 @@ function SelectCard({ type }) {
                   <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                   <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                 </svg>
-                {convertDate(opinionNews[opinionNews?.length - 1]?.createdAt)}
+                {convertDate(opinionNews[0]?.createdAt)}
               </small>
               <small className="svg-flex">
                 <svg
@@ -541,7 +520,7 @@ function SelectCard({ type }) {
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 {getNewsClicks(
                   clickedNews,
-                  opinionNews[opinionNews?.length - 1]?._id
+                  opinionNews[0]?._id
                 )}
               </small> */}
             </div>
@@ -550,11 +529,9 @@ function SelectCard({ type }) {
         {/* IMAGE GRID DISPLAY */}
         <div className="grid-container">
           {opinionNews
-            ?.filter(
-              (el) => el?.title !== opinionNews[opinionNews?.length - 1]?.title
-            )
+            ?.filter((el) => el?.title !== opinionNews[0]?.title)
             ?.sort((a, b) => b._id - a._id)
-            ?.slice(opinionNews?.length - 7, opinionNews?.length)
+            ?.slice(0, 6)
             ?.map((el) => {
               return (
                 <div className="item">

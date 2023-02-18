@@ -11,6 +11,7 @@ import RightContainer from "./right-container/RightContainer";
 import NewsFlex from "./news-flex/NewsFlex";
 import Sidebar from "./Sidebar/Sidebar";
 import Container from "./Dashboard/Dashboard";
+import Modal from "../components/Modal";
 import Pagination from "./pagination/Pagination";
 import { Spinner } from "./Spinner/Spinner";
 
@@ -31,4 +32,5 @@ export {
   Spinner,
   Container,
   Pagination,
+  Modal,
 };
