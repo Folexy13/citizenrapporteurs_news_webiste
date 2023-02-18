@@ -16,7 +16,7 @@ const commentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    commenter: Array,
+    commenter: mongoose.Schema.Types.Mixed,
     likes: Number,
     dislikes: Number,
     newsID: { type: String, required: "true" },
