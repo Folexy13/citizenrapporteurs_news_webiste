@@ -154,6 +154,15 @@ function Card({ store, type }) {
                   <span>Share On Twitter</span>
                 </TwitterShareButton>
               </div>
+              {console.log(store?.image)}
+              <div className="imgContainer">
+                {typeof store?.image === "object" &&
+                  store?.image
+                    .filter((el) => el)
+                    .map((img) => {
+                      return <img src={img} alt=".." />;
+                    })}
+              </div>
               <p
                 style={{ fontSize: 16, marginTop: 80 }}
                 title={truncateText(store?.title, 120)}

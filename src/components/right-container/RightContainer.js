@@ -50,9 +50,9 @@ function RightContainer() {
         >
           <img
             src={
-              typeof politicsNews[politicsNews?.length - 1]?.image === "object"
-                ? politicsNews[politicsNews?.length - 1]?.image[0]
-                : politicsNews[politicsNews?.length - 1]?.image
+              typeof politicsNews[0]?.image === "object"
+                ? politicsNews[0]?.image[0]
+                : politicsNews[0]?.image
             }
             alt="img.jpg"
           />

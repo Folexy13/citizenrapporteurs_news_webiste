@@ -113,6 +113,7 @@ const News = ({ type }) => {
       return;
     } else if (images.length === 0 && !video) {
       dispatch(alertActions.error("Upload an image/Post a video link"));
+      setLoading(false);
       return;
     }
     if (state) {

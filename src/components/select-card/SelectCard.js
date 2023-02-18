@@ -51,19 +51,17 @@ function SelectCard({ type }) {
         <h1>OPINION</h1>
         <Link
           to={
-            routes.NEWSPAGE_MAIN.path +
-            "/" +
-            convertToSlug(opinion[opinion?.length - 1]?.title)
+            routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(opinion[0]?.title)
           }
-          onClick={() => handleClicks(opinion[opinion?.length - 1]?._id)}
+          onClick={() => handleClicks(opinion[0]?._id)}
           className="image-container"
         >
           <div className="overlay"></div>
           <img
             src={
-              typeof opinion[opinion?.length - 1]?.image === "object"
-                ? opinion[opinion?.length - 1]?.image[0]
-                : opinion[opinion?.length - 1]?.image
+              typeof opinion[0]?.image === "object"
+                ? opinion[0]?.image[0]
+                : opinion[0]?.image
             }
             alt="img.jpg"
           />
@@ -71,10 +69,10 @@ function SelectCard({ type }) {
             <div>
               <h5 className="nation-badge">OPINION</h5>
             </div>
-            <h2>{opinion[opinion?.length - 1]?.title}</h2>
+            <h2>{opinion[0]?.title}</h2>
             <div className="detail-flex">
               <small>
-                BY <a href="/">{opinion[opinion?.length - 1]?.author}</a>
+                BY <a href="/">{opinion[0]?.author}</a>
               </small>
               <small className="svg-flex">
                 <svg
@@ -88,7 +86,7 @@ function SelectCard({ type }) {
                   <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
                   <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                 </svg>
-                {convertDate(opinion[opinion?.length - 1]?.createdAt)}
+                {convertDate(opinion[0]?.createdAt)}
               </small>
               <small className="svg-flex">
                 <svg
@@ -112,7 +110,7 @@ function SelectCard({ type }) {
                 }}
               >
                 <i class="fa fa-eye" aria-hidden="true"></i>
-                {getNewsClicks(clickedNews, opinion[opinion?.length - 1]?._id)}
+                {getNewsClicks(clickedNews, opinion[0]?._id)}
               </small> */}
             </div>
           </div>
@@ -120,7 +118,7 @@ function SelectCard({ type }) {
         {/* IMAGE GRID DISPLAY */}
         <div className="grid-container">
           {opinion
-            ?.filter((el) => el?.title !== opinion[opinion?.length - 1]?.title)
+            ?.filter((el) => el?.title !== opinion[0]?.title)
             ?.sort((a, b) => b._id - a._id)
             ?.slice(opinion?.length - 7, opinion?.length)
             ?.map((el) => {
