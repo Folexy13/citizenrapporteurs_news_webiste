@@ -252,10 +252,7 @@ async function getLikesDislikes(req, res) {
   let { like, dislike, email, newsID } = req.body;
   try {
     const updateStatus = like
-      ? await Comments.findOneAndUpdate(
-          { email, newsID },
-          { $inc: { likes: like } }
-        )
+      ? await Comments.findOneAndUpdate({ newsID }, { $inc: { likes: like } })
       : await Comments.findOneAndUpdate(
           { email },
           { $inc: { dislikes: dislike } }
