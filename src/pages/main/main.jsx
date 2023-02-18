@@ -52,7 +52,7 @@ const Main = ({ type }) => {
       if (comment._id === commentId && !comment?.commenter?.includes(email)) {
         await axios
           .post(BASE_API_URL + "/like-dislike", {
-            like: comment.likes + 1,
+            like: 1,
             id: commentId,
             email,
             commenter: comment.commenter,
