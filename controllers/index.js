@@ -250,9 +250,13 @@ async function getNewsComment(req, res) {
 }
 async function getLikesDislikes(req, res) {
   let { like, dislike, email, newsID } = req.body;
+  let updateLike = {
+    $inc: { likes: like },
+    $addToSet: { commenter: email },
+  };
   try {
     const updateStatus = like
-      ? await Comments.findOneAndUpdate({ newsID }, { $inc: { likes: like } })
+      ? await Comments.findOneAndUpdate({ newsID }, updateLike, { new: true })
       : await Comments.findOneAndUpdate(
           { email },
           { $inc: { dislikes: dislike } }
