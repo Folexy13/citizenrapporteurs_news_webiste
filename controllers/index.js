@@ -253,7 +253,7 @@ async function getLikesDislikes(req, res) {
   let updateLike = {
     $inc: { likes: like },
     $addToSet: { commenter: email },
-    commenter,
+    $set: { commenter },
   };
   let updateDisLike = {
     $inc: { dislike: dislike },
