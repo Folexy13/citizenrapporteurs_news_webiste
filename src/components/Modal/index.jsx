@@ -4,10 +4,6 @@ import "./Styles.scss";
 const Modal = ({ children, isOpen, close, title, type }) => {
   //   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => {
-    // setIsOpen(true);
-  };
-
   // const handleClose = () => {
   //   // setIsOpen(false);
   // };
