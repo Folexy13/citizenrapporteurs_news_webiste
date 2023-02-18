@@ -50,7 +50,9 @@ function postNews(payload) {
       .then((res) => {
         if (res.data.status) {
           dispatch(alertActions.success(res.data.message));
-          window.location.reload();
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         } else {
           throw res.data.message;
         }
