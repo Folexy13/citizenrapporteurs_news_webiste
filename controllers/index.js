@@ -262,8 +262,8 @@ async function getLikesDislikes(req, res) {
   };
   try {
     const updateStatus = like
-      ? await Comments.findOneAndUpdate({ _id: id }, updateLike, { new: true })
-      : await Comments.findOneAndUpdate({ _id: id }, updateDisLike, {
+      ? await Comments.findByIdAndUpdate({ _id: id }, updateLike, { new: true })
+      : await Comments.findByIdAndUpdate({ _id: id }, updateDisLike, {
           new: true,
         });
     if (updateStatus) {
