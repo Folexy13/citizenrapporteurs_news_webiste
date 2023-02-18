@@ -55,20 +55,25 @@ const Main = ({ type }) => {
             likes: comment.likes + 1,
             newsID: comment.newsID,
             email,
+            dislikes: "",
           })
           .then((res) => {
             console.log(res);
+            return { ...comment, likes: comment.likes + 1 };
+          })
+          .catch((error) => {
+            console.log(error);
           });
-        return { ...comment, likes: comment.likes + 1 };
       }
       return comment;
     });
-    setComment(updatedComments);
+    console.log(updatedComments);
   };
   const handleDisLike = (commentId) => {};
   const handleSubmitComment = (e) => {
     setLoading(true);
     e.preventDefault();
+    localStorage.setItem("email", email);
     let payload = {
       comment,
       email,
