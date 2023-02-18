@@ -45,6 +45,7 @@ const Login = () => {
       navigate("/create-news");
     }
     document.title = "Login";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [alert, loading]);
 
   return (
