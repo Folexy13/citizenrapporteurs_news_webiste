@@ -13,7 +13,7 @@ const Main = ({ type }) => {
   let news = useSelector((el) => el?.categoryNews);
   const { slug } = useParams();
   const [comment, setComment] = useState("");
-  const allComments = useSelector((el) => el?.comments);
+  let allComments = useSelector((el) => el?.comments);
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [author, setAuthor] = useState("");
@@ -47,20 +47,37 @@ const Main = ({ type }) => {
     });
   };
   const handleLike = (commentId) => {
-    allComments.map(async (comment) => {
+    const updated = allComments.map(async (comment) => {
       let email = localStorage.getItem("email");
-      if (comment._id === commentId && !comment?.commenters?.includes(email)) {
-        console.log(comment);
+      if (comment._id === commentId && !comment?.commenter?.includes(email)) {
         await axios
           .post(BASE_API_URL + "/like-dislike", {
             like: comment.likes + 1,
-            newsID: comment.newsID,
+            id: commentId,
             email,
+            commenter: comment.commenter,
           })
-          .then((res) => {
-            console.log(res);
-
+          .then(() => {
             return { ...comment, likes: comment.likes + 1 };
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        let indexToRemove = allComments.indexOf(email);
+        await axios
+          .post(BASE_API_URL + "/like-dislike", {
+            like: -1,
+            id: commentId,
+            email,
+            commenter: comment.commenter.splice(indexToRemove, 1),
+          })
+          .then(() => {
+            return {
+              ...comment,
+              likes: comment.likes - 1,
+              commenter: comment.commenter.splice(indexToRemove, 1),
+            };
           })
           .catch((error) => {
             console.log(error);
@@ -68,8 +85,9 @@ const Main = ({ type }) => {
       }
       return comment;
     });
+    console.log(updated);
   };
-  const handleDisLike = (commentId) => {};
+  // const handleDisLike = (commentId) => {};
   const handleSubmitComment = (e) => {
     setLoading(true);
     e.preventDefault();
