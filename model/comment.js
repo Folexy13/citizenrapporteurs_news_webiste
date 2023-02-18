@@ -16,6 +16,8 @@ const commentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    likes: Number,
+    dislikes: Number,
     newsID: { type: String, required: "true" },
   },
   { timestamps: true }

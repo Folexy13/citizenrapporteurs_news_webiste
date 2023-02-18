@@ -248,7 +248,28 @@ async function getNewsComment(req, res) {
     comments: comments, //returns latest added ten news
   });
 }
-
+async function getLikesDislikes(req, res) {
+  let { like, dislike, email, newsID } = req.body;
+  try {
+    const updateStatus = like
+      ? await Comments.findOneAndUpdate(
+          { email, newsID },
+          { $inc: { likes: like } }
+        )
+      : await Comments.findOneAndUpdate(
+          { email },
+          { $inc: { dislikes: dislike } }
+        );
+    if (updateStatus) {
+      return res.status(200).send({
+        status: true,
+        message: "Update success",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 //returns 10 latest
 async function getLatestNews(req, res) {
   await News.find()
@@ -280,6 +301,8 @@ async function postComments(req, res) {
   newComment.comment = comment;
   newComment.website = website;
   newComment.newsID = newsID;
+  newComment.likes = 0;
+  newComment.dislikes = 0;
   newComment.save(function (err, data) {
     if (err) {
       return res.json({
@@ -514,5 +537,6 @@ module.exports = {
   login,
   updateSlug,
   updateNews,
+  getLikesDislikes,
   arr,
 };

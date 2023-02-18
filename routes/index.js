@@ -15,6 +15,7 @@ const {
   getNewsComment,
   bookAppointment,
   updateNews,
+  getLikesDislikes,
 } = require("../controllers");
 
 const router = require("express").Router();
@@ -38,5 +39,6 @@ router.post("/update-news", updateNews);
 router.post("/login", login);
 router.post("/book-appointment", bookAppointment);
 router.post("/subscribe", bookAppointment);
+router.post("/like-dislike", getLikesDislikes);
 
 module.exports = router;
