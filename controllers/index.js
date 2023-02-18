@@ -249,18 +249,23 @@ async function getNewsComment(req, res) {
   });
 }
 async function getLikesDislikes(req, res) {
-  let { like, dislike, email, id } = req.body;
+  let { like, dislike, email, id, commenter } = req.body;
   let updateLike = {
     $inc: { likes: like },
     $addToSet: { commenter: email },
+    commenter,
+  };
+  let updateDisLike = {
+    $inc: { dislike: dislike },
+    $addToSet: { commenter: email },
+    commenter,
   };
   try {
     const updateStatus = like
       ? await Comments.findOneAndUpdate({ _id: id }, updateLike, { new: true })
-      : await Comments.findOneAndUpdate(
-          { _id: id },
-          { $inc: { dislikes: dislike } }
-        );
+      : await Comments.findOneAndUpdate({ _id: id }, updateDisLike, {
+          new: true,
+        });
     if (updateStatus) {
       return res.status(200).send({
         status: true,
