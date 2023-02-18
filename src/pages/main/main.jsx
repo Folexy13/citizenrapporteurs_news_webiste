@@ -47,18 +47,19 @@ const Main = ({ type }) => {
     });
   };
   const handleLike = (commentId) => {
-    const updatedComments = allComments.map(async (comment) => {
+    allComments.map(async (comment) => {
       let email = localStorage.getItem("email");
       if (comment._id === commentId && !comment?.commenters?.includes(email)) {
+        console.log(comment);
         await axios
           .post(BASE_API_URL + "/like-dislike", {
-            likes: comment.likes + 1,
+            like: comment.likes + 1,
             newsID: comment.newsID,
             email,
-            dislikes: "",
           })
           .then((res) => {
             console.log(res);
+
             return { ...comment, likes: comment.likes + 1 };
           })
           .catch((error) => {
@@ -67,7 +68,6 @@ const Main = ({ type }) => {
       }
       return comment;
     });
-    console.log(updatedComments);
   };
   const handleDisLike = (commentId) => {};
   const handleSubmitComment = (e) => {
