@@ -19,6 +19,7 @@ const Sidebar = ({ show, onClick }) => {
   const handleHeaderChange = (slug) => {
     setSlug(slug);
   };
+  console.log(slug);
   const users = [
     {
       name: "Aolat Oluwatomisin",
