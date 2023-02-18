@@ -35,7 +35,6 @@ export const truncateText = (str, size) => {
 
 function Card({ store, type }) {
   const dispacth = useDispatch();
-  const [active, setActive] = React.useState(false);
   // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleNewsMain = (id) => {
     axios
@@ -53,7 +52,7 @@ function Card({ store, type }) {
         console.log(error);
       });
   };
-  const handleReaction = async () => {};
+
   if (type === "main") {
     return (
       <>
@@ -158,11 +157,9 @@ function Card({ store, type }) {
               {console.log(store?.image)}
               <div className="imgContainer">
                 {typeof store?.image === "object" &&
-                  store?.image
-                    .filter((el) => el)
-                    .map((img) => {
-                      return <img src={img} alt=".." />;
-                    })}
+                  store?.image.slice(1, store?.length).map((img) => {
+                    return <img src={img} alt=".." />;
+                  })}
               </div>
               <p
                 style={{ fontSize: 16, marginTop: 80 }}

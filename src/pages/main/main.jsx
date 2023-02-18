@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card, Layout, Opinion } from "../../components";
 import Footer from "../../components/footer/Footer";
 import { alertActions } from "../../redux/action/alertAction";
-import { newsAction } from "../../redux/action/newsAction";
+import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import "./main.scss";
 import moment from "moment";
 import { useParams } from "react-router-dom";
@@ -17,12 +17,32 @@ const Main = ({ type }) => {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [author, setAuthor] = useState("");
+  const [loading, setLoading] = useState("");
+  const [active, setActive] = useState("");
+  const [action, setAction] = useState(false);
   // const newsID = localStorage.getItem("newsID");
 
   const dispacth = useDispatch();
   let store = useSelector((el) => el?.mainNews);
-
+  const handleInteraction = async (act, newsID) => {
+    setAction(act);
+    setActive(!active);
+    let payload = {
+      like: active && act === "like" ? 1 : !active && act === "like" ? -1 : "",
+      dislike:
+        active && act === "dislike"
+          ? 1
+          : !active && act === "dislike"
+          ? -1
+          : "",
+      newsID,
+    };
+    await axios.post(BASE_API_URL + "/like-dislike", payload).then((res) => {
+      console.log(res);
+    });
+  };
   const handleSubmitComment = (e) => {
+    setLoading(true);
     e.preventDefault();
     let payload = {
       comment,
@@ -33,6 +53,7 @@ const Main = ({ type }) => {
     };
     if (!comment || !email) {
       dispacth(alertActions.error("All Fields marked(*) are important"));
+      setLoading(false);
       return;
     }
     dispacth(newsAction.postComment(payload));
@@ -87,15 +108,27 @@ const Main = ({ type }) => {
 
                   <p>{el?.comment}</p>
                   <div style={{ display: "flex", gap: 4 }}>
-                    <div>
-                      <i className="fa fa-thumbs-up" aria-hidden="true">
-                        2
-                      </i>
+                    <div onClick={() => handleInteraction("like", el?.newsID)}>
+                      {active && action === "like" ? (
+                        <i className="fa fa-thumbs-up" aria-hidden="true">
+                          {el.likes}
+                        </i>
+                      ) : (
+                        <i class="fa fa-thumbs-o-up" aria-hidden="true">
+                          {el.likes}
+                        </i>
+                      )}
                     </div>
-                    <div>
-                      <i className="fa fa-thumbs-down" aria-hidden="true">
-                        2
-                      </i>
+                    <div
+                      onClick={() => handleInteraction("dislike", el?.newsID)}
+                    >
+                      {active && action === "dislike" ? (
+                        <i className="fa fa-thumbs-down" aria-hidden="true"></i>
+                      ) : (
+                        <i class="fa fa-thumbs-o-down" aria-hidden="true">
+                          {el.dislikes}
+                        </i>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -159,7 +192,9 @@ const Main = ({ type }) => {
               </div>
             </div>
             <div className="form-control">
-              <button type="submit">POST COMMENT</button>
+              <button disabled={loading} type="submit">
+                {loading ? "Submitting..." : "POST COMMENT"}
+              </button>
             </div>
           </form>
         </Layout>
