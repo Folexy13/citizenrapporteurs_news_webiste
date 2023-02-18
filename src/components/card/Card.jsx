@@ -35,6 +35,7 @@ export const truncateText = (str, size) => {
 
 function Card({ store, type }) {
   const dispacth = useDispatch();
+  const [active, setActive] = React.useState(false);
   // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleNewsMain = (id) => {
     axios
@@ -52,7 +53,7 @@ function Card({ store, type }) {
         console.log(error);
       });
   };
-
+  const handleReaction = async () => {};
   if (type === "main") {
     return (
       <>

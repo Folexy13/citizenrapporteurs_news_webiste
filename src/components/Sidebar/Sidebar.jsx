@@ -181,7 +181,7 @@ const Sidebar = ({ show, onClick }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"#"} onClick={() => setShow(!show)} end>
+            <NavLink to={"#"} onClick={() => setShow(true)} end>
               Contact Us
             </NavLink>
           </li>
