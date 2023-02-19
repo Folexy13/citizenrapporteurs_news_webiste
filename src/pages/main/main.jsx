@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card, Layout, Opinion } from "../../components";
 import Footer from "../../components/footer/Footer";
 import { alertActions } from "../../redux/action/alertAction";
-import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
+import { newsAction } from "../../redux/action/newsAction";
 import "./main.scss";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const Main = ({ type }) => {
+const Main = () => {
   let news = useSelector((el) => el?.categoryNews);
   const { slug } = useParams();
   const [comment, setComment] = useState("");
@@ -18,76 +18,10 @@ const Main = ({ type }) => {
   const [website, setWebsite] = useState("");
   const [author, setAuthor] = useState("");
   const [loading, setLoading] = useState("");
-  const [active, setActive] = useState("");
-  const [action, setAction] = useState(false);
-  // const newsID = localStorage.getItem("newsID");
 
   const dispacth = useDispatch();
   let store = useSelector((el) => el?.mainNews);
-  const handleInteraction = async (id, act, newsID) => {
-    setAction(act);
-    setActive(!active);
-    let payload = {
-      like:
-        active && act && id === "like"
-          ? 1
-          : !active && act === "like"
-          ? -1
-          : "",
-      dislike:
-        active && act === "dislike"
-          ? 1
-          : !active && act === "dislike"
-          ? -1
-          : "",
-      newsID,
-    };
-    await axios.post(BASE_API_URL + "/like-dislike", payload).then((res) => {
-      console.log(res);
-    });
-  };
-  const handleLike = (commentId) => {
-    const updated = allComments.map(async (comment) => {
-      let email = localStorage.getItem("email");
-      if (comment._id === commentId && !comment?.commenter?.includes(email)) {
-        await axios
-          .post(BASE_API_URL + "/like-dislike", {
-            like: 1,
-            id: commentId,
-            email,
-            commenter: comment.commenter,
-          })
-          .then(() => {
-            return { ...comment, likes: comment.likes + 1 };
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        let indexToRemove = allComments.indexOf(email);
-        await axios
-          .post(BASE_API_URL + "/like-dislike", {
-            like: -1,
-            id: commentId,
-            email,
-            commenter: comment.commenter.splice(indexToRemove, 1),
-          })
-          .then(() => {
-            return {
-              ...comment,
-              likes: comment.likes - 1,
-              commenter: comment.commenter.splice(indexToRemove, 1),
-            };
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-      return comment;
-    });
-    console.log(updated);
-  };
-  // const handleDisLike = (commentId) => {};
+
   const handleSubmitComment = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -155,32 +89,6 @@ const Main = ({ type }) => {
                   </div>
 
                   <p>{el?.comment}</p>
-                  <div style={{ display: "flex", gap: 4 }}>
-                    <div onClick={() => handleLike(el?._id)}>
-                      {active && action === "like" ? (
-                        <i className="fa fa-thumbs-up" aria-hidden="true">
-                          {el.likes}
-                        </i>
-                      ) : (
-                        <i class="fa fa-thumbs-o-up" aria-hidden="true">
-                          {el.likes}
-                        </i>
-                      )}
-                    </div>
-                    <div
-                      onClick={() => handleInteraction("dislike", el?.newsID)}
-                    >
-                      {active && action === "dislike" ? (
-                        <i className="fa fa-thumbs-down" aria-hidden="true">
-                          {el.dislikes}
-                        </i>
-                      ) : (
-                        <i class="fa fa-thumbs-o-down" aria-hidden="true">
-                          {el.dislikes}
-                        </i>
-                      )}
-                    </div>
-                  </div>
                 </div>
               );
             })}

@@ -26,6 +26,7 @@ export const getNewsClicks = (arr, id) => {
   }
   return click;
 };
+
 const convertDate = (date) => {
   return moment(date).format("dddd, MMMM Do YYYY");
 };
@@ -34,6 +35,8 @@ export const truncateText = (str, size) => {
 };
 
 function Card({ store, type }) {
+  const lines = store?.description?.split("\n\n");
+  console.log(lines);
   const dispacth = useDispatch();
   // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleNewsMain = (id) => {
@@ -154,20 +157,29 @@ function Card({ store, type }) {
                   <span>Share On Twitter</span>
                 </TwitterShareButton>
               </div>
-              {console.log(store?.image)}
-              <div className="imgContainer">
+              {/* <div className="imgContainer">
                 {typeof store?.image === "object" &&
                   store?.image.slice(1, store?.length).map((img) => {
                     return <img src={img} alt=".." />;
                   })}
               </div>
-              <p
-                style={{ fontSize: 16, marginTop: 80 }}
-                title={truncateText(store?.title, 120)}
-                description={truncateText(store?.description, 120)}
-              >
-                {store?.description}
-              </p>
+              <p>{store?.description}</p> */}
+              {lines?.map((line, index) => {
+                // console.log(store?.image);
+                return (
+                  <p
+                    key={index}
+                    className="imgContainer"
+                    id={`p-${index + 1}`}
+                    style={{ fontSize: 16, marginTop: 80 }}
+                  >
+                    {line}
+                    {index < lines.length - 1 && (
+                      <img src={store?.image[index + 1]} alt="spacer" />
+                    )}
+                  </p>
+                );
+              })}
             </div>
           </div>
         </div>
