@@ -174,7 +174,7 @@ function Card({ store, type }) {
                     style={{ fontSize: 16, marginTop: 80 }}
                   >
                     {line}
-                    {index < lines.length - 1 && (
+                    {index < lines.length - 1 && store?.image[index + 1] && (
                       <img src={store?.image[index + 1]} alt="spacer" />
                     )}
                   </p>
