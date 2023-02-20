@@ -529,7 +529,6 @@ async function subscribe(req, res) {
 }
 
 async function getNews(req, res) {
-  const { slug } = req.params;
   const latestNews = await News.find().sort({ _id: -1 }).limit(10);
   const newsCategory = await News.find({ slug: "breaking-news" });
   const politicsCategory = await News.find({ slug: "politics" });
