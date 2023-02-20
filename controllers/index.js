@@ -304,7 +304,6 @@ async function getLatestNews(req, res) {
     });
 }
 
-async function getTrendingNews() {}
 async function postComments(req, res) {
   const { author, email, comment, newsID, website } = req.body;
   let newComment = new Comments();
@@ -529,6 +528,29 @@ async function subscribe(req, res) {
   });
 }
 
+async function getNews(req, res) {
+  const { slug } = req.params;
+  const latestNews = await News.find().sort({ _id: -1 }).limit(10);
+  const newsCategory = await News.find({ slug: "breaking-news" });
+  const politicsCategory = await News.find({ slug: "politics" });
+  const businessCategory = await News.find({ slug: "business" });
+  const entertainmentCategory = await News.find({ slug: "entertainment" });
+  const opinionCategory = await News.find({ slug: "opinions" });
+  const sportCategory = await News.find({ slug: "sport" });
+  const crimeCategory = await News.find({ slug: "crime-report" });
+
+  res.status(200).send({
+    latestNews,
+    newsCategory,
+    politicsCategory,
+    businessCategory,
+    entertainmentCategory,
+    opinionCategory,
+    sportCategory,
+    crimeCategory,
+  });
+}
+
 module.exports = {
   postNews,
   editNews,
@@ -536,7 +558,6 @@ module.exports = {
   postComments,
   getLatestNews,
   getNewsByCategory,
-  getTrendingNews,
   subscribe,
   getSearchQuery,
   getNewsComment,
@@ -547,8 +568,8 @@ module.exports = {
   postNewsClicks,
   bookAppointment,
   login,
+  getNews,
   updateSlug,
   updateNews,
   getLikesDislikes,
-  arr,
 };
