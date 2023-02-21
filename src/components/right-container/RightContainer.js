@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./right-container.scss";
 import BodyFlex from "../body-flex/BodyFlex";
-import { useDispatch, useSelector } from "react-redux";
-import { newsAction } from "../../redux/action/newsAction";
+import { useDispatch } from "react-redux";
+import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import { Link } from "react-router-dom";
 import { routes } from "../../routes";
@@ -12,11 +12,14 @@ import axios from "axios";
 function RightContainer() {
   const dispacth = useDispatch();
   // const navigate = useNavigate();
-  const politicsNews = useSelector((el) => el?.categoryPolitics);
+  const [politicsNews, setPoliticsNews] = useState([]);
   // const clickedNews = useSelector((el) => el?.clickedNews);
 
   useEffect(() => {
     dispacth(newsAction.getPoliticsategory("politics"));
+    axios.get(`${BASE_API_URL}/news/?category=politics&page=1`).then((res) => {
+      setPoliticsNews(res.data.payload);
+    });
   }, [dispacth]);
   const handleClick = (store) => {
     axios

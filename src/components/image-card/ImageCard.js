@@ -9,6 +9,7 @@ import "./image-card.scss";
 // import { getNewsClicks } from "../card/Card";
 
 function ImageCard({ store }) {
+  console.log(store.image);
   const dispacth = useDispatch();
   // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleClicks = (id) => {
@@ -35,7 +36,10 @@ function ImageCard({ store }) {
         onClick={() => handleClicks(store?._id)}
         className="image-container"
       >
-        <img src={store?.image} alt="img.jpg" />
+        <img
+          src={store?.image[0] ? store?.image[0] : store?.image}
+          alt="img.jpg"
+        />
         <div className="text-container">
           <div>
             <h5 className="nation-badge">{store?.category?.toUpperCase()}</h5>

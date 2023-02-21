@@ -1,19 +1,26 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { newsAction } from "../../redux/action/newsAction";
+import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import "./witness.scss";
+import axios from "../../helpers/api";
 
 function Witness() {
   const disaptch = useDispatch();
-  const crimeNews = useSelector((el) => el?.categoryCrime);
+  const [crimeNews, setCrimeNews] = useState([]);
+  // const crimeNews = useSelector((el) => el?.categoryCrime);
   const lx = crimeNews?.length;
 
   useEffect(() => {
-    disaptch(newsAction.getCrimeCategory("crime-report"));
-  }, [disaptch]);
+    // disaptch(newsAction.getCrimeCategory("crime-report"));
+    axios
+      .get(`${BASE_API_URL}/news/?category=crime-report&page=1`)
+      .then((res) => {
+        setCrimeNews(res.data.payload);
+      });
+  }, []);
 
   return (
     <div className="witness">

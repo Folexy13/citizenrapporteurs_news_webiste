@@ -8,22 +8,26 @@ import {
   Witness,
 } from "../../components";
 import Footer from "../../components/footer/Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { newsAction } from "../../redux/action/newsAction";
+import { useDispatch } from "react-redux";
+import { BASE_API_URL } from "../../redux/action/newsAction";
+import axios from "../../helpers/api";
 
 function HomePage({ children }) {
   const dispacth = useDispatch();
-  const latestNews = useSelector((el) => el?.latestNews);
+  const [data, setData] = React.useState([]);
 
   useEffect(() => {
-    dispacth(newsAction.getLatestNews());
+    // dispacth(newsAction.getLatestNews());
+    axios.get(`${BASE_API_URL}/latest-news`).then((res) => {
+      setData(res.data.news);
+    });
     document.title = "Homepage";
   }, [dispacth]);
 
   return (
     <div className="home-page">
       <Layout hasRightSidebar={true}>
-        <Card store={latestNews} />
+        <Card store={data} />
         <SelectCard type="opinion" />
         <SelectCard type="news" />
         <SelectCard type="business" />

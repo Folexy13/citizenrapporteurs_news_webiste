@@ -1,8 +1,8 @@
 import moment from "moment";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { newsAction } from "../../redux/action/newsAction";
+import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import axios from "axios";
 // import { getNewsClicks } from "../card/Card";
@@ -35,7 +35,8 @@ export const convertDate = (date) => {
 };
 function Entertainment() {
   const disaptch = useDispatch();
-  const entertainmentNews = useSelector((el) => el?.categoryEntertainmnet);
+  const [entertainmentNews, setEntertainmentNews] = React.useState([]);
+  // const entertainmentNews = useSelector((el) => el?.categoryEntertainmnet);
   const lx = 0;
   // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleClicks = (id) => {
@@ -56,8 +57,12 @@ function Entertainment() {
       });
   };
   useEffect(() => {
-    disaptch(newsAction.getEntertainmentCategory("entertainment"));
-  }, [disaptch]);
+    axios
+      .get(`${BASE_API_URL}/news/?category=entertainment&page=1`)
+      .then((res) => {
+        setEntertainmentNews(res.data.payload);
+      });
+  }, []);
 
   return (
     <div className="entertainment">

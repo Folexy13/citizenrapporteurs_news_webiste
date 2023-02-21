@@ -1,8 +1,8 @@
 import moment from "moment";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { newsAction } from "../../redux/action/newsAction";
+import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import axios from "axios";
 import { convertToSlug } from "../entertainment/Entertainment";
@@ -11,11 +11,11 @@ import "./select-card.scss";
 
 function SelectCard({ type }) {
   const disaptch = useDispatch();
-  const opinion = useSelector((el) => el?.categoryOpinion);
-  const opinionSport = useSelector((el) => el?.categorySport);
+  const [opinion, setOpinionData] = React.useState([]);
+  const [opinionSport, setSportData] = React.useState([]);
+  const [opinionNews, setOpinionNews] = React.useState([]);
+  const [opinionBusiness, setOpinionBusiness] = React.useState([]);
   // const clickedNews = useSelector((el) => el?.clickedNews);
-  const opinionBusiness = useSelector((el) => el?.categoryBusiness);
-  const opinionNews = useSelector((el) => el?.categoryNews);
   const convertDate = (date) => {
     return moment(date).format("dddd, MMMM Do YYYY");
   };
@@ -40,11 +40,27 @@ function SelectCard({ type }) {
       });
   };
   useEffect(() => {
-    disaptch(newsAction.getOpinionCategory("opinions"));
-    disaptch(newsAction.getBusinessCategory("business"));
-    disaptch(newsAction.getSportCategory("sport"));
-    disaptch(newsAction.getNewsCategory("breaking-news"));
-  }, [disaptch]);
+    // disaptch(newsAction.getOpinionCategory("opinions"));
+    // disaptch(newsAction.getBusinessCategory("business"));
+    // disaptch(newsAction.getSportCategory("sport"));
+    // disaptch(newsAction.getNewsCategory("breaking-news"));
+    axios.get(`${BASE_API_URL}/news/?category=opinions&page=1`).then((res) => {
+      setOpinionData(res.data.payload);
+      axios.get(`${BASE_API_URL}/news/?category=sport&page=1`).then((res) => {
+        setSportData(res.data.payload);
+        axios
+          .get(`${BASE_API_URL}/news/?category=breaking-news&page=1`)
+          .then((res) => {
+            setOpinionNews(res.data.payload);
+            axios
+              .get(`${BASE_API_URL}/news/?category=business&page=1`)
+              .then((res) => {
+                setOpinionBusiness(res.data.payload);
+              });
+          });
+      });
+    });
+  }, []);
   if (type === "opinion" && opinion?.length) {
     return (
       <div className="select-card">

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
@@ -21,11 +21,13 @@ function NewsFlex() {
   const [currentPage, setCurrentPage] = useState(1);
   // const clickedNews = useSelector((el) => el?.clickedNews);
   const store = useSelector((el) => el?.categoryNews);
-  const data = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return store.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, store, PageSize]);
+  const [payload, setPayload] = useState([]);
+  // const data = useMemo(() => {
+  //   const firstPageIndex = (currentPage - 1) * PageSize;
+  //   const lastPageIndex = firstPageIndex + PageSize;
+  //   return payload?.payload?.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage, payload]);
+  const data = payload?.payload;
   const handleClicks = (id) => {
     axios
       .get("https://ipapi.co/json/")
@@ -81,10 +83,17 @@ function NewsFlex() {
     let news = store.find((el) => el?._id === cNews._id);
     navigate(`/edit-news/${convertToSlug(news.title)}`, { state: cNews });
   };
+  console.log(payload);
+
   useEffect(() => {
-    dispatch(newsAction.getNewsCategory(slug));
-  }, [dispatch, slug]);
-  if (!store?.length) {
+    // dispatch(newsAction.getNewsCategory(slug));
+    axios
+      .get(BASE_API_URL + "/news/?category=" + slug + "&page=" + currentPage)
+      .then((res) => {
+        setPayload(res.data);
+      });
+  }, [slug, currentPage]);
+  if (!data?.length) {
     return (
       <div
         style={{
@@ -100,9 +109,9 @@ function NewsFlex() {
   }
   return (
     <div>
-      <ImageCard store={store[0]} />
+      <ImageCard store={data[0]} />
       {data
-        ?.filter((el) => el?.title !== store[store?.length - 1]?.title)
+        ?.filter((el) => el?.title !== data[data?.length - 1]?.title)
         ?.map((ele) => {
           return (
             <div className="news-flex" key={ele?._id}>
@@ -154,17 +163,6 @@ function NewsFlex() {
                     </svg>
                     0
                   </small>
-                  {/* <small
-                    style={{
-                      display: "flex",
-                      gap: "5px",
-                      alignItems: "center",
-                      color: "#002",
-                    }}
-                  >
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                    {getNewsClicks(clickedNews, ele?._id)}
-                  </small> */}
                 </div>
                 <p>{truncateText(ele?.description, 200)}</p>
                 {isLoggedin && (
@@ -189,7 +187,7 @@ function NewsFlex() {
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
-        totalCount={store?.length - 1}
+        totalCount={40}
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />
