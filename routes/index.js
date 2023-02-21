@@ -16,7 +16,6 @@ const {
   bookAppointment,
   updateNews,
   getLikesDislikes,
-  getNews,
 } = require("../controllers");
 
 const router = require("express").Router();
@@ -30,7 +29,7 @@ router.post("/comment", postComments);
 router.get("/comment/:id", getNewsComment);
 router.get("/latest-news", getLatestNews);
 router.get("/news/", getNewsByCategory);
-router.get("/the-news", getNews);
+// router.get("/the-news", getNews);
 router.post("/single-news", getSingleNews);
 router.get("/single-news/:slug", getSingleNewsBySlug);
 router.get("/clicked-news/:id", getNewsClicks);

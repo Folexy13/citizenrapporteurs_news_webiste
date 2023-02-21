@@ -5,6 +5,7 @@ const Comments = require("../model/comment");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const nodemailer = require("nodemailer");
+const paginatedData = require("../utils/Paginate");
 const getSlugFromCategory = (input) => {
   if (typeof input === "string") {
     let slug = input
@@ -219,8 +220,8 @@ async function getSingleNewsBySlug(req, res) {
     });
 }
 async function getNewsByCategory(req, res) {
-  const query = req.query.category;
-  await News.find({ slug: query }, (err, news) => {
+  const { category, page } = req.query;
+  await News.find({ slug: category }, (err, news) => {
     if (err) {
       return res.json({
         status: 403,
@@ -228,11 +229,10 @@ async function getNewsByCategory(req, res) {
         error: err,
       });
     }
-    return res.status(200).json({
-      status: 200,
-      news, //returns latest added five news
-    });
+    let result = paginatedData(news, page);
+    return res.status(200).send(result);
   })
+    .limit(40)
     .sort({ _id: -1 })
     .clone()
     .catch(function (err) {
