@@ -146,6 +146,33 @@ const Sidebar = ({ show, onClick }) => {
           </li>
           <li>
             <NavLink
+              to={routes.NEWSPAGE.path + "education"}
+              onClick={() => handleHeaderChange("education")}
+              end
+            >
+              Education
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={routes.NEWSPAGE.path + "interview"}
+              onClick={() => handleHeaderChange("interview")}
+              end
+            >
+              Interview
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={routes.NEWSPAGE.path + "judiciary"}
+              onClick={() => handleHeaderChange("judiciary")}
+              end
+            >
+              Judiciary
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to={routes.NEWSPAGE.path + "opinions"}
               onClick={() => {
                 handleHeaderChange("opinions");
@@ -197,9 +224,9 @@ const Sidebar = ({ show, onClick }) => {
               </Link>
             </li>
           )}
-          <form action="">
+          {/* <form action="">
             <input type="search" name="" id="" placeholder="Search..." />
-          </form>
+          </form> */}
         </ul>
       </div>
     </>

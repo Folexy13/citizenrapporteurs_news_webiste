@@ -41,10 +41,6 @@ function SelectCard({ type }) {
       });
   };
   useEffect(() => {
-    // disaptch(newsAction.getOpinionCategory("opinions"));
-    // disaptch(newsAction.getBusinessCategory("business"));
-    // disaptch(newsAction.getSportCategory("sport"));
-    // disaptch(newsAction.getNewsCategory("breaking-news"));
     axios.get(`${BASE_API_URL}/news/?category=opinions&page=1`).then((res) => {
       setOpinionData(res.data.payload);
       axios.get(`${BASE_API_URL}/news/?category=sport&page=1`).then((res) => {

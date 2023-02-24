@@ -199,6 +199,27 @@ function Navbar({ onClick, state }) {
             <h5>OPINION</h5>
           </NavLink>
           <NavLink
+            to={routes.NEWSPAGE.path + "education"}
+            onClick={() => handleHeaderChange("education")}
+            end
+          >
+            <h5>EDUCATION</h5>
+          </NavLink>
+          <NavLink
+            to={routes.NEWSPAGE.path + "interview"}
+            onClick={() => handleHeaderChange("interview")}
+            end
+          >
+            <h5>INTERVIEW</h5>
+          </NavLink>
+          <NavLink
+            to={routes.NEWSPAGE.path + "judiciary"}
+            onClick={() => handleHeaderChange("judiciary")}
+            end
+          >
+            <h5>JUDICIARY</h5>
+          </NavLink>
+          <NavLink
             to={routes.NEWSPAGE.path + "sport"}
             onClick={() => handleHeaderChange("sport")}
             end
