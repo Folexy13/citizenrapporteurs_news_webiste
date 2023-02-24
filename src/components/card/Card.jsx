@@ -117,17 +117,6 @@ function Card({ store, type }) {
             </svg>
             0
           </small>
-          {/* <small
-            style={{
-              display: "flex",
-              color: "#002",
-              gap: "5px",
-              alignItems: "center",
-            }}
-          >
-            <i class="fa fa-eye" aria-hidden="true"></i>
-            {getNewsClicks(clickedNews, store?._id)}
-          </small> */}
         </div>
         <div className="card">
           <div className="img-container">
@@ -171,7 +160,7 @@ function Card({ store, type }) {
                 </TwitterShareButton>
               </div>
               {lines?.map((line, index) => {
-                // console.log(store?.image);
+                console.log(store?.image[index]);
                 return (
                   <p
                     key={index}
@@ -180,9 +169,11 @@ function Card({ store, type }) {
                     style={{ fontSize: 16, marginTop: 80 }}
                   >
                     {line}
-                    {index < lines.length - 1 && store?.image[index + 1] && (
-                      <img src={store?.image[index + 1]} alt="spacer" />
-                    )}
+                    {index < lines.length - 1 &&
+                      typeof store?.image === "object" &&
+                      store?.image[index + 1] && (
+                        <img src={store?.image[index + 1]} alt="spacer" />
+                      )}
                   </p>
                 );
               })}

@@ -6,10 +6,12 @@ import { routes } from "../../routes";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import "./witness.scss";
 import axios from "../../helpers/api";
+import Skeleton from "react-loading-skeleton";
 
 function Witness() {
   const disaptch = useDispatch();
   const [crimeNews, setCrimeNews] = useState([]);
+  const [loading, setLoading] = useState(true);
   // const crimeNews = useSelector((el) => el?.categoryCrime);
   const lx = crimeNews?.length;
 
@@ -19,9 +21,12 @@ function Witness() {
       .get(`${BASE_API_URL}/news/?category=crime-report&page=1`)
       .then((res) => {
         setCrimeNews(res.data.payload);
+        setLoading(false);
       });
   }, []);
-
+  if (loading) {
+    return <Skeleton height={300} />;
+  }
   return (
     <div className="witness">
       <div className="flex-container">

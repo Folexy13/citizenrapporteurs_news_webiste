@@ -8,6 +8,7 @@ import "./main.scss";
 import moment from "moment";
 import Skeleton from "react-loading-skeleton";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const Main = () => {
   const [comment, setComment] = useState("");
@@ -20,9 +21,11 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const dispacth = useDispatch();
-  let store = localStorage.getItem("slug");
+  const location = useLocation();
+  let slug = location.pathname.split("/")[2];
   const [data, setData] = useState([]);
-  const slug = localStorage.getItem("newsID");
+  const id = localStorage.getItem("newsID");
+
   const handleSubmitComment = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -32,7 +35,7 @@ const Main = () => {
       email,
       website,
       author,
-      newsID: slug,
+      newsID: id,
     };
     if (!comment || !email) {
       dispacth(alertActions.error("All Fields marked(*) are important"));
@@ -42,38 +45,34 @@ const Main = () => {
     dispacth(newsAction.postComment(payload));
   };
   useEffect(() => {
-    // if (store) {
-    //   dispacth(newsAction.getNewsCategory(store.slug));
-    //   dispacth(newsAction.getNewsComment(store?._id));
-
-    // }
-    axios.get(`${BASE_API_URL}/news/?category=${store}&page=1`).then((res) => {
+    axios.get(`${BASE_API_URL}/news/?category=${slug}&page=1`).then((res) => {
       setData(res.data.payload);
-      axios.post(`${BASE_API_URL}/single-news`, { slug: store }).then((res) => {
+      axios.post(`${BASE_API_URL}/single-news`, { slug }).then((res) => {
         setNews(res.data.news);
         setIsLoading(false);
       });
     });
-  }, [store]);
+  }, [slug]);
 
-  useEffect(() => {
-    axios
-      .get("https://ipapi.co/json/")
-      .then((response) => {
-        let data = response.data;
-        let payload = {
-          ip: data.ip,
-          id: slug,
-        };
-        dispacth(newsAction.postClickedNews(payload));
-        dispacth(newsAction.getSingleNews({ payload }));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  // useEffect(() => {
+  //   axios
+  //     .get("https://ipapi.co/json/")
+  //     .then((response) => {
+  //       let data = response.data;
+  //       let payload = {
+  //         ip: data.ip,
+  //         id,
+  //       };
+  //       // axios.post(`${BASE_API_URL}/single-news` {})
+  //       dispacth(newsAction.postClickedNews(payload));
+  //       dispacth(newsAction.getSingleNews({ payload }));
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
 
-    // eslint-disable-next-line
-  }, [dispacth]);
+  //   // eslint-disable-next-line
+  // }, [dispacth]);
   // console.log(data);
   return (
     <>

@@ -53,7 +53,13 @@ function RightContainer() {
             "/" +
             convertToSlug(politicsNews[politicsNews?.length - 1]?.title)
           }
-          onClick={() => handleClick(politicsNews[politicsNews?.length - 1])}
+          onClick={() => {
+            handleClick(politicsNews[politicsNews?.length - 1]);
+            localStorage.setItem(
+              "slug",
+              politicsNews[politicsNews?.length - 1].newsSlug
+            );
+          }}
           className="image-container"
           style={{ cursor: "pointer" }}
         >

@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
@@ -7,6 +7,7 @@ import axios from "axios";
 // import { getNewsClicks } from "../card/Card";
 import "./entertainment.scss";
 import { useDispatch } from "react-redux";
+import Skeleton from "react-loading-skeleton";
 export const convertToSlug = (input) => {
   if (typeof input === "string") {
     let slug = input
@@ -35,6 +36,7 @@ export const convertDate = (date) => {
 };
 function Entertainment() {
   const [entertainmentNews, setEntertainmentNews] = React.useState([]);
+  const [loading, setLoading] = useState(true);
   // const entertainmentNews = useSelector((el) => el?.categoryEntertainmnet);
   const lx = 0;
   // const clickedNews = useSelector((el) => el?.clickedNews);
@@ -61,9 +63,12 @@ function Entertainment() {
       .get(`${BASE_API_URL}/news/?category=entertainment&page=1`)
       .then((res) => {
         setEntertainmentNews(res.data.payload);
+        setLoading(false);
       });
   }, []);
-
+  if (loading) {
+    return <Skeleton height={300} />;
+  }
   return (
     <div className="entertainment">
       <h1>Entertainment</h1>
