@@ -8,26 +8,27 @@ import {
   Witness,
 } from "../../components";
 import Footer from "../../components/footer/Footer";
-import { useDispatch } from "react-redux";
 import { BASE_API_URL } from "../../redux/action/newsAction";
 import axios from "../../helpers/api";
+import Skeleton from "react-loading-skeleton";
 
 function HomePage({ children }) {
-  const dispacth = useDispatch();
   const [data, setData] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   useEffect(() => {
     // dispacth(newsAction.getLatestNews());
     axios.get(`${BASE_API_URL}/latest-news`).then((res) => {
       setData(res.data.news);
+      setIsLoading(false);
     });
     document.title = "Homepage";
-  }, [dispacth]);
+  }, [isLoading]);
 
   return (
     <div className="home-page">
       <Layout hasRightSidebar={true}>
-        <Card store={data} />
+        {isLoading ? <Skeleton height={400} /> : <Card store={data} />}
         <SelectCard type="opinion" />
         <SelectCard type="news" />
         <SelectCard type="business" />

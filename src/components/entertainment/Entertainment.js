@@ -49,8 +49,8 @@ function Entertainment() {
           ip: data.ip,
         };
         console.log(payload);
-        disaptch(newsAction.postClickedNews(payload));
-        disaptch(newsAction.getSingleNews(id));
+        // disaptch(newsAction.postClickedNews(payload));
+        // disaptch(newsAction.getSingleNews(id));
       })
       .catch((error) => {
         console.log(error);

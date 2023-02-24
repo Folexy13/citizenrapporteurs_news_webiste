@@ -114,37 +114,33 @@ function deleteNews(id) {
 
 function getLatestNews() {
   return (dispatch) => {
-    trackPromise(
-      axios
-        .get(`${BASE_API_URL}/latest-news`)
-        .then((res) => {
-          if (res.data.status) {
-            dispatch({
-              type: userConstants.GET_LATEST_NEWS,
-              data: res.data?.news,
-            });
-          } else {
-            throw res.data;
-          }
-        })
-        .catch((err) => {
-          dispatch(alertActions.error(err.message));
-        })
-    );
+    axios
+      .get(`${BASE_API_URL}/latest-news`)
+      .then((res) => {
+        if (res.data.status) {
+          dispatch({
+            type: userConstants.GET_LATEST_NEWS,
+            data: res.data?.news,
+          });
+        } else {
+          throw res.data;
+        }
+      })
+      .catch((err) => {
+        dispatch(alertActions.error(err.message));
+      });
   };
 }
 function getSingleNews(payload) {
   return (dispatch) => {
-    trackPromise(
-      axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
-        localStorage.setItem("newsID", res.data.news._id);
-        dispatch({
-          type: userConstants.GET_SINGLE_NEWS,
-          news: res.data.news,
-        });
-        axios.get(`${BASE_API_URL}`);
-      })
-    );
+    axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
+      localStorage.setItem("newsID", res.data.news._id);
+      dispatch({
+        type: userConstants.GET_SINGLE_NEWS,
+        news: res.data.news,
+      });
+      axios.get(`${BASE_API_URL}`);
+    });
   };
 }
 function postComment(payload) {
@@ -167,108 +163,92 @@ function postComment(payload) {
 }
 function getNewsComment(slug) {
   return (dispatch) => {
-    trackPromise(
-      axios
-        .get(`${BASE_API_URL}/comment/${slug}`)
-        .then((res) => {
-          if (res.data.status) {
-            dispatch({
-              type: userConstants.GET_NEWS_COMMENTS,
-              comments: res.data.comments,
-            });
-          } else {
-            throw res.data;
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          dispatch(alertActions.error(err.message));
-        })
-    );
+    axios
+      .get(`${BASE_API_URL}/comment/${slug}`)
+      .then((res) => {
+        if (res.data.status) {
+          dispatch({
+            type: userConstants.GET_NEWS_COMMENTS,
+            comments: res.data.comments,
+          });
+        } else {
+          throw res.data;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(alertActions.error(err.message));
+      });
   };
 }
 function getNewsCategory(slug) {
   return (dispatch) => {
-    trackPromise(
-      axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
-        dispatch({
-          type: userConstants.GET_NEWS_CATEGORY,
-          news: res.data.news,
-        });
-      })
-    );
+    axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
+      dispatch({
+        type: userConstants.GET_NEWS_CATEGORY,
+        news: res.data.news,
+      });
+    });
   };
 }
 function getPoliticsategory(slug) {
   return (dispatch) => {
-    trackPromise(
-      axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
-        dispatch({
-          type: userConstants.GET_POLITICS_CATEGORY,
-          news: res.data.news,
-        });
-      })
-    );
+    axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
+      dispatch({
+        type: userConstants.GET_POLITICS_CATEGORY,
+        news: res.data.news,
+      });
+    });
   };
 }
 function getBusinessCategory(slug) {
   return (dispatch) => {
-    trackPromise(
-      axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
-        dispatch({
-          type: userConstants.GET_BUSINESS_CATEGORY,
-          news: res.data.news,
-        });
-      })
-    );
+    axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
+      dispatch({
+        type: userConstants.GET_BUSINESS_CATEGORY,
+        news: res.data.news,
+      });
+    });
   };
 }
 function getSportCategory(slug) {
   return (dispatch) => {
-    trackPromise(
-      axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
-        dispatch({
-          type: userConstants.GET_SPORT_CATEGORY,
-          news: res.data.news,
-        });
-      })
-    );
+    axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
+      dispatch({
+        type: userConstants.GET_SPORT_CATEGORY,
+        news: res.data.news,
+      });
+    });
   };
 }
 function getCrimeCategory(slug) {
   return (dispatch) => {
-    trackPromise(
-      axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
-        dispatch({
-          type: userConstants.GET_CRIME_REPORT_CATEGORY,
-          news: res.data.news,
-        });
-      })
-    );
+    axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
+      dispatch({
+        type: userConstants.GET_CRIME_REPORT_CATEGORY,
+        news: res.data.news,
+      });
+    });
   };
 }
 function getOpinionCategory(slug) {
   return (dispatch) => {
-    trackPromise(
-      axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
-        dispatch({
-          type: userConstants.GET_OPINION_CATEGORY,
-          news: res.data.news,
-        });
-      })
-    );
+    axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
+      dispatch({
+        type: userConstants.GET_OPINION_CATEGORY,
+        news: res.data.news,
+      });
+    });
   };
 }
 function getEntertainmentCategory(slug) {
   return (dispatch) => {
-    trackPromise(
-      axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
-        dispatch({
-          type: userConstants.GET_ENTERTAINMENT_CATEGORY,
-          news: res.data.news,
-        });
-      })
-    );
+    axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
+      dispatch({
+        type: userConstants.GET_ENTERTAINMENT_CATEGORY,
+        news: res.data.news,
+      });
+    });
   };
 }
 function getClickedNews() {

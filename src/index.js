@@ -6,6 +6,7 @@ import { store } from "./redux/store";
 import { Provider } from "react-redux";
 import { usePromiseTracker } from "react-promise-tracker";
 import { Spinner } from "./components";
+import { SkeletonTheme } from "react-loading-skeleton";
 const LoadingIndicator = (props) => {
   const { promiseInProgress } = usePromiseTracker();
 
@@ -15,7 +16,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+        <App />
+      </SkeletonTheme>
       <LoadingIndicator />
     </Provider>
   </React.StrictMode>

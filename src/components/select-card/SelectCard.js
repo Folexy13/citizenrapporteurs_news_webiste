@@ -1,8 +1,7 @@
 import moment from "moment";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
+import { BASE_API_URL } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import axios from "axios";
 import { convertToSlug } from "../entertainment/Entertainment";
@@ -10,7 +9,6 @@ import "./select-card.scss";
 // import { getNewsClicks } from "../card/Card";
 
 function SelectCard({ type }) {
-  const disaptch = useDispatch();
   const [opinion, setOpinionData] = React.useState([]);
   const [opinionSport, setSportData] = React.useState([]);
   const [opinionNews, setOpinionNews] = React.useState([]);
@@ -32,8 +30,8 @@ function SelectCard({ type }) {
           ip: data.ip,
         };
         console.log(payload);
-        disaptch(newsAction.postClickedNews(payload));
-        disaptch(newsAction.getSingleNews(payload));
+        // disaptch(newsAction.postClickedNews(payload));
+        // disaptch(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);
@@ -139,7 +137,7 @@ function SelectCard({ type }) {
             ?.slice(0, 6)
             ?.map((el) => {
               return (
-                <div className="item">
+                <div className="item" key={el._id}>
                   <div className="img-container">
                     <h5 className="nation-badge">OPINION</h5>
                     <img
@@ -276,7 +274,7 @@ function SelectCard({ type }) {
             ?.slice(0, 6)
             ?.map((el) => {
               return (
-                <div className="item">
+                <div className="item" key={el._id}>
                   <div className="img-container">
                     <h5 className="nation-badge">SPORT</h5>
                     <img
@@ -413,7 +411,7 @@ function SelectCard({ type }) {
             ?.slice(0, 6)
             ?.map((el) => {
               return (
-                <div className="item">
+                <div className="item" key={el._id}>
                   <div className="img-container">
                     <h5 className="nation-badge">OPINION</h5>
                     <img
@@ -550,7 +548,7 @@ function SelectCard({ type }) {
             ?.slice(0, 6)
             ?.map((el) => {
               return (
-                <div className="item">
+                <div className="item" key={el._id}>
                   <Link
                     to={
                       routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(el?.title)

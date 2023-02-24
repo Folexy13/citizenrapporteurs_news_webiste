@@ -1,10 +1,10 @@
 import moment from "moment";
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
+
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   WhatsappShareButton,
   FacebookShareButton,
@@ -14,6 +14,7 @@ import {
 import "./card.scss";
 import { convertToSlug } from "../entertainment/Entertainment";
 import MetaDecorator from "../../helpers/metaDecorator";
+import Skeleton from "react-loading-skeleton";
 const capitalizeLetter = (name) => {
   return name?.toUpperCase();
 };
@@ -33,29 +34,28 @@ const convertDate = (date) => {
 export const truncateText = (str, size) => {
   return str?.length > size ? str.substring(0, size - 3) + "..." : str;
 };
-
 function Card({ store, type }) {
   const lines = store?.description?.split("\n\n");
-  console.log(lines);
-  const dispacth = useDispatch();
+  let image = typeof store?.image === "object" ? store?.image[0] : store?.image;
   // const clickedNews = useSelector((el) => el?.clickedNews);
   const handleNewsMain = (id) => {
     axios
       .get("https://ipapi.co/json/")
       .then((response) => {
-        let data = response.data;
-        let payload = {
-          id,
-          ip: data.ip,
-        };
-        dispacth(newsAction.postClickedNews(payload));
-        dispacth(newsAction.getSingleNews(payload));
+        // let data = response.data;
+        // let payload = {
+        //   id,
+        //   ip: data.ip,
+        // };
+        // dispacth(newsAction.postClickedNews(payload));
+        // dispacth(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
+  let img =
+    typeof store[0]?.image === "object" ? store[0]?.image[0] : store[0]?.image;
   if (type === "main") {
     return (
       <>
@@ -112,14 +112,7 @@ function Card({ store, type }) {
         <div className="card">
           <div className="img-container">
             <Link to="#">
-              <img
-                src={
-                  typeof store?.image === "object"
-                    ? store?.image[0]
-                    : store?.image
-                }
-                alt="img.jpg"
-              />
+              <img src={image || <Skeleton />} alt="img.jpg" />
             </Link>
           </div>
           <div className="card-body">
@@ -196,14 +189,7 @@ function Card({ store, type }) {
           to={routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store[0]?.title)}
           onClick={() => handleNewsMain(store[0]?._id)}
         >
-          <img
-            src={
-              typeof store[0]?.image === "object"
-                ? store[0]?.image[0]
-                : store[0]?.image
-            }
-            alt="img.jpg"
-          />
+          <img src={img} alt="img.jpg" />
         </Link>
         <h5>{capitalizeLetter(store[0]?.category)}</h5>
       </div>

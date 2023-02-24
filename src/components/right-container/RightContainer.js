@@ -20,7 +20,7 @@ function RightContainer() {
     axios.get(`${BASE_API_URL}/news/?category=politics&page=1`).then((res) => {
       setPoliticsNews(res.data.payload);
     });
-  }, [dispacth]);
+  }, []);
   const handleClick = (store) => {
     axios
       .get("https://ipapi.co/json/")
@@ -30,8 +30,8 @@ function RightContainer() {
           id: store?._id,
           ip: data.ip,
         };
-        dispacth(newsAction.postClickedNews(payload));
-        dispacth(newsAction.getSingleNews(payload));
+        // dispacth(newsAction.postClickedNews(payload));
+        // dispacth(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);

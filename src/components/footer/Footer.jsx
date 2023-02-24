@@ -45,8 +45,8 @@ function Footer() {
           id,
           ip: data.ip,
         };
-        dispatch(newsAction.postClickedNews(payload));
-        dispatch(newsAction.getSingleNews(payload));
+        // dispatch(newsAction.postClickedNews(payload));
+        // dispatch(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);
