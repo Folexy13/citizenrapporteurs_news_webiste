@@ -73,7 +73,10 @@ function Opinion({ type }) {
                             "/" +
                             convertToSlug(el?.title)
                           }
-                          onClick={() => handleClicks(el?._id)}
+                          onClick={() => {
+                            handleClicks(el?._id);
+                            localStorage.setItem("slug", el?.newsSlug);
+                          }}
                         >
                           <h2>{el?.title}</h2>
                         </Link>
