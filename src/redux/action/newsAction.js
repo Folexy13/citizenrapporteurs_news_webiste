@@ -133,7 +133,6 @@ function getLatestNews() {
 function getSingleNews(payload) {
   return (dispatch) => {
     axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
-      localStorage.setItem("newsID", res.data.news._id);
       dispatch({
         type: userConstants.GET_SINGLE_NEWS,
         news: res.data.news,
@@ -182,10 +181,10 @@ function getNewsComment(slug) {
 }
 function getNewsCategory(slug) {
   return (dispatch) => {
-    axios.get(`${BASE_API_URL}/news/?category=${slug}`).then((res) => {
+    axios.get(`${BASE_API_URL}/news/?category=${slug}&page=1`).then((res) => {
       dispatch({
         type: userConstants.GET_NEWS_CATEGORY,
-        news: res.data.news,
+        news: res.data.payload,
       });
     });
   };

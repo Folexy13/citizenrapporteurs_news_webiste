@@ -1,6 +1,6 @@
 import moment from "moment";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { routes } from "../../routes";
 
@@ -14,7 +14,9 @@ import {
 import "./card.scss";
 import { convertToSlug } from "../entertainment/Entertainment";
 import MetaDecorator from "../../helpers/metaDecorator";
-import Skeleton from "react-loading-skeleton";
+import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
+import { useDispatch } from "react-redux";
+import { userConstants } from "../../constant/userConstants";
 const capitalizeLetter = (name) => {
   return name?.toUpperCase();
 };
@@ -36,19 +38,37 @@ export const truncateText = (str, size) => {
 };
 function Card({ store, type }) {
   const lines = store?.description?.split("\n\n");
+  const dispacth = useDispatch();
+  const location = useLocation();
+  let slug = location.pathname.split("/")[2];
   let image = typeof store?.image === "object" ? store?.image[0] : store?.image;
   // const clickedNews = useSelector((el) => el?.clickedNews);
-  const handleNewsMain = (id) => {
+  useEffect(() => {
+    axios.post(`${BASE_API_URL}/single-news`, { slug }).then(
+      (res) => {
+        dispacth({
+          type: userConstants.GET_SINGLE_NEWS,
+          news: res.data.news,
+        });
+      },
+      [slug]
+    );
+  });
+  const handleNewsMain = (id, slug) => {
     axios
       .get("https://ipapi.co/json/")
       .then((response) => {
-        // let data = response.data;
-        // let payload = {
-        //   id,
-        //   ip: data.ip,
-        // };
-        // dispacth(newsAction.postClickedNews(payload));
-        // dispacth(newsAction.getSingleNews(payload));
+        let data = response.data;
+        let payload = {
+          id,
+          ip: data.ip,
+        };
+        dispacth(newsAction.postClickedNews(payload));
+        dispacth(newsAction.getSingleNews(payload));
+        axios.post(`${BASE_API_URL}/single-news`, { id }).then((res) => {
+          localStorage.setItem("newsID", res.data.news._id);
+          localStorage.setItem("slug", slug);
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -112,7 +132,7 @@ function Card({ store, type }) {
         <div className="card">
           <div className="img-container">
             <Link to="#">
-              <img src={image || <Skeleton />} alt="img.jpg" />
+              <img src={image} alt="img.jpg" />
             </Link>
           </div>
           <div className="card-body">
@@ -150,13 +170,6 @@ function Card({ store, type }) {
                   <span>Share On Twitter</span>
                 </TwitterShareButton>
               </div>
-              {/* <div className="imgContainer">
-                {typeof store?.image === "object" &&
-                  store?.image.slice(1, store?.length).map((img) => {
-                    return <img src={img} alt=".." />;
-                  })}
-              </div>
-              <p>{store?.description}</p> */}
               {lines?.map((line, index) => {
                 // console.log(store?.image);
                 return (
@@ -183,11 +196,11 @@ function Card({ store, type }) {
     <div className="card">
       <div
         className="img-container"
-        onClick={() => handleNewsMain(store[0]?._id)}
+        onClick={() => handleNewsMain(store[0]?._id, store[0]?.newsSlug)}
       >
         <Link
           to={routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store[0]?.title)}
-          onClick={() => handleNewsMain(store[0]?._id)}
+          onClick={() => handleNewsMain(store[0]?._id, store[0]?.newsSlug)}
         >
           <img src={img} alt="img.jpg" />
         </Link>
@@ -199,7 +212,7 @@ function Card({ store, type }) {
             to={
               routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store[0]?.title)
             }
-            onClick={() => handleNewsMain(store[0]?._id)}
+            onClick={() => handleNewsMain(store[0]?._id, store[0]?.newsSlug)}
             className="item-title"
           >
             <h1>{store[0]?.title}</h1>
@@ -252,7 +265,7 @@ function Card({ store, type }) {
             to={
               routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(store[0]?.title)
             }
-            onClick={() => handleNewsMain(store[0]?._id)}
+            onClick={() => handleNewsMain(store[0]?._id, store[0]?.newsSlug)}
             className="read"
           >
             READ MORE
@@ -276,7 +289,7 @@ function Card({ store, type }) {
                   to={
                     routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(el?.title)
                   }
-                  onClick={() => handleNewsMain(el?._id)}
+                  onClick={() => handleNewsMain(el?._id, el?.newsSlug)}
                 >
                   {el.title}
                 </Link>
