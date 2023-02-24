@@ -1,11 +1,12 @@
 import moment from "moment";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { BASE_API_URL } from "../../redux/action/newsAction";
+import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import axios from "axios";
 // import { getNewsClicks } from "../card/Card";
 import "./entertainment.scss";
+import { useDispatch } from "react-redux";
 export const convertToSlug = (input) => {
   if (typeof input === "string") {
     let slug = input
@@ -37,6 +38,7 @@ function Entertainment() {
   // const entertainmentNews = useSelector((el) => el?.categoryEntertainmnet);
   const lx = 0;
   // const clickedNews = useSelector((el) => el?.clickedNews);
+  const disaptch = useDispatch();
   const handleClicks = (id) => {
     axios
       .get("https://ipapi.co/json/")
@@ -47,8 +49,8 @@ function Entertainment() {
           ip: data.ip,
         };
         console.log(payload);
-        // disaptch(newsAction.postClickedNews(payload));
-        // disaptch(newsAction.getSingleNews(id));
+        disaptch(newsAction.postClickedNews(payload));
+        disaptch(newsAction.getSingleNews(id));
       })
       .catch((error) => {
         console.log(error);
