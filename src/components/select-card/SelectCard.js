@@ -1,11 +1,12 @@
 import moment from "moment";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { BASE_API_URL } from "../../redux/action/newsAction";
+import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import axios from "axios";
 import { convertToSlug } from "../entertainment/Entertainment";
 import "./select-card.scss";
+import { useDispatch } from "react-redux";
 // import { getNewsClicks } from "../card/Card";
 
 function SelectCard({ type }) {
@@ -17,6 +18,8 @@ function SelectCard({ type }) {
   const convertDate = (date) => {
     return moment(date).format("dddd, MMMM Do YYYY");
   };
+  const disaptch = useDispatch();
+
   const convertDate2 = (date) => {
     return moment(date).format("LL");
   };
@@ -30,8 +33,8 @@ function SelectCard({ type }) {
           ip: data.ip,
         };
         console.log(payload);
-        // disaptch(newsAction.postClickedNews(payload));
-        // disaptch(newsAction.getSingleNews(payload));
+        disaptch(newsAction.postClickedNews(payload));
+        disaptch(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);
