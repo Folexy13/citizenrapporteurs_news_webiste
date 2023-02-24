@@ -1,8 +1,7 @@
 import moment from "moment";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
+import { BASE_API_URL } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import axios from "axios";
 // import { getNewsClicks } from "../card/Card";
@@ -34,7 +33,6 @@ export const convertDate = (date) => {
   return moment(date).format("LL");
 };
 function Entertainment() {
-  const disaptch = useDispatch();
   const [entertainmentNews, setEntertainmentNews] = React.useState([]);
   // const entertainmentNews = useSelector((el) => el?.categoryEntertainmnet);
   const lx = 0;

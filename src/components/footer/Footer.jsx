@@ -1,9 +1,8 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./footer.scss";
-import { newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
 import { convertToSlug } from "../entertainment/Entertainment";
 import Modal from "../Modal";
@@ -13,7 +12,7 @@ import tunde from "../../assets/img/tunde.jpeg";
 
 function Footer() {
   const latestNews = useSelector((el) => el?.latestNews);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [show, setShow] = React.useState(false);
   const [show2, setShow2] = React.useState(false);
   const users = [
@@ -40,11 +39,11 @@ function Footer() {
     axios
       .get("https://ipapi.co/json/")
       .then((response) => {
-        let data = response.data;
-        let payload = {
-          id,
-          ip: data.ip,
-        };
+        // let data = response.data;
+        // let payload = {
+        //   id,
+        //   ip: data.ip,
+        // };
         // dispatch(newsAction.postClickedNews(payload));
         // dispatch(newsAction.getSingleNews(payload));
       })

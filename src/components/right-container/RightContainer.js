@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./right-container.scss";
 import BodyFlex from "../body-flex/BodyFlex";
 import { useDispatch } from "react-redux";
-import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
+import { BASE_API_URL } from "../../redux/action/newsAction";
 import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import { Link } from "react-router-dom";
 import { routes } from "../../routes";
@@ -18,7 +18,7 @@ function RightContainer() {
   // const clickedNews = useSelector((el) => el?.clickedNews);
 
   useEffect(() => {
-    dispacth(newsAction.getPoliticsategory("politics"));
+    // dispacth(newsAction.getPoliticsategory("politics"));
     axios.get(`${BASE_API_URL}/news/?category=politics&page=1`).then((res) => {
       setPoliticsNews(res.data.payload);
       setIsLoading(false);
@@ -28,11 +28,11 @@ function RightContainer() {
     axios
       .get("https://ipapi.co/json/")
       .then((response) => {
-        let data = response.data;
-        let payload = {
-          id: store?._id,
-          ip: data.ip,
-        };
+        // let data = response.data;
+        // let payload = {
+        //   id: store?._id,
+        //   ip: data.ip,
+        // };
         // dispacth(newsAction.postClickedNews(payload));
         // dispacth(newsAction.getSingleNews(payload));
       })
