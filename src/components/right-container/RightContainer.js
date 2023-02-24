@@ -7,18 +7,21 @@ import { convertDate, convertToSlug } from "../entertainment/Entertainment";
 import { Link } from "react-router-dom";
 import { routes } from "../../routes";
 import axios from "axios";
+import Skeleton from "react-loading-skeleton";
 // import { getNewsClicks } from "../card/Card";
 
 function RightContainer() {
   const dispacth = useDispatch();
   // const navigate = useNavigate();
   const [politicsNews, setPoliticsNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   // const clickedNews = useSelector((el) => el?.clickedNews);
 
   useEffect(() => {
     dispacth(newsAction.getPoliticsategory("politics"));
     axios.get(`${BASE_API_URL}/news/?category=politics&page=1`).then((res) => {
       setPoliticsNews(res.data.payload);
+      setIsLoading(false);
     });
   }, []);
   const handleClick = (store) => {
@@ -37,6 +40,9 @@ function RightContainer() {
         console.log(error);
       });
   };
+  if (isLoading) {
+    return <Skeleton height={300} width={"100%"} />;
+  }
   return (
     <div className="right-container">
       <div className="right-cont1">
