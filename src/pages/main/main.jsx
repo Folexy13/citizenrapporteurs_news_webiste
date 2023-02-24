@@ -32,7 +32,7 @@ const Main = () => {
       email,
       website,
       author,
-      newsID: store?._id,
+      newsID: slug,
     };
     if (!comment || !email) {
       dispacth(alertActions.error("All Fields marked(*) are important"));

@@ -36,9 +36,10 @@ function Witness() {
                       routes.NEWSPAGE_MAIN.path + "/" + convertToSlug(el?.title)
                     }
                     className="image-container"
-                    onClick={() =>
-                      disaptch(newsAction.getSingleNews({ id: el?._id }))
-                    }
+                    onClick={() => {
+                      disaptch(newsAction.getSingleNews({ id: el?._id }));
+                      localStorage.setItem("slug", el?.newsSlug);
+                    }}
                   >
                     <img
                       src={
