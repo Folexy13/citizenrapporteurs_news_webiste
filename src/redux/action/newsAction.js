@@ -2,8 +2,8 @@
 import { alertActions } from "./alertAction";
 import { userConstants } from "../../constant/userConstants";
 import axios from "../../helpers/api";
-// export const BASE_API_URL = "https://cr_new_api.deta.dev";
-export const BASE_API_URL = "https://cnew-api.onrender.com";
+export const BASE_API_URL = "https://cr_new_api.deta.dev";
+// export const BASE_API_URL = "https://cnew-api.onrender.com";
 // export const BASE_API_URL = "http://localhost:5000";
 export const newsAction = {
   postNews,
