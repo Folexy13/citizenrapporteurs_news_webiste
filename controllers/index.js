@@ -180,8 +180,8 @@ async function getSingleNews(req, res) {
   if (isNews && !isNews.ipAddresses.includes(ip)) {
     const updatedNews = await News.findOneAndUpdate(
       { $or: [{ _id: id }, { newsSlug: slug }] },
-      { $push: { ipAddresses: ip }, $inc: { views: 1 } },
-      { new: true }
+      { $push: { ipAddresses: ip }, $inc: { views: 1 } }
+      // { new: true }
     );
     return res.status(200).json({
       status: 200,
