@@ -76,12 +76,13 @@ function ImageCard({ store }) {
               </svg>
               0
             </small>
-            {/* <small
+            <small
               style={{ display: "flex", gap: "5px", alignItems: "center" }}
             >
-              <i class="fa fa-eye" aria-hidden="true"></i>
-              {getNewsClicks(clickedNews, store?._id)}
-            </small> */}
+              <i class="fa fa-eye" aria-hidden="true">
+                {store?.views}
+              </i>
+            </small>
           </div>
         </div>
       </Link>

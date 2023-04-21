@@ -114,7 +114,7 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-              {/* <small
+              <small
                 style={{
                   display: "flex",
                   gap: "5px",
@@ -122,9 +122,10 @@ function SelectCard({ type }) {
                   color: "#002",
                 }}
               >
-                <i class="fa fa-eye" aria-hidden="true"></i>
-                {getNewsClicks(clickedNews, opinion[0]?._id)}
-              </small> */}
+                <i class="fa fa-eye" aria-hidden="true">
+                  {opinion[0]?.views}
+                </i>
+              </small>
             </div>
           </div>
         </Link>
@@ -171,7 +172,7 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-                        {/* <small
+                        <small
                           style={{
                             display: "flex",
                             gap: "5px",
@@ -179,9 +180,10 @@ function SelectCard({ type }) {
                             color: "#002",
                           }}
                         >
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                          {getNewsClicks(clickedNews, el?._id)}
-                        </small> */}
+                          <i class="fa fa-eye" aria-hidden="true">
+                            {el?.views}
+                          </i>
+                        </small>
                       </small>
                     </div>
                   </div>
@@ -248,7 +250,7 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-              {/* <small
+              <small
                 style={{
                   display: "flex",
                   gap: "5px",
@@ -256,12 +258,10 @@ function SelectCard({ type }) {
                   color: "#002",
                 }}
               >
-                <i class="fa fa-eye" aria-hidden="true"></i>
-                {getNewsClicks(
-                  clickedNews,
-                  opinionSport[0]?._id
-                )}
-              </small> */}
+                <i class="fa fa-eye" aria-hidden="true">
+                  {opinionSport[0]?.views}
+                </i>
+              </small>
             </div>
           </div>
         </Link>
@@ -308,7 +308,7 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-                        {/* <small
+                        <small
                           style={{
                             display: "flex",
                             gap: "5px",
@@ -316,9 +316,10 @@ function SelectCard({ type }) {
                             color: "#002",
                           }}
                         >
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                          {getNewsClicks(clickedNews, el?._id)}
-                        </small> */}
+                          <i class="fa fa-eye" aria-hidden="true">
+                            {el?.views}
+                          </i>
+                        </small>
                       </small>
                     </div>
                   </div>
@@ -385,7 +386,7 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-              {/* <small
+              <small
                 style={{
                   display: "flex",
                   gap: "5px",
@@ -393,12 +394,10 @@ function SelectCard({ type }) {
                   color: "#002",
                 }}
               >
-                <i class="fa fa-eye" aria-hidden="true"></i>
-                {getNewsClicks(
-                  clickedNews,
-                  opinionBusiness[0]?._id
-                )}
-              </small> */}
+                <i class="fa fa-eye" aria-hidden="true">
+                  {opinionBusiness[0]?.views}
+                </i>
+              </small>
             </div>
           </div>
         </Link>
@@ -445,7 +444,7 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-                        {/* <small
+                        <small
                           style={{
                             display: "flex",
                             gap: "5px",
@@ -453,9 +452,10 @@ function SelectCard({ type }) {
                             color: "#002",
                           }}
                         >
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                          {getNewsClicks(clickedNews, el?._id)}
-                        </small> */}
+                          <i class="fa fa-eye" aria-hidden="true">
+                            {el?.views}
+                          </i>
+                        </small>
                       </small>
                     </div>
                   </div>
@@ -522,7 +522,7 @@ function SelectCard({ type }) {
                 </svg>
                 0
               </small>
-              {/* <small
+              <small
                 style={{
                   display: "flex",
                   gap: "5px",
@@ -530,12 +530,10 @@ function SelectCard({ type }) {
                   color: "#002",
                 }}
               >
-                <i class="fa fa-eye" aria-hidden="true"></i>
-                {getNewsClicks(
-                  clickedNews,
-                  opinionNews[0]?._id
-                )}
-              </small> */}
+                <i class="fa fa-eye" aria-hidden="true">
+                  {opinionNews[0]?.views}
+                </i>
+              </small>
             </div>
           </div>
         </Link>
@@ -588,7 +586,7 @@ function SelectCard({ type }) {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                         </svg>
                         {convertDate2(el?.createdAt)}
-                        {/* <small
+                        <small
                           style={{
                             display: "flex",
                             gap: "5px",
@@ -596,9 +594,10 @@ function SelectCard({ type }) {
                             color: "#002",
                           }}
                         >
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                          {getNewsClicks(clickedNews, el?._id)}
-                        </small> */}
+                          <i class="fa fa-eye" aria-hidden="true">
+                            {el?.views}
+                          </i>
+                        </small>
                       </small>
                     </div>
                   </div>

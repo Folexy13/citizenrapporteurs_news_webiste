@@ -94,7 +94,7 @@ function Opinion({ type }) {
                               <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
                             </svg>
                             {formatDate(el?.createdAt)}
-                            {/* <small
+                            <small
                               style={{
                                 display: "flex",
                                 gap: "5px",
@@ -102,9 +102,10 @@ function Opinion({ type }) {
                                 color: "#002",
                               }}
                             >
-                              <i class="fa fa-eye" aria-hidden="true"></i>
-                              {getNewsClicks(clickedNews, el?._id)}
-                            </small> */}
+                              <i class="fa fa-eye" aria-hidden="true">
+                                {el?.views}
+                              </i>
+                            </small>
                           </small>
                         </div>
                       </div>

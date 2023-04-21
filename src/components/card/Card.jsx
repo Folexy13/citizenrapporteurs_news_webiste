@@ -239,7 +239,7 @@ function Card({ store, type }) {
               </svg>
               0
             </small>
-            {/* <small
+            <small
               style={{
                 display: "flex",
                 color: "#002",
@@ -247,9 +247,10 @@ function Card({ store, type }) {
                 alignItems: "center",
               }}
             >
-              <i class="fa fa-eye" aria-hidden="true"></i>
-              {getNewsClicks(clickedNews, store[0]?._id)}
-            </small> */}
+              <i class="fa fa-eye" aria-hidden="true">
+                {store[0]?.views}
+              </i>
+            </small>
           </div>
           <p>{truncateText(store[0]?.description, 250)}</p>
           <Link

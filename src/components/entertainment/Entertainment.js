@@ -123,12 +123,13 @@ function Entertainment() {
                 </svg>
                 0
               </small>
-              {/* <small
+              <small
                 style={{ display: "flex", gap: "5px", alignItems: "center" }}
               >
-                <i class="fa fa-eye" aria-hidden="true"></i>
-                {getNewsClicks(clickedNews, entertainmentNews[lx]?._id)}
-              </small> */}
+                <i class="fa fa-eye" aria-hidden="true">
+                  {entertainmentNews[lx]?.views}
+                </i>
+              </small>
             </div>
           </div>
         </Link>
@@ -183,12 +184,13 @@ function Entertainment() {
                   </svg>
                   0
                 </small>
-                {/* <small
+                <small
                   style={{ display: "flex", gap: "5px", alignItems: "center" }}
                 >
-                  <i class="fa fa-eye" aria-hidden="true"></i>
-                  {getNewsClicks(clickedNews, entertainmentNews[1]?._id)}
-                </small> */}
+                  <i class="fa fa-eye" aria-hidden="true">
+                    {entertainmentNews[1]?.views}
+                  </i>
+                </small>
               </div>
             </div>
           </Link>
@@ -245,16 +247,17 @@ function Entertainment() {
                     </svg>
                     0
                   </small>
-                  {/* <small
+                  <small
                     style={{
                       display: "flex",
                       gap: "5px",
                       alignItems: "center",
                     }}
                   >
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                    {getNewsClicks(clickedNews, entertainmentNews[2]?._id)}
-                  </small> */}
+                    <i class="fa fa-eye" aria-hidden="true">
+                      {entertainmentNews[2]?.views}
+                    </i>
+                  </small>
                 </div>
               </div>
             </Link>
@@ -309,19 +312,17 @@ function Entertainment() {
                       </svg>
                       0
                     </small>
-                    {/* <small
+                    <small
                       style={{
                         display: "flex",
                         gap: "5px",
                         alignItems: "center",
                       }}
                     >
-                      <i class="fa fa-eye" aria-hidden="true"></i>
-                      {getNewsClicks(
-                        clickedNews,
-                        entertainmentNews[3]?._id
-                      )}
-                    </small> */}
+                      <i class="fa fa-eye" aria-hidden="true">
+                        {entertainmentNews[3]?.views}
+                      </i>
+                    </small>
                   </div>
                 </div>
               </Link>

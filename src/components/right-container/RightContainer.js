@@ -114,7 +114,7 @@ function RightContainer() {
                   </svg>
                   0
                 </small>
-                {/* <small
+                <small
                   style={{
                     display: "flex",
                     gap: "5px",
@@ -122,12 +122,10 @@ function RightContainer() {
                     color: "#002",
                   }}
                 >
-                  <i class="fa fa-eye" aria-hidden="true"></i>
-                  {getNewsClicks(
-                    clickedNews,
-                    politicsNews[politicsNews?.length - 1]?._id
-                  )}
-                </small> */}
+                  <i class="fa fa-eye" aria-hidden="true">
+                    {politicsNews[politicsNews?.length - 1]?.views}
+                  </i>
+                </small>
               </div>
             </div>
           </Link>
