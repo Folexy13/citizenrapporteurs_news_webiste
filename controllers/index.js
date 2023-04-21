@@ -1,10 +1,9 @@
 require("dotenv").config();
 const News = require("../model/news");
-const Clicks = require("../model/click");
 const Comments = require("../model/comment");
 const jwt = require("jsonwebtoken");
-const path = require("path");
 const nodemailer = require("nodemailer");
+const ipaddr = require("ipaddr.js");
 const paginatedData = require("../utils/Paginate");
 const getSlugFromCategory = (input) => {
   if (typeof input === "string") {
@@ -13,6 +12,8 @@ const getSlugFromCategory = (input) => {
       ?.toLocaleLowerCase()
       ?.replace(/\s/g, "-")
       ?.replace(/,/g, "-")
+      ?.replace(/'|"~|@/g, "-")
+      ?.replace(/"/g, "-")
       ?.replace(/[^\w\s_.,-/#-'"]/g, "-")
       ?.split("-");
     slug = slug
@@ -173,34 +174,30 @@ async function deleteNews(req, res) {
 let arr = [];
 async function getSingleNews(req, res) {
   const { id, slug } = req.body;
-  await News.findOne(
-    { $or: [{ _id: id }, { newsSlug: slug }] },
-    (err, news) => {
-      if (err) {
-        return res.json({
-          status: 403,
-          message: "Error in fetching news",
-          error: err,
-        });
-      }
-      arr.concat(news);
-      console.log(arr);
-      return res.status(200).json({
-        status: 200,
-        news: news, //returns latest added five news
-      });
-    }
-  )
-    .clone()
-    .catch(function (err) {
-      console.log(err);
+  const ip = req.ip;
+  const isNews = await News.findOne({
+    $or: [{ _id: id }, { newsSlug: slug }],
+  });
+  if (isNews && !isNews.ipAddresses.includes(ip)) {
+    const updatedNews = await News.findOneAndUpdate(
+      { $or: [{ _id: id }, { newsSlug: slug }] },
+      { $push: { ipAddresses: ip }, $inc: { views: 1 } },
+      { new: true }
+    );
+    return res.status(200).json({
+      status: 200,
+      news: updatedNews,
     });
+  } else {
+    return res.status(200).json({
+      status: 200,
+      news: isNews,
+    });
+  }
 }
 async function getSingleNewsBySlug(req, res) {
   const { slug } = req.params;
-  // const truncateText = (str, size) => {
-  //   return str.length > size ? str.substring(0, size - 3) + "..." : str;
-  // };
+
   await News.findOne({ slug }, (err, news) => {
     if (err) {
       return res.json({
@@ -329,104 +326,6 @@ async function postComments(req, res) {
   });
 }
 
-async function postNewsClicks(req, res) {
-  const { ip, id } = req.body;
-
-  await Clicks.findOne({ newsID: id }, function (err, data) {
-    if (err) {
-      return res.json({
-        status: 403,
-        message: "Error with CLicking",
-        error: err,
-      });
-    } else if (data && data.ip.includes(ip)) {
-      return res.json({
-        status: 403,
-        message: "No Update made",
-      });
-    } else if (data && !data.ip.includes(ip)) {
-      Clicks.findOneAndUpdate(
-        { newsID: id },
-        { $set: { clicks: data.clicks + 1, ip: [...data.ip, ip] } },
-        { new: true },
-        (err, clickedNews) => {
-          if (err) {
-            console.log("Something wrong when updating data");
-          }
-          return res.status(200).json({
-            status: 200,
-            message: "Click updated",
-            savedNews: clickedNews,
-          });
-        }
-      );
-    } else {
-      const newClick = new Clicks();
-      newClick.userIp = ip;
-      newClick.clicks = 1;
-      newClick.newsID = id;
-      newClick.save(function (err, data) {
-        if (err) {
-          return res.json({
-            status: 403,
-            message: "Error with Model",
-            error: err,
-          });
-        }
-        return res.status(200).json({
-          status: 200,
-          message: "News was clicked",
-          savedNews: data,
-        });
-      });
-    }
-  })
-    .clone()
-    .catch(function (err) {
-      console.log(err);
-    });
-}
-async function getNewsClicks(req, res) {
-  const id = req.params.id;
-  await Clicks.findOne({ newsId: id }, function (err, news) {
-    if (err) {
-      return res.json({
-        status: 403,
-        message: "Error with Model",
-        error: err,
-      });
-    } else {
-      return res.status(200).json({
-        status: 200,
-        news: news, //returns latest added ten news
-      });
-    }
-  })
-    .clone()
-    .catch(function (err) {
-      console.log(err);
-    });
-}
-async function getClickedNews(req, res) {
-  await Clicks.find({}, function (err, news) {
-    if (err) {
-      return res.json({
-        status: false,
-        message: "Error in fecthing clicked news",
-        error: err,
-      });
-    } else {
-      return res.status(200).json({
-        status: true,
-        clickedNews: news, //returns latest added ten news
-      });
-    }
-  })
-    .clone()
-    .catch(function (err) {
-      console.log(err);
-    });
-}
 async function login(req, res) {
   const { username, password } = req.body;
   const token = jwt.sign({ username, password }, "process.env.JWT_TOKEN", {
@@ -549,7 +448,10 @@ async function getNews(req, res) {
     crimeCategory,
   });
 }
-
+async function loremUpdate(req, res) {
+  const loremUpdateAll = await News.updateMany({ views: 0, ipAddresses: [] });
+  if (loremUpdateAll) return res.sendStatus(200);
+}
 module.exports = {
   postNews,
   editNews,
@@ -562,13 +464,11 @@ module.exports = {
   getNewsComment,
   getSingleNews,
   getSingleNewsBySlug,
-  getNewsClicks,
-  getClickedNews,
-  postNewsClicks,
   bookAppointment,
   login,
   getNews,
   updateSlug,
   updateNews,
   getLikesDislikes,
+  loremUpdate,
 };

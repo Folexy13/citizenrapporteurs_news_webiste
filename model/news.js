@@ -30,10 +30,11 @@ const newsSchema = new mongoose.Schema(
     media: {
       type: String,
     },
-    clicks: {
-      type: mongoose.Types.ObjectId,
-      ref: "Click",
+    views: {
+      type: Number,
+      default: 0,
     },
+    ipAddresses: [],
     comments: { type: mongoose.Types.ObjectId, ref: "Comment" },
   },
   { timestamps: true }

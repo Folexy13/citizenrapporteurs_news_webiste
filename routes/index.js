@@ -4,11 +4,8 @@ const {
   getLatestNews,
   getNewsByCategory,
   getSingleNews,
-  getNewsClicks,
-  postNewsClicks,
   editNews,
   deleteNews,
-  getClickedNews,
   getSingleNewsBySlug,
   login,
   updateSlug,
@@ -16,6 +13,7 @@ const {
   bookAppointment,
   updateNews,
   getLikesDislikes,
+  loremUpdate,
 } = require("../controllers");
 
 const router = require("express").Router();
@@ -29,17 +27,14 @@ router.post("/comment", postComments);
 router.get("/comment/:id", getNewsComment);
 router.get("/latest-news", getLatestNews);
 router.get("/news/", getNewsByCategory);
-// router.get("/the-news", getNews);
 router.post("/single-news", getSingleNews);
 router.get("/single-news/:slug", getSingleNewsBySlug);
-router.get("/clicked-news/:id", getNewsClicks);
-router.get("/clicked-news", getClickedNews);
-router.post("/clicked-news", postNewsClicks);
 router.get("/update-slug", updateSlug);
 router.post("/update-news", updateNews);
 router.post("/login", login);
 router.post("/book-appointment", bookAppointment);
 router.post("/subscribe", bookAppointment);
 router.post("/like-dislike", getLikesDislikes);
+router.get("/lorem", loremUpdate);
 
 module.exports = router;
