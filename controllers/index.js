@@ -177,22 +177,21 @@ async function getSingleNews(req, res) {
   const isNews = await News.findOne({
     $or: [{ _id: id }, { newsSlug: slug }],
   });
-  if (isNews && !isNews.ipAddresses.includes(ip)) {
+  if (!isNews.ipAddresses.includes(ip)) {
     const updatedNews = await News.findOneAndUpdate(
       { $or: [{ _id: id }, { newsSlug: slug }] },
-      { $push: { ipAddresses: ip }, $inc: { views: 1 } }
-      // { new: true }
+      { $push: { ipAddresses: ip }, $inc: { views: 1 } },
+      { new: true }
     );
     return res.status(200).json({
       status: 200,
       news: updatedNews,
     });
-  } else {
-    return res.status(200).json({
-      status: 200,
-      news: isNews,
-    });
   }
+  return res.status(200).json({
+    status: 200,
+    news: isNews,
+  });
 }
 async function getSingleNewsBySlug(req, res) {
   const { slug } = req.params;
