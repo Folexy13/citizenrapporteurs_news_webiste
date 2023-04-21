@@ -174,7 +174,8 @@ async function deleteNews(req, res) {
 let arr = [];
 async function getSingleNews(req, res) {
   const { id, slug } = req.body;
-  const ip = req.ip;
+  const ip =
+    req.ipreq.headers["x-forwarded-for"] || req.connection.remoteAddress;
   const isNews = await News.findOne({
     $or: [{ _id: id }, { newsSlug: slug }],
   });
