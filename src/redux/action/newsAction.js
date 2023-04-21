@@ -4,8 +4,7 @@ import { userConstants } from "../../constant/userConstants";
 import axios from "../../helpers/api";
 import { getIPAddress } from "../../helpers/getIP";
 export const BASE_API_URL = "https://cr_new_api.deta.dev";
-// export const BASE_API_URL = "https://cnew-api.onrender.com";
-// export const BASE_API_URL = "http://localhost:5000";
+const uuid = localStorage.getItem("uuid");
 export const newsAction = {
   postNews,
   postComment,
@@ -137,7 +136,7 @@ function getSingleNews(payload) {
     axios
       .post(`${BASE_API_URL}/single-news`, {
         ...payload,
-        ip: await getIPAddress(),
+        ip: uuid,
       })
       .then((res) => {
         dispatch({
