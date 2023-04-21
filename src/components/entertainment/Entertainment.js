@@ -15,6 +15,8 @@ export const convertToSlug = (input) => {
       ?.toLocaleLowerCase()
       ?.replace(/\s/g, "-")
       ?.replace(/,/g, "-")
+      ?.replace(/'|"~|@/g, "-")
+      ?.replace(/"/g, "-")
       ?.replace(/[^\w\s_.,-/#-'"]/g, "-")
       ?.split("-");
     slug = slug
