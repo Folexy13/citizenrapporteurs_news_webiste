@@ -2,6 +2,7 @@
 import { alertActions } from "./alertAction";
 import { userConstants } from "../../constant/userConstants";
 import axios from "../../helpers/api";
+import { getIPAddress } from "../../helpers/getIP";
 export const BASE_API_URL = "https://cr_new_api.deta.dev";
 // export const BASE_API_URL = "https://cnew-api.onrender.com";
 // export const BASE_API_URL = "http://localhost:5000";
@@ -131,14 +132,20 @@ function getLatestNews() {
   };
 }
 function getSingleNews(payload) {
-  return (dispatch) => {
-    axios.post(`${BASE_API_URL}/single-news`, payload).then((res) => {
-      dispatch({
-        type: userConstants.GET_SINGLE_NEWS,
-        news: res.data.news,
+  return async (dispatch) => {
+    console.log({ ip: await getIPAddress() });
+    axios
+      .post(`${BASE_API_URL}/single-news`, {
+        ...payload,
+        ip: await getIPAddress(),
+      })
+      .then((res) => {
+        dispatch({
+          type: userConstants.GET_SINGLE_NEWS,
+          news: res.data.news,
+        });
+        axios.get(`${BASE_API_URL}`);
       });
-      axios.get(`${BASE_API_URL}`);
-    });
   };
 }
 function postComment(payload) {
