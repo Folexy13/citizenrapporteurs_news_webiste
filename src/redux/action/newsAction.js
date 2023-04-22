@@ -3,8 +3,8 @@ import { alertActions } from "./alertAction";
 import { userConstants } from "../../constant/userConstants";
 import axios from "../../helpers/api";
 import { getIPAddress } from "../../helpers/getIP";
-// export const BASE_API_URL = "https://cr_new_api.deta.dev";
-export const BASE_API_URL = "http://localhost:8087";
+export const BASE_API_URL = "https://cr_new_api.deta.dev";
+// export const BASE_API_URL = "http://localhost:8087";
 const uuid = localStorage.getItem("uuid");
 
 export const newsAction = {
