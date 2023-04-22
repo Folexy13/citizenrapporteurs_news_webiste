@@ -180,23 +180,24 @@ async function getSingleNews(req, res) {
   if (!isNews.ipAddresses.includes(ip)) {
     const updatedNews = await News.findOneAndUpdate(
       { $or: [{ _id: id }, { newsSlug: slug }] },
+      { $push: { ipAddresses: ip }, $inc: { views: 1 } },
+      { new: true }
+    );
+    return res.status(200).json({
+      status: 200,
+      news: updatedNews,
+    });
+  } else {
+    const updatedNews = await News.findOneAndUpdate(
+      { $or: [{ _id: id }, { newsSlug: slug }] },
       { $push: { ipAddresses: ip } },
       { new: true }
     );
-    if (!updatedNews.ipAddresses.includes(ip)) {
-      updatedNews.views++;
-      await updatedNews.save();
-    }
     return res.status(200).json({
       status: 200,
       news: updatedNews,
     });
   }
-
-  return res.status(200).json({
-    status: 200,
-    news: isNews,
-  });
 }
 async function getSingleNewsBySlug(req, res) {
   const { slug } = req.params;
