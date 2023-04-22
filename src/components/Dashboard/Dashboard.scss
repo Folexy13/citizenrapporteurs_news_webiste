@@ -1,0 +1,9 @@
+.dashboard-container{
+    display: flex;
+    width: 100%;
+    position: relative;
+    .main{
+        width: calc( 100% - 500px);
+        margin: 40px auto;
+    }
+}

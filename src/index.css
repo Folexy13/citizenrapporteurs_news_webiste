@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+a {
+  color: inherit;
+  text-decoration: unset;
+}
+
+button:disabled {
+  background: #ccc !important;
+  color: #fff !important;
+  cursor: not-allowed;
+}
+
+.fa-clock-o{
+  display: flex;
+  gap: 3px;
+  font-style: italic;
+}

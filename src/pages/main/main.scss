@@ -1,0 +1,109 @@
+.news_main {
+  .news {
+    @media (min-width: 1034px) {
+      width: 60%;
+      margin: auto;
+    }
+  }
+  .comment-section {
+    width: 90%;
+    margin: 30px 0;
+    // padding: 20px;
+    
+    h1 {
+      font-weight: 700;
+      font-size: 24px;
+      margin: 20px 0 10px;
+      letter-spacing: -0.02em;
+      position: relative;
+      @media (max-width:480px) {
+        font-size: 14px;
+      }
+    }
+    h3 {
+      font-weight: 300;
+      font-size: 16px;
+      @media (max-width:480px) {
+          font-size: 12px;
+        }
+    }
+   
+  }
+}
+ .form-control {
+   width: 100%;
+   margin: 20px 0;
+
+   label {
+     font-weight: 500;
+     font-size: 16px;
+     display: flex;
+     gap: 3px;
+    @media (max-width:480px) {
+        font-size: 12px;
+      }
+   }
+
+   input,
+   textarea {
+     width: 100%;
+     padding: 10px 20px;
+    @media (max-width:480px) {
+        font-size: 12px;
+      } 
+   }
+
+   button {
+     background: red;
+     width: 200px;
+     border-radius: 4px;
+     padding: 10px 0;
+     border: 0;
+     color: #fff;
+     font-weight: 600;
+     cursor: pointer;
+    @media (max-width:480px) {
+        width: calc(100% );
+      }
+   }
+ }
+
+ .comment{
+  h2{
+    font-size: 18px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    @media (max-width:600px) {
+      font-size: 16px;
+    }
+         .badge {
+           width: 30px;
+           height: 30px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           background: gray;
+           border-radius: 5px;
+           color: #fff;
+           font-size: 14px;
+           font-weight: 800;
+    
+           @media (max-width:600px) {
+             font-size: 12px;
+           }
+         }
+  }
+   .comment__body{
+    .flex{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+   }
+   .fa{
+    cursor: pointer;
+    margin-right: 10px;
+   }
+ }
