@@ -28,13 +28,13 @@ function RightContainer() {
     axios
       .get("https://ipapi.co/json/")
       .then((response) => {
-        // let data = response.data;
-        // let payload = {
-        //   id: store?._id,
-        //   ip: data.ip,
-        // };
-        // dispacth(newsAction.postClickedNews(payload));
-        // dispacth(newsAction.getSingleNews(payload));
+        let data = response.data;
+        let payload = {
+          id: store?._id,
+          ip: localStorage.getItem("uuid"),
+        };
+        dispacth(newsAction.postClickedNews(payload));
+        dispacth(newsAction.getSingleNews(payload));
       })
       .catch((error) => {
         console.log(error);
