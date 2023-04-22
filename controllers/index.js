@@ -171,33 +171,40 @@ async function deleteNews(req, res) {
       console.log(err);
     });
 }
-let arr = [];
+
+const itemInArray = (item, arr) => {
+  if (arr?.includes(item)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 async function getSingleNews(req, res) {
   const { id, slug, ip } = req.body;
   const isNews = await News.findOne({
     $or: [{ _id: id }, { newsSlug: slug }],
   });
-  if (!isNews.ipAddresses.includes(ip)) {
+  // console.log(isNews);
+  if (!itemInArray(ip, isNews?.ipAddresses) && ip) {
+    // console.log("Called odd time");
     const updatedNews = await News.findOneAndUpdate(
       { $or: [{ _id: id }, { newsSlug: slug }] },
       { $push: { ipAddresses: ip }, $inc: { views: 1 } },
       { new: true }
     );
-    return res.status(200).json({
-      status: 200,
-      news: updatedNews,
-    });
-  } else {
-    const updatedNews = await News.findOneAndUpdate(
-      { $or: [{ _id: id }, { newsSlug: slug }] },
-      { $push: { ipAddresses: ip } },
-      { new: true }
-    );
+
     return res.status(200).json({
       status: 200,
       news: updatedNews,
     });
   }
+  // console.log("Called even time");
+
+  return res.status(200).json({
+    status: 200,
+    news: isNews,
+  });
 }
 async function getSingleNewsBySlug(req, res) {
   const { slug } = req.params;
