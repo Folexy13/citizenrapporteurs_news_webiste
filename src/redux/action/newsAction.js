@@ -135,7 +135,8 @@ function getLatestNews() {
 function getSingleNews(payload) {
   return async (dispatch) => {
     console.log({ ip: await getIPAddress() });
-    axios
+   if(uuid){
+      axios
       .post(`${BASE_API_URL}/single-news`, {
         ...payload,
         ip: uuid,
@@ -148,6 +149,7 @@ function getSingleNews(payload) {
         axios.get(`${BASE_API_URL}`);
       });
   };
+   }
 }
 function postComment(payload) {
   return (dispatch) => {
