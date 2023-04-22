@@ -5,6 +5,7 @@ import axios from "../../helpers/api";
 import { getIPAddress } from "../../helpers/getIP";
 export const BASE_API_URL = "https://cr_new_api.deta.dev";
 const uuid = localStorage.getItem("uuid");
+
 export const newsAction = {
   postNews,
   postComment,

@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { BASE_API_URL, newsAction } from "../../redux/action/newsAction";
 import { routes } from "../../routes";
@@ -43,6 +43,8 @@ function Entertainment() {
   const lx = 0;
   // const clickedNews = useSelector((el) => el?.clickedNews);
   const disaptch = useDispatch();
+
+  const isDispatchedRef = useRef(false);
   const handleClicks = (id) => {
     axios
       .get("https://ipapi.co/json/")
@@ -52,9 +54,11 @@ function Entertainment() {
           id,
           ip: data.ip,
         };
-        console.log(payload);
-        disaptch(newsAction.postClickedNews(payload));
-        disaptch(newsAction.getSingleNews(id));
+        if (!isDispatchedRef.current) {
+          disaptch(newsAction.postClickedNews(payload));
+          disaptch(newsAction.getSingleNews(id));
+          isDispatchedRef.current = true;
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -76,9 +80,13 @@ function Entertainment() {
       <h1>Entertainment</h1>
       <div className="flex-container">
         <Link
-          to={"/" + convertToSlug(entertainmentNews[lx]?.title)}
+          to={
+            routes.NEWSPAGE_MAIN.path +
+            "/" +
+            convertToSlug(entertainmentNews[lx]?.title)
+          }
           className="item1"
-          onClick={() => handleClicks(entertainmentNews[lx]?._id)}
+          onClick={() => handleClicks(entertainmentNews[lx]?.newsSlug)}
         >
           <img
             src={
@@ -143,7 +151,7 @@ function Entertainment() {
               "/" +
               convertToSlug(entertainmentNews[1]?.title)
             }
-            onClick={() => handleClicks(entertainmentNews[1]?._id)}
+            onClick={() => handleClicks(entertainmentNews[1]?.newsSlug)}
           >
             <img
               src={
@@ -205,7 +213,7 @@ function Entertainment() {
                 "/" +
                 convertToSlug(entertainmentNews[2]?.title)
               }
-              onClick={() => handleClicks(entertainmentNews[2]?._id)}
+              onClick={() => handleClicks(entertainmentNews[2]?.newsSlug)}
               className="sub-item1"
             >
               <img
@@ -270,7 +278,7 @@ function Entertainment() {
                   "/" +
                   convertToSlug(entertainmentNews[3]?.title)
                 }
-                onClick={() => handleClicks(entertainmentNews[3]?._id)}
+                onClick={() => handleClicks(entertainmentNews[3]?.newsSlug)}
                 className="sub-item2"
               >
                 <img
