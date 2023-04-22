@@ -3,8 +3,8 @@ import { alertActions } from "./alertAction";
 import { userConstants } from "../../constant/userConstants";
 import axios from "../../helpers/api";
 import { getIPAddress } from "../../helpers/getIP";
-// export const BASE_API_URL = "https://cr_new_api.deta.dev";
-export const BASE_API_URL = "http://localhost:8087";
+export const BASE_API_URL = "https://cr_new_api.deta.dev";
+// export const BASE_API_URL = "http://localhost:8087";
 const uuid = localStorage.getItem("uuid");
 
 export const newsAction = {
@@ -135,21 +135,21 @@ function getLatestNews() {
 function getSingleNews(payload) {
   return async (dispatch) => {
     console.log({ ip: await getIPAddress() });
-   if(uuid){
+    if (uuid) {
       axios
-      .post(`${BASE_API_URL}/single-news`, {
-        ...payload,
-        ip: uuid,
-      })
-      .then((res) => {
-        dispatch({
-          type: userConstants.GET_SINGLE_NEWS,
-          news: res.data.news,
+        .post(`${BASE_API_URL}/single-news`, {
+          ...payload,
+          ip: uuid,
+        })
+        .then((res) => {
+          dispatch({
+            type: userConstants.GET_SINGLE_NEWS,
+            news: res.data.news,
+          });
+          axios.get(`${BASE_API_URL}`);
         });
-        axios.get(`${BASE_API_URL}`);
-      });
+    }
   };
-   }
 }
 function postComment(payload) {
   return (dispatch) => {
