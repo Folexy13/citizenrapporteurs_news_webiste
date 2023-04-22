@@ -117,6 +117,18 @@ function Card({ store, type }) {
             </svg>
             0
           </small>
+          <small
+            style={{
+              display: "flex",
+              color: "#002",
+              gap: "5px",
+              alignItems: "center",
+            }}
+          >
+            <i class="fa fa-eye" aria-hidden="true">
+              {store?.views}
+            </i>
+          </small>
         </div>
         <div className="card">
           <div className="img-container">

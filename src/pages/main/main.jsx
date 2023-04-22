@@ -47,10 +47,15 @@ const Main = () => {
   useEffect(() => {
     axios.get(`${BASE_API_URL}/news/?category=${slug}&page=1`).then((res) => {
       setData(res.data.payload);
-      axios.post(`${BASE_API_URL}/single-news`, { slug }).then((res) => {
-        setNews(res.data.news);
-        setIsLoading(false);
-      });
+      axios
+        .post(`${BASE_API_URL}/single-news`, {
+          ip: localStorage.getItem("uuid"),
+          slug,
+        })
+        .then((res) => {
+          setNews(res.data.news);
+          setIsLoading(false);
+        });
     });
   }, [slug]);
 
