@@ -118,9 +118,10 @@ const News = ({ type }) => {
     }
     if (state) {
       console.log(payload);
-      dispatch(newsAction.updateNews(payload));
+      // dispatch(newsAction.updateNews(payload));
     } else {
-      dispatch(newsAction.postNews(payload));
+      dispatch(alertActions.error("You can't post news.Talk to the developer"))
+      // dispatch(newsAction.postNews(payload));
     }
   };
   if (type === "update") {
