@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../helpers/useForm";
 import { alertActions } from "../../redux/action/alertAction";
-import { newsAction } from "../../redux/action/newsAction";
+// import { newsAction } from "../../redux/action/newsAction";
 import "./CreateNews.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 const isNotEmpty = (value) => value?.trim() !== "";
