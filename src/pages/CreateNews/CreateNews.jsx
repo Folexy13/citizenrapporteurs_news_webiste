@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "../../helpers/useForm";
 import { alertActions } from "../../redux/action/alertAction";
- import { newsAction } from "../../redux/action/newsAction";
+// import { newsAction } from "../../redux/action/newsAction";
 import "./CreateNews.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 const isNotEmpty = (value) => value?.trim() !== "";
@@ -120,9 +120,9 @@ const News = ({ type }) => {
       console.log(payload);
      dispatch(newsAction.updateNews(payload));
     } else {
-      //dispatch(alertActions.error("You can't post news.Talk to the developer"))
+      dispatch(alertActions.error("You can't post news.Talk to the developer"))
       setLoading(false)
-      dispatch(newsAction.postNews(payload));
+      //dispatch(newsAction.postNews(payload));
     }
   };
   if (type === "update") {
