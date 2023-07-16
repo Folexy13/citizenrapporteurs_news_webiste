@@ -120,9 +120,9 @@ const News = ({ type }) => {
       console.log(payload);
      dispatch(newsAction.updateNews(payload));
     } else {
-      // dispatch(alertActions.error("You can't post news.Talk to the developer"))
+      dispatch(alertActions.error("You can't post news.Talk to the developer"))
       setLoading(false)
-      dispatch(newsAction.postNews(payload));
+      // dispatch(newsAction.postNews(payload));
     }
   };
   if (type === "update") {
