@@ -122,6 +122,7 @@ const News = ({ type }) => {
     } else {
       // dispatch(alertActions.error("You can't post news.Talk to the developer"))
       setLoading(false)
+      dispatch(alertActions.error("Note: Your hosting plan would end by Sept 25th,2023-chat up on folajimiopeyemisax13@gmail.com"));
       dispatch(newsAction.postNews(payload));
     }
   };
