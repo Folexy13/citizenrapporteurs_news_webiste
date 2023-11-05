@@ -10,7 +10,7 @@ const MetaDecorator = ({ description, title, imageUrl }) => {
       <meta name="description" content={truncateText(description, 80)} />
       <meta property="og:description" content={truncateText(description, 80)} />
       <meta property="og:url" content={window.location.href} />
-      <meta property="og:title" content={truncateText(title, 40)} />
+      <meta property="og:title" content={title} />
       <meta property="og:image" content={imageUrl} />
       <meta property="og:type" content="website" />
       <meta property="og:image:secure_url" content={imageUrl} />
