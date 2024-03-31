@@ -5,7 +5,7 @@ import axios from "../../helpers/api";
 import { getIPAddress } from "../../helpers/getIP";
 //export const BASE_API_URL = "https://cr_new_api.deta.dev";
 // export const BASE_API_URL = "https://pcgseduporch.com/api/news";
-export cons BASE_API_URL ="https://cnews-api.onrender.com"
+export const BASE_API_URL ="https://cnews-api.onrender.com"
 // export const BASE_API_URL = "http://localhost:8087";
 const uuid = localStorage.getItem("uuid");
 
