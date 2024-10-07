@@ -24,9 +24,32 @@ function HomePage({ children }) {
     });
     document.title = "Homepage";
   }, [isLoading]);
+useEffect(() => {
+    // Create the script element
+    const script = document.createElement("script");
 
+    // Set the script properties
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8290075629258712";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+
+    // Append the script to the document head or body
+    document.body.appendChild(script);
+
+    // Clean up by removing the script when the component unmounts
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   return (
     <div className="home-page">
+        <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-8290075629258712"
+        data-ad-slot="1234567890"
+        data-ad-format="auto"
+      />
       <Layout hasRightSidebar={true}>
         {isLoading ? <Skeleton height={400} /> : <Card store={data} />}
         <SelectCard type="opinion" />
