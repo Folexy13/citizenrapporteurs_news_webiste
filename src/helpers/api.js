@@ -1,7 +1,7 @@
 import axios from "axios";
 // const BASE_API_URL = "https://cr_new_api.deta.dev";
 // const BASE_API_URL = "https://citizenrapporteurs-news-webiste.onrender.com";
-const BASE_API_URL = "https://hls.com.ng/node";
+const BASE_API_URL = "https://hls.com.ng/server";
 
 // const BASE_API_URL = "http://localhost:8080";
 
