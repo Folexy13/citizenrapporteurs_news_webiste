@@ -6,7 +6,7 @@ import { getIPAddress } from "../../helpers/getIP";
 //export const BASE_API_URL = "https://cr_new_api.deta.dev";
 // export const BASE_API_URL = "https://pcgseduporch.com/api/news";
 // export const BASE_API_URL ="https://citizenrapporteurs-news-webiste.onrender.com"
-const BASE_API_URL = "https://hls.com.ng/node";
+export const BASE_API_URL = "https://hls.com.ng/node";
 
 // export const BASE_API_URL = "http://localhost:8087";
 const uuid = localStorage.getItem("uuid");
