@@ -447,6 +447,7 @@ let entertainmentCategory = await News.find({ slug: "entertainment" }).select('-
 let opinionCategory = await News.find({ slug: "opinions" }).select('-ipAddresses');
 let sportCategory = await News.find({ slug: "sport" }).select('-ipAddresses');
 let crimeCategory = await News.find({ slug: "crime-report" }).select('-ipAddresses');
+  const {page} = req.query
 
    latestNews = paginatedData(latestNews, page);
   newsCategory = paginatedData(newsCategory, page);
