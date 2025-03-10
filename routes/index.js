@@ -3,6 +3,7 @@ const {
   postComments,
   getLatestNews,
   getNewsByCategory,
+  getNews,
   getSingleNews,
   editNews,
   deleteNews,
@@ -25,6 +26,7 @@ router.put("/edit-news/:id", editNews);
 router.post("/delete-news", deleteNews);
 router.post("/comment", postComments);
 router.get("/comment/:id", getNewsComment);
+router.get("/news/all", getNews);
 router.get("/latest-news", getLatestNews);
 router.get("/news/", getNewsByCategory);
 router.post("/single-news", getSingleNews);
