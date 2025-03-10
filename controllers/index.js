@@ -439,15 +439,25 @@ async function subscribe(req, res) {
 }
 
 async function getNews(req, res) {
- const latestNews = await News.find().sort({ _id: -1 }).limit(10).select('-ipAddresses');
-const newsCategory = await News.find({ slug: "breaking-news" }).select('-ipAddresses');
-const politicsCategory = await News.find({ slug: "politics" }).select('-ipAddresses');
-const businessCategory = await News.find({ slug: "business" }).select('-ipAddresses');
-const entertainmentCategory = await News.find({ slug: "entertainment" }).select('-ipAddresses');
-const opinionCategory = await News.find({ slug: "opinions" }).select('-ipAddresses');
-const sportCategory = await News.find({ slug: "sport" }).select('-ipAddresses');
-const crimeCategory = await News.find({ slug: "crime-report" }).select('-ipAddresses');
+ let latestNews = await News.find().sort({ _id: -1 }).limit(10).select('-ipAddresses');
+let newsCategory = await News.find({ slug: "breaking-news" }).select('-ipAddresses');
+let politicsCategory = await News.find({ slug: "politics" }).select('-ipAddresses');
+let businessCategory = await News.find({ slug: "business" }).select('-ipAddresses');
+let entertainmentCategory = await News.find({ slug: "entertainment" }).select('-ipAddresses');
+let opinionCategory = await News.find({ slug: "opinions" }).select('-ipAddresses');
+let sportCategory = await News.find({ slug: "sport" }).select('-ipAddresses');
+let crimeCategory = await News.find({ slug: "crime-report" }).select('-ipAddresses');
 
+   latestNews = paginatedData(latestNews, page);
+  newsCategory = paginatedData(newsCategory, page);
+politicsCategory = paginatedData(politicsCategory, page);
+businessCategory = paginatedData(businessCategory, page);
+  entertainmentCategory = paginatedData(entertainmentCategory, page);
+  opinionCategory = paginatedData(opinionCategory, page);
+  sportCategory = paginatedData(sportCategory, page);
+  crimeCategory = paginatedData(crimeCategory, page);
+  
+  
   res.status(200).send({
     latestNews,
     newsCategory,
